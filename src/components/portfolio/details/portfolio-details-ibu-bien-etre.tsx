@@ -120,8 +120,8 @@ export default function PortfolioDetailsIBUBienEtre() {
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-content-right tp_title_anim">
-                      <p className="pb-25">Nos expériences de bien-être sont conçues pour harmoniser le corps, l'esprit et l'âme. Chaque soin est une invitation à la détente profonde et à la reconnexion avec soi-même.</p>
-                      <p>Du Spa & Massages aux Retraites Nature, en passant par la Méditation & Yoga, chaque expérience est une porte vers l'équilibre intérieur et la sérénité.</p>
+                      <p className="pb-25">Nos expériences de bien-être sont conçues pour harmoniser le corps, l&apos;esprit et l&apos;âme. Chaque soin est une invitation à la détente profonde et à la reconnexion avec soi-même.</p>
+                      <p>Du Spa & Massages aux Retraites Nature, en passant par la Méditation & Yoga, chaque expérience est une porte vers l&apos;équilibre intérieur et la sérénité.</p>
                   </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@ export default function PortfolioDetailsIBUBienEtre() {
               </div>
               <div className="col-xl-9">
                 <div className="showcase-details-2-content-right tp_title_anim">
-                    <p className="pb-25">Notre philosophie repose sur la conviction que le bien-être authentique naît de l'harmonie entre tous les aspects de notre être. Nous créons des espaces sacrés où la guérison naturelle peut s'opérer.</p>
+                    <p className="pb-25">Notre philosophie repose sur la conviction que le bien-être authentique naît de l&apos;harmonie entre tous les aspects de notre être. Nous créons des espaces sacrés où la guérison naturelle peut s&apos;opérer.</p>
                     <p>Nous travaillons avec des praticiens certifiés et utilisons des techniques ancestrales combinées aux innovations modernes pour offrir des soins qui transforment véritablement.</p>
                 </div>
               </div>
@@ -213,8 +213,8 @@ export default function PortfolioDetailsIBUBienEtre() {
               </div>
               <div className="col-xl-9">
                 <div className="showcase-details-2-content-right tp_title_anim">
-                    <p className="pb-25">Chaque expérience de bien-être est conçue pour catalyser une transformation profonde. Nous croyons au pouvoir de la guérison naturelle et créons les conditions optimales pour que cette transformation puisse s'opérer.</p>
-                    <p>De la relaxation profonde à l'éveil spirituel, nos soins vous accompagnent dans votre voyage vers l'équilibre et l'harmonie intérieure.</p>
+                    <p className="pb-25">Chaque expérience de bien-être est conçue pour catalyser une transformation profonde. Nous croyons au pouvoir de la guérison naturelle et créons les conditions optimales pour que cette transformation puisse s&apos;opérer.</p>
+                    <p>De la relaxation profonde à l&apos;éveil spirituel, nos soins vous accompagnent dans votre voyage vers l&apos;équilibre et l&apos;harmonie intérieure.</p>
                 </div>
               </div>
           </div>

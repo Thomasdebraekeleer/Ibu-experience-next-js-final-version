@@ -109,7 +109,7 @@ const ContactMain = () => {
                         <i className="fas fa-map-marker-alt"></i>
                       </div>
                       <h4>Notre Adresse</h4>
-                      <p>123 Rue de l'Aventure<br />75001 Paris, France</p>
+                      <p>123 Rue de l&apos;Aventure<br />75001 Paris, France</p>
                     </div>
                   </div>
                   <div className="col-lg-4 col-md-6">

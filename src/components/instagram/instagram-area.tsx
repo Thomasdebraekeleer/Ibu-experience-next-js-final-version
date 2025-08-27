@@ -41,7 +41,7 @@ export default function InstagramArea() {
         </div>
         <div className="tp-instagram-thumb">
           {/* <Image src={inst_8} alt="inst-img" */}
-          <img src="/assets/img/home-02/instagram/insta-1.jpg" alt="inst-img"/>
+          <Image src="/assets/img/home-02/instagram/insta-1.jpg" alt="inst-img" width={500} height={500} style={{height: 'auto'}}/>
         </div>
         <div className="tp-instagram-content-wrap text-start">
           <div className="tp-instagram-title-box">

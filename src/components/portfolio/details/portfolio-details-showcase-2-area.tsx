@@ -93,7 +93,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-section-right tp_title_anim">
-                      <p>Dormez en pleine nature, nichés dans des vignobles, châteaux et autres lieux d'exception, à travers la Belgique. Nos pods au design minimaliste et confortable vous accueillent pour une expérience hors du temps, entre élégance, bien-être et gastronomie locale, à vivre avec ceux que vous aimez.</p>
+                      <p>Dormez en pleine nature, nichés dans des vignobles, châteaux et autres lieux d&apos;exception, à travers la Belgique. Nos pods au design minimaliste et confortable vous accueillent pour une expérience hors du temps, entre élégance, bien-être et gastronomie locale, à vivre avec ceux que vous aimez.</p>
                   </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        L'objectif
+                        L&apos;objectif
                       </span>
                   </div>
                 </div>

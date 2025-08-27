@@ -229,7 +229,7 @@ const BecomePartnerMain = () => {
                                 onChange={handleInputChange}
                                 required
                               >
-                                <option value="">Type d'expérience proposée</option>
+                                <option value="">Type d&apos;expérience proposée</option>
                                 <option value="aventure">Aventure</option>
                                 <option value="culturelle">Culturelle</option>
                                 <option value="gastronomique">Gastronomique</option>

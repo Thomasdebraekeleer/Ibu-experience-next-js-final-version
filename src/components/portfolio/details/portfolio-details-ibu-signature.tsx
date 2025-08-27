@@ -105,7 +105,7 @@ export default function PortfolioDetailsIBUSignature() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">L'Expérience IBÙ Signature</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;Expérience IBÙ Signature</h4>
                   </div>
                 </div>
             </div>
@@ -199,7 +199,7 @@ export default function PortfolioDetailsIBUSignature() {
           <div className="row">
               <div className="col-xl-12">
                 <div className="showcase-details-2-section-box">
-                    <h4 className="showcase-details-2-section-title tp-char-animation">L'Excellence</h4>
+                    <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;Excellence</h4>
                 </div>
               </div>
           </div>

@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -91,7 +92,7 @@ const AboutMain = () => {
                       </div>
                       <p>
                         Fondée en 2020, VBU Experience est née de la passion pour créer des expériences de voyage authentiques et immersives. 
-                        Notre équipe d'experts locaux et de passionnés du voyage s'engage à vous offrir des moments inoubliables.
+                        Notre équipe d&apos;experts locaux et de passionnés du voyage s&apos;engage à vous offrir des moments inoubliables.
                       </p>
                       <p>
                         Nous croyons que chaque voyage devrait être une aventure unique, une opportunité de découvrir de nouveaux horizons 
@@ -102,7 +103,7 @@ const AboutMain = () => {
                   <div className="col-lg-6">
                     <div className="tp-about-story-image">
                       <div className="tp-about-img">
-                        <img src="/img/about/story-image.jpg" alt="Notre Histoire" />
+                        <Image src="/img/about/story-image.jpg" alt="Notre Histoire" width={600} height={400} style={{height: 'auto'}} />
                       </div>
                     </div>
                   </div>
