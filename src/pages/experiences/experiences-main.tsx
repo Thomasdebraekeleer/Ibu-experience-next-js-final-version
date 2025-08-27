@@ -103,22 +103,22 @@ const ExperiencesMain = () => {
                   <div className="row">
                       <div className="col-xl-3 col-lg-3">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image className="img-left" src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
+                             <Image src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
                          </div>
                        </div>
                        <div className="col-xl-3 col-lg-3">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image className="img-right" src={cocons_img_2} alt="cocons-img-2" style={{height:'auto'}}/>
+                             <Image src={cocons_img_2} alt="cocons-img-2" style={{height:'auto'}}/>
                          </div>
                        </div>
                        <div className="col-xl-3 col-lg-3">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image className="img-left" src={cocons_img_3} alt="cocons-img-3" style={{height:'auto'}}/>
+                             <Image src={cocons_img_3} alt="cocons-img-3" style={{height:'auto'}}/>
                          </div>
                        </div>
                        <div className="col-xl-3 col-lg-3">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image className="img-right" src={cocons_img_4} alt="cocons-img-4" style={{height:'auto'}}/>
+                             <Image src={cocons_img_4} alt="cocons-img-4" style={{height:'auto'}}/>
                          </div>
                        </div>
                   </div>
