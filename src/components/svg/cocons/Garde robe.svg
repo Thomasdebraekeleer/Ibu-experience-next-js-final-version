@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #053725;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Household_Icon_Set_01" data-name="Household Icon Set 01">
+    <path class="cls-1" d="M9,18v-2M2,12h29M13,6.5h4M9,6.5h4M31,1H13v30h18V1ZM13,1H1v30h12V1ZM20,12h-7v4h7v-4Z"/>
+  </g>
+</svg>
