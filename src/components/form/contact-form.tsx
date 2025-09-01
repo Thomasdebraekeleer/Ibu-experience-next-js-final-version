@@ -70,7 +70,7 @@ Ce message a été envoyé depuis le formulaire de contact du site IBÙ EXPERIEN
           fontSize: '16px',
           fontWeight: '500'
         }}>
-          ✨ Thanks for reaching out! We'll get back to you as soon as possible.
+          ✨ Thanks for reaching out! We&apos;ll get back to you as soon as possible.
         </div>
       )}
       

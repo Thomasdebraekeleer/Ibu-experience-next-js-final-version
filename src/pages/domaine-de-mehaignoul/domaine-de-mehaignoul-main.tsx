@@ -131,7 +131,7 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                       <div className="col-xl-9">
                         <div className="showcase-details-2-content-right tp_title_anim">
-                            <p>Situé au cœur de la Wallonie, le domaine de Mehaignoul est une ferme en carré datant du 13e siècle d'une exceptionnelle authenticité. En plus de sa première fonction agricole, elle propose également des salles de réceptions, des gîtes et un charmant vignoble.</p>
+                            <p>Situé au cœur de la Wallonie, le domaine de Mehaignoul est une ferme en carré datant du 13e siècle d&apos;une exceptionnelle authenticité. En plus de sa première fonction agricole, elle propose également des salles de réceptions, des gîtes et un charmant vignoble.</p>
                             <p>Blottie dans un cadre calme et champêtre, elle vous accueille pour vos réunions, séminaires, banquets et soirées divers.</p>
                         </div>
                       </div>
