@@ -2,8 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 // internal imports
-import logo from '@/assets/img/logo/logo.png';
-import logo_2 from '@/assets/img/logo/logo-white.png';
+import logoGreen from '@/assets/img/logo/logo-green.png';
+import logoWhite from '@/assets/img/logo/logo-white.png';
+import useIsHomepage from '@/hooks/use-is-homepage';
 import MobileOffcanvasTwo from "@/components/offcanvas/mobile-offcanvas-2";
 
 // props type
@@ -13,6 +14,7 @@ type IProps = {
 };
 export default function HeaderEight({style_2,container='1840'}: IProps) {
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
   return (
     <>
       <header>
@@ -22,10 +24,10 @@ export default function HeaderEight({style_2,container='1840'}: IProps) {
               <div className="col-md-6 col-6">
                 <div className="tp-header-logo">
                   <Link className={`${style_2?'portfolio-logo-1':''} logo-1`} href="/">
-                    <Image src={logo} alt="logo" />
+                    <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
                   </Link>
                   <Link className={`${style_2?'portfolio-logo-2':''} logo-2`} href="/">
-                    <Image src={logo_2} alt="logo" />
+                    <Image src={isHomepage ? logoGreen : logoWhite} alt="logo" />
                   </Link>
                 </div>
               </div>

@@ -1,12 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from '@/assets/img/logo/logo.png';
-import logo_2 from '@/assets/img/logo/logo-white.png';
+import logoGreen from '@/assets/img/logo/logo-green.png';
+import logoWhite from '@/assets/img/logo/logo-white.png';
+import useIsHomepage from '@/hooks/use-is-homepage';
 import MobileOffcanvasTwo from "@/components/offcanvas/mobile-offcanvas-2";
 
 export default function HeaderFive() {
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
   return (
     <>
     <header>
@@ -16,10 +18,10 @@ export default function HeaderFive() {
             <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6">
               <div className="tp-header-logo">
                 <Link className="logo-1" href="/">
-                  <Image src={logo} alt="logo" />
+                  <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
                 </Link>
                 <Link className="logo-2" href="/">
-                  <Image src={logo_2} alt="logo" />
+                  <Image src={isHomepage ? logoGreen : logoWhite} alt="logo" />
                 </Link>
               </div>
             </div>

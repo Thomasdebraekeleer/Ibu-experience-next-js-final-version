@@ -5,7 +5,9 @@ import Link from "next/link";
 import HeaderMenus from "./header-menus";
 import { Cart } from "@/components/svg";
 import useSticky from "@/hooks/use-sticky";
-import logo from '@/assets/img/logo/logo-white.png';
+import logoGreen from '@/assets/img/logo/logo-green.png';
+import logoWhite from '@/assets/img/logo/logo-white.png';
+import useIsHomepage from '@/hooks/use-is-homepage';
 import CartOffcanvas from "@/components/offcanvas/cart-offcanvas";
 import MobileOffcanvas from "@/components/offcanvas/mobile-offcanvas";
 
@@ -13,6 +15,8 @@ export default function HeaderThree() {
   const {sticky,headerRef,headerFullWidth} = useSticky();
   const [openCartMini, setOpenCartMini] = React.useState(false);
   const [openOffCanvas, setOpenOffCanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
+  
   useEffect(() => {
     headerFullWidth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +33,7 @@ export default function HeaderThree() {
               <div className="col-xl-2 col-lg-6 col-md-5 col-4">
                 <div className="tp-header-logo">
                   <Link href="/">
-                    <Image src={logo} alt="logo" />
+                    <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
                   </Link>
                 </div>
               </div>

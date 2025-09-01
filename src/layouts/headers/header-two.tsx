@@ -6,12 +6,16 @@ import { Cart } from "@/components/svg";
 import useSticky from "@/hooks/use-sticky";
 import CartOffcanvas from "@/components/offcanvas/cart-offcanvas";
 import MobileOffcanvasTwo from "@/components/offcanvas/mobile-offcanvas-2";
+import logoGreen from "@/assets/img/logo/logo-green.png";
+import logoWhite from "@/assets/img/logo/logo-white.png";
+import useIsHomepage from "@/hooks/use-is-homepage";
 
 
 export default function HeaderTwo() {
   const {sticky} = useSticky();
   const [openCartMini, setOpenCartMini] = React.useState(false);
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
   return (
     <>
       <header>
@@ -25,7 +29,7 @@ export default function HeaderTwo() {
                 <div className="tp-header-logo">
                   <Link className="logo-1" href="/">
                     <Image
-                      src="/assets/img/logo/logo.png"
+                      src={isHomepage ? logoWhite : logoGreen}
                       alt="logo"
                       width={85}
                       height={26}
@@ -33,7 +37,7 @@ export default function HeaderTwo() {
                   </Link>
                   <Link className="logo-2" href="/">
                     <Image
-                      src="/assets/img/logo/logo-white.png"
+                      src={isHomepage ? logoGreen : logoWhite}
                       alt="logo"
                       width={85}
                       height={26}

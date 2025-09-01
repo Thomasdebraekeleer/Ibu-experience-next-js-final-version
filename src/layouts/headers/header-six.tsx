@@ -5,7 +5,9 @@ import Link from 'next/link';
 import HeaderMenus from './header-menus';
 import useSticky from '@/hooks/use-sticky';
 import { Menu, Search, Wishlist, Zero } from '@/components/svg';
-import logo from '@/assets/img/logo/logo-white.png';
+import logoGreen from '@/assets/img/logo/logo-green.png';
+import logoWhite from '@/assets/img/logo/logo-white.png';
+import useIsHomepage from '@/hooks/use-is-homepage';
 import CartOffcanvas from '@/components/offcanvas/cart-offcanvas';
 import MobileOffcanvas from '@/components/offcanvas/mobile-offcanvas';
 
@@ -13,6 +15,8 @@ export default function HeaderSix() {
   const {sticky,headerFullWidth} = useSticky();
   const [openCartMini, setOpenCartMini] = React.useState(false);
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
+  
   useEffect(() => {
     headerFullWidth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,7 +30,7 @@ export default function HeaderSix() {
               <div className="col-xl-2 col-lg-4 col-md-4 col-4">
                 <div className="tp-header-logo">
                   <Link href="/">
-                    <Image src={logo} alt="logo" />
+                    <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
                   </Link>
                 </div>
               </div>

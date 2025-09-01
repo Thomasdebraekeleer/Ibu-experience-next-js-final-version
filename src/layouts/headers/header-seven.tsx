@@ -1,13 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/img/logo/logo-white-rotate.png";
-import logo_2 from "@/assets/img/logo/logo-white.png";
+import logoGreen from "@/assets/img/logo/logo-green.png";
+import logoWhite from "@/assets/img/logo/logo-white.png";
+import useIsHomepage from "@/hooks/use-is-homepage";
 import { MenuTwo, UpArrowTwo } from "@/components/svg";
 import MobileOffcanvasTwo from "@/components/offcanvas/mobile-offcanvas-2";
 
 export default function HeaderSeven() {
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
   return (
     <>
     <header>
@@ -15,7 +17,7 @@ export default function HeaderSeven() {
         <div className="tp-header-7-wrap">
           <div className="tp-header-7-logo">
             <Link href="/">
-              <Image src={logo} alt="logo" />
+              <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
             </Link>
           </div>
           <div className="tp-header-7-menubar">
@@ -38,7 +40,7 @@ export default function HeaderSeven() {
         <div className="tp-header-7-wrap">
           <div className="tp-header-7-logo tp-header-logo">
             <Link href="/">
-              <Image src={logo_2} alt="logo" />
+              <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
             </Link>
           </div>
           <div className="tp-header-7-menubar">

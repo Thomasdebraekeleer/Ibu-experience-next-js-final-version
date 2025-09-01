@@ -5,10 +5,15 @@ import Link from "next/link";
 import HeaderMenus from "./header-menus";
 import useSticky from "@/hooks/use-sticky";
 import MobileOffcanvas from "@/components/offcanvas/mobile-offcanvas";
+import logoGreen from "@/assets/img/logo/logo-green.png";
+import logoWhite from "@/assets/img/logo/logo-white.png";
+import useIsHomepage from "@/hooks/use-is-homepage";
 
 const HeaderOne = () => {
   const {sticky,headerRef,headerFullWidth} = useSticky();
   const [openOffCanvas, setOpenOffCanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
+  
   useEffect(() => {
     headerFullWidth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,7 +32,7 @@ const HeaderOne = () => {
                 <div className="tp-header-logo">
                   <Link className="logo-1" href="/">
                     <Image
-                      src="/assets/img/logo/logo.png"
+                      src={isHomepage ? logoWhite : logoGreen}
                       alt="logo"
                       width={85}
                       height={26}
@@ -35,7 +40,7 @@ const HeaderOne = () => {
                   </Link>
                   <Link className="logo-2" href="/">
                     <Image
-                      src="/assets/img/logo/logo-white.png"
+                      src={isHomepage ? logoGreen : logoWhite}
                       alt="logo"
                       width={85}
                       height={26}

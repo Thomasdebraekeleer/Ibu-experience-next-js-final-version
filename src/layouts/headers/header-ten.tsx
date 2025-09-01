@@ -2,11 +2,14 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MenuThree } from "@/components/svg";
-import logo from "@/assets/img/logo/logo-white.png";
+import logoGreen from "@/assets/img/logo/logo-green.png";
+import logoWhite from "@/assets/img/logo/logo-white.png";
+import useIsHomepage from "@/hooks/use-is-homepage";
 import MobileOffcanvasTwo from "@/components/offcanvas/mobile-offcanvas-2";
 
 export default function HeaderTen() {
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
   return (
     <>
     <header className="tp-header-height z-index-5">
@@ -16,7 +19,7 @@ export default function HeaderTen() {
             <div className="col-xl-2 col-lg-2 col-md-6 col-6">
               <div className="tp-inner-header-logo tp-header-logo">
                 <Link href="/">
-                  <Image src={logo} alt="logo" />
+                  <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
                 </Link>
               </div>
             </div>

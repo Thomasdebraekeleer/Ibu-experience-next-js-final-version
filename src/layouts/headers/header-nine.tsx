@@ -1,11 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/assets/img/logo/logo-white.png";
+import logoGreen from "@/assets/img/logo/logo-green.png";
+import logoWhite from "@/assets/img/logo/logo-white.png";
+import useIsHomepage from "@/hooks/use-is-homepage";
 import MobileOffcanvasTwo from "@/components/offcanvas/mobile-offcanvas-2";
 
 export default function HeaderNine() {
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
   return (
     <>
     <header>
@@ -13,7 +16,7 @@ export default function HeaderNine() {
         <div className="tp-header-10-wrapper d-flex align-items-center justify-content-between">
           <div className="tp-header-10-logo">
             <Link href="/">
-              <Image src={logo} alt="logo" />
+              <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
             </Link>
           </div>
           <div className="tp-header-10-menubar">
@@ -31,7 +34,7 @@ export default function HeaderNine() {
             <div className="col-md-6 col-6">
               <div className="tp-header-logo">
                 <Link href="/">
-                  <Image src={logo} alt="logo" />
+                  <Image src={isHomepage ? logoWhite : logoGreen} alt="logo" />
                 </Link>
               </div>
             </div>
