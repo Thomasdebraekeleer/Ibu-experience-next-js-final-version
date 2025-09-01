@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 import Wrapper from "@/layouts/wrapper";
 import HeaderVBU from "@/layouts/headers/header-vbu";
 import FooterThree from "@/layouts/footers/footer-three";
-import PortfolioGridColTwoArea from "@/components/portfolio/portfolio-grid-col-2-area";
+import PortfolioGridColThreeArea from "@/components/portfolio/portfolio-grid-col-3-area";
 
 // animation
 import { hoverBtn } from "@/utils/hover-btn";
@@ -72,7 +72,7 @@ const ReservationsMain = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tm-hero-content">
-                      <span className="tm-hero-subtitle">VBU Experience</span>
+                      <span className="tm-hero-subtitle">IBÙ EXPERIENCE</span>
                       <h4 className="tm-hero-title tp-char-animation">
                         Réservez votre Expérience Unique
                       </h4>
@@ -89,7 +89,7 @@ const ReservationsMain = () => {
             {/* portfolio hero */}
 
             {/* portfolio grid area start */}
-            <PortfolioGridColTwoArea />
+            <PortfolioGridColThreeArea />
             {/* portfolio grid area end */}
 
           </main>

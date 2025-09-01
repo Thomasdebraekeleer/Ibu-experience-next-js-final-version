@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline } from '@/components/svg';
+import AwardOne from '@/components/award/award-one';
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -45,7 +46,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   </div>
                   <div className="col-xxl-7 col-xl-10">
                       <div className="showcase-details-2-content tp_title_anim">
-                        <p>Découvrez des cocons design au cœur de domaines d&apos;exception entre vignobles, châteaux et forêts. IBÙ Experience transforme votre séjour en une parenthèse hors du temps, où bien-être, gastronomie et nature s&apos;unissent pour une immersion intime et mémorable.</p>
+                        <p>Découvrez nos cocons design au cœur de domaines d&apos;exception entre vignobles, châteaux et forêts. IBÙ Experience transforme votre séjour en une parenthèse hors du temps, où bien-être, gastronomie et nature s&apos;unissent pour une immersion intime et mémorable.</p>
                       </div>
                       <div className="showcase-details-2-info-wrap d-flex align-items-center justify-content-between">
                         <div className="showcase-details-2-info tp_fade_bottom">
@@ -93,7 +94,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-section-right tp_title_anim">
-                      <p>Dormez en pleine nature, nichés dans des vignobles, châteaux et autres lieux d&apos;exception, à travers la Belgique. Nos pods au design minimaliste et confortable vous accueillent pour une expérience hors du temps, entre élégance, bien-être et gastronomie locale, à vivre avec ceux que vous aimez.</p>
+                      <p>Dormez en pleine nature, nichés dans des vignobles, châteaux et autres lieux d&apos;exception, à travers la Belgique. Nos Cocons au design minimaliste et confortable vous accueillent pour une expérience hors du temps, entre élégance, bien-être et gastronomie locale, à vivre avec ceux que vous aimez.</p>
                   </div>
                 </div>
             </div>
@@ -308,6 +309,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
            </div>
        </div>
        {/* new showcase images section */}
+
+       {/* Awards section */}
+       <AwardOne cls="pt-120 pb-120" />
+       {/* Awards section */}
     </>
   )
 }

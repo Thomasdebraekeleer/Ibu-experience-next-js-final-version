@@ -25,7 +25,7 @@ const menu_data:IMenuDT[] = [
   {
     id: 3,
     title: 'RESERVATIONS',
-    link: '#',
+    link: '/reservations',
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const menu_data:IMenuDT[] = [
   {
     id: 6,
     title: 'CONTACT',
-    link: '#',
+    link: '/contact',
   },
 
 ];
@@ -83,7 +83,7 @@ export const mobile_menu_data:{
   {
     id: 3,
     title: 'RESERVATIONS',
-    link: '#',
+    link: '/reservations',
     dropdown_menus:[]
   },
   {
@@ -101,7 +101,7 @@ export const mobile_menu_data:{
   {
     id: 6,
     title: 'CONTACT',
-    link: '#',
+    link: '/contact',
     dropdown_menus:[]
   }
 ]
