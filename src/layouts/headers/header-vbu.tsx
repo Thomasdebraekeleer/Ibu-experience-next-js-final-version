@@ -5,12 +5,16 @@ import Link from 'next/link';
 import HeaderMenus from './header-menus';
 import useSticky from '@/hooks/use-sticky';
 import { Menu } from '@/components/svg';
-import logo from '@/assets/img/logo/logo-white.png';
+import logoGreen from '@/assets/img/logo/logo-green.png';
+import logoWhite from '@/assets/img/logo/logo-white.png';
+import useIsHomepage from '@/hooks/use-is-homepage';
 import MobileOffcanvas from '@/components/offcanvas/mobile-offcanvas';
 
 export default function HeaderVBU() {
   const {sticky,headerFullWidth} = useSticky();
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
+  const isHomepage = useIsHomepage();
+  
   useEffect(() => {
     headerFullWidth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,7 +28,7 @@ export default function HeaderVBU() {
               <div className="col-xl-2 col-lg-4 col-md-4 col-4">
                 <div className="tp-header-logo">
                   <Link href="/home">
-                    <Image src={logo} alt="VBU Experience" />
+                    <Image src={isHomepage ? logoWhite : logoGreen} alt="VBU Experience" />
                   </Link>
                 </div>
               </div>
