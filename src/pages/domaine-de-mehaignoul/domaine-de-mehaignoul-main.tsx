@@ -24,6 +24,13 @@ import cocons_img_2 from '@/assets/img/inner-project/experiences-cocons/cocons-2
 import cocons_img_3 from '@/assets/img/inner-project/experiences-cocons/cocons-3.jpg';
 import cocons_img_4 from '@/assets/img/inner-project/experiences-cocons/cocons-4.jpg';
 
+// nouvelles images pour la section Le logement
+import logement_img_1 from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 5.jpg';
+import logement_img_2 from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 6.jpg';
+
+// image pour la section parallax
+import parallax_img from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 7.jpg';
+
 // slider images for Domaine de Mehaignoul
 const slider_images = [
   '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 1.jpg',
@@ -162,7 +169,71 @@ const DomaineDeMehaignoulMain = () => {
                     </div>
                   </div>
               </div>
-             {/* Slider images section */}
+                           {/* Slider images section */}
+
+                             {/* Le logement section */}
+            <div className="showcase-details-2-area pb-120">
+                <div className="container">
+                  <div className="row">
+                      <div className="col-xl-8">
+                        <div className="showcase-details-2-section-box">
+                            <h4 className="showcase-details-2-section-title tp-char-animation">Le logement</h4>
+                        </div>
+                      </div>
+                  </div>
+                  <div className="row">
+                      <div className="col-xl-3">
+                        <div className="showcase-details-2-section-left">
+                            <span className="ab-inner-subtitle mb-25">
+                              <Leaf/>
+                              Votre cocon
+                            </span>
+                        </div>
+                      </div>
+                      <div className="col-xl-9">
+                        <div className="showcase-details-2-content-right tp_title_anim">
+                            <p className="pb-25">Conçus dans un esprit minimaliste et chaleureux, nos pods de 15 m² offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            {/* Le logement section */}
+
+                         {/* Le logement images section */}
+            <div className="tp-project-details-3-thumb mb-90">
+                <div className="container">
+                  <div className="row">
+                      <div className="col-xl-6">
+                        <div className="tp-project-details-3-thumb-box mb-30">
+                            <Image className="w-100" src={logement_img_1} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="tp-project-details-3-thumb-box mb-30">
+                          <Image className="w-100" src={logement_img_2} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            {/* Le logement images section */}
+
+              {/* Les équipements title section */}
+            <div className="showcase-details-2-area pb-120">
+                <div className="container">
+                  <div className="row">
+                      <div className="col-xl-12">
+                        <div className="showcase-details-2-section-box">
+                            <h4 className="showcase-details-2-section-title tp-char-animation">
+                              Les équipements
+                            </h4>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            {/* Les équipements title section */}
 
              {/* COCONS images section */}
             <div className="showcase-details-2-grid-area pb-120">
@@ -232,9 +303,23 @@ const DomaineDeMehaignoulMain = () => {
                   </div>
                 </div>
             </div>
-            {/* COCONS icons section */}
+                         {/* COCONS icons section */}
 
-            {/* details title 5 - new section for showcase images */}
+             {/* Parallax image section */}
+            <div className="tp-project-details-3-thumb mb-120">
+                <div className="container container-1560">
+                  <div className="row">
+                      <div className="col-xl-12">
+                        <div className="tp-project-details-3-thumb-box">
+                            <Image data-speed=".8" src={parallax_img} alt="Domaine de Mehaignoul Parallax" style={{ height: 'auto' }}/>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            {/* Parallax image section */}
+
+             {/* details title 5 - new section for showcase images */}
             <div className="showcase-details-2-area pb-120">
               <div className="container">
                 <div className="row">

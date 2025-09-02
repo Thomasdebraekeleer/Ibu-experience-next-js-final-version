@@ -117,3 +117,4 @@ HomePage (home-1.tsx)
 
 La page d'accueil est maintenant **plus simple, plus élégante et prête pour la personnalisation** ! 🎉
 
+
