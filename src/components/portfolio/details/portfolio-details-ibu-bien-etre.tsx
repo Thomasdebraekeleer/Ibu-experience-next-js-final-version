@@ -312,8 +312,8 @@ export default function PortfolioDetailsIBUBienEtre() {
                 </div>
                                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                                               <p className="pb-25">Niché au cœur de la nature, IBÙ Bien-être vous ouvre les portes d'un cocon où le temps s'étire doucement. Laissez-vous envelopper par la chaleur d'un sauna privatif, glissez dans un bain nordique sous le ciel ouvert, et savourez l'instant présent dans un cadre intimiste où chaque souffle devient plus léger.</p>
-                        <p>Pour prolonger ce voyage sensoriel, un kit de relaxation vous attend : tisanes aux notes apaisantes, huiles qui réchauffent la peau et gestes de douceur. Le matin, les saveurs locales viennent compléter l'expérience. Ici, lenteur et sérénité se conjuguent pour offrir une parenthèse de bien-être inoubliable.</p>
+                                               <p className="pb-25">Niché au cœur de la nature, IBÙ Bien-être vous ouvre les portes d&apos;un cocon où le temps s&apos;étire doucement. Laissez-vous envelopper par la chaleur d&apos;un sauna privatif, glissez dans un bain nordique sous le ciel ouvert, et savourez l&apos;instant présent dans un cadre intimiste où chaque souffle devient plus léger.</p>
+                        <p>Pour prolonger ce voyage sensoriel, un kit de relaxation vous attend : tisanes aux notes apaisantes, huiles qui réchauffent la peau et gestes de douceur. Le matin, les saveurs locales viennent compléter l&apos;expérience. Ici, lenteur et sérénité se conjuguent pour offrir une parenthèse de bien-être inoubliable.</p>
                    </div>
                  </div>
             </div>
@@ -420,7 +420,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                </div>
                <div className="col-xl-9">
                  <div className="showcase-details-2-content-right tp_title_anim">
-                     <p className="pb-25">Si vous préférez la simplicité à l'expérience gastronomique de l'IBÙ Signature, laissez-vous tenter par les plats Priche : une sélection raffinée, carn, green ou roast, livrée pour combler vos envies sans cuisiner.</p>
+                     <p className="pb-25">Si vous préférez la simplicité à l&apos;expérience gastronomique de l&apos;IBÙ Signature, laissez-vous tenter par les plats Priche : une sélection raffinée, carn, green ou roast, livrée pour combler vos envies sans cuisiner.</p>
                  </div>
                </div>
            </div>
@@ -471,8 +471,8 @@ export default function PortfolioDetailsIBUBienEtre() {
                </div>
                <div className="col-xl-9">
                  <div className="showcase-details-2-content-right tp_title_anim">
-                                           <p className="pb-25">IBÙ Bien-être vous propose de vivre une parenthèse unique dans des lieux d'exception : châteaux élégants, domaines viticoles ou écrins naturels confidentiels. Chaque hébergement a été pensé comme un refuge intime, un cocon suspendu où le charme du lieu dialogue avec la douceur de l'instant.</p>
-                      <p>Plus qu'un simple séjour, c'est une immersion dans un art de vivre raffiné : se réveiller face aux vignes, contempler l'architecture historique qui vous entoure, savourer le silence et la beauté préservée. Chaque expérience devient un voyage intérieur, une rencontre entre authenticité, calme et émerveillement.</p>
+                                           <p className="pb-25">IBÙ Bien-être vous propose de vivre une parenthèse unique dans des lieux d&apos;exception : châteaux élégants, domaines viticoles ou écrins naturels confidentiels. Chaque hébergement a été pensé comme un refuge intime, un cocon suspendu où le charme du lieu dialogue avec la douceur de l&apos;instant.</p>
+                      <p>Plus qu&apos;un simple séjour, c&apos;est une immersion dans un art de vivre raffiné : se réveiller face aux vignes, contempler l&apos;architecture historique qui vous entoure, savourer le silence et la beauté préservée. Chaque expérience devient un voyage intérieur, une rencontre entre authenticité, calme et émerveillement.</p>
                  </div>
                </div>
            </div>
@@ -513,7 +513,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                </div>
                <div className="col-xl-9">
                  <div className="showcase-details-2-content-right tp_title_anim">
-                     <p>Quand le corps s'apaise, l'esprit respire.</p>
+                     <p>Quand le corps s&apos;apaise, l&apos;esprit respire.</p>
                  </div>
                </div>
            </div>
