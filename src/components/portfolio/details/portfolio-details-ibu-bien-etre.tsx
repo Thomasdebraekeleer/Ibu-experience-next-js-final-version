@@ -456,7 +456,7 @@ export default function PortfolioDetailsIBUBienEtre() {
            <div className="row">
                <div className="col-xl-8">
                                                                        <div className="showcase-details-2-section-box">
-                                             <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'nowrap' }}>Séjour d'exception</h4>
+                                             <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'nowrap' }}>Séjour d&apos;exception</h4>
                   </div>
                </div>
            </div>
