@@ -331,7 +331,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
              <div className="row" style={{marginTop: '20px'}}>
                                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-content-right tp_title_anim mb-30">
-                      <p>Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité grâce à un sauna privatif, un bain nordique extérieur et un kit de relaxation, pour un séjour où détente et confort s'entrelacent harmonieusement.</p>
+                      <p>Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité grâce à un sauna privatif, un bain nordique extérieur et un kit de relaxation, pour un séjour où détente et confort s&apos;entrelacent harmonieusement.</p>
                     </div>
                     <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
                         <a href="/experiences/ibu-bien-etre" className="showcase-image-link">
@@ -352,7 +352,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-content-right tp_title_anim mb-30">
-                      <p>Avec <strong>IBÙ Signature</strong>, vivez une parenthèse gastronomique intimiste : un menu raffiné en trois services, imaginé par notre chef privé à partir de produits locaux, dans l'atmosphère apaisante de votre cocon niché en pleine nature.</p>
+                      <p>Avec <strong>IBÙ Signature</strong>, vivez une parenthèse gastronomique intimiste : un menu raffiné en trois services, imaginé par notre chef privé à partir de produits locaux, dans l&apos;atmosphère apaisante de votre cocon niché en pleine nature.</p>
                     </div>
                     <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
                         <a href="/experiences/ibu-signature" className="showcase-image-link">
