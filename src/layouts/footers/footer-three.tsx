@@ -54,16 +54,16 @@ export default function FooterThree() {
               <div className="tp-footer-2-widget footer-col-2-2">
                 <div className="tp-footer-2-widget-menu">
                   <h4 className="tp-footer-2-widget-title">Sitemap</h4>
-                                     <ul>
-                     <li><Link href="/">Home</Link></li>
-                     <li><Link href="/experiences">Experiences</Link></li>
-                     <li><span style={{cursor: 'default', opacity: 0.6}}>Reservation</span></li>
-                     <li><span style={{cursor: 'default', opacity: 0.6}}>About</span></li>
-                     <li><span style={{cursor: 'default', opacity: 0.6}}>Become a Partner</span></li>
-                     <li><span style={{cursor: 'default', opacity: 0.6}}>Contact</span></li>
-                     <li><span style={{cursor: 'default', opacity: 0.6}}>FAQ</span></li>
-                     <li><span style={{cursor: 'default', opacity: 0.6}}>Blog</span></li>
-                   </ul>
+                                                       <ul>
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/experiences">Experiences</Link></li>
+                    <li><Link href="/reservations">Reservation</Link></li>
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/become-partner">Become a Partner</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
+                    <li><Link href="/faq">FAQ</Link></li>
+                    <li><Link href="/blog">Blog</Link></li>
+                  </ul>
                 </div>
               </div>
             </div>

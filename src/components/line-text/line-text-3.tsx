@@ -32,7 +32,18 @@ export default function LineTextThree({cls="",data_2=false}:IProps) {
         <Marquee speed={100} autoFill={true}>
           {textArray.map((text, index) => (
             <div key={index} className="tp-line-content">
-              <h4 className="tp-footer-4-big-title">
+              <h4 
+                className="tp-footer-4-big-title"
+                style={{
+                  fontFamily: "'gallery_modernregular', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "80px",
+                  lineHeight: 1,
+                  textTransform: "none",
+                  color: "var(--tp-common-white)",
+                  letterSpacing: "-1.8px"
+                }}
+              >
                 <span className="d-none d-md-inline-block mr-40">
                   <StarSquare />
                 </span>

@@ -98,7 +98,7 @@ const ExperiencesMain = () => {
             {/* NOS COCONS IBÙ Experience section */}
 
             {/* COCONS images section */}
-            <div className="showcase-details-2-grid-area pb-120">
+            <div className="showcase-details-2-grid-area pb-60">
                 <div className="container">
                   <div className="row">
                       <div className="col-xl-3 col-lg-3">
@@ -127,7 +127,7 @@ const ExperiencesMain = () => {
             {/* COCONS images section */}
 
             {/* COCONS icons section */}
-            <div className="showcase-details-2-area pb-120">
+            <div className="showcase-details-2-area pt-60 pb-40">
                 <div className="container">
                   <div className="row">
                       <div className="col-xl-3 col-lg-3">
@@ -167,30 +167,67 @@ const ExperiencesMain = () => {
             </div>
             {/* COCONS icons section */}
 
-            {/* details title 5 - new section for showcase images */}
+            {/* details title 5 - Nos Formules section from homepage */}
             <div className="showcase-details-2-area pb-120">
               <div className="container">
                 <div className="row">
-                      <div className="col-xl-8">
-                        <div className="showcase-details-2-section-box">
-                            <h4 className="showcase-details-2-section-title tp-char-animation">Nos Formules</h4>
-                        </div>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="col-xl-3">
-                        <div className="showcase-details-2-section-left">
-                            <span className="ab-inner-subtitle mb-25">
-                              <Leaf/>
-                              Les deux formules IBÙ
-                            </span>
-                        </div>
+                  <div className="col-xl-8">
+                    <div className="showcase-details-2-section-box">
+                        <h4 className="showcase-details-2-section-title tp-char-animation">Nos Formules</h4>
                     </div>
-                      <div className="col-xl-9">
-                        <div className="showcase-details-2-content-right tp_title_anim">
-                            <p>Avec <strong>IBÙ Signature</strong>, vivez une parenthèse gastronomique intimiste : un menu raffiné en trois services, imaginé par notre chef privé à partir de produits locaux, dans l&apos;atmosphère apaisante de votre cocon niché en pleine nature.</p>
-                            <p>
-                             Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité grâce à un sauna privatif, un bain nordique extérieur et un kit de relaxation, pour un séjour où détente et confort s&apos;entrelacent harmonieusement.</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-xl-3">
+                    <div className="showcase-details-2-section-left">
+                        <span className="ab-inner-subtitle mb-25">
+                          <Leaf/>
+                          Les deux formules IBÙ
+                        </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="row" style={{marginTop: '20px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-content-right tp_title_anim mb-30">
+                      <p>Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité grâce à un sauna privatif, un bain nordique extérieur et un kit de relaxation, pour un séjour où détente et confort s'entrelacent harmonieusement.</p>
+                    </div>
+                    <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
+                        <a href="/experiences/ibu-bien-etre" className="showcase-image-link">
+                            <Image className="img-left" src={showcase_img_14} alt="showcase-img-14" style={{height:'auto'}}/>
+                            <div className="showcase-hover-text">
+                                <span className="showcase-hover-title">IBÙ Bien-être</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="showcase-details-2-link-text">
+                        <a href="/experiences/ibu-bien-etre" className="showcase-link-with-arrow">
+                            Découvrir IBÙ Bien-être
+                            <span className="arrow-right">
+                                <RightArrowOutline/>
+                            </span>
+                        </a>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-content-right tp_title_anim mb-30">
+                      <p>Avec <strong>IBÙ Signature</strong>, vivez une parenthèse gastronomique intimiste : un menu raffiné en trois services, imaginé par notre chef privé à partir de produits locaux, dans l'atmosphère apaisante de votre cocon niché en pleine nature.</p>
+                    </div>
+                    <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
+                        <a href="/experiences/ibu-signature" className="showcase-image-link">
+                            <Image className="img-right" src={showcase_img_15} alt="showcase-img-15" style={{height:'auto'}}/>
+                            <div className="showcase-hover-text">
+                                <span className="showcase-hover-title">IBÙ Signature</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="showcase-details-2-link-text">
+                        <a href="/experiences/ibu-signature" className="showcase-link-with-arrow">
+                            Découvrir IBÙ Signature
+                            <span className="arrow-right">
+                                <RightArrowOutline/>
+                            </span>
+                        </a>
                     </div>
                   </div>
                 </div>

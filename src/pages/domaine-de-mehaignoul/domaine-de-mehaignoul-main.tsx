@@ -236,7 +236,7 @@ const DomaineDeMehaignoulMain = () => {
             {/* Les équipements title section */}
 
              {/* COCONS images section */}
-            <div className="showcase-details-2-grid-area pb-120">
+            <div className="showcase-details-2-grid-area pb-60">
                 <div className="container">
                   <div className="row">
                       <div className="col-xl-3 col-lg-3">
@@ -265,7 +265,7 @@ const DomaineDeMehaignoulMain = () => {
             {/* COCONS images section */}
 
             {/* COCONS icons section */}
-            <div className="showcase-details-2-area pb-120">
+            <div className="showcase-details-2-area pt-60 pb-120">
                 <div className="container">
                   <div className="row">
                       <div className="col-xl-3 col-lg-3">

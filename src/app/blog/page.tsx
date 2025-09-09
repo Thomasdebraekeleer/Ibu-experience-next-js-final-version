@@ -2,11 +2,11 @@ import React from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "IBÙ - FAQ",
-  description: "Questions fréquemment posées",
+  title: "IBÙ - Blog",
+  description: "Découvrez nos articles et actualités",
 };
 
-const FaqPage = () => {
+const BlogPage = () => {
   return (
     <div className="tp-hero-area p-relative fix tp-gx-6">
       <div className="tp-hero-wrapper p-relative">
@@ -19,7 +19,7 @@ const FaqPage = () => {
           <div className="row">
             <div className="col-12">
               <div className="tp-hero-title-box text-center">
-                <h1 className="tp-hero-title">FAQ</h1>
+                <h1 className="tp-hero-title">Blog</h1>
                 <p className="tp-hero-subtitle">Page en construction</p>
               </div>
             </div>
@@ -30,4 +30,4 @@ const FaqPage = () => {
   );
 };
 
-export default FaqPage;
+export default BlogPage;

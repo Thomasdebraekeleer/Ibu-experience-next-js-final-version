@@ -1,0 +1,329 @@
+/* Effets personnalisés pour le hero avec superposition d'images et parallaxe */
+
+.showcase-details-2-area {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden; /* Empêche le débordement */
+  background: #fff; /* Remet le fond blanc comme les autres sections */
+}
+
+/* Image de fond AVEC PARALLAXE */
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* REMIS - Effet parallaxe */
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Contenu du hero - REMONTÉ AU MAXIMUM ABSOLU */
+.hero-content-wrapper {
+  position: relative;
+  z-index: 2;
+  padding: 0 0 120px 0; /* Padding-top supprimé complètement */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: -15vh; /* Positionne le contenu vraiment très haut */
+  margin-top: -120px; /* Remonte encore plus avec une marge négative très importante */
+}
+
+/* Image PNG au premier plan - COLLÉE AU BAS DE LA SECTION */
+.hero-foreground-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Même propriété que l'image de fond */
+  background-position: center bottom; /* COLLÉE AU BAS de la section */
+  background-attachment: fixed;
+  z-index: 3; /* Seule différence : au premier plan */
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+  opacity: 1;
+}
+
+/* Section Widget Lodgify - COMPLÈTEMENT SÉPARÉE ET AU PREMIER PLAN */
+.lodgify-widget-section {
+  position: relative;
+  z-index: 9999 !important; /* Z-index extrêmement élevé */
+  margin-top: -100px; /* Remonte encore plus pour être plus haut */
+  padding: 0 0 50px 0;
+}
+
+/* Widget Lodgify - FORCÉ AU PREMIER PLAN ABSOLU */
+.lodgify-widget-container {
+  position: relative;
+  z-index: 10000 !important; /* Encore plus élevé que la section */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Force le premier plan */
+  position: relative !important;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Amélioration de la lisibilité des textes - SANS OMBRES */
+.showcase-details-2-title {
+  color: #fff !important;
+  font-weight: 700;
+  position: relative;
+  z-index: 4;
+  margin-bottom: 15px; /* Espacement minimal */
+}
+
+.showcase-details-2-subtitle {
+  color: #fff !important;
+  position: relative;
+  z-index: 4;
+  margin-bottom: 25px; /* Espacement minimal */
+}
+
+.showcase-details-2-content p {
+  color: #fff !important;
+  position: relative;
+  z-index: 4;
+}
+
+.showcase-details-2-info h5 {
+  color: #fff !important;
+  position: relative;
+  z-index: 4;
+}
+
+.showcase-details-2-info span {
+  color: #fff !important;
+  position: relative;
+  z-index: 4;
+}
+
+/* Effet de profondeur pour les éléments d'info */
+.showcase-details-2-info-wrap {
+  position: relative;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px; /* Padding encore réduit */
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 10px; /* Espacement minimal */
+}
+
+/* Animation d'entrée améliorée */
+.hero-content-wrapper {
+  animation: fadeInUp 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Effet de parallaxe au scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-background-image,
+  .hero-foreground-image {
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-background-image,
+  .hero-foreground-image {
+    background-attachment: scroll;
+  }
+  
+  .hero-content-wrapper {
+    padding: 0 0 80px 0;
+    padding-top: -8vh; /* Remonte aussi sur mobile */
+    margin-top: -80px; /* Marge négative sur mobile */
+  }
+  
+  .showcase-details-2-info-wrap {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .showcase-details-2-info {
+    text-align: center;
+  }
+  
+  .lodgify-widget-container {
+    padding: 20px;
+    margin: 0 15px;
+  }
+  
+  .lodgify-widget-section {
+    margin-top: -60px; /* Remonte aussi sur mobile */
+    padding: 0 0 30px 0;
+  }
+}
+
+/* Effet de brillance sur l'image PNG */
+.hero-foreground-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Optimisation des performances */
+.hero-background-image,
+.hero-foreground-image {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Styles spécifiques pour la section suivante - AVEC PADDING POUR RESPIRER */
+.showcase-details-2-area + .showcase-details-2-area {
+  margin-top: 0; /* Supprime l'espacement par défaut */
+  padding-top: 20px; /* Réduit le padding pour éviter l'espacement excessif */
+  padding-bottom: 80px; /* Padding en bas aussi */
+  position: relative;
+  z-index: 2; /* Même niveau que le contenu du hero */
+  background: #fff;
+}
+
+
+/* Correction de l'alignement des photos dans la section Le Programme */
+.tp-award-area {
+  padding-top: 0 !important;
+  /* padding-bottom: 0 !important; - SUPPRIMÉ pour permettre le padding bottom */
+}
+
+.tp-award-list-thumb-wrap {
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: flex-start !important;
+  /* Forcer la photo à commencer au niveau de la première ligne */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Supprimer le padding de la dernière ligne de texte */
+.tp-award-list-item:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 25px !important;
+}
+
+/* Forcer l'espacement après la petite ligne de séparation */
+.tp-award-list-wrap {
+  padding-bottom: 100px !important;
+  margin-bottom: 50px !important;
+}
+
+/* Espacement après la ligne de séparation de la dernière ligne */
+.tp-award-list-item:last-child::after {
+  margin-bottom: 100px !important;
+}
+
+/* Forcer l'espacement sur la colonne de droite */
+.tp-award-area .col-xl-8 {
+  padding-bottom: 100px !important;
+}
+
+/* Positionner la photo au niveau de la première ligne de texte */
+.tp-award-area .col-xl-4 {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.tp-award-list-thumb-wrap {
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: flex-start !important;
+  /* Forcer la photo à commencer au niveau de la première ligne */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Forcer la photo à commencer au niveau de la première ligne de texte */
+.tp-award-area .row {
+  align-items: flex-start !important;
+}
+
+.tp-award-area .col-xl-8 {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Correction de la police du texte qui défile dans le footer - STYLES FORCÉS */
+.tp-line-text-wrap .tp-footer-4-big-title,
+.tp-line-text-wrap-2 .tp-footer-4-big-title,
+.tp-footer-4-big-title {
+  font-family: 'gallery_modernregular', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 80px !important;
+  line-height: 1 !important;
+  text-transform: none !important;
+  color: var(--tp-common-white) !important;
+  letter-spacing: -1.8px !important;
+}
+
+/* Styles spécifiques pour le composant Marquee */
+.rfm-marquee-container .tp-footer-4-big-title,
+.rfm-marquee .tp-footer-4-big-title {
+  font-family: 'gallery_modernregular', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 80px !important;
+  line-height: 1 !important;
+  text-transform: none !important;
+  color: var(--tp-common-white) !important;
+  letter-spacing: -1.8px !important;
+}
+
+@media (max-width: 1200px) {
+  .tp-footer-4-big-title {
+    font-size: 70px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tp-footer-4-big-title {
+    font-size: 50px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tp-footer-4-big-title {
+    font-size: 40px !important;
+  }
+}

@@ -126,11 +126,27 @@
 }
 
 #tp-award-thumb{
+    /* Standardisation de la taille de toutes les images - alignement exact sur les lignes de texte */
+    & .tp-award-list-thumb-1,
+    & .tp-award-list-thumb-2,
+    & .tp-award-list-thumb-3,
+    & .tp-award-list-thumb-4,
+    & .tp-award-list-thumb-5,
+    & .tp-award-list-thumb-6 {
+        width: 100% !important;
+        height: 420px !important;
+        object-fit: contain !important;
+        object-position: center top !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin-left: 20px !important;
+    }
+    
     &.tp-award-list-thumb-1{
         & .tp-award-list-thumb-1{
             opacity: 1;
             visibility: visible;
-            transform: scale(.9);
+            transform: scale(1);
         }
     }
     &.tp-award-list-thumb-2{
