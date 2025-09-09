@@ -302,11 +302,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
        </div>
        {/* details title 4 */}
 
-       {/* full width image 2 - Duplicated section above Nos Formules */}
-       <div className="showcase-details-2-fullwidth-img">
-           <Image data-speed=".8" src={fullwidth_img_2} alt="fullwidth_img_2" style={{height:'auto'}}/>
-       </div>
-       {/* full width image 2 */}
 
        {/* details title 5 - new section for showcase images */}
        <div className="showcase-details-2-area pb-120">
