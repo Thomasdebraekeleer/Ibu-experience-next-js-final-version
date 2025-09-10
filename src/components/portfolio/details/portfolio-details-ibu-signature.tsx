@@ -506,7 +506,7 @@ export default function PortfolioDetailsIBUSignature() {
               </div>
               <div className="col-xl-9">
                 <div className="showcase-details-2-content-right tp_title_anim">
-                    <p style={{marginBottom: '40px'}}>L'excellence est notre standard quotidien. Chaque expérience Signature est le fruit d'une collaboration étroite avec des domaines d'exception, pour offrir bien plus qu'un séjour : une immersion élégante et intimiste au cœur de la nature.</p>
+                    <p style={{marginBottom: '40px'}}>L&apos;excellence est notre standard quotidien. Chaque expérience Signature est le fruit d&apos;une collaboration étroite avec des domaines d&apos;exception, pour offrir bien plus qu&apos;un séjour : une immersion élégante et intimiste au cœur de la nature.</p>
                 </div>
               </div>
           </div>
