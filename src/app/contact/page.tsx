@@ -66,7 +66,7 @@ const ContactPage = () => {
                     <div className="tm-hero-content">
                       <span className="tm-hero-subtitle">IBÙ EXPERIENCE</span>
                       <h4 className="tm-hero-title-big tp-char-animation">
-                        Get in touch
+                        Une question?
                       </h4>
                     </div>
                   </div>

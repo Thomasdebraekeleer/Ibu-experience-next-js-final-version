@@ -4,7 +4,7 @@ import {Swiper,SwiperSlide} from 'swiper/react';
 import {Autoplay} from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 import Image from 'next/image';
-import { Leaf, ScrollDownTwo,UpArrowFour} from '@/components/svg';
+import { Leaf, ScrollDownTwo,UpArrowFour, UpArrow} from '@/components/svg';
 
 // images
 import full_image from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-1.jpg';
@@ -480,8 +480,8 @@ export default function PortfolioDetailsIBUBienEtre() {
      </div>
      {/* details area */}
 
-         {/* details thumb */}
-     <div className="tp-project-details-3-thumb mb-90">
+         {/* details thumb avec bouton intégré */}
+     <div className="tp-project-details-3-thumb pb-130">
          <div className="container">
            <div className="row">
                <div className="col-xl-6">
@@ -495,31 +495,29 @@ export default function PortfolioDetailsIBUBienEtre() {
                  </div>
                </div>
            </div>
-         </div>
-     </div>
-     {/* details thumb */}
-
-     {/* details area */}
-     <div className="showcase-details-2-area pb-120">
-         <div className="container">
-           <div className="row">
-               <div className="col-xl-3">
-                 <div className="showcase-details-2-section-left">
-                     <span className="ab-inner-subtitle mb-25">
-                       <Leaf/>
-                       Harmonie naturelle
-                     </span>
-                 </div>
-               </div>
-               <div className="col-xl-9">
-                 <div className="showcase-details-2-content-right tp_title_anim">
-                     <p>Quand le corps s&apos;apaise, l&apos;esprit respire.</p>
+           
+           {/* Bouton intégré dans la même section */}
+           <div className="row" style={{marginTop: '50px'}}>
+               <div className="col-xl-12">
+                 <div className="tp-projct-5-2-btn-box d-flex justify-content-center">
+                   <div className="tp-hover-btn-wrapper">
+                     <a href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor="Lieux et Disponibilités">
+                       <span className="tp-btn-circle-text">
+                         Lieux et <br /> Disponibilités
+                       </span>
+                       <span className="tp-btn-circle-icon">
+                         <UpArrow />
+                       </span>
+                       <i className="tp-btn-circle-dot"></i>
+                     </a>
+                   </div>
                  </div>
                </div>
            </div>
          </div>
      </div>
-     {/* details area */}
+     {/* details thumb avec bouton intégré */}
+
 
              {/* slider images area */}
       <div className="pd-visual-slider-wrap pb-120">

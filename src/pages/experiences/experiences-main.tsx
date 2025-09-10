@@ -67,109 +67,95 @@ const ExperiencesMain = () => {
         <div id="smooth-content">
           <main>
             
-            {/* NOS COCONS IBÙ Experience section */}
+            {/* Section fusionnée : NOS COCONS + NOS FORMULES */}
             <div className="showcase-details-2-area pb-120 pt-120">
-                <div className="container">
-                  <div className="row">
-                      <div className="col-xl-8">
-                        <div className="showcase-details-2-section-box">
-                            <h4 className="showcase-details-2-section-title tp-char-animation">NOS COCONS</h4>
-                        </div>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="col-xl-3">
-                        <div className="showcase-details-2-section-left">
-                            <span className="ab-inner-subtitle mb-25">
-                              <Leaf/>
-                              Immersion naturelle
-                            </span>
-                        </div>
-                      </div>
-                      <div className="col-xl-9">
-                        <div className="showcase-details-2-content-right tp_title_anim">
-                            <p>Conçus dans un esprit minimaliste et chaleureux, nos pods de 15 m² offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
-                            <p>Pour prolonger l&apos;expérience, profitez d&apos;options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.</p>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            {/* NOS COCONS IBÙ Experience section */}
-
-            {/* COCONS images section */}
-            <div className="showcase-details-2-grid-area pb-60">
-                <div className="container">
-                  <div className="row">
-                      <div className="col-xl-3 col-lg-3">
-                         <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
-                         </div>
-                       </div>
-                       <div className="col-xl-3 col-lg-3">
-                         <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={cocons_img_2} alt="cocons-img-2" style={{height:'auto'}}/>
-                         </div>
-                       </div>
-                       <div className="col-xl-3 col-lg-3">
-                         <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={cocons_img_3} alt="cocons-img-3" style={{height:'auto'}}/>
-                         </div>
-                       </div>
-                       <div className="col-xl-3 col-lg-3">
-                         <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={cocons_img_4} alt="cocons-img-4" style={{height:'auto'}}/>
-                         </div>
-                       </div>
-                  </div>
-                </div>
-            </div>
-            {/* COCONS images section */}
-
-            {/* COCONS icons section */}
-            <div className="showcase-details-2-area pt-60 pb-40">
-                <div className="container">
-                  <div className="row">
-                      <div className="col-xl-3 col-lg-3">
-                        <div className="cocon-feature-item text-center">
-                            <div className="cocon-icon-wrapper mb-20">
-                                <LitDoubleIcon />
-                            </div>
-                            <h6 className="cocon-feature-title">Lit double</h6>
-                        </div>
-                      </div>
-                      <div className="col-xl-3 col-lg-3">
-                        <div className="cocon-feature-item text-center">
-                            <div className="cocon-icon-wrapper mb-20">
-                                <BathroomIcon />
-                            </div>
-                            <h6 className="cocon-feature-title">Bathroom</h6>
-                        </div>
-                      </div>
-                      <div className="col-xl-3 col-lg-3">
-                        <div className="cocon-feature-item text-center">
-                            <div className="cocon-icon-wrapper mb-20">
-                                <KitchenetteIcon />
-                            </div>
-                            <h6 className="cocon-feature-title">Kitchenette</h6>
-                        </div>
-                      </div>
-                      <div className="col-xl-3 col-lg-3">
-                        <div className="cocon-feature-item text-center">
-                            <div className="cocon-icon-wrapper mb-20">
-                                <GardeRobeIcon />
-                            </div>
-                            <h6 className="cocon-feature-title">Garde robe</h6>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            {/* COCONS icons section */}
-
-            {/* details title 5 - Nos Formules section from homepage */}
-            <div className="showcase-details-2-area pb-120">
               <div className="container">
+                {/* Section NOS COCONS */}
+                <div className="row">
+                    <div className="col-xl-8">
+                      <div className="showcase-details-2-section-box">
+                          <h4 className="showcase-details-2-section-title tp-char-animation">NOS COCONS</h4>
+                      </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xl-3">
+                      <div className="showcase-details-2-section-left">
+                          <span className="ab-inner-subtitle mb-25">
+                            <Leaf/>
+                            Immersion naturelle
+                          </span>
+                      </div>
+                    </div>
+                    <div className="col-xl-9">
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                          <p>Conçus dans un esprit minimaliste et chaleureux, nos pods de 15 m² offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
+                          <p style={{marginBottom: '50px'}}>Pour prolonger l&apos;expérience, profitez d&apos;options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.</p>
+                      </div>
+                    </div>
+                </div>
+                
+                {/* Images des cocons intégrées */}
+                <div className="row" style={{marginTop: '40px', marginBottom: '40px'}}>
+                    <div className="col-xl-3 col-lg-3">
+                       <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
+                           <Image src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
+                       </div>
+                     </div>
+                     <div className="col-xl-3 col-lg-3">
+                       <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
+                           <Image src={cocons_img_2} alt="cocons-img-2" style={{height:'auto'}}/>
+                       </div>
+                     </div>
+                     <div className="col-xl-3 col-lg-3">
+                       <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
+                           <Image src={cocons_img_3} alt="cocons-img-3" style={{height:'auto'}}/>
+                       </div>
+                     </div>
+                     <div className="col-xl-3 col-lg-3">
+                       <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
+                           <Image src={cocons_img_4} alt="cocons-img-4" style={{height:'auto'}}/>
+                       </div>
+                     </div>
+                </div>
+                
+                {/* Icônes des cocons intégrées */}
+                <div className="row" style={{marginTop: '40px', marginBottom: '60px'}}>
+                    <div className="col-xl-3 col-lg-3">
+                      <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-20">
+                              <LitDoubleIcon />
+                          </div>
+                          <h6 className="cocon-feature-title">Lit double</h6>
+                      </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-3">
+                      <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-20">
+                              <BathroomIcon />
+                          </div>
+                          <h6 className="cocon-feature-title">Bathroom</h6>
+                      </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-3">
+                      <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-20">
+                              <KitchenetteIcon />
+                          </div>
+                          <h6 className="cocon-feature-title">Kitchenette</h6>
+                      </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-3">
+                      <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-20">
+                              <GardeRobeIcon />
+                          </div>
+                          <h6 className="cocon-feature-title">Garde robe</h6>
+                      </div>
+                    </div>
+                </div>
+                
+                {/* Section NOS FORMULES */}
                 <div className="row">
                   <div className="col-xl-8">
                     <div className="showcase-details-2-section-box">
@@ -235,50 +221,6 @@ const ExperiencesMain = () => {
             </div>
             {/* details title 5 */}
 
-            {/* new showcase images section */}
-            <div className="showcase-details-2-grid-area pb-120">
-                <div className="container">
-                  <div className="row">
-                                       <div className="col-xl-6 col-lg-6">
-                         <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
-                             <a href="/experiences/ibu-bien-etre" className="showcase-image-link">
-                                 <Image className="img-left" src={showcase_img_14} alt="showcase-img-14" style={{height:'auto'}}/>
-                                 <div className="showcase-hover-text">
-                                     <span className="showcase-hover-title">IBÙ Bien-être</span>
-                                 </div>
-                             </a>
-                         </div>
-                         <div className="showcase-details-2-link-text">
-                                                                <a href="/experiences/ibu-bien-etre" className="showcase-link-with-arrow">
-                                       Découvrir IBÙ Bien-être
-                                       <span className="arrow-right">
-                                           <RightArrowOutline/>
-                                       </span>
-                                   </a>
-                         </div>
-                       </div>
-                       <div className="col-xl-6 col-lg-6">
-                         <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
-                             <a href="/experiences/ibu-signature" className="showcase-image-link">
-                                 <Image className="img-right" src={showcase_img_15} alt="showcase-img-15" style={{height:'auto'}}/>
-                                 <div className="showcase-hover-text">
-                                     <span className="showcase-hover-title">IBÙ Signature</span>
-                                 </div>
-                             </a>
-                         </div>
-                         <div className="showcase-details-2-link-text">
-                                                                <a href="/experiences/ibu-signature" className="showcase-link-with-arrow">
-                                       Découvrir IBÙ Signature
-                                       <span className="arrow-right">
-                                           <RightArrowOutline/>
-                                       </span>
-                                   </a>
-                         </div>
-                       </div>
-                  </div>
-                </div>
-            </div>
-            {/* new showcase images section */}
 
             {/* footer area start */}
             <FooterThree />

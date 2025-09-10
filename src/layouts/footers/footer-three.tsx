@@ -23,12 +23,12 @@ export default function FooterThree() {
             <div className="row align-items-center">
               <div className="col-xl-6 col-lg-6 col-md-6">
                                  <div className="tp-footer-4-top-left">
-                   <p>Have a question? <br /> Let&apos;s get in touch!</p>
+                   <p>Une question? <br /> Contactez-nous</p>
                  </div>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6">
                 <div className="tp-footer-4-top-right text-start text-md-end">
-                  <span className="tp-btn-white-lg" style={{cursor: 'default', opacity: 0.6}}>{"Let's"} Talk!</span>
+                  <span className="tp-btn-white-lg" style={{cursor: 'default', opacity: 0.6}}>Contactez-nous</span>
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@ export default function FooterThree() {
             <div className="col-xl-3 col-lg-4 col-md-6 mb-50">
               <div className="tp-footer-2-widget footer-col-2-1">
                 <div className="tp-footer-2-widget-logo">
-                  <Link href="/">
+                  <Link href="/accueil">
                     <Image src={logo} alt="" />
                   </Link>
                 </div>
@@ -55,11 +55,11 @@ export default function FooterThree() {
                 <div className="tp-footer-2-widget-menu">
                   <h4 className="tp-footer-2-widget-title">Sitemap</h4>
                                                        <ul>
-                    <li><Link href="/">Home</Link></li>
-                    <li><Link href="/experiences">Experiences</Link></li>
-                    <li><Link href="/reservations">Reservation</Link></li>
-                    <li><Link href="/about">About</Link></li>
-                    <li><Link href="/become-partner">Become a Partner</Link></li>
+                    <li><Link href="/accueil">Accueil</Link></li>
+                    <li><Link href="/experiences">Expériences</Link></li>
+                    <li><Link href="/reservations">Réservation</Link></li>
+                    <li><Link href="/a-propos">À Propos</Link></li>
+                    <li><Link href="/devenir-partenaire">Devenir Partenaire</Link></li>
                     <li><Link href="/contact">Contact</Link></li>
                     <li><Link href="/faq">FAQ</Link></li>
                     <li><Link href="/blog">Blog</Link></li>
@@ -81,10 +81,10 @@ export default function FooterThree() {
             <div className="col-xl-4 col-lg-5 col-md-6 mb-50">
               <div className="tp-footer-2-widget footer-col-2-4">
                 <div className="tp-footer-2-widget-newslatter">
-                  <h4 className="tp-footer-2-widget-title">Subscribe to our newsletter</h4>
+                  <h4 className="tp-footer-2-widget-title">Abonnez-vous à notre newsletter</h4>
                   <form action="#">
                     <div className="tp-footer-2-input p-relative">
-                      <input type="text" placeholder="Enter your email..." />
+                      <input type="text" placeholder="Entrez votre email..." />
                       <button>
                         <RightArrow />
                       </button>

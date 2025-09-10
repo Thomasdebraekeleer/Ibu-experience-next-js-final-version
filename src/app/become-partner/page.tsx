@@ -1,14 +1,5 @@
+import { redirect } from 'next/navigation';
+
 export default function BecomePartnerPage() {
-  return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      minHeight: '100vh',
-      fontSize: '24px',
-      color: '#053725'
-    }}>
-      Page Become Partner
-    </div>
-  );
+  redirect('/devenir-partenaire');
 }

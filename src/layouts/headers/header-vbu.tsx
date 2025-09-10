@@ -27,7 +27,7 @@ export default function HeaderVBU() {
             <div className="row align-items-center">
               <div className="col-xl-2 col-lg-4 col-md-4 col-4">
                 <div className="tp-header-logo">
-                  <Link href="/home">
+                  <Link href="/accueil">
                     <Image src={isHomepage ? logoWhite : logoGreen} alt="VBU Experience" />
                   </Link>
                 </div>

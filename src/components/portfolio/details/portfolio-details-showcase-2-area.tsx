@@ -253,7 +253,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-content-right tp_title_anim">
-                      <p>IBÙ propose une approche unique où chaque séjour se vit comme une parenthèse hors du temps. Dans des lieux d’exception, nos cocons design invitent à savourer la nature, le confort et des expériences raffinées, entre bien-être et gastronomie locale.</p>
+                      <p>IBÙ offre la chance de séjourner au cœur de domaines d&apos;exception en Belgique, en valorisant leur patrimoine, leurs produits et leur savoir-faire.</p>
+                      <p>Nous créons des expériences uniques qui allient hébergement raffiné et immersion dans des lieux emblématiques, pour sublimer le terroir local.</p>
                   </div>
                 </div>
             </div>
@@ -280,9 +281,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       </div>
       {/* grid images */}
 
-             {/* details title 4 */}
-       <div className="showcase-details-2-area pt-60 pb-60">
+             {/* Section fusionnée : Engagements + Nos Formules */}
+       <div className="showcase-details-2-area pt-60 pb-120">
            <div className="container">
+             {/* Section Engagements */}
              <div className="row">
                  <div className="col-xl-3">
                    <div className="showcase-details-2-section-left">
@@ -294,19 +296,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                  </div>
                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                       <p>Nos hébergements allient respect de l’environnement, circuits courts et harmonie avec la nature. Conçus avec des matériaux durables, ils valorisent les producteurs locaux et intègrent des solutions éco-énergétiques pour offrir une expérience authentique et responsable..</p>
+                       <p style={{marginBottom: '60px'}}>Nos hébergements allient respect de l'environnement, circuits courts et harmonie avec la nature. Conçus avec des matériaux durables, ils valorisent les producteurs locaux et intègrent des solutions éco-énergétiques pour offrir une expérience authentique et responsable..</p>
                    </div>
                  </div>
              </div>
-           </div>
-       </div>
-       {/* details title 4 */}
-
-
-       {/* details title 5 - new section for showcase images */}
-       <div className="showcase-details-2-area pb-120">
-           <div className="container">
-             <div className="row">
+             
+             {/* Section Nos Formules intégrée */}
+             <div className="row" style={{marginTop: '60px'}}>
                  <div className="col-xl-8">
                    <div className="showcase-details-2-section-box">
                        <h4 className="showcase-details-2-section-title tp-char-animation">Nos Formules</h4>
@@ -326,7 +322,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
              <div className="row" style={{marginTop: '20px'}}>
                                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-content-right tp_title_anim mb-30">
-                      <p>Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité grâce à un sauna privatif, un bain nordique extérieur et un kit de relaxation, pour un séjour où détente et confort s&apos;entrelacent harmonieusement.</p>
+                      <p>Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité dans votre cocon privatif au coeur de la nature, avec des infrastructures dédiées à la relaxation pour un séjour où détente et confort s&apos;entrelacent harmonieusement.</p>
                     </div>
                     <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
                         <a href="/experiences/ibu-bien-etre" className="showcase-image-link">
@@ -347,7 +343,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-content-right tp_title_anim mb-30">
-                      <p>Avec <strong>IBÙ Signature</strong>, vivez une parenthèse gastronomique intimiste : un menu raffiné en trois services, imaginé par notre chef privé à partir de produits locaux, dans l&apos;atmosphère apaisante de votre cocon niché en pleine nature.</p>
+                      <p>Avec <strong>IBÙ Signature</strong>, retrouvez tout le privilège d&apos;IBÙ Bien-Être, enrichi d&apos;une expérience gastronomique exclusive : un menu raffiné en trois services, élaboré par notre chef privé à partir de produits locaux, pour un séjour sensoriel complet au cœur de la nature.</p>
                     </div>
                     <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
                         <a href="/experiences/ibu-signature" className="showcase-image-link">

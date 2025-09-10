@@ -70,29 +70,29 @@ Ce message a été envoyé depuis le formulaire de contact du site IBÙ EXPERIEN
           fontSize: '16px',
           fontWeight: '500'
         }}>
-          ✨ Thanks for reaching out! We&apos;ll get back to you as soon as possible.
+          ✨ Merci de nous avoir contactés ! Nous vous répondrons dans les plus brefs délais.
         </div>
       )}
       
       <form onSubmit={onSubmit}>
         <div className="cn-contactform-input mb-25">
-          <label>Name</label>
-          <input id='name' {...register("name")} type="text" placeholder="Your name" />
+          <label>Nom</label>
+          <input id='name' {...register("name")} type="text" placeholder="Votre nom" />
           <ErrorMsg msg={errors.name?.message!} />
         </div>
         <div className="cn-contactform-input mb-25">
-          <label>Subject</label>
-          <input id='subject' {...register("subject")} type="text" placeholder="Your@email.com" />
+          <label>Sujet</label>
+          <input id='subject' {...register("subject")} type="text" placeholder="Votre@email.com" />
           <ErrorMsg msg={errors.subject?.message!} />
         </div>
         <div className="cn-contactform-input mb-25">
           <label>Message</label>
-          <textarea id='message' {...register("message")} placeholder="Any questions? Tell us about your request or experience needs..."></textarea>
+          <textarea id='message' {...register("message")} placeholder="Une question ? Parlez-nous de votre demande ou de vos besoins d'expérience..."></textarea>
           <ErrorMsg msg={errors.message?.message!} />
         </div>
         <div className="cn-contactform-btn">
           <button className={`tp-btn-black-md ${btnCls} w-100`} type="submit">
-            Send Message
+            Envoyez un message
           </button>
         </div>
       </form>

@@ -70,7 +70,7 @@ export default function PortfolioGridColThreeArea({ style_2 = false }: IProps) {
             <div className="col-xl-8">
                              <div className="portfolio-filter masonary-menu d-flex justify-content-center mb-60">
                  <button data-filter="*" className="active">
-                   <span>SHOW ALL</span>
+                   <span>VOIR TOUT</span>
                  </button>
                  <button data-filter=".cat1">
                    <span>VIGNOBLE</span>
@@ -91,7 +91,7 @@ export default function PortfolioGridColThreeArea({ style_2 = false }: IProps) {
               key={item.id}
               className={`col-xl-4 col-lg-6 col-md-6 grid-item ${item.show}`}
             >
-              <div className="tp-project-5-2-thumb mb-30 p-relative not-hide-cursor" data-cursor="Check<br>availability">
+              <div className="tp-project-5-2-thumb mb-30 p-relative not-hide-cursor" data-cursor="Voir les<br>disponibilités">
                 {item.id === 1 ? (
                   <Link href="/domaine-de-mehaignoul" className="cursor-hide">
                     <Image
@@ -139,7 +139,7 @@ export default function PortfolioGridColThreeArea({ style_2 = false }: IProps) {
                    className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn"
                  >
                    <span className="tp-btn-circle-text">
-                     Check all <br /> availabilities
+                     Voir les <br /> disponibilités
                    </span>
                    <span className="tp-btn-circle-icon">
                      <UpArrow />
