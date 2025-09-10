@@ -89,7 +89,7 @@ const ExperiencesMain = () => {
                     </div>
                     <div className="col-xl-9">
                       <div className="showcase-details-2-content-right tp_title_anim">
-                          <p>Conçus dans un esprit minimaliste et chaleureux, nos pods de 15 m² offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
+                          <p>Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
                           <p style={{marginBottom: '50px'}}>Pour prolonger l&apos;expérience, profitez d&apos;options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.</p>
                       </div>
                     </div>
@@ -134,7 +134,7 @@ const ExperiencesMain = () => {
                           <div className="cocon-icon-wrapper mb-20">
                               <BathroomIcon />
                           </div>
-                          <h6 className="cocon-feature-title">Bathroom</h6>
+                          <h6 className="cocon-feature-title">Salle de bain</h6>
                       </div>
                     </div>
                     <div className="col-xl-3 col-lg-3">

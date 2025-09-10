@@ -9,7 +9,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
 // internal imports
 import Wrapper from "@/layouts/wrapper";
-import HeaderVBU from "@/layouts/headers/header-vbu";
+import HeaderHomepage from "@/layouts/headers/header-homepage";
 import PortfolioDetailsShowcaseTwoArea from "@/components/portfolio/details/portfolio-details-showcase-2-area";
 import FooterThree from "@/layouts/footers/footer-three";
 
@@ -59,7 +59,7 @@ const HomeMain = () => {
 
 
       {/* header area start */}
-      <HeaderVBU />
+      <HeaderHomepage />
       {/* header area end */}
 
       <div id="smooth-wrapper">

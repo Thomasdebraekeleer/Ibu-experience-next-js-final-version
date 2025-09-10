@@ -5,56 +5,54 @@ import Link from 'next/link';
 import HeaderMenus from './header-menus';
 import useSticky from '@/hooks/use-sticky';
 import { Menu } from '@/components/svg';
-import logoGreen from '@/assets/img/logo/logo-green.png';
 import logoWhite from '@/assets/img/logo/logo-white.png';
-import useIsHomepage from '@/hooks/use-is-homepage';
 import MobileOffcanvas from '@/components/offcanvas/mobile-offcanvas';
 
-export default function HeaderVBU() {
+export default function HeaderHomepage() {
   const {sticky,headerFullWidth} = useSticky();
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
-  const isHomepage = useIsHomepage();
   
   useEffect(() => {
     headerFullWidth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
   return (
     <>
-      {/* Styles spécifiques pour les autres pages */}
+      {/* Styles spécifiques pour la page d'accueil */}
       <style jsx global>{`
-        /* Menu principal */
-        .header-other-pages .tp-main-menu-content > ul > li > a {
-          color: #053725 !important;
+        /* Menu principal uniquement (pas les sous-menus) */
+        .header-homepage .tp-main-menu-content > ul > li > a {
+          color: #fcf8e3 !important;
           transition: color 0.3s ease !important;
         }
-        .header-other-pages .tp-main-menu-content > ul > li > a:hover {
-          color: #031c13 !important;
+        .header-homepage .tp-main-menu-content > ul > li > a:hover {
+          color: #ffffff !important;
         }
         
-        /* Sous-menus : même fluidité que la page d'accueil */
-        .header-other-pages .tp-submenu a {
+        /* Sous-menus : garder les styles originaux (verts) */
+        .header-homepage .tp-submenu a {
           color: #053725 !important;
           transition: all 0.3s ease !important;
         }
-        .header-other-pages .tp-submenu a:hover {
+        .header-homepage .tp-submenu a:hover {
           color: #031c13 !important;
           background-color: #f8f9fa !important;
         }
         
         /* Menu burger */
-        .header-other-pages .tp-inner-header-2-bar span {
-          color: #053725 !important;
+        .header-homepage .tp-inner-header-2-bar span {
+          color: #fcf8e3 !important;
         }
       `}</style>
-      <header className="tp-header-height z-index-5 header-other-pages">
+      <header className="tp-header-height z-index-5 header-homepage">
         <div className="tp-inner-header-2-area tp-shop-mob-space tp-transparent tp-inner-header-white">
           <div className="container container-1800">
             <div className="row align-items-center">
               <div className="col-xl-2 col-lg-4 col-md-4 col-4">
                 <div className="tp-header-logo">
                   <Link href="/accueil">
-                    <Image src={isHomepage ? logoWhite : logoGreen} alt="VBU Experience" />
+                    <Image src={logoWhite} alt="VBU Experience" />
                   </Link>
                 </div>
               </div>

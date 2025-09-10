@@ -138,8 +138,7 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                       <div className="col-xl-9">
                         <div className="showcase-details-2-content-right tp_title_anim">
-                            <p>Situé au cœur de la Wallonie, le domaine de Mehaignoul est une ferme en carré datant du 13e siècle d&apos;une exceptionnelle authenticité. En plus de sa première fonction agricole, elle propose également des salles de réceptions, des gîtes et un charmant vignoble.</p>
-                            <p>Blottie dans un cadre calme et champêtre, elle vous accueille pour vos réunions, séminaires, banquets et soirées divers.</p>
+                            <p>Situé au cœur de la Wallonie à seulement 30 min de Bruxelles, le domaine de Mehaignoul est une ferme en carré datant du 13e siècle d'une exceptionnelle authenticité. En plus de sa première fonction agricole, elle dispose d'un charmant vignoble où règne une atmosphère champêtre et dépaysante.</p>
                         </div>
                       </div>
                   </div>
@@ -192,53 +191,13 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                       <div className="col-xl-9">
                         <div className="showcase-details-2-content-right tp_title_anim">
-                            <p className="pb-25">Conçus dans un esprit minimaliste et chaleureux, nos pods de 15 m² offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
+                            <p className="pb-25">Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
                         </div>
                       </div>
                   </div>
-                </div>
-            </div>
-            {/* Le logement section */}
-
-                         {/* Le logement images section */}
-            <div className="tp-project-details-3-thumb mb-90">
-                <div className="container">
-                  <div className="row">
-                      <div className="col-xl-6">
-                        <div className="tp-project-details-3-thumb-box mb-30">
-                            <Image className="w-100" src={logement_img_1} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
-                        </div>
-                      </div>
-                      <div className="col-xl-6">
-                        <div className="tp-project-details-3-thumb-box mb-30">
-                          <Image className="w-100" src={logement_img_2} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            {/* Le logement images section */}
-
-              {/* Les équipements title section */}
-            <div className="showcase-details-2-area pb-120">
-                <div className="container">
-                  <div className="row">
-                      <div className="col-xl-12">
-                        <div className="showcase-details-2-section-box">
-                            <h4 className="showcase-details-2-section-title tp-char-animation">
-                              Les équipements
-                            </h4>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            {/* Les équipements title section */}
-
-             {/* COCONS images section */}
-            <div className="showcase-details-2-grid-area pb-60">
-                <div className="container">
-                  <div className="row">
+                  
+                  {/* Images des cocons intégrées */}
+                  <div className="row" style={{marginTop: '40px', marginBottom: '40px'}}>
                       <div className="col-xl-3 col-lg-3">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
                              <Image src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
@@ -260,14 +219,9 @@ const DomaineDeMehaignoulMain = () => {
                          </div>
                        </div>
                   </div>
-                </div>
-            </div>
-            {/* COCONS images section */}
-
-            {/* COCONS icons section */}
-            <div className="showcase-details-2-area pt-60 pb-120">
-                <div className="container">
-                  <div className="row">
+                  
+                  {/* Icônes des cocons intégrées */}
+                  <div className="row" style={{marginTop: '40px', marginBottom: '60px'}}>
                       <div className="col-xl-3 col-lg-3">
                         <div className="cocon-feature-item text-center">
                             <div className="cocon-icon-wrapper mb-20">
@@ -281,7 +235,7 @@ const DomaineDeMehaignoulMain = () => {
                             <div className="cocon-icon-wrapper mb-20">
                                 <BathroomIcon />
                             </div>
-                            <h6 className="cocon-feature-title">Bathroom</h6>
+                            <h6 className="cocon-feature-title">Salle de bain</h6>
                         </div>
                       </div>
                       <div className="col-xl-3 col-lg-3">
@@ -301,9 +255,24 @@ const DomaineDeMehaignoulMain = () => {
                         </div>
                       </div>
                   </div>
+                  
+                  {/* 2 photos du logement intégrées */}
+                  <div className="row" style={{marginTop: '40px'}}>
+                      <div className="col-xl-6">
+                        <div className="tp-project-details-3-thumb-box mb-30">
+                            <Image className="w-100" src={logement_img_1} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
+                        </div>
+                      </div>
+                      <div className="col-xl-6">
+                        <div className="tp-project-details-3-thumb-box mb-30">
+                          <Image className="w-100" src={logement_img_2} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
+                        </div>
+                      </div>
+                  </div>
                 </div>
             </div>
-                         {/* COCONS icons section */}
+            {/* Le logement section */}
+
 
              {/* Parallax image section */}
             <div className="tp-project-details-3-thumb mb-120">

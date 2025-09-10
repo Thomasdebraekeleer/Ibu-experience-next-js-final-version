@@ -297,7 +297,7 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Expériences de Bien-être</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">L'expérience IBÙ Bien-être</h4>
                   </div>
                 </div>
             </div>
@@ -312,8 +312,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                 </div>
                                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                                               <p className="pb-25">Niché au cœur de la nature, IBÙ Bien-être vous ouvre les portes d&apos;un cocon où le temps s&apos;étire doucement. Laissez-vous envelopper par la chaleur d&apos;un sauna privatif, glissez dans un bain nordique sous le ciel ouvert, et savourez l&apos;instant présent dans un cadre intimiste où chaque souffle devient plus léger.</p>
-                        <p>Pour prolonger ce voyage sensoriel, un kit de relaxation vous attend : tisanes aux notes apaisantes, huiles qui réchauffent la peau et gestes de douceur. Le matin, les saveurs locales viennent compléter l&apos;expérience. Ici, lenteur et sérénité se conjuguent pour offrir une parenthèse de bien-être inoubliable.</p>
+                                               <p className="pb-25">Niché au cœur de la nature, IBÙ Bien-Être vous invite à une parenthèse de sérénité dans un cocon intimiste. Laissez-vous envelopper par la chaleur des infrastructures privatives, prolongez ce moment avec un kit de relaxation aux notes apaisantes, puis réveillez vos sens avec un petit-déjeuner aux saveurs locales. Ici, chaque détail est pensé pour offrir un voyage sensoriel où détente et harmonie se rencontrent.</p>
                    </div>
                  </div>
             </div>
@@ -399,13 +398,13 @@ export default function PortfolioDetailsIBUBienEtre() {
           </div>
       {/* Services Section End */}
 
-                       {/* New Section: Option pour petit creux */}
+                       {/* New Section: Dîner prêt-à-déguster */}
        <div className="showcase-details-2-area pb-30">
           <div className="container">
             <div className="row">
                 <div className="col-xl-8">
                                     <div className="showcase-details-2-section-box">
-                       <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: '1.1', fontSize: '2.5rem', maxWidth: '100%', letterSpacing: '0.05em' }}>Option pour petit creux</h4>
+                       <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: '1.1', fontSize: '2.5rem', maxWidth: '100%', letterSpacing: '0.05em' }}>Dîner prêt-à-déguster</h4>
                    </div>
                 </div>
             </div>
@@ -448,41 +447,28 @@ export default function PortfolioDetailsIBUBienEtre() {
             </div>
          </div>
      </div>
-     {/* End New Section: Option pour petit creux */}
+     {/* End New Section: Dîner prêt-à-déguster */}
 
-          {/* details area */}
-     <div className="showcase-details-2-area pb-120" style={{ paddingTop: '30px' }}>
-         <div className="container">
-           <div className="row">
-               <div className="col-xl-8">
-                                                                       <div className="showcase-details-2-section-box">
-                                             <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'nowrap' }}>Séjour d&apos;exception</h4>
-                  </div>
-               </div>
-           </div>
-           <div className="row">
-               <div className="col-xl-3">
-                 <div className="showcase-details-2-section-left">
-                     <span className="ab-inner-subtitle mb-25">
-                       <Leaf/>
-                       Un cocon au cœur des plus beaux domaines.
-                     </span>
-                 </div>
-               </div>
-               <div className="col-xl-9">
-                 <div className="showcase-details-2-content-right tp_title_anim">
-                                           <p className="pb-25">IBÙ Bien-être vous propose de vivre une parenthèse unique dans des lieux d&apos;exception : châteaux élégants, domaines viticoles ou écrins naturels confidentiels. Chaque hébergement a été pensé comme un refuge intime, un cocon suspendu où le charme du lieu dialogue avec la douceur de l&apos;instant.</p>
-                      <p>Plus qu&apos;un simple séjour, c&apos;est une immersion dans un art de vivre raffiné : se réveiller face aux vignes, contempler l&apos;architecture historique qui vous entoure, savourer le silence et la beauté préservée. Chaque expérience devient un voyage intérieur, une rencontre entre authenticité, calme et émerveillement.</p>
-                 </div>
-               </div>
-           </div>
-         </div>
-     </div>
-     {/* details area */}
-
-         {/* details thumb avec bouton intégré */}
+         {/* Section fusionnée : Quote + Photos + Bouton */}
      <div className="tp-project-details-3-thumb pb-130">
          <div className="container">
+           {/* Quote intégrée */}
+           <div className="row justify-content-center" style={{marginBottom: '60px'}}>
+               <div className="col-xl-8 text-center">
+                 <blockquote style={{
+                   fontSize: '2.5rem',
+                   fontStyle: 'italic',
+                   color: '#053725',
+                   margin: '0',
+                   lineHeight: '1.4',
+                   fontWeight: '300'
+                 }}>
+                   "Ralentir, respirer, se retrouver."
+                 </blockquote>
+               </div>
+           </div>
+           
+           {/* Photos */}
            <div className="row">
                <div className="col-xl-6">
                  <div className="tp-project-details-3-thumb-box mb-30">
@@ -516,7 +502,7 @@ export default function PortfolioDetailsIBUBienEtre() {
            </div>
          </div>
      </div>
-     {/* details thumb avec bouton intégré */}
+     {/* Section fusionnée : Quote + Photos + Bouton */}
 
 
              {/* slider images area */}
