@@ -297,7 +297,7 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">L'expérience IBÙ Bien-être</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;expérience IBÙ Bien-être</h4>
                   </div>
                 </div>
             </div>
@@ -463,7 +463,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                    lineHeight: '1.4',
                    fontWeight: '300'
                  }}>
-                   "Ralentir, respirer, se retrouver."
+                   &quot;Ralentir, respirer, se retrouver.&quot;
                  </blockquote>
                </div>
            </div>
