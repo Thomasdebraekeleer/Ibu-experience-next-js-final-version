@@ -92,21 +92,21 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                       <div className="showcase-details-2-title-box">
                         <h5 className="showcase-details-2-title mb-20 tp-char-animation" style={{
                           whiteSpace: 'nowrap',
-                          fontSize: 'clamp(4rem, 15vw, 8rem) !important',
-                          lineHeight: '0.8 !important',
-                          letterSpacing: '0.05em !important',
-                          fontWeight: '700 !important',
-                          width: '100vw !important',
-                          maxWidth: '100vw !important',
-                          textAlign: 'left !important',
+                          fontSize: 'clamp(4rem, 15vw, 8rem)',
+                          lineHeight: '0.8',
+                          letterSpacing: '0.05em',
+                          fontWeight: '700',
+                          width: '100vw',
+                          maxWidth: '100vw',
+                          textAlign: 'left',
                           transform: 'translateX(0)',
                           position: 'relative',
                           zIndex: '1',
-                          color: 'white !important',
-                          textTransform: 'uppercase !important',
-                          overflow: 'visible !important',
-                          marginLeft: '0 !important',
-                          paddingLeft: '0 !important'
+                          color: 'white',
+                          textTransform: 'uppercase',
+                          overflow: 'visible',
+                          marginLeft: '0',
+                          paddingLeft: '0'
                         }}>IBÙ EXPERIENCE</h5>
                         <span className="showcase-details-2-subtitle tp_title_anim">L&apos;art de s&apos;évader dans des lieux d&apos;exception</span>
                       </div>
