@@ -206,7 +206,7 @@ const service_accordion = [
     id: 4,
     icon: <PetitDejeunerIcon />,
     title: "Petit déjeuner local",
-    desc: "Savourez un petit déjeuner local préparé avec des produits frais et de saison. Nos repas équilibrés sont conçus pour nourrir votre corps et votre esprit, vous offrant l'énergie nécessaire pour une journée harmonieuse et revitalisante.",
+    desc: "Savourez un petit déjeuner local préparé avec des produits frais et de saison.",
   },
 ];
 
@@ -255,7 +255,8 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-title-box">
-                                             <h2 className="tp-section-title-160 mb-50 tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>IBÙ Bien-être - Harmonie & Sérénité</h2>
+                                             <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>IBÙ Bien-être</h2>
+                                             <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Harmonie & Sérénité</h3>
                   </div>
                 </div>
             </div>

@@ -9,42 +9,43 @@ const marquee_text = [
   "Vivez l'expérience IBÙ!",
   "Vivez l'expérience IBÙ!",
 ];
-const marquee_text_2 = [
-  "See more",
-  "See more",
-  "See more",
-  "See more",
-  "See more",
-  "See more",
-];
 
 // prop type 
 type IProps = {
   cls?: string;
-  data_2?:boolean;
 };
 
-export default function LineTextThree({cls="",data_2=false}:IProps) {
-  const textArray = data_2 ? marquee_text_2 : marquee_text;
+export default function LineTextSyne({cls=""}:IProps) {
   return (
     <div className={`tp-line-text-wrap tp-line-text-wrap-2 ${cls}`}>
       <div className="tp-line-text-slide">
         <Marquee speed={100} autoFill={true}>
-          {textArray.map((text, index) => (
+          {marquee_text.map((text, index) => (
             <div key={index} className="tp-line-content">
               <h4 
-                className="tp-footer-4-big-title"
                 style={{
                   fontFamily: "'Syne', sans-serif",
                   fontWeight: 400,
                   fontSize: "80px",
                   lineHeight: 1,
-                  textTransform: "none",
-                  color: "var(--tp-common-white)",
-                  letterSpacing: "-1.8px"
+                  textTransform: "uppercase",
+                  color: "#ffffff",
+                  letterSpacing: "-1.8px",
+                  margin: 0,
+                  padding: 0,
+                  // Forcer la police et éviter tous les conflits CSS
+                  fontStyle: "normal",
+                  fontVariant: "normal",
+                  textDecoration: "none"
                 }}
               >
-                <span className="d-none d-md-inline-block mr-40">
+                <span 
+                  className="d-none d-md-inline-block mr-40"
+                  style={{
+                    display: "inline-block",
+                    marginRight: "40px"
+                  }}
+                >
                   <StarSquare />
                 </span>
                 {text}

@@ -10,15 +10,18 @@
     }
     &-list-thumb{
         &-wrap{
-            height: 80%;
-            width: 90%;
-            margin-left: 80px;
-            transform: scale(.8);
+            height: 100%;
+            width: 100%;
+            margin-left: 60px;
+            transform: scale(1);
+            overflow: visible;
             @media #{$xl}{
-                height: 70%;
+                height: 95%;
+                width: 95%;
             }
             @media #{$lg}{
-                height: 55%;
+                height: 90%;
+                width: 90%;
             }
         }
         &-1,
@@ -57,23 +60,25 @@
             &::after{
                 position: absolute;
                 content: "";
-                bottom: 0;
-                right: 0;
+                bottom: -1px;
                 left: 0;
                 width: 0%;
                 height: 1px;
                 background-color: var(--tp-common-black);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.7s ease-out 0s;
+                transition: width 0.7s ease-out;
             }
             &:hover{
                 &::after{
-                    opacity: 1;
-                    visibility: visible;
                     width: 100%;
-                    left: 0;
-                    right: 0;
+                }
+            }
+            &:nth-child(6){
+                &::after{
+                    display: none;
+                }
+                &:hover{
+                    border-bottom: 1px solid var(--tp-common-black);
+                    transition: border-color 0.3s ease;
                 }
             }
         }
@@ -126,20 +131,20 @@
 }
 
 #tp-award-thumb{
-    /* Standardisation de la taille de toutes les images - alignement exact sur les lignes de texte */
+    /* Images agrandies pour alignement parfait avec le texte */
     & .tp-award-list-thumb-1,
     & .tp-award-list-thumb-2,
     & .tp-award-list-thumb-3,
     & .tp-award-list-thumb-4,
     & .tp-award-list-thumb-5,
     & .tp-award-list-thumb-6 {
-        width: 100% !important;
-        height: 420px !important;
-        object-fit: contain !important;
-        object-position: center top !important;
-        margin-top: 0 !important;
+        width: 90% !important;
+        height: 480px !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        margin-top: -20px !important;
         padding-top: 0 !important;
-        margin-left: 20px !important;
+        margin-left: 10px !important;
     }
     
     &.tp-award-list-thumb-1{

@@ -325,7 +325,7 @@ const slider_setting:SwiperOptions = {
 
 export default function PortfolioDetailsIBUSignature() {
   const scrollTo = () => {
-    scroller.scrollTo('xyz', {
+    scroller.scrollTo('services-section', {
       duration: 800,
       delay: 0,
       smooth: 'easeInOutQuart',
@@ -339,7 +339,8 @@ export default function PortfolioDetailsIBUSignature() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-title-box">
-                      <h2 className="tp-section-title-160 mb-50 tp-char-animation">IBÙ Signature - Une Expérience Exclusive</h2>
+                      <h2 className="tp-section-title-160 mb-20 tp-char-animation">IBÙ Signature</h2>
+                      <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Une Expérience Exclusive</h3>
                   </div>
                 </div>
             </div>

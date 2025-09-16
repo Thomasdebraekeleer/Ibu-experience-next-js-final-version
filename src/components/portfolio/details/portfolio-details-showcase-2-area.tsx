@@ -108,7 +108,23 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           marginLeft: '0',
                           paddingLeft: '0'
                         }}>IBÙ EXPERIENCE</h5>
-                        <span className="showcase-details-2-subtitle tp_title_anim">L&apos;art de s&apos;évader dans des lieux d&apos;exception</span>
+                        <span className="showcase-details-2-subtitle tp_title_anim" style={{
+                          fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                          lineHeight: '1.3',
+                          fontWeight: '400',
+                          marginBottom: '20px',
+                          display: 'block'
+                        }}>L&apos;art de s&apos;évader dans des lieux d&apos;exception</span>
+                        <div className="hero-keywords" style={{
+                          fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+                          color: '#fcf8e3',
+                          fontWeight: '300',
+                          letterSpacing: '0.1em',
+                          textTransform: 'uppercase',
+                          opacity: '0.9'
+                        }}>
+                          VIGNOBLE • CHÂTEAU • DOMAINE
+                        </div>
                       </div>
                   </div>
                   

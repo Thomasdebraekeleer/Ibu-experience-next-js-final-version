@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import LineTextThree from '@/components/line-text/line-text-3';
+import LineTextSyne from '@/components/line-text/line-text-syne';
 import logo from '@/assets/img/logo/logo-white.png';
 import { RightArrow } from '@/components/svg';
 import Link from 'next/link';
@@ -10,11 +10,11 @@ export default function FooterThree() {
   return (
     <footer>
 
-      <div className="tp-footer-4-area black-bg pt-70 pb-120">
+      <div className="tp-footer-4-area black-bg pt-30 pb-120">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xl-12">
-              <LineTextThree />
+              <LineTextSyne />
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function FooterThree() {
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6">
                 <div className="tp-footer-4-top-right text-start text-md-end">
-                  <span className="tp-btn-white-lg" style={{cursor: 'default', opacity: 0.6}}>Contactez-nous</span>
+                  <Link href="/contact" className="tp-btn-white-lg">Contactez-nous</Link>
                 </div>
               </div>
             </div>

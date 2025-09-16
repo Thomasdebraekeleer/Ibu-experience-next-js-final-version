@@ -2,7 +2,6 @@
 import { gsap } from "gsap";
 import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
-import Image from "next/image";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -10,15 +9,32 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 // internal imports
 import Wrapper from "@/layouts/wrapper";
 import HeaderVBU from "@/layouts/headers/header-vbu";
-import FooterOne from "@/layouts/footers/footer-one";
-import TeamOne from "@/components/team/team-one";
-import TestimonialOne from "@/components/testimonial/testimonial-one";
-import AwardOne from "@/components/award/award-one";
+import FooterThree from "@/layouts/footers/footer-three";
+import Image from "next/image";
+import { Leaf } from '@/components/svg';
+
+// image imports
+import histoire_famille_img from '@/assets/img/inner-project/A propos/Une histoire de famille.jpg';
+
+// Gallery images from A propos folder
+import gallery_img_1 from '@/assets/img/inner-project/A propos/showcase-details-2-2 bis.jpg';
+import gallery_img_2 from '@/assets/img/inner-project/A propos/showcase-details-2-3 bis.jpg';
+import gallery_img_3 from '@/assets/img/inner-project/A propos/showcase-details-2-4 - bis.jpg';
+import gallery_img_4 from '@/assets/img/inner-project/A propos/showcase-details-2-5 bis.jpg';
+import gallery_img_5 from '@/assets/img/inner-project/A propos/showcase-details-2-6 bis.jpg';
+import gallery_img_6 from '@/assets/img/inner-project/A propos/showcase-details-2-7 bis.jpg';
+import gallery_img_7 from '@/assets/img/inner-project/A propos/showcase-details-2-8 bis.jpg';
+import gallery_img_8 from '@/assets/img/inner-project/A propos/showcase-details-2-9 bis.jpg';
 
 // animation
+import { charAnimation, titleAnimation } from "@/utils/title-animation";
+import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
-import { footerTwoAnimation } from "@/utils/footer-anim";
-import { bounceAnimation, charAnimation, fadeAnimation } from "@/utils/title-animation";
+import { movingImageSlider } from "@/utils/scroll-marque";
+import VideoTwo from "@/components/video/video-two";
+
+// Gallery data
+const gallery_data = [gallery_img_1, gallery_img_2, gallery_img_3, gallery_img_4, gallery_img_5, gallery_img_6, gallery_img_7, gallery_img_8];
 
 const AboutMain = () => {
   useScrollSmooth();
@@ -35,19 +51,66 @@ const AboutMain = () => {
     }
   },[]);
 
+  // Correction du problème de taille du titre lors de la navigation
+  useEffect(() => {
+    const fixTitleSize = () => {
+      const titleElement = document.querySelector('h4.showcase-details-2-section-title');
+      if (titleElement && titleElement.textContent?.includes('UNE HISTOIRE DE FAMILLE')) {
+        const style = titleElement.style;
+        style.setProperty('font-size', 'clamp(3.5rem, 7vw, 5.5rem)', 'important');
+        style.setProperty('line-height', '1.2', 'important');
+        style.setProperty('max-width', 'none', 'important');
+        style.setProperty('width', '100%', 'important');
+      }
+    };
+
+    // Appliquer immédiatement
+    fixTitleSize();
+    
+    // Appliquer après un délai court pour s'assurer que les animations GSAP sont terminées
+    const timer = setTimeout(fixTitleSize, 100);
+    const timer2 = setTimeout(fixTitleSize, 500);
+    const timer3 = setTimeout(fixTitleSize, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, []);
+
   useGSAP(() => {
     const timer = setTimeout(() => {
-      hoverBtn();
-      footerTwoAnimation();
-      fadeAnimation();
       charAnimation();
-      bounceAnimation();
-    }, 100)
+      titleAnimation();
+      imageRevealAnimation();
+      movingImageSlider();
+      hoverBtn();
+    }, 100);
     return () => clearTimeout(timer);
   });
 
   return (
     <Wrapper showBackToTop={false}>
+      {/* Style fix pour le titre "UNE HISTOIRE DE FAMILLE" */}
+      <style jsx global>{`
+        .showcase-details-2-section-title:has-text("UNE HISTOIRE DE FAMILLE"),
+        h4.showcase-details-2-section-title {
+          font-size: clamp(3.5rem, 7vw, 5.5rem) !important;
+          line-height: 1.2 !important;
+          max-width: none !important;
+          width: 100% !important;
+        }
+        
+        /* Spécifique pour éviter les conflits avec les animations GSAP */
+        .about-page .showcase-details-2-section-title {
+          font-size: clamp(3.5rem, 7vw, 5.5rem) !important;
+          line-height: 1.2 !important;
+          max-width: none !important;
+          width: 100% !important;
+        }
+      `}</style>
+      
       {/* magic cursor start */}
       <div id="magic-cursor">
         <div id="ball"></div>
@@ -60,142 +123,120 @@ const AboutMain = () => {
 
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <main>
+          <main className="about-page">
             
-            {/* hero section start */}
-            <section className="tp-hero-area pt-150 pb-150">
-              <div className="container">
-                <div className="row">
-                  <div className="col-12">
-                    <div className="tp-hero-content text-center">
-                      <h1 className="tp-hero-title">
-                        À Propos de <span className="text-gradient">VBU Experience</span>
-                      </h1>
-                      <p className="tp-hero-text">
-                        Nous créons des expériences uniques et mémorables qui transforment vos voyages en aventures extraordinaires
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            {/* hero section end */}
-
-            {/* about story section start */}
-            <section className="tp-about-story-area pb-150">
+            {/* Section Une histoire de famille */}
+            <div className="showcase-details-2-area pb-120 pt-120">
               <div className="container">
                 <div className="row align-items-center">
-                  <div className="col-lg-6">
-                    <div className="tp-about-story-content">
-                      <div className="tp-section-title">
-                        <h2>Notre Histoire</h2>
-                      </div>
-                      <p>
-                        Fondée en 2020, VBU Experience est née de la passion pour créer des expériences de voyage authentiques et immersives. 
-                        Notre équipe d&apos;experts locaux et de passionnés du voyage s&apos;engage à vous offrir des moments inoubliables.
-                      </p>
-                      <p>
-                        Nous croyons que chaque voyage devrait être une aventure unique, une opportunité de découvrir de nouveaux horizons 
-                        et de créer des souvenirs qui durent toute une vie.
-                      </p>
+                  {/* Image à gauche */}
+                  <div className="col-xl-5 col-lg-5">
+                    <div className="histoire-famille-image mb-30">
+                      <Image 
+                        src={histoire_famille_img} 
+                        alt="Une histoire de famille" 
+                        style={{height: 'auto', width: '100%'}}
+                      />
                     </div>
                   </div>
-                  <div className="col-lg-6">
-                    <div className="tp-about-story-image">
-                      <div className="tp-about-img">
-                        <Image src="/img/about/story-image.jpg" alt="Notre Histoire" width={600} height={400} style={{height: 'auto'}} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            {/* about story section end */}
-
-            {/* mission vision section start */}
-            <section className="tp-mission-vision-area pb-150">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-6">
-                    <div className="tp-mission-content">
-                      <div className="tp-section-title">
-                        <h2>Notre Mission</h2>
-                      </div>
-                      <p>
-                        Connecter les voyageurs avec des expériences authentiques et locales, en créant des ponts culturels 
-                        et en favorisant la compréhension mutuelle à travers le monde.
-                      </p>
-                      <ul className="tp-mission-list">
-                        <li>Expériences authentiques et locales</li>
-                        <li>Développement durable et responsable</li>
-                        <li>Excellence du service client</li>
-                        <li>Innovation continue</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="tp-vision-content">
-                      <div className="tp-section-title">
-                        <h2>Notre Vision</h2>
-                      </div>
-                      <p>
-                        Devenir la référence mondiale pour les expériences de voyage immersives, en transformant 
-                        la façon dont les gens découvrent et explorent le monde.
-                      </p>
-                      <div className="tp-vision-stats">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="tp-stat-item text-center">
-                              <h3>500+</h3>
-                              <p>Expériences uniques</p>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="tp-stat-item text-center">
-                              <h3>50+</h3>
-                              <p>Pays visités</p>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="tp-stat-item text-center">
-                              <h3>10K+</h3>
-                              <p>Voyageurs satisfaits</p>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="tp-stat-item text-center">
-                              <h3>98%</h3>
-                              <p>Taux de satisfaction</p>
-                            </div>
+                  
+                  {/* Contenu à droite */}
+                  <div className="col-xl-7 col-lg-7">
+                    {/* Section Une histoire de famille */}
+                    <div className="row">
+                        <div className="col-xl-12">
+                          <div className="showcase-details-2-section-box">
+                              <h4 className="showcase-details-2-section-title tp-char-animation" style={{fontSize: 'clamp(3.5rem, 7vw, 5.5rem) !important', lineHeight: '1.2 !important', maxWidth: 'none !important', width: '100% !important'}}>UNE HISTOIRE DE FAMILLE</h4>
                           </div>
                         </div>
-                      </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xl-12">
+                          <div className="showcase-details-2-section-left mb-30">
+                              <span className="ab-inner-subtitle">
+                                <Leaf/>
+                                Héritage et passion
+                              </span>
+                          </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xl-12">
+                          <div className="showcase-details-2-content-right tp_title_anim">
+                              <p style={{marginBottom: '20px'}}>IBÙ Experience a été créé par Mallen en hommage à son père qu&apos;on surnommait &quot;Ibou&quot;, figure rayonnante de l&apos;hospitalité originaire de Gambie, qui avait comme projet de construire des lodges éco-chic pour les voyageurs.</p>
+                              <p style={{marginBottom: '50px'}}>Aujourd&apos;hui, ce rêve reprend vie en Belgique grâce à sa fille à travers des expériences immersives au sein de domaines prestigieux, où nature, bien-être et gastronomie s&apos;unissent dans des tiny houses élégamment designées.</p>
+                          </div>
+                        </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </section>
-            {/* mission vision section end */}
+            </div>
+            {/* Section Une histoire de famille end */}
 
-            {/* team area start */}
-            <TeamOne />
-            {/* team area end */}
+            {/* Gallery Section with scroll effect */}
+            <div className="showcase-details-2-area pt-60 pb-60">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-8">
+                    <div className="showcase-details-2-section-box">
+                      <h4 className="showcase-details-2-section-title tp-char-animation">Notre Univers</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-xl-3">
+                    <div className="showcase-details-2-section-left">
+                      <span className="ab-inner-subtitle mb-25">
+                        <Leaf/>
+                        Découverte
+                      </span>
+                    </div>
+                  </div>
+                  <div className="col-xl-9">
+                    <div className="showcase-details-2-section-right tp_title_anim">
+                      <p style={{color: '#333333'}}>Plongez dans l&apos;univers IBÙ Experience à travers ces moments captés au cœur de nos domaines d&apos;exception, où chaque détail raconte une histoire d&apos;authenticité et d&apos;évasion.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Moving Gallery */}
+              <div className="moving-gallery" style={{marginTop: '80px'}}>
+                <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-top d-flex align-items-end mb-20">
+                  {gallery_data.slice(0,4).map((imgSrc,i) => (
+                    <div key={i} className="showcase-details-2-slider-item">
+                      <Image src={imgSrc} alt={`gallery-img-${i+1}`} style={{height:"auto"}}/>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            {/* awards area start */}
-            <AwardOne />
-            {/* awards area end */}
+              <div className="moving-gallery">
+                <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-bottom d-flex align-items-end">
+                  {gallery_data.slice(4,8).map((imgSrc,i) => (
+                    <div key={i+4} className="showcase-details-2-slider-item">
+                      <Image src={imgSrc} alt={`gallery-img-${i+5}`} style={{height:"auto"}}/>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* Gallery Section end */}
 
-            {/* testimonial area start */}
-            <TestimonialOne />
-            {/* testimonial area end */}
+            {/* Section Work in motion */}
+            <VideoTwo />
+            {/* Section Work in motion end */}
+
+
+            {/* footer area start */}
+            <FooterThree />
+            {/* footer area end */}
 
           </main>
         </div>
       </div>
 
-      {/* footer area start */}
-      <FooterOne />
-      {/* footer area end */}
     </Wrapper>
   );
 };
