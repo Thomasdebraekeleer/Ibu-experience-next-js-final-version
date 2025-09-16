@@ -54,7 +54,7 @@ const AboutMain = () => {
   // Correction du problème de taille du titre lors de la navigation
   useEffect(() => {
     const fixTitleSize = () => {
-      const titleElement = document.querySelector('h4.showcase-details-2-section-title');
+      const titleElement = document.querySelector('h4.showcase-details-2-section-title') as HTMLElement;
       if (titleElement && titleElement.textContent?.includes('UNE HISTOIRE DE FAMILLE')) {
         const style = titleElement.style;
         style.setProperty('font-size', 'clamp(3.5rem, 7vw, 5.5rem)', 'important');
