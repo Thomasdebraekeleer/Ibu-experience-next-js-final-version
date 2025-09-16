@@ -637,10 +637,10 @@ const VideoTwo = () => {
                       transition: 'color 0.3s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.color = '#031c13';
+                      (e.target as HTMLElement).style.color = '#031c13';
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.color = '#053725';
+                      (e.target as HTMLElement).style.color = '#053725';
                     }}
                   >
                     StartLab.Brussels
