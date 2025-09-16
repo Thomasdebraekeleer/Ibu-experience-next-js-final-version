@@ -549,12 +549,12 @@ const VideoTwo = () => {
                             cursor: 'pointer'
                           }}
                           onMouseEnter={(e) => {
-                            e.target.style.color = '#ffffff';
-                            e.target.style.transform = 'translateX(5px)';
+                            (e.target as HTMLElement).style.color = '#ffffff';
+                            (e.target as HTMLElement).style.transform = 'translateX(5px)';
                           }}
                           onMouseLeave={(e) => {
-                            e.target.style.color = '#fcf8e3';
-                            e.target.style.transform = 'translateX(0px)';
+                            (e.target as HTMLElement).style.color = '#fcf8e3';
+                            (e.target as HTMLElement).style.transform = 'translateX(0px)';
                           }}>
                             {slide.linkText} →
                           </a>
