@@ -76,14 +76,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         />
         
         {/* Contenu du hero avec textes */}
-        <div className="hero-content-wrapper p-relative" style={{zIndex: 2, paddingTop: 'clamp(40px, 12vw, 0px)'}}>
+        <div 
+          className="hero-content-wrapper p-relative" 
+          style={{
+            zIndex: 2, 
+            paddingTop: '0px',
+            marginTop: 'clamp(-140px, -16vw, -160px)'
+          }}
+        >
           <style jsx>{`
-            @media (min-width: 1200px) {
-              .hero-content-wrapper {
-                margin-top: -80px !important;
-                transform: translateY(-80px) !important;
-              }
-            }
             @media (max-width: 768px) {
               .showcase-details-2-title {
                 white-space: normal !important;
@@ -97,9 +98,9 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                       <div className="showcase-details-2-title-box">
                         <h5 className="showcase-details-2-title mb-20 tp-char-animation" style={{
                           whiteSpace: 'nowrap',
-                          fontSize: 'clamp(2.5rem, 12vw, 8.5rem)',
+                          fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
                           lineHeight: '0.8',
-                          letterSpacing: '0.05em',
+                          letterSpacing: '0.08em',
                           fontWeight: '700',
                           width: '100vw',
                           maxWidth: '100vw',
