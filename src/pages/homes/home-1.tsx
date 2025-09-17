@@ -12,6 +12,7 @@ import Wrapper from "@/layouts/wrapper";
 import HeaderHomepage from "@/layouts/headers/header-homepage";
 import PortfolioDetailsShowcaseTwoArea from "@/components/portfolio/details/portfolio-details-showcase-2-area";
 import FooterThree from "@/layouts/footers/footer-three";
+import NewsletterPopup from "@/components/modal/newsletter-popup";
 
 // animation
 import { hoverBtn } from "@/utils/hover-btn";
@@ -77,6 +78,9 @@ const HomeMain = () => {
           {/* footer area */}
         </div>
       </div>
+      
+      {/* Newsletter Popup */}
+      <NewsletterPopup />
     </Wrapper>
   );
 };

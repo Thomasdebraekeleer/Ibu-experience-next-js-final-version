@@ -208,3 +208,82 @@
   all: revert;
   display: block;
 }
+
+/* Styles globaux pour les boules de navigation Swiper */
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #ccc !important;
+  opacity: 0.5 !important;
+  margin: 0 4px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #053725 !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+}
+
+/* Styles spécifiques pour les carrousels cocons et évasion */
+.cocons-mobile-carousel .swiper-pagination-bullet,
+.evasion-mobile-carousel .swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #ccc !important;
+  opacity: 0.5 !important;
+  margin: 0 4px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.cocons-mobile-carousel .swiper-pagination-bullet-active,
+.evasion-mobile-carousel .swiper-pagination-bullet-active {
+  background: #053725 !important;
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+}
+
+/* Styles pour le menu burger mobile */
+.tp-offcanvas-area .tp-main-menu-content ul li div a {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  padding: 15px 0 !important;
+  display: block !important;
+}
+
+.tp-offcanvas-area .tp-main-menu-content ul li {
+  border-bottom: 1px solid #e0e0e0 !important;
+  position: relative !important;
+  padding: 0 !important;
+}
+
+.tp-offcanvas-area .tp-main-menu-content ul li:last-child {
+  border-bottom: none !important;
+}
+
+/* Agrandir les sous-menus */
+.tp-offcanvas-area .tp-submenu.submenu ul li a {
+  font-size: 16px !important;
+  padding: 12px 0 !important;
+  display: block !important;
+}
+
+/* Lignes de séparation pour les sous-menus */
+.tp-offcanvas-area .tp-submenu.submenu ul li {
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.tp-offcanvas-area .tp-submenu.submenu ul li:last-child {
+  border-bottom: none !important;
+}
+
+/* Style pour les titres des sous-menus */
+.tp-offcanvas-area .tp-megamenu-title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin-bottom: 15px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #053725 !important;
+}

@@ -266,7 +266,7 @@ const DomaineDeMehaignoulMain = () => {
                     
                     {/* Styles pour les indicateurs de pagination des cocons */}
                     <style jsx>{`
-                      .cocons-mobile-bullet {
+                      .cocons-mobile-carousel .swiper-pagination-bullet {
                         width: 8px !important;
                         height: 8px !important;
                         background: #ccc !important;
@@ -275,7 +275,7 @@ const DomaineDeMehaignoulMain = () => {
                         border-radius: 50% !important;
                         transition: all 0.3s ease !important;
                       }
-                      .cocons-mobile-bullet-active {
+                      .cocons-mobile-carousel .swiper-pagination-bullet-active {
                         background: #053725 !important;
                         opacity: 1 !important;
                         transform: scale(1.2) !important;

@@ -21,6 +21,7 @@ type IProps = {
 export default function MobileOffcanvas({openOffcanvas,setOpenOffcanvas}: IProps) {
   return (
     <>
+      
       <div className={`tp-offcanvas-area ${openOffcanvas ? "opened" : ""}`}>
         <div className="tp-offcanvas-wrapper">
           <div className="tp-offcanvas-top d-flex align-items-center justify-content-between">

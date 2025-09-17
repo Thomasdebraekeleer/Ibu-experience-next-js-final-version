@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
 import LodgifySearchBar from '../../LodgifySearchBar';
@@ -265,27 +265,39 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           {/* Version Mobile - Carrousel */}
           <div className="d-block d-lg-none" style={{marginTop: '60px'}}>
             <Swiper
-              slidesPerView={1.2}
+              slidesPerView={1}
+              centeredSlides={true}
               spaceBetween={20}
               loop={true}
               autoplay={{
                 delay: 4000,
                 disableOnInteraction: false,
               }}
-              className="mobile-gallery-carousel"
+              pagination={{
+                clickable: true,
+                bulletClass: 'swiper-pagination-bullet evasion-mobile-bullet',
+                bulletActiveClass: 'swiper-pagination-bullet-active evasion-mobile-bullet-active',
+              }}
+              modules={[Autoplay, Pagination]}
+              className="evasion-mobile-carousel"
               style={{
-                padding: '0 20px'
+                padding: '0 20px 40px 20px'
               }}
             >
               {img_data.map((imgSrc, i) => (
                 <SwiperSlide key={i}>
-                  <div className="mobile-gallery-item">
+                  <div className="evasion-mobile-item" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
                     <Image 
                       src={imgSrc} 
                       alt="Évasion IBÙ" 
                       style={{
                         width: '100%',
-                        height: '250px',
+                        maxWidth: '350px',
+                        height: '280px',
                         objectFit: 'cover'
                       }}
                     />
@@ -401,8 +413,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                  </div>
              </div>
              
-             {/* Images des cocons */}
-             <div className="row" style={{marginTop: '40px', marginBottom: '40px'}}>
+             {/* Images des cocons - Version PC */}
+             <div className="row d-none d-lg-flex" style={{marginTop: '40px', marginBottom: '40px'}}>
                  <div className="col-xl-3 col-lg-3">
                     <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
                         <Image src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
@@ -424,9 +436,54 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                     </div>
                   </div>
              </div>
+
+             {/* Images des cocons - Version Mobile Carrousel */}
+             <div className="d-block d-lg-none" style={{marginTop: '40px', marginBottom: '40px'}}>
+               <Swiper
+                 slidesPerView={1}
+                 centeredSlides={true}
+                 spaceBetween={20}
+                 loop={true}
+                 autoplay={{
+                   delay: 4000,
+                   disableOnInteraction: false,
+                 }}
+                 pagination={{
+                   clickable: true,
+                   bulletClass: 'swiper-pagination-bullet cocons-mobile-bullet',
+                   bulletActiveClass: 'swiper-pagination-bullet-active cocons-mobile-bullet-active',
+                 }}
+                 modules={[Autoplay, Pagination]}
+                 className="cocons-mobile-carousel"
+                 style={{
+                   padding: '0 20px 40px 20px'
+                 }}
+               >
+                 {[cocons_img_1, cocons_img_2, cocons_img_3, cocons_img_4].map((imgSrc, i) => (
+                   <SwiperSlide key={i}>
+                     <div className="cocons-mobile-item" style={{
+                       display: 'flex',
+                       justifyContent: 'center',
+                       alignItems: 'center'
+                     }}>
+                       <Image 
+                         src={imgSrc} 
+                         alt="Nos Cocons IBÙ" 
+                         style={{
+                           width: '100%',
+                           maxWidth: '350px',
+                           height: '280px',
+                           objectFit: 'cover'
+                         }}
+                       />
+                     </div>
+                   </SwiperSlide>
+                 ))}
+               </Swiper>
+             </div>
              
-             {/* Icônes des cocons */}
-             <div className="row" style={{marginTop: '40px', marginBottom: '60px'}}>
+             {/* Icônes des cocons - Version PC */}
+             <div className="row d-none d-lg-flex" style={{marginTop: '40px', marginBottom: '60px'}}>
                  <div className="col-xl-3 col-lg-3">
                    <div className="cocon-feature-item text-center">
                        <div className="cocon-icon-wrapper mb-20">
@@ -459,6 +516,49 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                        <h6 className="cocon-feature-title">Garde robe</h6>
                    </div>
                  </div>
+             </div>
+
+             {/* Icônes des cocons - Version Mobile (2x2) */}
+             <div className="d-block d-lg-none" style={{marginTop: '40px', marginBottom: '60px'}}>
+               <div className="row">
+                 {/* Première ligne : Lit double + Salle de bain */}
+                 <div className="col-6">
+                   <div className="cocon-feature-item text-center">
+                     <div className="cocon-icon-wrapper mb-15">
+                       <LitDoubleIcon />
+                     </div>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Lit double</h6>
+                   </div>
+                 </div>
+                 <div className="col-6">
+                   <div className="cocon-feature-item text-center">
+                     <div className="cocon-icon-wrapper mb-15">
+                       <BathroomIcon />
+                     </div>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Salle de bain</h6>
+                   </div>
+                 </div>
+               </div>
+               
+               <div className="row" style={{marginTop: '30px'}}>
+                 {/* Deuxième ligne : Kitchenette + Garde robe */}
+                 <div className="col-6">
+                   <div className="cocon-feature-item text-center">
+                     <div className="cocon-icon-wrapper mb-15">
+                       <KitchenetteIcon />
+                     </div>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Kitchenette</h6>
+                   </div>
+                 </div>
+                 <div className="col-6">
+                   <div className="cocon-feature-item text-center">
+                     <div className="cocon-icon-wrapper mb-15">
+                       <GardeRobeIcon />
+                     </div>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Garde robe</h6>
+                   </div>
+                 </div>
+               </div>
              </div>
 
              {/* Section Nos Formules intégrée */}
@@ -576,6 +676,43 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           
           .showcase-hover-container.mobile-hover-active .showcase-image-link::before {
             opacity: 0.8 !important;
+          }
+        }
+        
+        .cocons-mobile-carousel .swiper-pagination-bullet {
+          width: 8px !important;
+          height: 8px !important;
+          background: #ccc !important;
+          opacity: 0.5 !important;
+          margin: 0 4px !important;
+          border-radius: 50% !important;
+          transition: all 0.3s ease !important;
+        }
+        .cocons-mobile-carousel .swiper-pagination-bullet-active {
+          background: #053725 !important;
+          opacity: 1 !important;
+          transform: scale(1.2) !important;
+        }
+        
+        .evasion-mobile-carousel .swiper-pagination-bullet {
+          width: 8px !important;
+          height: 8px !important;
+          background: #ccc !important;
+          opacity: 0.5 !important;
+          margin: 0 4px !important;
+          border-radius: 50% !important;
+          transition: all 0.3s ease !important;
+        }
+        .evasion-mobile-carousel .swiper-pagination-bullet-active {
+          background: #053725 !important;
+          opacity: 1 !important;
+          transform: scale(1.2) !important;
+        }
+        
+        /* Ajustement mobile pour le hero - descendre le bloc de texte */
+        @media (max-width: 991px) {
+          .hero-content-wrapper {
+            margin-top: clamp(-40px, -5vw, -60px) !important;
           }
         }
       `}</style>
