@@ -81,7 +81,8 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
         
         {/* Contenu principal avec photo et 6 lignes */}
         <div className="row align-items-start">
-          <div className="col-xl-4 col-lg-4 col-md-12">
+          {/* Colonne images - PC seulement */}
+          <div className="col-xl-4 col-lg-4 d-none d-lg-block">
             <div className="tp-award-list-thumb-wrap p-relative d-flex align-items-start justify-content-center" style={{minHeight: 'auto', paddingTop: '0px', marginTop: '0px'}}>
               <div
                 id="tp-award-thumb"
@@ -105,7 +106,9 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
               </div>
             </div>
           </div>
-          <div className="col-xl-8 col-lg-8 col-md-12">
+          
+          {/* Colonne texte - pleine largeur sur mobile */}
+          <div className="col-xl-8 col-lg-8 col-12">
             <div className="tp-award-list-wrap">
               {abStyle && (
                 <div className="ab-award-title-sm">
@@ -115,19 +118,19 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
                   </span>
                 </div>
               )}
-              {award_data.map((item) => (
-                <div
-                  key={item.id}
-                  onMouseEnter={() => setActiveThumb(item.id)}
-                  className="tp-award-list-item d-flex align-items-center tp_fade_bottom"
-                  rel={`tp-award-list-thumb-${item.id}`}
-                >
-                  <div className="tp-award-list-content-left d-flex align-items-center">
-                    <span>{item.subtitle}</span>
-                    <p>{item.title}</p>
+                {award_data.map((item) => (
+                  <div
+                    key={item.id}
+                    onMouseEnter={() => window.innerWidth >= 992 ? setActiveThumb(item.id) : null}
+                    className="tp-award-list-item d-flex align-items-center tp_fade_bottom"
+                    rel={`tp-award-list-thumb-${item.id}`}
+                  >
+                    <div className="tp-award-list-content-left d-flex align-items-center">
+                      <span>{item.subtitle}</span>
+                      <p>{item.title}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>

@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
-import Script from 'next/script';
+import LodgifySearchBar from '../../LodgifySearchBar';
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -35,6 +37,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const heroRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const foregroundRef = useRef<HTMLDivElement>(null);
+  const bienEtreRef = useRef<HTMLDivElement>(null);
+  const signatureRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,11 +59,47 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Effet de scroll pour mobile sur les photos des formules
+  useEffect(() => {
+    const handleMobileScroll = () => {
+      if (window.innerWidth >= 992) return; // PC seulement
+      
+      const bienEtreElement = bienEtreRef.current;
+      const signatureElement = signatureRef.current;
+      
+      if (!bienEtreElement || !signatureElement) return;
+      
+      const bienEtreRect = bienEtreElement.getBoundingClientRect();
+      const signatureRect = signatureElement.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Activer l'effet hover pour IBÙ Bien-être
+      if (bienEtreRect.top < windowHeight * 0.8 && bienEtreRect.bottom > windowHeight * 0.2) {
+        bienEtreElement.classList.add('mobile-hover-active');
+      } else {
+        bienEtreElement.classList.remove('mobile-hover-active');
+      }
+      
+      // Activer l'effet hover pour IBÙ Signature
+      if (signatureRect.top < windowHeight * 0.8 && signatureRect.bottom > windowHeight * 0.2) {
+        signatureElement.classList.add('mobile-hover-active');
+      } else {
+        signatureElement.classList.remove('mobile-hover-active');
+      }
+    };
+
+    window.addEventListener('scroll', handleMobileScroll);
+    window.addEventListener('resize', handleMobileScroll);
+    handleMobileScroll(); // Appel initial
+    
+    return () => {
+      window.removeEventListener('scroll', handleMobileScroll);
+      window.removeEventListener('resize', handleMobileScroll);
+    };
+  }, []);
+
   return (
     <>
-      {/* Script Lodgify */}
-      <Script src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js" defer />
-      
       {/* portfolio hero avec superposition d'images et parallaxe */}
       <div ref={heroRef} className="showcase-details-2-area showcase-details-2-bg p-relative overflow-hidden">
         {/* Image de fond avec parallaxe */}
@@ -84,13 +124,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             marginTop: 'clamp(-140px, -16vw, -160px)'
           }}
         >
-          <style jsx>{`
-            @media (max-width: 768px) {
-              .showcase-details-2-title {
-                white-space: normal !important;
-              }
-            }
-          `}</style>
           <div className="showcase-details-2-wrapper" data-lag="0.2" data-stagger="0.08">
             <div className="container container-1550">
                 <div className="row">
@@ -169,59 +202,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }}
         >
           <div className="lodgify-widget-container tp_title_anim">
-            <style jsx>{`
-              :root {
-                --ldg-psb-background: #ffffff;
-                --ldg-psb-border-radius: 0.42em;
-                --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
-                --ldg-psb-padding: 14px;
-                --ldg-psb-input-background: #ffffff;
-                --ldg-psb-button-border-radius: 0px;
-                --ldg-psb-color-primary: #053725;
-                --ldg-psb-color-primary-lighter:#829b92;
-                --ldg-psb-color-primary-darker: #031c13;
-                --ldg-psb-color-primary-contrast: #fcf8e3;
-                --ldg-semantic-color-primary:  #053725;
-                --ldg-semantic-color-primary-lighter: #829b92;
-                --ldg-semantic-color-primary-darker: #031c13;
-                --ldg-semantic-color-primary-contrast: #fcf8e3;
-                --ldg-component-modal-z-index: 999;
-              }
-              #lodgify-search-bar {
-                width:100%;
-              }
-            `}</style>
-            <div
-              id="lodgify-search-bar"
-              data-website-id="607668"
-              data-language-code="fr"
-              data-checkout-page-url='https://checkout.lodgify.com/mallen-jallow/fr/#/16403'
-              data-dates-check-in-label='Arrivée'
-              data-dates-check-out-label='Départ'
-              data-guests-counter-label='Invités'
-              data-guests-input-singular-label='{{NumberOfGuests}} invité'
-              data-guests-input-plural-label='{{NumberOfGuests}} invités'
-              data-location-input-label='Emplacement'
-              data-search-button-label='Rechercher'
-              data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
-              data-guests-breakdown-label='Invités'
-              data-adults-label='{"one":"adulte","other":"adultes"}'
-              data-adults-description='Âges {minAge} ou plus'
-              data-children-label='{"one":"enfant","other":"enfants"}'
-              data-children-description='Âges {minAge} - {maxAge}'
-              data-children-not-allowed-label='Non adapté aux enfants'
-              data-infants-label='{"one":"bébé","other":"bébés"}'
-              data-infants-description='Moins de {maxAge}'
-              data-infants-not-allowed-label='Non adapté aux bébés'
-              data-pets-label='{"one":"animal de compagnie", "other":"animaux de compagnie"}'
-              data-pets-not-allowed-label='Non autorisé'
-              data-done-label='Terminé'
-              data-new-tab="true"
-              data-version="stable"
-              data-has-guests-breakdown
-            ></div>
+            <LodgifySearchBar />
           </div>
         </div>
+
       </div>
       {/* portfolio hero */}
 
@@ -231,7 +215,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             <div className="row">
                 <div className="col-xl-8">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{whiteSpace: 'nowrap'}}>IBÙ EXPERIENCE</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{
+                        whiteSpace: 'nowrap',
+                        fontSize: 'clamp(2.5rem, 8vw, 4rem)',
+                        lineHeight: '1.1',
+                        letterSpacing: 'clamp(0.05em, 0.5vw, 0.08em)'
+                      }}>IBÙ EXPERIENCE</h4>
                   </div>
                 </div>
             </div>
@@ -252,8 +241,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             </div>
           </div>
           
-          {/* moving image intégrée */}
-          <div className="moving-gallery" style={{marginTop: '120px'}}>
+          {/* Version PC - moving gallery */}
+          <div className="moving-gallery d-none d-lg-block" style={{marginTop: '120px'}}>
             <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-top d-flex align-items-end mb-20">
               {img_data.slice(0,4).map((imgSrc,i) => (
                 <div key={i} className="showcase-details-2-slider-item">
@@ -263,7 +252,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             </div>
           </div>
 
-          <div className="moving-gallery">
+          <div className="moving-gallery d-none d-lg-block">
             <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-bottom d-flex align-items-start">
               {img_data.slice(4,8).map((imgSrc,i) => (
                 <div key={i} className="showcase-details-2-slider-item">
@@ -271,6 +260,39 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Version Mobile - Carrousel */}
+          <div className="d-block d-lg-none" style={{marginTop: '60px'}}>
+            <Swiper
+              slidesPerView={1.2}
+              spaceBetween={20}
+              loop={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              className="mobile-gallery-carousel"
+              style={{
+                padding: '0 20px'
+              }}
+            >
+              {img_data.map((imgSrc, i) => (
+                <SwiperSlide key={i}>
+                  <div className="mobile-gallery-item">
+                    <Image 
+                      src={imgSrc} 
+                      alt="Évasion IBÙ" 
+                      style={{
+                        width: '100%',
+                        height: '250px',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
       </div>
       {/* details title avec galerie intégrée */}
@@ -462,7 +484,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                     <div className="showcase-details-2-content-right tp_title_anim mb-30">
                       <p>Avec <strong>IBÙ Bien-Être</strong>, plongez dans une bulle de sérénité dans votre cocon privatif au coeur de la nature, avec des infrastructures dédiées à la relaxation pour un séjour où détente et confort s&apos;entrelacent harmonieusement.</p>
                     </div>
-                    <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
+                    <div ref={bienEtreRef} className="showcase-details-2-grid-img mb-30 showcase-hover-container">
                         <a href="/experiences/ibu-bien-etre" className="showcase-image-link">
                             <Image className="img-left" src={showcase_img_14} alt="showcase-img-14" style={{height:'auto'}}/>
                             <div className="showcase-hover-text">
@@ -470,8 +492,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                             </div>
                         </a>
                     </div>
-                    <div className="showcase-details-2-link-text">
-                        <a href="/experiences/ibu-bien-etre" className="showcase-link-with-arrow">
+                    <div className="showcase-details-2-link-text" style={{
+                      marginBottom: 'clamp(40px, 8vw, 60px)'
+                    }}>
+                        <a href="/experiences/ibu-bien-etre" className="showcase-link-with-arrow" style={{
+                          fontSize: 'clamp(16px, 4vw, 18px)',
+                          fontWeight: '500'
+                        }}>
                             Découvrir IBÙ Bien-être
                             <span className="arrow-right">
                                 <RightArrowOutline/>
@@ -483,7 +510,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                     <div className="showcase-details-2-content-right tp_title_anim mb-30">
                       <p>Avec <strong>IBÙ Signature</strong>, retrouvez tout le privilège d&apos;IBÙ Bien-Être, enrichi d&apos;une expérience gastronomique exclusive : un menu raffiné en trois services, élaboré par notre chef privé à partir de produits locaux, pour un séjour sensoriel complet au cœur de la nature.</p>
                     </div>
-                    <div className="showcase-details-2-grid-img mb-30 showcase-hover-container">
+                    <div ref={signatureRef} className="showcase-details-2-grid-img mb-30 showcase-hover-container">
                         <a href="/experiences/ibu-signature" className="showcase-image-link">
                             <Image className="img-right" src={showcase_img_15} alt="showcase-img-15" style={{height:'auto'}}/>
                             <div className="showcase-hover-text">
@@ -491,8 +518,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                             </div>
                         </a>
                     </div>
-                    <div className="showcase-details-2-link-text">
-                        <a href="/experiences/ibu-signature" className="showcase-link-with-arrow">
+                    <div className="showcase-details-2-link-text" style={{
+                      marginBottom: 'clamp(40px, 8vw, 60px)'
+                    }}>
+                        <a href="/experiences/ibu-signature" className="showcase-link-with-arrow" style={{
+                          fontSize: 'clamp(16px, 4vw, 18px)',
+                          fontWeight: '500'
+                        }}>
                             Découvrir IBÙ Signature
                             <span className="arrow-right">
                                 <RightArrowOutline/>
@@ -505,6 +537,48 @@ export default function PortfolioDetailsShowcaseTwoArea() {
        </div>
        {/* details title 5 */}
 
+
+      {/* Styles consolidés */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .showcase-details-2-title {
+            white-space: normal !important;
+          }
+        }
+        
+        @media (min-width: 769px) {
+          .lodgify-widget-absolute {
+            width: 60% !important;
+            max-width: 800px !important;
+          }
+          .lodgify-widget-container {
+            width: 100% !important;
+            max-width: none !important;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .lodgify-widget-absolute {
+            top: 60% !important;
+            left: 5% !important;
+            width: 90% !important;
+            max-width: 90% !important;
+            right: 5% !important;
+          }
+        }
+        
+        @media (max-width: 991px) {
+          .showcase-hover-container.mobile-hover-active .showcase-hover-text {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+          }
+          
+          .showcase-hover-container.mobile-hover-active .showcase-image-link::before {
+            opacity: 0.8 !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

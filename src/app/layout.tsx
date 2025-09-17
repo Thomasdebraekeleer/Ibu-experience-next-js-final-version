@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
+import Script from "next/script";
 import "./globals.scss";
 
 const gellery = localFont({
@@ -102,6 +103,11 @@ export default function RootLayout({
         className={`${gellery.variable} ${aladin.variable} ${syne_body.variable} ${syne_heading.variable} ${syne_p.variable} ${syne.variable} ${big_shoulders.variable} ${marcellus.variable}`}
       >
         <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+        <Script 
+          id="lodgify-psb" 
+          src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js" 
+          strategy="afterInteractive" 
+        />
       </body>
     </html>
   );

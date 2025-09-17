@@ -13,7 +13,7 @@ import FooterThree from "@/layouts/footers/footer-three";
 import Image from "next/image";
 import { Leaf, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 
 // image imports
@@ -196,8 +196,8 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                   </div>
                   
-                  {/* Images des cocons intégrées */}
-                  <div className="row" style={{marginTop: '40px', marginBottom: '40px'}}>
+                  {/* Images des cocons - Version PC */}
+                  <div className="row d-none d-lg-flex" style={{marginTop: '40px', marginBottom: '40px'}}>
                       <div className="col-xl-3 col-lg-3">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
                              <Image src={cocons_img_1} alt="cocons-img-1" style={{height:'auto'}}/>
@@ -219,9 +219,72 @@ const DomaineDeMehaignoulMain = () => {
                          </div>
                        </div>
                   </div>
+
+                  {/* Images des cocons - Version Mobile Carrousel */}
+                  <div className="d-block d-lg-none" style={{marginTop: '40px', marginBottom: '40px'}}>
+                    <Swiper
+                      slidesPerView={1}
+                      centeredSlides={true}
+                      spaceBetween={20}
+                      loop={true}
+                      autoplay={{
+                        delay: 4000,
+                        disableOnInteraction: false,
+                      }}
+                      pagination={{
+                        clickable: true,
+                        bulletClass: 'swiper-pagination-bullet cocons-mobile-bullet',
+                        bulletActiveClass: 'swiper-pagination-bullet-active cocons-mobile-bullet-active',
+                      }}
+                      modules={[Autoplay, Pagination]}
+                      className="cocons-mobile-carousel"
+                      style={{
+                        padding: '0 20px 40px 20px'
+                      }}
+                    >
+                      {[cocons_img_1, cocons_img_2, cocons_img_3, cocons_img_4].map((imgSrc, i) => (
+                        <SwiperSlide key={i}>
+                          <div className="cocons-mobile-item" style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                          }}>
+                            <Image 
+                              src={imgSrc} 
+                              alt="Le logement IBÙ" 
+                              style={{
+                                width: '100%',
+                                maxWidth: '350px',
+                                height: '280px',
+                                objectFit: 'cover'
+                              }}
+                            />
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                    
+                    {/* Styles pour les indicateurs de pagination des cocons */}
+                    <style jsx>{`
+                      .cocons-mobile-bullet {
+                        width: 8px !important;
+                        height: 8px !important;
+                        background: #ccc !important;
+                        opacity: 0.5 !important;
+                        margin: 0 4px !important;
+                        border-radius: 50% !important;
+                        transition: all 0.3s ease !important;
+                      }
+                      .cocons-mobile-bullet-active {
+                        background: #053725 !important;
+                        opacity: 1 !important;
+                        transform: scale(1.2) !important;
+                      }
+                    `}</style>
+                  </div>
                   
-                  {/* Icônes des cocons intégrées */}
-                  <div className="row" style={{marginTop: '40px', marginBottom: '60px'}}>
+                  {/* Icônes des cocons - Version PC */}
+                  <div className="row d-none d-lg-flex" style={{marginTop: '40px', marginBottom: '60px'}}>
                       <div className="col-xl-3 col-lg-3">
                         <div className="cocon-feature-item text-center">
                             <div className="cocon-icon-wrapper mb-20">
@@ -254,6 +317,49 @@ const DomaineDeMehaignoulMain = () => {
                             <h6 className="cocon-feature-title">Garde robe</h6>
                         </div>
                       </div>
+                  </div>
+
+                  {/* Icônes des cocons - Version Mobile (2x2) */}
+                  <div className="d-block d-lg-none" style={{marginTop: '40px', marginBottom: '60px'}}>
+                    <div className="row">
+                      {/* Première ligne : Lit double + Salle de bain */}
+                      <div className="col-6">
+                        <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-15">
+                            <LitDoubleIcon />
+                          </div>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Lit double</h6>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-15">
+                            <BathroomIcon />
+                          </div>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Salle de bain</h6>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="row" style={{marginTop: '30px'}}>
+                      {/* Deuxième ligne : Kitchenette + Garde robe */}
+                      <div className="col-6">
+                        <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-15">
+                            <KitchenetteIcon />
+                          </div>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Kitchenette</h6>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="cocon-feature-item text-center">
+                          <div className="cocon-icon-wrapper mb-15">
+                            <GardeRobeIcon />
+                          </div>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Garde robe</h6>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   {/* 2 photos du logement intégrées */}

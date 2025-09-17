@@ -29,12 +29,22 @@ export default function MobileMenus() {
                   : ""
               } ${menu.home_menus ? "dropdown-opened" : ""}`}
             >
-              <a className="pointer" onClick={() => openMobileMenu(menu.title)}>
-                {menu.title}
-                <button className="dropdown-toggle-btn">
-                  <i className="fa-light fa-plus"></i>
-                </button>
-              </a>
+              <div className="d-flex align-items-center justify-content-between">
+                <Link href={menu.link} className="flex-grow-1">
+                  {menu.title}
+                </Link>
+                {menu.dropdown_menus && menu.dropdown_menus.length > 0 && (
+                  <button 
+                    className="dropdown-toggle-btn ms-2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openMobileMenu(menu.title);
+                    }}
+                  >
+                    <i className="fa-light fa-plus"></i>
+                  </button>
+                )}
+              </div>
               {menu.home_menus ? (
                 <div className="tp-submenu submenu tp-mega-menu" style={{ display: navTitle === menu.title ? "block" : "none"}}>
                   <div className="tp-menu-fullwidth">
