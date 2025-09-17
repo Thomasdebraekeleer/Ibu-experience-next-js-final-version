@@ -66,71 +66,102 @@ export default function NewsletterPopup() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Overlay semi-transparent */}
-      <div 
-        className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
-        onClick={handleClose}
-      />
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 9999,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'rgba(0,0,0,0.5)'
+    }}>
       
-      {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-md w-full mx-4 transform transition-all duration-300 scale-100">
+      {/* Modal simplifié */}
+      <div style={{
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        padding: '20px',
+        maxWidth: '400px',
+        width: '90%',
+        position: 'relative',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+      }}>
         {/* Bouton fermer */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors duration-200 z-10"
+          style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            background: 'none',
+            border: 'none',
+            fontSize: '20px',
+            cursor: 'pointer',
+            color: '#666'
+          }}
         >
-          <CloseTwo />
+          ×
         </button>
 
         {/* Contenu */}
-        <div className="p-8 pt-12">
+        <div style={{ padding: '20px', paddingTop: '40px' }}>
           {/* Titre */}
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
+          <h2 style={{
+            fontSize: '24px',
+            fontWeight: 'bold',
+            color: '#111',
+            marginBottom: '16px',
+            textAlign: 'center'
+          }}>
             Soyez les premiers à réserver
           </h2>
           
           {/* Paragraphe */}
-          <p className="text-gray-600 text-center mb-8 leading-relaxed">
+          <p style={{
+            color: '#666',
+            marginBottom: '24px',
+            textAlign: 'center'
+          }}>
             Les réservations arrivent très bientôt. Inscrivez-vous à la newsletter pour être alerté(e) en premier.
           </p>
 
           {/* Formulaire */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Champ email */}
-            <div>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Votre adresse email"
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all duration-200 text-gray-900 placeholder-gray-500"
-                disabled={isLoading}
-              />
-            </div>
-
-            {/* Bouton d'inscription */}
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <input
+              type="email"
+              placeholder="Votre adresse email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={{
+                width: '100%',
+                padding: '12px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                fontSize: '16px'
+              }}
+            />
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+              style={{
+                width: '100%',
+                backgroundColor: '#053725',
+                color: 'white',
+                padding: '12px',
+                border: 'none',
+                borderRadius: '4px',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
             >
-              {isLoading ? (
-                <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Inscription...</span>
-                </div>
-              ) : (
-                "S'inscrire"
-              )}
+              {isLoading ? 'Inscription...' : 'S\'inscrire'}
             </button>
           </form>
-
-          {/* Texte informatif */}
-          <p className="text-xs text-gray-500 text-center mt-4">
-            En vous inscrivant, vous acceptez de recevoir nos actualités par email.
-          </p>
         </div>
       </div>
     </div>
