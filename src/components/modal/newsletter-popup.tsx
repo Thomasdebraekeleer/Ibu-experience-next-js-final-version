@@ -7,24 +7,26 @@ export default function NewsletterPopup() {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log('NewsletterPopup: Component mounted, isOpen =', isOpen);
-
   useEffect(() => {
-    console.log('NewsletterPopup: useEffect triggered');
+    // Vérifier si le popup a déjà été vu
+    const hasSeenPopup = localStorage.getItem('newsletter_popup_seen');
     
-    // Ouvrir le popup après 1 seconde (temporairement sans vérification localStorage)
-    const timer = setTimeout(() => {
-      console.log('NewsletterPopup: Opening popup');
-      setIsOpen(true);
-    }, 1000);
+    if (!hasSeenPopup) {
+      // Ouvrir le popup après 1 seconde
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 1000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
-    // Marquer comme vu dans localStorage
-    localStorage.setItem('newsletter_popup_seen', 'true');
+    // Marquer comme vu dans localStorage (côté client uniquement)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('newsletter_popup_seen', 'true');
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,12 +63,7 @@ export default function NewsletterPopup() {
     }
   };
 
-  console.log('NewsletterPopup: Rendering, isOpen =', isOpen);
-  
-  if (!isOpen) {
-    console.log('NewsletterPopup: Not rendering because isOpen is false');
-    return null;
-  }
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
