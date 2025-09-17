@@ -5,58 +5,13 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Leaf, NextIcon, PrevIcon, UpArrow } from "../svg";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { SwiperOptions } from "swiper/types";
 import gael_ibu_img from "@/assets/img/inner-project/Press/GAEL - Ibu Expérience.jpg";
 import interview_tvcom_img from "@/assets/img/inner-project/Press/interview Tvcom - IBU Experience.jpg";
-import startlab_logo from "@/assets/img/inner-project/Press/Logo StarLab Brussels.png";
-import parallax_img from "@/assets/img/inner-project/A propos/A propos parrallax image.jpg";
+import gael_logo from "@/assets/img/inner-project/A propos/Logo Gael Magazine x IBUExperience.png";
+import tvcom_logo from "@/assets/img/inner-project/A propos/Logo TVCom x Ibu Expérience.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Testimonial data
-const testimonial_data = [
-  {
-    id: 1,
-    desc: `"Super idée, le début d'une grande aventure! Tout notre soutien"`,
-    name: "Evelyne Delmotte",
-    designation: "",
-  },
-  {
-    id: 2,
-    desc: `"Bravo pour ce super projet"`,
-    name: "Justine Raskin",
-    designation: "",
-  },
-  {
-    id: 3,
-    desc: `"Un petit coup de pouce pour ce superbe projet. Hâte de la suite de l'aventure !!!"`,
-    name: "Charlotte Callebaut",
-    designation: "",
-  },
-  {
-    id: 4,
-    desc: `"Quel projet magnifique!!!"`,
-    name: "Debo Landroux",
-    designation: "",
-  },
-];
-
-// Slider settings
-const testimonial_slider_setting: SwiperOptions = {
-  slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
-  speed: 1000,
-  navigation: {
-    nextEl: ".tp-testimonial-next",
-    prevEl: ".tp-testimonial-prev",
-  },
-};
 
 const VideoTwo = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -68,6 +23,7 @@ const VideoTwo = () => {
       title: 'Gael Magazine',
       subtitle: 'Article',
       image: gael_ibu_img,
+      logo: gael_logo,
       alt: 'GAEL - Ibu Expérience',
       link: 'https://www.gael.be/lifestyle/tourisme/ibu-des-cabanes-de-luxe-pour-une-nuit-insolite-en-wallonie/',
       linkText: 'Voir l\'article'
@@ -77,8 +33,9 @@ const VideoTwo = () => {
       title: 'Interview TVcom',
       subtitle: 'Interview',
       image: interview_tvcom_img,
+      logo: tvcom_logo,
       alt: 'Interview TVcom - IBU Experience',
-      link: '#',
+      link: 'https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210',
       linkText: 'Voir l\'interview'
     }
   ];
@@ -533,6 +490,20 @@ const VideoTwo = () => {
                         </div>
                         <div className="tp-video-content" style={{position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px 0'}}>
                           <div style={{textAlign: 'center'}}>
+                            {/* Logo au-dessus du titre */}
+                            <div style={{marginBottom: '30px'}}>
+                              <Image
+                                src={slide.logo}
+                                alt={`Logo ${slide.title}`}
+                                style={{
+                                  height: 'auto',
+                                  width: 'auto',
+                                  maxWidth: '250px',
+                                  maxHeight: '80px',
+                                  objectFit: 'contain'
+                                }}
+                              />
+                            </div>
                             <h2 className="tp-video-title" style={{fontSize: 'clamp(2.8rem, 5.5vw, 4.2rem)', letterSpacing: '0.1em'}}>{slide.title}</h2>
                           </div>
                         </div>
@@ -586,169 +557,6 @@ const VideoTwo = () => {
             />
           ))}
         </div>
-        </div>
-      </div>
-      
-      {/* Section StartLab.Brussels */}
-      <div className="showcase-details-2-area pb-120" style={{marginTop: '120px'}}>
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="showcase-details-2-section-box">
-                <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous accompagnent</h4>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xl-3">
-              <div className="showcase-details-2-section-left">
-                <div className="powered-by-container" style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '25px'}}>
-                  <span className="ab-inner-subtitle" style={{marginBottom: '0'}}>
-                    <Leaf/>
-                    Powered by
-                  </span>
-                  <div className="startlab-logo-container">
-                    <Image 
-                      src={startlab_logo} 
-                      alt="StartLab Brussels Logo" 
-                      style={{
-                        width: 'auto',
-                        height: '40px',
-                        maxWidth: '160px',
-                        objectFit: 'contain'
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-9">
-              <div className="showcase-details-2-content-right tp_title_anim">
-                <p className="pb-25" style={{opacity: 1, color: 'inherit'}}>
-                  IBU Experience est accompagné par{' '}
-                  <a 
-                    href="https://www.startlab.brussels/fr" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style={{
-                      color: '#053725',
-                      textDecoration: 'underline',
-                      fontWeight: '500',
-                      transition: 'color 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.target as HTMLElement).style.color = '#031c13';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.target as HTMLElement).style.color = '#053725';
-                    }}
-                  >
-                    StartLab.Brussels
-                  </a>
-                  , l&apos;incubateur early-stage de Bruxelles qui coach, forme et connecte des primo-entrepreneurs et des profils académiques pour transformer des idées audacieuses en startups à impact, au sein d&apos;une communauté trilingue (FR/NL/EN).
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Image parallax */}
-      <div className="tp-project-details-3-full-width-thumb mb-120" style={{width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>
-        <Image 
-          data-speed=".8" 
-          src={parallax_img} 
-          alt="IBÙ Experience - À propos" 
-          style={{ 
-            height: 'auto', 
-            width: '100%', 
-            display: 'block',
-            objectFit: 'cover'
-          }}
-        />
-      </div>
-
-      {/* Section Témoignages */}
-      <div className="tp-testimonial-area pb-120">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-8">
-              <div className="showcase-details-2-section-box mb-60">
-                <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous soutiennent</h4>
-              </div>
-            </div>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-xl-10">
-              <div className="tp-testimonial-slider-wrapper p-relative">
-                <div className="tp-testimonial-arrow-box d-none d-lg-block">
-                  <button className="tp-testimonial-prev" style={{
-                    background: 'transparent',
-                    border: '2px solid #053725',
-                    color: '#053725',
-                    width: '50px',
-                    height: '50px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    fontSize: '18px',
-                    fontWeight: 'bold'
-                  }}>
-                    ←
-                  </button>
-                  <button className="tp-testimonial-next" style={{
-                    background: 'transparent',
-                    border: '2px solid #053725',
-                    color: '#053725',
-                    width: '50px',
-                    height: '50px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    fontSize: '18px',
-                    fontWeight: 'bold'
-                  }}>
-                    →
-                  </button>
-                </div>
-                <Swiper
-                  {...testimonial_slider_setting}
-                  modules={[Navigation]}
-                  className="swiper-container tp-testimonial-slider-active fix"
-                >
-                  {testimonial_data.map((item) => (
-                    <SwiperSlide key={item.id}>
-                      <div className="tp-testimonial-item text-center">
-                        <p>{item.desc}</p>
-                        <span>
-                          <em>{item.name}</em>{item.designation && ` - ${item.designation}`}
-                        </span>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bouton Lieux et Disponibilités */}
-      <div className="tp-projct-5-2-btn-box d-flex justify-content-center pb-120">
-        <div className="tp-hover-btn-wrapper">
-          <a href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor="Lieux et Disponibilités">
-            <span className="tp-btn-circle-text">
-              Lieux et <br /> Disponibilités
-            </span>
-            <span className="tp-btn-circle-icon">
-              <UpArrow />
-            </span>
-            <i className="tp-btn-circle-dot"></i>
-          </a>
         </div>
       </div>
     </div>

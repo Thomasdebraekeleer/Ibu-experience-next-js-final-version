@@ -76,15 +76,20 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         />
         
         {/* Contenu du hero avec textes */}
-        <div className="hero-content-wrapper p-relative" style={{zIndex: 2}}>
-          <div className="showcase-details-2-link">
-            <a className="project-details-custom-link" href="#">
-                Visit Website
-                <span>
-                  <UpArrow/>
-                </span>
-            </a>
-          </div>
+        <div className="hero-content-wrapper p-relative" style={{zIndex: 2, paddingTop: 'clamp(40px, 12vw, 0px)'}}>
+          <style jsx>{`
+            @media (min-width: 1200px) {
+              .hero-content-wrapper {
+                margin-top: -80px !important;
+                transform: translateY(-80px) !important;
+              }
+            }
+            @media (max-width: 768px) {
+              .showcase-details-2-title {
+                white-space: normal !important;
+              }
+            }
+          `}</style>
           <div className="showcase-details-2-wrapper" data-lag="0.2" data-stagger="0.08">
             <div className="container container-1550">
                 <div className="row">
@@ -92,7 +97,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                       <div className="showcase-details-2-title-box">
                         <h5 className="showcase-details-2-title mb-20 tp-char-animation" style={{
                           whiteSpace: 'nowrap',
-                          fontSize: 'clamp(4rem, 15vw, 8rem)',
+                          fontSize: 'clamp(2.5rem, 12vw, 8.5rem)',
                           lineHeight: '0.8',
                           letterSpacing: '0.05em',
                           fontWeight: '700',
@@ -107,7 +112,9 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           overflow: 'visible',
                           marginLeft: '0',
                           paddingLeft: '0'
-                        }}>IBÙ EXPERIENCE</h5>
+                        }}>
+                          IBÙ EXPERIENCE
+                        </h5>
                         <span className="showcase-details-2-subtitle tp_title_anim" style={{
                           fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
                           lineHeight: '1.3',
@@ -116,8 +123,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           display: 'block'
                         }}>L&apos;art de s&apos;évader dans des lieux d&apos;exception</span>
                         <div className="hero-keywords" style={{
-                          fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
-                          color: '#fcf8e3',
+                          fontSize: 'clamp(1rem, 2.2vw, 1.3rem)',
+                          color: 'white',
                           fontWeight: '300',
                           letterSpacing: '0.1em',
                           textTransform: 'uppercase',

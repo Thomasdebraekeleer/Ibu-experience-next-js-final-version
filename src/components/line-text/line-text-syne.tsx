@@ -33,6 +33,7 @@ export default function LineTextSyne({cls=""}:IProps) {
                   letterSpacing: "-1.8px",
                   margin: 0,
                   padding: 0,
+                  paddingRight: "60px", // Espace entre la fin du texte et l'icône suivante
                   // Forcer la police et éviter tous les conflits CSS
                   fontStyle: "normal",
                   fontVariant: "normal",
@@ -43,7 +44,8 @@ export default function LineTextSyne({cls=""}:IProps) {
                   className="d-none d-md-inline-block mr-40"
                   style={{
                     display: "inline-block",
-                    marginRight: "40px"
+                    marginRight: "40px",
+                    transform: "translateY(15px)" // Descendre l'icône pour l'aligner avec le texte
                   }}
                 >
                   <StarSquare />
