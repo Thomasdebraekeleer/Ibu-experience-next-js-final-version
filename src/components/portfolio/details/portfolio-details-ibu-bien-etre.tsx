@@ -240,6 +240,19 @@ const slider_setting:SwiperOptions = {
 }
 
 export default function PortfolioDetailsIBUBienEtre() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 991);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const scrollTo = () => {
     scroller.scrollTo('services-section', {
       duration: 800,
@@ -366,11 +379,11 @@ export default function PortfolioDetailsIBUBienEtre() {
                    <div key={s.id} className="accordion-items" style={{ position: 'relative', zIndex: service_accordion.length - s.id }}>
                     <h2 className="accordion-header">
                       <button
-                        className={`accordion-buttons ${s.id !== 1 ? "collapsed" : ""}`}
+                        className={`accordion-buttons ${(s.id !== 1 || isMobile) ? "collapsed" : ""}`}
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-${s.id}`}
-                        aria-expanded="false"
+                        aria-expanded={s.id === 1 && !isMobile ? "true" : "false"}
                         aria-controls={`collapse-${s.id}`}
                       >
                         <span>
@@ -382,7 +395,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                     </h2>
                     <div
                       id={`collapse-${s.id}`}
-                      className={`accordion-collapse collapse ${s.id === 1 ? "show" : ""}`}
+                      className={`accordion-collapse collapse ${s.id === 1 && !isMobile ? "show" : ""}`}
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
@@ -519,6 +532,37 @@ export default function PortfolioDetailsIBUBienEtre() {
           </Swiper>
         </div>
       {/* slider images area */}
+      
+      {/* Style pour agrandir la photo parallax et réduire l'espacement sur mobile uniquement */}
+      <style jsx>{`
+        @media (max-width: 991px) {
+          .tp-project-details-3-thumb-box img {
+            height: 60vh !important;
+            object-fit: cover !important;
+            object-position: center !important;
+          }
+          .showcase-details-2-area.pb-120 {
+            padding-bottom: 40px !important;
+          }
+          .tp-project-details-3-thumb.mb-120 {
+            margin-top: -20px !important;
+            margin-bottom: 60px !important;
+          }
+          .tp-service-2-title-box.mb-70 {
+            margin-bottom: 15px !important;
+          }
+          .tp-service-2-area .row.align-items-center {
+            margin-top: -30px !important;
+          }
+          .tp-service-2-area.tp-service-2-pt.pb-150 {
+            padding-bottom: 30px !important;
+          }
+          .showcase-details-2-area.pb-30 {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

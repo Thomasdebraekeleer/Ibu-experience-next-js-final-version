@@ -324,6 +324,19 @@ const slider_setting:SwiperOptions = {
 }
 
 export default function PortfolioDetailsIBUSignature() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 991);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const scrollTo = () => {
     scroller.scrollTo('services-section', {
       duration: 800,
@@ -453,11 +466,11 @@ export default function PortfolioDetailsIBUSignature() {
                   <div key={s.id} className="accordion-items" style={{ position: 'relative', zIndex: service_accordion_signature.length - s.id }}>
                     <h2 className="accordion-header">
                       <button
-                        className={`accordion-buttons ${s.id !== 1 ? "collapsed" : ""}`}
+                        className={`accordion-buttons ${(s.id !== 1 || isMobile) ? "collapsed" : ""}`}
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-signature-${s.id}`}
-                        aria-expanded="false"
+                        aria-expanded={s.id === 1 && !isMobile ? "true" : "false"}
                         aria-controls={`collapse-signature-${s.id}`}
                       >
                         <span>
@@ -469,7 +482,7 @@ export default function PortfolioDetailsIBUSignature() {
                     </h2>
                     <div
                       id={`collapse-signature-${s.id}`}
-                      className={`accordion-collapse collapse ${s.id === 1 ? "show" : ""}`}
+                      className={`accordion-collapse collapse ${s.id === 1 && !isMobile ? "show" : ""}`}
                       data-bs-parent="#accordionExampleSignature"
                     >
                       <div className="accordion-body">
@@ -561,6 +574,33 @@ export default function PortfolioDetailsIBUSignature() {
           </Swiper>
         </div>
       {/* slider images area */}
+      
+      {/* Styles pour ajuster les titres, masquer le bouton et réduire l'espacement sur mobile uniquement */}
+      <style jsx>{`
+        @media (max-width: 991px) {
+          .tp-section-title-160 {
+            white-space: nowrap !important;
+            font-size: clamp(2.5rem, 10vw, 4.5rem) !important;
+            line-height: 1.1 !important;
+          }
+          .tp-section-subtitle-3 {
+            font-size: clamp(1.5rem, 4.5vw, 2.2rem) !important;
+            white-space: nowrap !important;
+          }
+          .reserver-signature-link {
+            display: none !important;
+          }
+          .tp-service-2-title-box.mb-70 {
+            margin-bottom: 15px !important;
+          }
+          .tp-service-2-area .row.align-items-center {
+            margin-top: -30px !important;
+          }
+          .tp-service-2-area.tp-service-2-pt.pb-150 {
+            padding-bottom: 30px !important;
+          }
+        }
+      `}</style>
     </>
   )
 }
