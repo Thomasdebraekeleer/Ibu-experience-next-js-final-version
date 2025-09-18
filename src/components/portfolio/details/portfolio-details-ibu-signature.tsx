@@ -441,7 +441,15 @@ export default function PortfolioDetailsIBUSignature() {
         <div className="row">
           <div className="col-xl-8">
             <div className="tp-service-2-title-box mb-70">
-              <span className="tp-section-subtitle-3">
+              <span className="tp-section-subtitle-3" style={{
+                fontSize: 'clamp(1.8rem, 4.5vw, 3rem)',
+                fontWeight: '500',
+                color: '#053725',
+                marginTop: '10px',
+                marginBottom: '80px',
+                lineHeight: '1.1',
+                whiteSpace: 'nowrap'
+              }}>
                 <span>
                   <Leaf />
                 </span>
@@ -577,6 +585,15 @@ export default function PortfolioDetailsIBUSignature() {
       
       {/* Styles pour ajuster les titres, masquer le bouton et réduire l'espacement sur mobile uniquement */}
       <style jsx>{`
+        .tp-section-subtitle-3 {
+          font-size: clamp(1.8rem, 4.5vw, 3rem) !important;
+          font-weight: 500 !important;
+          color: #053725 !important;
+          margin-top: 10px !important;
+          margin-bottom: 80px !important;
+          line-height: 1.1 !important;
+          white-space: nowrap !important;
+        }
         @media (max-width: 991px) {
           .tp-section-title-160 {
             white-space: nowrap !important;
@@ -584,8 +601,9 @@ export default function PortfolioDetailsIBUSignature() {
             line-height: 1.1 !important;
           }
           .tp-section-subtitle-3 {
-            font-size: clamp(1.5rem, 4.5vw, 2.2rem) !important;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem) !important;
             white-space: nowrap !important;
+            line-height: 1.1 !important;
           }
           .reserver-signature-link {
             display: none !important;

@@ -354,7 +354,15 @@ export default function PortfolioDetailsIBUBienEtre() {
         <div className="row">
           <div className="col-xl-8">
                          <div className="tp-service-2-title-box mb-70">
-               <span className="tp-section-subtitle-3">
+               <span className="tp-section-subtitle-3" style={{
+                 fontSize: 'clamp(1.8rem, 4.5vw, 3rem)',
+                 fontWeight: '500',
+                 color: '#053725',
+                 marginTop: '10px',
+                 marginBottom: '80px',
+                 lineHeight: '1.1',
+                 whiteSpace: 'nowrap'
+               }}>
                  <span>
                    <Leaf />
                  </span>
@@ -536,11 +544,13 @@ export default function PortfolioDetailsIBUBienEtre() {
       {/* Style pour agrandir la photo parallax et réduire l'espacement sur mobile uniquement */}
       <style jsx>{`
         .tp-section-subtitle-3 {
-          font-size: clamp(2.5rem, 6vw, 4rem) !important;
+          font-size: clamp(1.8rem, 4.5vw, 3rem) !important;
           font-weight: 500 !important;
           color: #053725 !important;
           margin-top: 10px !important;
           margin-bottom: 80px !important;
+          line-height: 1.1 !important;
+          white-space: nowrap !important;
         }
         @media (max-width: 991px) {
           #ibu-bien-etre-titles .tp-project-details-3-title-box .tp-section-title-160 {
@@ -550,12 +560,13 @@ export default function PortfolioDetailsIBUBienEtre() {
             word-break: normal !important;
           }
           .tp-section-subtitle-3 {
-            font-size: clamp(1rem, 3vw, 1.5rem) !important;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem) !important;
             white-space: nowrap !important;
             margin-top: 10px !important;
             margin-bottom: 80px !important;
             font-weight: 500 !important;
             color: #053725 !important;
+            line-height: 1.1 !important;
           }
           .tp-project-details-3-thumb-box img {
             height: 60vh !important;
