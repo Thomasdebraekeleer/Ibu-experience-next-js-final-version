@@ -3,7 +3,10 @@ import { gsap,Power2 } from "gsap";
 
 export default function cursorAnimation() {
     if(typeof window !== 'undefined'){
-        if ($("body").not(".is-mobile").hasClass("tp-magic-cursor")) {
+        // Détecter si c'est un appareil mobile
+        const isMobile = window.innerWidth < 992 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (!isMobile && $("body").hasClass("tp-magic-cursor")) {
             $(".tp-magnetic-item").wrap('<div class="tp-magnetic-wrap"></div>');
             
             if ($("a.tp-magnetic-item").length) {
