@@ -43,6 +43,7 @@ const ContactPage = () => {
   });
 
   return (
+    <>
     <Wrapper showBackToTop={false}>
       {/* magic cursor start */}
       <div id="magic-cursor">
@@ -87,6 +88,18 @@ const ContactPage = () => {
         </div>
       </div>
     </Wrapper>
+    
+    {/* Styles pour ajouter de l'espacement entre les lettres et réduire la taille sur mobile uniquement */}
+    <style jsx>{`
+      @media (max-width: 991px) {
+        .tm-hero-title-big {
+          letter-spacing: 0.05em !important;
+          font-size: clamp(2rem, 8vw, 3.5rem) !important;
+          line-height: 1.1 !important;
+        }
+      }
+    `}</style>
+    </>
   );
 };
 

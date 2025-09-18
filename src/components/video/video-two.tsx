@@ -333,6 +333,7 @@ const VideoTwo = () => {
   });
 
   return (
+    <>
     <div>
       <style jsx global>{`
         .tp-video-area,
@@ -420,11 +421,24 @@ const VideoTwo = () => {
           opacity: 1 !important;
           color: #333 !important;
         }
-        .video-two-section .showcase-details-2-section-right p {
-          opacity: 1 !important;
-          color: #333 !important;
-        }
-      `}</style>
+          .video-two-section .showcase-details-2-section-right p {
+            opacity: 1 !important;
+            color: #333 !important;
+          }
+          @media (max-width: 991px) {
+            .tp-video-title {
+              font-size: clamp(2rem, 4vw, 3rem) !important;
+            }
+            .carousel-indicators {
+              position: absolute !important;
+              bottom: 30px !important;
+              right: 30px !important;
+              left: auto !important;
+              transform: none !important;
+              justify-content: flex-end !important;
+            }
+          }
+        `}</style>
       
       {/* Section On parle de nous avec carousel intégré */}
       <div className="showcase-details-2-area pb-60 video-two-section" style={{maxWidth: '1200px', margin: '0 auto'}}>
@@ -560,6 +574,8 @@ const VideoTwo = () => {
         </div>
       </div>
     </div>
+    
+    </>
   );
 };
 

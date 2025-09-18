@@ -158,6 +158,37 @@ const AboutMain = () => {
           width: 100% !important;
         }
 
+        /* Espacement entre les lettres sur mobile uniquement - compensation pour l'effet GSAP */
+        @media (max-width: 991px) {
+          .showcase-details-2-section-title:not(:has-text("UNE HISTOIRE DE FAMILLE")) {
+            letter-spacing: 0.08em !important;
+          }
+          .showcase-details-2-area.pb-120 {
+            margin-top: 20px !important;
+            padding-bottom: 40px !important;
+          }
+          .histoire-famille-row {
+            flex-direction: column !important;
+          }
+          .histoire-famille-image-col {
+            order: 2 !important;
+            margin-top: 30px !important;
+          }
+          .histoire-famille-content-col {
+            order: 1 !important;
+          }
+          .histoire-famille-image {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+          }
+          .histoire-famille-image img {
+            max-width: 80% !important;
+            height: auto !important;
+            object-fit: contain !important;
+          }
+        }
+
         /* Styles pour l'alignement de la section Une histoire de famille */
         .histoire-famille-row {
           display: flex;

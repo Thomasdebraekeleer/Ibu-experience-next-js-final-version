@@ -263,13 +263,13 @@ export default function PortfolioDetailsIBUBienEtre() {
   return (
     <>
       {/* details are */}
-      <div className="tp-project-details-3-top tp-project-details-3-ptb">
+      <div id="ibu-bien-etre-titles" className="tp-project-details-3-top tp-project-details-3-ptb">
           <div className="container container-1560">
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-title-box">
-                                             <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>IBÙ Bien-être</h2>
-                                             <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Harmonie & Sérénité</h3>
+                                             <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={isMobile ? { fontSize: 'clamp(1.8rem, 7vw, 3.2rem)', whiteSpace: 'nowrap', lineHeight: '1.1' } : {}}>IBÙ Bien-être</h2>
+                                             <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.8rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Harmonie & Sérénité</h3>
                   </div>
                 </div>
             </div>
@@ -535,7 +535,28 @@ export default function PortfolioDetailsIBUBienEtre() {
       
       {/* Style pour agrandir la photo parallax et réduire l'espacement sur mobile uniquement */}
       <style jsx>{`
+        .tp-section-subtitle-3 {
+          font-size: clamp(2.5rem, 6vw, 4rem) !important;
+          font-weight: 500 !important;
+          color: #053725 !important;
+          margin-top: 10px !important;
+          margin-bottom: 80px !important;
+        }
         @media (max-width: 991px) {
+          #ibu-bien-etre-titles .tp-project-details-3-title-box .tp-section-title-160 {
+            white-space: nowrap !important;
+            font-size: clamp(1.5rem, 6vw, 2.8rem) !important;
+            line-height: 1.1 !important;
+            word-break: normal !important;
+          }
+          .tp-section-subtitle-3 {
+            font-size: clamp(1rem, 3vw, 1.5rem) !important;
+            white-space: nowrap !important;
+            margin-top: 10px !important;
+            margin-bottom: 80px !important;
+            font-weight: 500 !important;
+            color: #053725 !important;
+          }
           .tp-project-details-3-thumb-box img {
             height: 60vh !important;
             object-fit: cover !important;

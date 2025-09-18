@@ -48,6 +48,7 @@ const ReservationsMain = () => {
 
 
   return (
+    <>
     <Wrapper showBackToTop={false}>
       {/* magic cursor start */}
       <div id="magic-cursor">
@@ -100,6 +101,16 @@ const ReservationsMain = () => {
         </div>
       </div>
     </Wrapper>
+    
+    {/* Styles pour ajouter de l'espacement entre les lettres sur mobile uniquement */}
+    <style jsx>{`
+      @media (max-width: 991px) {
+        .tm-hero-title {
+          letter-spacing: 0.05em !important;
+        }
+      }
+    `}</style>
+    </>
   );
 };
 

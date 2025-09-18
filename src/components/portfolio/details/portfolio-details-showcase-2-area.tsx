@@ -120,7 +120,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           className="hero-content-wrapper p-relative" 
           style={{
             zIndex: 2, 
-            paddingTop: '0px',
+             paddingTop: '0px',
             marginTop: 'clamp(-140px, -16vw, -160px)'
           }}
         >
@@ -713,6 +713,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         @media (max-width: 991px) {
           .hero-content-wrapper {
             margin-top: clamp(-40px, -5vw, -60px) !important;
+          }
+          /* Désactiver l'effet parallax sur mobile pour éviter les saccades */
+          .showcase-details-2-fullwidth-img img {
+            transform: none !important;
+            will-change: auto !important;
+          }
+          .showcase-details-2-fullwidth-img {
+            transform: none !important;
+            will-change: auto !important;
           }
         }
       `}</style>
