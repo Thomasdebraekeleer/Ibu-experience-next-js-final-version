@@ -295,7 +295,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 padding: '0 20px 40px 20px'
               }}
             >
-              {img_data.map((imgSrc, i) => (
+              {img_data.filter((imgSrc, i) => i !== 0).map((imgSrc, i) => (
                 <SwiperSlide key={i}>
                   <div className="evasion-mobile-item" style={{
                     display: 'flex',
