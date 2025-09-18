@@ -192,7 +192,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         <div 
           className="lodgify-hero-container p-absolute"
           style={{
-            top: '60%',
+            top: '50%',
             left: '5%',
             width: '50%',
             maxWidth: '600px',

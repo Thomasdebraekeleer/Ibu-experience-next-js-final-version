@@ -9,8 +9,8 @@ export default function LodgifySearchBar() {
         style={{
           ['--ldg-psb-background' as any]: 'transparent',
           ['--ldg-psb-box-shadow' as any]: 'none',
-          ['--ldg-psb-padding' as any]: '0px',
-          ['--ldg-psb-border-radius' as any]: '10px',
+          ['--ldg-psb-padding' as any]: '40px',
+          ['--ldg-psb-border-radius' as any]: '0px',
           ['--ldg-psb-button-border-radius' as any]: '10px',
           ['--ldg-psb-input-background' as any]: '#ffffff',
           ['--ldg-psb-color-primary' as any]: '#053725',
