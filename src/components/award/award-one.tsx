@@ -82,7 +82,7 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
         {/* Contenu principal avec photo et 6 lignes */}
         <div className="row align-items-start">
           {/* Colonne images - PC seulement */}
-          <div className="col-xl-4 col-lg-4 d-none d-lg-block">
+          <div className="col-xl-4 col-lg-4 d-none d-lg-block d-md-none">
             <div className="tp-award-list-thumb-wrap p-relative d-flex align-items-start justify-content-center" style={{minHeight: 'auto', paddingTop: '0px', marginTop: '0px'}}>
               <div
                 id="tp-award-thumb"
@@ -108,7 +108,7 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
           </div>
           
           {/* Colonne texte - pleine largeur sur mobile */}
-          <div className="col-xl-8 col-lg-8 col-12">
+          <div className="col-xl-8 col-lg-8 col-12 col-md-12">
             <div className="tp-award-list-wrap">
               {abStyle && (
                 <div className="ab-award-title-sm">

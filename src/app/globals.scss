@@ -26,6 +26,111 @@
 /* Neutraliser l'effet de @tailwindcss/typography si présent */
 .prose #lodgify-search-bar { all: revert; display:block; }
 
+/* ========== Book Now Box : thème interne minimal ========== */
+#lodgify-book-now-box {
+  /* transparent & sans carte interne */
+  --ldg-bnb-background: transparent;
+  --ldg-bnb-box-shadow: none;
+  --ldg-bnb-padding: 0px;
+
+  /* coins/boutons & palette (tu peux ajuster) */
+  --ldg-bnb-border-radius: 10px;
+  --ldg-bnb-button-border-radius: 10px;
+  --ldg-bnb-input-background: #ffffff; /* mets 'transparent' si besoin */
+
+  --ldg-bnb-color-primary: #053725;
+  --ldg-bnb-color-primary-lighter: #7aa293;
+  --ldg-bnb-color-primary-darker: #032017;
+  --ldg-bnb-color-primary-contrast: #ffffff;
+
+  /* calendrier */
+  --ldg-component-calendar-cell-selection-bg-color: #053725;
+  --ldg-component-calendar-cell-selection-color: #ffffff;
+  --ldg-component-calendar-cell-selected-bg-color: #7aa293;
+  --ldg-component-calendar-cell-selected-color: #ffffff;
+
+  /* font/z-index */
+  --ldg-bnb-font-family: inherit;
+  --ldg-component-modal-z-index: 999;
+
+  width: 100%;
+}
+
+/* Neutraliser la prose si plugin @tailwindcss/typography */
+.prose #lodgify-book-now-box { all: revert; display:block; }
+
+/* Enlever SEULEMENT les bordures autour des nombres/chiffres dans le widget Book Now Box */
+#lodgify-book-now-box input[type="number"],
+#lodgify-book-now-box .number-input,
+#lodgify-book-now-box .guest-counter,
+#lodgify-book-now-box .price-display,
+#lodgify-book-now-box .total-price,
+#lodgify-book-now-box .minimum-price,
+#lodgify-book-now-box .price-amount,
+#lodgify-book-now-box .guest-count {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Enlever les bordures des boutons + et - */
+#lodgify-book-now-box button[aria-label*="plus"],
+#lodgify-book-now-box button[aria-label*="moins"],
+#lodgify-book-now-box button[aria-label*="increase"],
+#lodgify-book-now-box button[aria-label*="decrease"],
+#lodgify-book-now-box .increment-button,
+#lodgify-book-now-box .decrement-button,
+#lodgify-book-now-box button:has-text("+"),
+#lodgify-book-now-box button:has-text("-") {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Encadré sur les champs de dates */
+#lodgify-book-now-box input[type="text"],
+#lodgify-book-now-box input[type="date"],
+#lodgify-book-now-box select {
+  background: #ffffff !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+/* Supprimer l'encadré du compteur d'invités */
+#lodgify-book-now-box .guest-selector,
+#lodgify-book-now-box .guest-counter-container,
+#lodgify-book-now-box .guest-input-container,
+#lodgify-book-now-box .guest-field,
+#lodgify-book-now-box .guest-wrapper {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Ajouter un encadré sur le conteneur des dates */
+#lodgify-book-now-box .date-selector,
+#lodgify-book-now-box .date-container,
+#lodgify-book-now-box .date-field,
+#lodgify-book-now-box .date-wrapper {
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* Exception : enlever les bordures de TOUS les boutons sauf le bouton principal */
+#lodgify-book-now-box button:not([class*="book"]):not([class*="reserve"]):not([class*="submit"]) {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
 /* —— Wrapper "verre dépoli" —— */
 .lodgify-glass {
   width: 100%;
@@ -33,8 +138,8 @@
   margin-inline: auto;
 
   background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  border: none;
+  box-shadow: none;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 18px;

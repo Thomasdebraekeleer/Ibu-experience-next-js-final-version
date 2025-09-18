@@ -1,0 +1,45 @@
+/* Optimisations pour le hero sur mobile - Performance */
+
+/* Désactivation des effets coûteux sur mobile */
+@media (max-width: 991px) {
+  .hero-background-image,
+  .hero-foreground-image {
+    background-attachment: scroll !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Désactivation de la parallaxe sur mobile */
+  .showcase-details-2-bg {
+    overflow: visible !important;
+  }
+  
+  /* Optimisation des images de fond */
+  .hero-background-image,
+  .hero-foreground-image {
+    contain: layout paint;
+    backface-visibility: hidden;
+  }
+}
+
+/* Optimisations générales pour les performances */
+.hero-background-image,
+.hero-foreground-image {
+  will-change: transform;
+  contain: layout paint size;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Désactivation des effets de scroll lourds sur mobile */
+@media (max-width: 991px) {
+  .showcase-details-2-fullwidth-img img {
+    transform: none !important;
+    will-change: auto !important;
+  }
+  
+  .showcase-details-2-fullwidth-img {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}

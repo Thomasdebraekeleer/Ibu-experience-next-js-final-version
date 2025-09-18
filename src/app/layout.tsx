@@ -9,6 +9,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
 import "./globals.scss";
+import "../../public/assets/css/hero-mobile-optimizations.css";
 
 const gellery = localFont({
   src: [
@@ -106,6 +107,11 @@ export default function RootLayout({
         <Script 
           id="lodgify-psb" 
           src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js" 
+          strategy="afterInteractive" 
+        />
+        <Script 
+          id="lodgify-bnb" 
+          src="https://app.lodgify.com/book-now-box/stable/renderBookNowBox.js" 
           strategy="afterInteractive" 
         />
       </body>

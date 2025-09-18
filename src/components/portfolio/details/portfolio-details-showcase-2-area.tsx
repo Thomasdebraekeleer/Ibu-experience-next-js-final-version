@@ -40,62 +40,77 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
 
+  // === Parallaxe optimisée: rAF + désactivation mobile ===
   useEffect(() => {
-    const handleScroll = () => {
-      if (!heroRef.current || !backgroundRef.current || !foregroundRef.current) return;
-      
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      const rateForeground = scrolled * -0.3;
-      
-      // Effet parallaxe sur l'image de fond
-      backgroundRef.current.style.transform = `translateY(${rate}px)`;
-      
-      // Effet parallaxe sur l'image PNG (plus lent pour créer de la profondeur)
-      foregroundRef.current.style.transform = `translateY(${rateForeground}px)`;
+    const bg = backgroundRef.current;
+    const fg = foregroundRef.current;
+    if (!bg || !fg) return;
+
+    const isMobile = window.innerWidth < 992; // même seuil que ton code
+    let ticking = false;
+
+    // IMPORTANT: pas de background-attachment: fixed sur mobile
+    if (isMobile) {
+      bg.style.backgroundAttachment = 'scroll';
+      fg.style.backgroundAttachment = 'scroll';
+      bg.style.transform = 'translateY(0)';
+      fg.style.transform = 'translateY(0)';
+      return; // on désactive la parallaxe sur mobile pour la fluidité
+    } else {
+      bg.style.backgroundAttachment = 'scroll'; // on fait tout en transform
+      fg.style.backgroundAttachment = 'scroll';
+      bg.style.willChange = 'transform';
+      fg.style.willChange = 'transform';
+      (bg.style as any).backfaceVisibility = 'hidden';
+      (fg.style as any).backfaceVisibility = 'hidden';
+      (bg.style as any).transform = 'translateZ(0)';
+      (fg.style as any).transform = 'translateZ(0)';
+    }
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const rateBg = scrolled * -0.5;      // profondeur
+        const rateFg = scrolled * -0.3;      // devant = bouge moins
+        bg.style.transform = `translate3d(0, ${rateBg}px, 0)`;
+        fg.style.transform = `translate3d(0, ${rateFg}px, 0)`;
+        ticking = false;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // passive:true = pas de blocage du scroll thread
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll as any);
+    };
   }, []);
 
-  // Effet de scroll pour mobile sur les photos des formules
+  // === "hover mobile" remplacé par IntersectionObserver (sans reflow coûteux) ===
   useEffect(() => {
-    const handleMobileScroll = () => {
-      if (window.innerWidth >= 992) return; // PC seulement
-      
-      const bienEtreElement = bienEtreRef.current;
-      const signatureElement = signatureRef.current;
-      
-      if (!bienEtreElement || !signatureElement) return;
-      
-      const bienEtreRect = bienEtreElement.getBoundingClientRect();
-      const signatureRect = signatureElement.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Activer l'effet hover pour IBÙ Bien-être
-      if (bienEtreRect.top < windowHeight * 0.8 && bienEtreRect.bottom > windowHeight * 0.2) {
-        bienEtreElement.classList.add('mobile-hover-active');
-      } else {
-        bienEtreElement.classList.remove('mobile-hover-active');
-      }
-      
-      // Activer l'effet hover pour IBÙ Signature
-      if (signatureRect.top < windowHeight * 0.8 && signatureRect.bottom > windowHeight * 0.2) {
-        signatureElement.classList.add('mobile-hover-active');
-      } else {
-        signatureElement.classList.remove('mobile-hover-active');
-      }
-    };
+    const isDesktop = window.innerWidth >= 992;
+    if (isDesktop) return; // seulement mobile
+    const targets = [bienEtreRef.current, signatureRef.current].filter(
+      (el): el is HTMLDivElement => Boolean(el)
+    );
 
-    window.addEventListener('scroll', handleMobileScroll);
-    window.addEventListener('resize', handleMobileScroll);
-    handleMobileScroll(); // Appel initial
-    
-    return () => {
-      window.removeEventListener('scroll', handleMobileScroll);
-      window.removeEventListener('resize', handleMobileScroll);
-    };
+    if (!targets.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) e.target.classList.add('mobile-hover-active');
+          else e.target.classList.remove('mobile-hover-active');
+        }
+      },
+      { root: null, threshold: 0.25 }
+    );
+
+    targets.forEach((t) => io.observe(t));
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -110,7 +125,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             backgroundImage: "url(/assets/img/inner-project/showcase/Image%20hero%201%20Background.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundAttachment: "fixed",
             zIndex: 1
           }}
         />
@@ -197,7 +211,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             backgroundImage: "url(/assets/img/inner-project/showcase/Image%20hero%202%20pods.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
-            backgroundAttachment: "fixed",
             zIndex: 3,
             pointerEvents: "none"
           }}
@@ -638,6 +651,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
       {/* Styles consolidés */}
       <style jsx>{`
+        /* Optimisations pour les performances du hero */
+        .hero-background-image,
+        .hero-foreground-image {
+          will-change: transform;
+          contain: layout paint size;
+          transform: translateZ(0);
+        }
+        
         @media (max-width: 768px) {
           .showcase-details-2-title {
             white-space: normal !important;
