@@ -4,209 +4,49 @@
 @import '../../public/assets/scss/main.scss';
 @import '../../public/assets/css/custom-hero-effects.css';
 
-/* Variables CSS Lodgify */
-:root {
-  --ldg-psb-background: #ffffff;
-  --ldg-psb-border-radius: 0.42em;
-  --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
-  --ldg-psb-padding: 14px;
-  --ldg-psb-input-background: #ffffff;
-  --ldg-psb-button-border-radius: 0px;
-  --ldg-psb-color-primary: #053725;
-  --ldg-psb-color-primary-lighter:#829b92;
-  --ldg-psb-color-primary-darker: #031c13;
-  --ldg-psb-color-primary-contrast: #fcf8e3;
-  --ldg-semantic-color-primary:  #053725;
-  --ldg-semantic-color-primary-lighter: #829b92;
-  --ldg-semantic-color-primary-darker: #031c13;
-  --ldg-semantic-color-primary-contrast: #fcf8e3;
-  --ldg-component-modal-z-index: 999;
-}
-
+/* —— Thème du widget : transparent & sans carte interne —— */
 #lodgify-search-bar {
+  --ldg-psb-background: transparent;  /* pas de fond interne */
+  --ldg-psb-box-shadow: none;         /* pas d'ombre interne */
+  --ldg-psb-padding: 0px;             /* pas de padding interne */
+
+  /* coins/boutons & palette */
+  --ldg-psb-border-radius: 10px;
+  --ldg-psb-button-border-radius: 10px;
+  --ldg-psb-input-background: #ffffff; /* mettre 'transparent' si tu veux voir l'images de fond dans les inputs */
+  --ldg-psb-color-primary: #053725;
+  --ldg-psb-color-primary-lighter: #7aa293;
+  --ldg-psb-color-primary-darker: #032017;
+  --ldg-psb-color-primary-contrast: #ffffff;
+
+  --ldg-component-modal-z-index: 999;
   width: 100%;
-  /* Supprimer le rectangle blanc du widget Lodgify */
-  --ldg-psb-background: transparent;
-  --ldg-psb-box-shadow: none;
-  --ldg-psb-padding: 0px;
-  /* Optionnel : supprimer aussi le fond des inputs */
-  --ldg-psb-input-background: transparent;
 }
 
-/* Styles pour PC - allonger le rectangle gris */
-@media (min-width: 769px) {
-  .css-y1hlec {
-    background: #f5f5f5 !important;
-    border-radius: 0.42em !important;
-    box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-    padding: 8px 14px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: none !important;
-    flex: 1 !important;
-    height: auto !important;
-    min-height: auto !important;
-  }
-  
-  /* Forcer le conteneur parent à s'étendre */
-  #lodgify-search-bar {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: none !important;
-    display: flex !important;
-    flex: 1 !important;
-  }
-  
-  /* Supprimer les fonds des conteneurs internes sur PC */
-  .css-jj122v {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* Supprimer tous les autres rectangles superposés */
-  #lodgify-search-bar > div > div {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* Supprimer spécifiquement le conteneur not-prose */
-  #lodgify-search-bar .not-prose {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* Bouton de recherche intégré dans le rectangle gris */
-  .css-13bifmc {
-    background: #053725 !important;
-    color: #fcf8e3 !important;
-    border-radius: 0px !important;
-    border: none !important;
-    padding: 8px 16px !important;
-    text-decoration: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    height: auto !important;
-    min-height: auto !important;
-    font-size: 14px !important;
-  }
-  
-  /* Champs de date avec fond blanc */
-  .css-khkv60 {
-    background: #ffffff !important;
-    border: 1px solid #ddd !important;
-    border-radius: 4px !important;
-    padding: 6px 8px !important;
-    height: auto !important;
-    min-height: auto !important;
-  }
-  
-  /* Compteur d'invités avec fond blanc */
-  .css-1h2fvt2 {
-    background: #ffffff !important;
-    border: 1px solid #ddd !important;
-    border-radius: 4px !important;
-    padding: 6px 8px !important;
-    height: auto !important;
-    min-height: auto !important;
-  }
-  
-  /* Réduire la hauteur des inputs */
-  #lodgify-search-bar input {
-    padding: 6px 8px !important;
-    height: auto !important;
-    min-height: auto !important;
-    font-size: 14px !important;
-  }
-  
-  /* Réduire la hauteur des boutons internes */
-  #lodgify-search-bar button {
-    padding: 4px 6px !important;
-    height: auto !important;
-    min-height: auto !important;
-  }
+/* Neutraliser l'effet de @tailwindcss/typography si présent */
+.prose #lodgify-search-bar { all: revert; display:block; }
+
+/* —— Wrapper "verre dépoli" —— */
+.lodgify-glass {
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 12px;
 }
 
-/* Responsive mobile pour le widget Lodgify */
-@media (max-width: 768px) {
-  #lodgify-search-bar {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 10px !important;
+@media (max-width: 640px) {
+  .lodgify-glass {
+    padding: 10px;
+    border-radius: 14px;
+    margin-inline: 12px;
   }
-  
-  /* Forcer le conteneur principal à être responsive */
-  .css-y1hlec {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-    padding: 10px !important;
-  }
-  
-  /* Section principale responsive */
-  .css-jj122v {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-  
-  /* Champs de date responsive */
-  .css-khkv60 {
-    width: 100% !important;
-    min-width: auto !important;
-    flex: 1 !important;
-  }
-  
-  /* Compteur d'invités responsive */
-  .css-1h2fvt2 {
-    width: 100% !important;
-    min-width: auto !important;
-    flex: 1 !important;
-  }
-  
-  /* Bouton de recherche responsive */
-  .css-13bifmc {
-    width: 100% !important;
-    justify-content: center !important;
-    padding: 12px 16px !important;
-    font-size: 14px !important;
-  }
-  
-  /* Inputs responsive */
-  #lodgify-search-bar input {
-    width: 100% !important;
-    min-width: auto !important;
-    font-size: 14px !important;
-    padding: 8px !important;
-  }
-  
-  /* Labels responsive */
-  #lodgify-search-bar label {
-    font-size: 12px !important;
-  }
-}
-
-/* Protection contre Tailwind Typography */
-.prose #lodgify-search-bar {
-  all: revert;
-  display: block;
 }
 
 /* Styles globaux pour les boules de navigation Swiper */

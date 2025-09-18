@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
-import LodgifySearchBar from '../../LodgifySearchBar';
+import LodgifySearchBar from '@/components/LodgifySearchBar';
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -174,6 +174,21 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           </div>
         </div>
 
+        {/* Widget Lodgify avec style verre dépoli */}
+        <div 
+          className="lodgify-hero-container p-absolute"
+          style={{
+            top: '60%',
+            left: '5%',
+            width: '50%',
+            maxWidth: '600px',
+            zIndex: 10,
+            pointerEvents: 'auto'
+          }}
+        >
+          <LodgifySearchBar />
+        </div>
+
         {/* Image PNG au premier plan avec effet parallaxe */}
         <div 
           ref={foregroundRef}
@@ -188,23 +203,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }}
         />
 
-        {/* Widget Lodgify au premier plan - devant tout */}
-        <div 
-          className="lodgify-widget-absolute p-absolute"
-          style={{
-            top: '55%',
-            left: '5%',
-            width: '50%',
-            maxWidth: '600px',
-            zIndex: 99999,
-            pointerEvents: 'auto',
-            transform: 'translateY(0)'
-          }}
-        >
-          <div className="lodgify-widget-container tp_title_anim">
-            <LodgifySearchBar />
-          </div>
-        </div>
 
       </div>
       {/* portfolio hero */}
@@ -646,26 +644,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
         }
         
-        @media (min-width: 769px) {
-          .lodgify-widget-absolute {
-            width: 60% !important;
-            max-width: 800px !important;
-          }
-          .lodgify-widget-container {
-            width: 100% !important;
-            max-width: none !important;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .lodgify-widget-absolute {
-            top: 60% !important;
-            left: 5% !important;
-            width: 90% !important;
-            max-width: 90% !important;
-            right: 5% !important;
-          }
-        }
         
         @media (max-width: 991px) {
           .showcase-hover-container.mobile-hover-active .showcase-hover-text {
@@ -722,6 +700,28 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .showcase-details-2-fullwidth-img {
             transform: none !important;
             will-change: auto !important;
+          }
+        }
+        
+        /* Styles pour le widget Lodgify dans le hero */
+        .lodgify-hero-container {
+          /* Positionnement par défaut */
+        }
+        
+        @media (min-width: 769px) {
+          .lodgify-hero-container {
+            width: 60% !important;
+            max-width: 800px !important;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .lodgify-hero-container {
+            top: 65% !important;
+            left: 5% !important;
+            width: 90% !important;
+            max-width: 90% !important;
+            right: 5% !important;
           }
         }
       `}</style>

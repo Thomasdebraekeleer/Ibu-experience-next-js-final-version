@@ -1,15 +1,29 @@
-'use client';
+"use client";
 
-import React from 'react';
-
-const LodgifySearchBar: React.FC = () => {
+export default function LodgifySearchBar() {
   return (
-    <div className="not-prose">
+    <div className="lodgify-glass not-prose">
       <div
         id="lodgify-search-bar"
+        /* Sécurité : redéfinir en inline les variables critiques (priorité max) */
+        style={{
+          ['--ldg-psb-background' as any]: 'transparent',
+          ['--ldg-psb-box-shadow' as any]: 'none',
+          ['--ldg-psb-padding' as any]: '0px',
+          ['--ldg-psb-border-radius' as any]: '10px',
+          ['--ldg-psb-button-border-radius' as any]: '10px',
+          ['--ldg-psb-input-background' as any]: '#ffffff',
+          ['--ldg-psb-color-primary' as any]: '#053725',
+          ['--ldg-psb-color-primary-lighter' as any]: '#7aa293',
+          ['--ldg-psb-color-primary-darker' as any]: '#032017',
+          ['--ldg-psb-color-primary-contrast' as any]: '#ffffff',
+          ['--ldg-component-modal-z-index' as any]: 999,
+        } as React.CSSProperties}
+
         data-website-id="607668"
         data-language-code="fr"
         data-checkout-page-url="https://checkout.lodgify.com/mallen-jallow/fr/#/710587"
+
         data-dates-check-in-label="Arrivée"
         data-dates-check-out-label="Départ"
         data-guests-counter-label="Invités"
@@ -30,11 +44,10 @@ const LodgifySearchBar: React.FC = () => {
         data-pets-label='{"one":"animal de compagnie","other":"animaux de compagnie"}'
         data-pets-not-allowed-label="Non autorisé"
         data-done-label="Terminé"
+
         data-new-tab="true"
         data-version="stable"
       />
     </div>
   );
-};
-
-export default LodgifySearchBar;
+}
