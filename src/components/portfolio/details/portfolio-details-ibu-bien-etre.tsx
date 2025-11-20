@@ -23,6 +23,21 @@ import priche_img_3 from '@/assets/img/inner-project/portfolio-details-ibu-bien-
 import shape from "@/assets/img/home-02/service/Picture ibu bien être.jpg";
 
 // SVG Icons Components
+const BouteilleIcon = () => (
+  <svg fill="#053725" height="24px" width="24px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <g>
+      <g>
+        <path d="M322.875,173.756l-27.029-29.221V31.347h7.173V0h-7.173h-79.664h-7.204v31.347h7.203v113.156l-27.059,29.252 
+          c-18.959,20.496-29.725,46.921-30.533,74.736h-0.054v3.377v201.376v22.562c0,19.958,16.237,36.193,36.193,36.193h122.541 
+          c19.956,0,36.193-16.237,36.193-36.193V251.868C353.463,222.82,342.6,195.079,322.875,173.756z M189.882,279.838h74.476v24.227 
+          h-74.476V279.838z M189.882,335.412h74.476v86.485h-74.476V335.412z M322.117,475.807h-0.001c0,2.673-2.174,4.846-4.846,4.846 
+          H194.728c-2.672,0-4.846-2.174-4.846-4.846v-22.563h105.823V248.491H189.961c0.795-19.897,8.59-38.766,22.174-53.45l35.395-38.263 
+          V31.347h16.97v125.464l35.365,38.231c14.35,15.514,22.252,35.695,22.252,56.827V475.807z"/>
+      </g>
+    </g>
+  </svg>
+);
+
 const SaunaIcon = () => (
   <svg fill="#053725" height="24px" width="24px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <g>
@@ -186,24 +201,30 @@ const slider_images = [port_img_3,port_img_4,port_img_5,port_img_6];
 const service_accordion = [
   {
     id: 1,
+    icon: <BouteilleIcon />,
+    title: "Bouteille de bienvenue",
+    desc: "Savourez une bouteille de bulles belges dès votre arrivée, ou laissez-vous tenter par une alternative locale sans alcool pour bien démarrer votre séjour.",
+  },
+  {
+    id: 2,
     icon: <SaunaIcon />,
     title: "Sauna privatif",
     desc: "Profitez d'un sauna privatif exclusif pour une expérience de détente profonde. La chaleur du sauna favorise l'élimination des toxines, améliore la circulation sanguine et procure une relaxation musculaire complète dans un environnement intime et serein.",
   },
   {
-    id: 2,
+    id: 3,
     icon: <BainNordiqueIcon />,
     title: "Bain nordique extérieur",
     desc: "Découvrez notre bain nordique extérieur, une expérience unique qui combine les bienfaits de l'eau chaude et de l'air frais. Cette pratique ancestrale stimule le système immunitaire, améliore la circulation et procure une sensation de bien-être profond.",
   },
   {
-    id: 3,
+    id: 4,
     icon: <KitRelaxationIcon />,
     title: "Kit de relaxation",
     desc: "Recevez un kit de relaxation personnalisé comprenant des tisanes apaisantes, des huiles de massage naturelles et d'autres accessoires de bien-être. Chaque élément est soigneusement sélectionné pour vous accompagner dans votre voyage vers la sérénité.",
   },
   {
-    id: 4,
+    id: 5,
     icon: <PetitDejeunerIcon />,
     title: "Petit déjeuner local",
     desc: "Savourez un petit déjeuner local préparé avec des produits frais et de saison.",
@@ -420,13 +441,13 @@ export default function PortfolioDetailsIBUBienEtre() {
           </div>
       {/* Services Section End */}
 
-                       {/* New Section: Dîner prêt-à-déguster */}
+                       {/* New Section: Options Food */}
        <div className="showcase-details-2-area pb-30">
           <div className="container">
             <div className="row">
                 <div className="col-xl-8">
                                     <div className="showcase-details-2-section-box">
-                       <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: '1.1', fontSize: '2.5rem', maxWidth: '100%', letterSpacing: '0.05em' }}>Dîner prêt-à-déguster</h4>
+                       <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: '1.1', fontSize: '2.5rem', maxWidth: '100%', letterSpacing: '0.05em' }}>Options Food & Boissons</h4>
                    </div>
                 </div>
             </div>
@@ -435,13 +456,13 @@ export default function PortfolioDetailsIBUBienEtre() {
                  <div className="showcase-details-2-section-left">
                      <span className="ab-inner-subtitle mb-25">
                        <Leaf/>
-                       Plat préparé <a href="https://www.priche.be/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Priche</a>
+                       Selon votre domaine
                      </span>
                  </div>
                </div>
                <div className="col-xl-9">
                  <div className="showcase-details-2-content-right tp_title_anim">
-                     <p className="pb-25">Si vous préférez la simplicité à l&apos;expérience gastronomique de l&apos;IBÙ Signature, laissez-vous tenter par les plats Priche : une sélection raffinée, carn, green ou roast, livrée pour combler vos envies sans cuisiner.</p>
+                     <p className="pb-25">Découvrez les options food disponibles en choisissant votre domaine. Chaque lieu propose sa propre sélection de délices culinaires et de boissons, soigneusement pensée pour sublimer votre séjour et combler vos envies sans effort. Vous préférez cuisiner ? Une plaque de cuisson et un mini-four sont à votre disposition pour préparer vos propres repas en toute simplicité.</p>
                  </div>
                </div>
            </div>

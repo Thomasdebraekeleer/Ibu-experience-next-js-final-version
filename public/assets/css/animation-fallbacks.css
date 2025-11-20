@@ -1,0 +1,205 @@
+/**
+ * CSS Fallbacks pour les animations GSAP
+ * =======================================================================
+ * 
+ * PRINCIPE CLÉ: Tous les éléments animés doivent être VISIBLES par défaut en CSS
+ * Les animations GSAP viennent ENSUITE animer depuis un état invisible vers visible
+ * 
+ * Si JavaScript échoue ou tarde à charger, le contenu reste accessible
+ */
+
+/* ===================================================================
+   FALLBACKS GLOBAUX - Éléments toujours visibles
+   =================================================================== */
+
+/* Tous les éléments avec classes d'animation sont visibles par défaut */
+.tp_fade_bottom,
+.tp_fade_top,
+.tp_fade_left,
+.tp_fade_right,
+.tp_fade_anim,
+.tp-char-animation,
+.tp_title_anim,
+.tp_reveal_anim,
+.tp_reveal_anim-2,
+.tp-btn-bounce,
+.anim-zoomin {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Hero elements */
+.tp-hero-title,
+.tp-hero-2-title,
+.tp-hero-2-content,
+.tp-hero-subtitle,
+.showcase-details-2-title {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* ===================================================================
+   OPTIMISATIONS PERFORMANCE
+   =================================================================== */
+
+/* Amélioration du rendu pour les éléments qui vont être animés */
+.will-animate {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Ne pas appliquer will-change sur trop d'éléments (performances) */
+@media (max-width: 768px) {
+  .will-animate {
+    will-change: auto;
+  }
+}
+
+/* ===================================================================
+   PREFERS REDUCED MOTION
+   =================================================================== */
+
+/* Supprimer TOUTES les animations si l'utilisateur préfère un mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Désactiver les transforms d'animation */
+  .tp_fade_bottom,
+  .tp_fade_top,
+  .tp_fade_left,
+  .tp_fade_right,
+  .tp_fade_anim,
+  .tp-char-animation,
+  .tp_title_anim,
+  .tp_reveal_anim,
+  .tp_reveal_anim-2 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===================================================================
+   OPTIMISATIONS MOBILE
+   =================================================================== */
+
+@media (max-width: 991px) {
+  /* Simplifier les animations complexes sur mobile */
+  .tp-char-animation,
+  .tp_reveal_anim,
+  .tp_reveal_anim-2 {
+    /* Texte toujours visible sur mobile */
+    opacity: 1 !important;
+  }
+
+  /* Désactiver background-attachment fixed sur mobile (cause de lag) */
+  .hero-background-image,
+  .hero-foreground-image {
+    background-attachment: scroll !important;
+  }
+}
+
+/* ===================================================================
+   LOADING STATE - Pendant l'initialisation
+   =================================================================== */
+
+/* Avant que JS ne charge, tout est visible */
+.js-loading .tp_fade_bottom,
+.js-loading .tp_fade_top,
+.js-loading .tp_fade_left,
+.js-loading .tp_fade_right {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ===================================================================
+   SPLIT TEXT FALLBACKS
+   =================================================================== */
+
+/* Les lignes créées par SplitText */
+.tp-split-line,
+.tp-reveal-line,
+.tp-reveal-line-2 {
+  overflow: visible;
+  display: block;
+}
+
+/* Assurer que le texte reste lisible pendant le split */
+.tp-char-animation .tp-split-line,
+.tp_title_anim .tp-split-line {
+  opacity: 1;
+}
+
+/* ===================================================================
+   HERO SECTION OPTIMISATIONS
+   =================================================================== */
+
+/* Hero toujours visible même sans JS */
+.showcase-details-2-area {
+  min-height: 100vh;
+  opacity: 1;
+}
+
+.hero-background-image,
+.hero-foreground-image {
+  /* Optimiser le rendu des images */
+  content-visibility: auto;
+  contain: layout paint;
+}
+
+/* ===================================================================
+   SCROLL PERFORMANCE
+   =================================================================== */
+
+/* Optimiser le smooth scroll wrapper */
+#smooth-wrapper {
+  width: 100%;
+}
+
+#smooth-content {
+  will-change: auto; /* Ne pas laisser will-change tout le temps */
+}
+
+/* Sur mobile, désactiver le smooth scroll wrapper */
+@media (max-width: 991px) {
+  #smooth-wrapper,
+  #smooth-content {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ===================================================================
+   ANTI-FOUC (Flash Of Unstyled Content)
+   =================================================================== */
+
+/* Éviter le flash de contenu non stylé pendant le chargement de GSAP */
+.gsap-marker {
+  display: none !important;
+}
+
+/* ===================================================================
+   UTILITIES
+   =================================================================== */
+
+/* Classe utilitaire pour forcer la visibilité */
+.force-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* Classe pour désactiver temporairement les animations */
+.no-animate,
+.no-animate * {
+  animation: none !important;
+  transition: none !important;
+}
+

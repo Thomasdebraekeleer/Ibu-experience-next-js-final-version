@@ -9,6 +9,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
 import "./globals.scss";
+import "../../public/assets/css/animation-fallbacks.css";
 import "../../public/assets/css/hero-mobile-optimizations.css";
 
 const gellery = localFont({

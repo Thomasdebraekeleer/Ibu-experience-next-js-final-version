@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -41,58 +42,68 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const signatureRef = useRef<HTMLDivElement>(null);
 
   // === Parallaxe optimisée: rAF + désactivation mobile ===
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const bg = backgroundRef.current;
     const fg = foregroundRef.current;
     if (!bg || !fg) return;
 
-    const isMobile = window.innerWidth < 992; // même seuil que ton code
+    const isMobile = window.innerWidth < 992;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let ticking = false;
 
-    // IMPORTANT: pas de background-attachment: fixed sur mobile
-    if (isMobile) {
+    // IMPORTANT: Désactiver sur mobile ET si reduced motion
+    if (isMobile || prefersReducedMotion) {
       bg.style.backgroundAttachment = 'scroll';
       fg.style.backgroundAttachment = 'scroll';
       bg.style.transform = 'translateY(0)';
       fg.style.transform = 'translateY(0)';
-      return; // on désactive la parallaxe sur mobile pour la fluidité
-    } else {
-      bg.style.backgroundAttachment = 'scroll'; // on fait tout en transform
-      fg.style.backgroundAttachment = 'scroll';
-      bg.style.willChange = 'transform';
-      fg.style.willChange = 'transform';
-      (bg.style as any).backfaceVisibility = 'hidden';
-      (fg.style as any).backfaceVisibility = 'hidden';
-      (bg.style as any).transform = 'translateZ(0)';
-      (fg.style as any).transform = 'translateZ(0)';
+      return;
     }
+
+    // Configuration desktop avec optimisations GPU
+    bg.style.backgroundAttachment = 'scroll';
+    fg.style.backgroundAttachment = 'scroll';
+    bg.style.willChange = 'transform';
+    fg.style.willChange = 'transform';
+    (bg.style as any).backfaceVisibility = 'hidden';
+    (fg.style as any).backfaceVisibility = 'hidden';
 
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
+      
       requestAnimationFrame(() => {
         const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-        const rateBg = scrolled * -0.5;      // profondeur
-        const rateFg = scrolled * -0.3;      // devant = bouge moins
+        
+        // Limiter l'effet de parallaxe pour éviter les transformations excessives
+        const maxScroll = 2000;
+        const clampedScroll = Math.min(scrolled, maxScroll);
+        
+        const rateBg = clampedScroll * -0.5;
+        const rateFg = clampedScroll * -0.3;
+        
         bg.style.transform = `translate3d(0, ${rateBg}px, 0)`;
         fg.style.transform = `translate3d(0, ${rateFg}px, 0)`;
         ticking = false;
       });
     };
 
-    // passive:true = pas de blocage du scroll thread
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
     return () => {
       window.removeEventListener('scroll', onScroll as any);
+      // Nettoyer will-change pour libérer les ressources
+      bg.style.willChange = 'auto';
+      fg.style.willChange = 'auto';
     };
   }, []);
 
-  // === "hover mobile" remplacé par IntersectionObserver (sans reflow coûteux) ===
+  // === IntersectionObserver pour mobile hover states ===
   useEffect(() => {
     const isDesktop = window.innerWidth >= 992;
-    if (isDesktop) return; // seulement mobile
+    if (isDesktop) return;
+    
     const targets = [bienEtreRef.current, signatureRef.current].filter(
       (el): el is HTMLDivElement => Boolean(el)
     );
@@ -101,16 +112,26 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
     const io = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) e.target.classList.add('mobile-hover-active');
-          else e.target.classList.remove('mobile-hover-active');
-        }
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-hover-active');
+          } else {
+            entry.target.classList.remove('mobile-hover-active');
+          }
+        });
       },
-      { root: null, threshold: 0.25 }
+      { 
+        root: null, 
+        threshold: 0.25,
+        rootMargin: '-50px' // Trigger un peu avant pour une meilleure expérience
+      }
     );
 
-    targets.forEach((t) => io.observe(t));
-    return () => io.disconnect();
+    targets.forEach(t => io.observe(t));
+    
+    return () => {
+      io.disconnect();
+    };
   }, []);
 
   return (
@@ -143,7 +164,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 <div className="row">
                   <div className="col-xl-8">
                       <div className="showcase-details-2-title-box">
-                        <h5 className="showcase-details-2-title mb-20 tp-char-animation" style={{
+                        <h5 className="showcase-details-2-title mb-20 tp-char-animation force-visible" style={{
                           whiteSpace: 'nowrap',
                           fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
                           lineHeight: '0.8',
@@ -163,7 +184,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                         }}>
                           IBÙ EXPERIENCE
                         </h5>
-                        <span className="showcase-details-2-subtitle tp_title_anim" style={{
+                        <span className="showcase-details-2-subtitle tp_title_anim force-visible" style={{
                           fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
                           lineHeight: '1.3',
                           fontWeight: '400',
