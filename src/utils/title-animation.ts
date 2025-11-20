@@ -237,9 +237,9 @@ function fadeAnimation() {
   }
 
   // Fade avec attributs data personnalisables
-  const fadeAnim = document.querySelectorAll(".tp_fade_anim");
-  if (fadeAnim.length > 0) {
-    fadeAnim.forEach((element) => {
+  const fadeAnimElements = document.querySelectorAll(".tp_fade_anim");
+  if (fadeAnimElements.length > 0) {
+    fadeAnimElements.forEach((element) => {
       const el = element as HTMLElement;
       
       // Lecture des attributs data
