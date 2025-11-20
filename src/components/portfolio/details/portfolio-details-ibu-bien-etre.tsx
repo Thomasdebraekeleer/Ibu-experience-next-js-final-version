@@ -208,14 +208,14 @@ const service_accordion = [
   {
     id: 2,
     icon: <SaunaIcon />,
-    title: "Sauna privatif",
-    desc: "Profitez d'un sauna privatif exclusif pour une expérience de détente profonde. La chaleur du sauna favorise l'élimination des toxines, améliore la circulation sanguine et procure une relaxation musculaire complète dans un environnement intime et serein.",
+    title: "Sauna",
+    desc: "Profitez d'un sauna exclusif pour une expérience de détente profonde. La chaleur du sauna favorise l'élimination des toxines, améliore la circulation sanguine et procure une relaxation musculaire complète dans un environnement intime et serein.",
   },
   {
     id: 3,
     icon: <BainNordiqueIcon />,
-    title: "Bain nordique extérieur",
-    desc: "Découvrez notre bain nordique extérieur, une expérience unique qui combine les bienfaits de l'eau chaude et de l'air frais. Cette pratique ancestrale stimule le système immunitaire, améliore la circulation et procure une sensation de bien-être profond.",
+    title: "Bain nordique extérieur privatif",
+    desc: "Découvrez notre bain nordique extérieur privatif, une expérience unique qui combine les bienfaits de l'eau chaude et de l'air frais dans l'intimité de votre espace. Cette pratique ancestrale stimule le système immunitaire, améliore la circulation et procure une sensation de bien-être profond.",
   },
   {
     id: 4,
