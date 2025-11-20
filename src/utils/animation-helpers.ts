@@ -263,7 +263,7 @@ export function killAllAnimations() {
   if (typeof window !== 'undefined') {
     gsap.killTweensOf('*');
     if (ScrollTrigger) {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger: ScrollTrigger) => trigger.kill());
     }
   }
 }
