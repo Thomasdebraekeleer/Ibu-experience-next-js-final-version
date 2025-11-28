@@ -437,9 +437,10 @@ const VideoTwo = () => {
               transform: none !important;
               justify-content: flex-end !important;
             }
-            /* Réduire le padding-bottom de la section vidéo sur mobile */
+            /* Réduire le padding-bottom et ajouter marge négative en bas de la section vidéo sur mobile */
             .video-two-section {
               padding-bottom: 0 !important;
+              margin-bottom: -100px !important;
             }
           }
         `}</style>

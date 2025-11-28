@@ -167,9 +167,9 @@ const AboutMain = () => {
             margin-top: 20px !important;
             padding-bottom: 40px !important;
           }
-          /* Réduire drastiquement l'espace entre la vidéo et "Ils nous accompagnent" avec marge négative */
+          /* Réduire drastiquement l'espace entre la vidéo et "Ils nous accompagnent" avec marge négative TRÈS agressive */
           .ils-nous-accompagnent-section {
-            margin-top: -150px !important; /* Marge négative pour faire remonter la section */
+            margin-top: -350px !important; /* Marge négative très forte pour compenser l'espacement automatique entre sections */
           }
           .histoire-famille-row {
             flex-direction: column !important;
