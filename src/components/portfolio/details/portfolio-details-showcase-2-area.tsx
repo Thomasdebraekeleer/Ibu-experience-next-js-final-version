@@ -384,7 +384,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       {/* detail title 3 */}
 
       {/* grid images */}
-      <div className="showcase-details-2-grid-area pb-90">
+      <div className="showcase-details-2-grid-area pb-90 grid-before-engagements">
           <div className="container">
             <div className="row">
                 <div className="col-xl-6 col-lg-6">
@@ -403,7 +403,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       {/* grid images */}
 
              {/* Section fusionnée : Engagements + Nos Formules */}
-       <div className="showcase-details-2-area pt-60 pb-120">
+       <div className="showcase-details-2-area pt-60 pb-120 engagements-section">
            <div className="container">
              {/* Section Engagements */}
              <div className="row">
@@ -695,6 +695,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             margin-top: -180px !important;
             padding-top: 0 !important;
           }
+          
+          /* Réduire de moitié l'espace entre les photos et "Engagements" */
+          .grid-before-engagements {
+            padding-bottom: 45px !important; /* 90px / 2 */
+          }
+          
+          .engagements-section {
+            padding-top: 30px !important; /* 60px / 2 */
+          }
         }
         
         @media (max-width: 768px) {
@@ -711,6 +720,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .program-photo-spacing {
             margin-top: -200px !important;
             padding-top: 0 !important;
+          }
+          
+          /* Réduire de moitié l'espace entre les photos et "Engagements" */
+          .grid-before-engagements {
+            padding-bottom: 45px !important; /* 90px / 2 */
+          }
+          
+          .engagements-section {
+            padding-top: 30px !important; /* 60px / 2 */
           }
         }
         
