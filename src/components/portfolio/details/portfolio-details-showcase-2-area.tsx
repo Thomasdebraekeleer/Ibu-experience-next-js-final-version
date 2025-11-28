@@ -686,13 +686,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         @media (max-width: 991px) {
           /* Réduire drastiquement le padding-bottom de la section Awards */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 30px !important;
+            padding-bottom: 0 !important;
             margin-bottom: 0 !important;
           }
           
-          /* Supprimer tout margin/padding en haut de la photo */
+          /* Faire remonter la photo avec une marge négative */
           .program-photo-spacing {
-            margin-top: 0 !important;
+            margin-top: -180px !important;
             padding-top: 0 !important;
           }
         }
@@ -702,14 +702,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             white-space: normal !important;
           }
           
-          /* Encore plus petit sur mobiles */
+          /* Encore plus de remontée sur petits mobiles */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 20px !important;
+            padding-bottom: 0 !important;
             margin-bottom: 0 !important;
           }
           
           .program-photo-spacing {
-            margin-top: 0 !important;
+            margin-top: -200px !important;
             padding-top: 0 !important;
           }
         }
