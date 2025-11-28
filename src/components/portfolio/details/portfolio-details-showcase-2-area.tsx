@@ -348,7 +348,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       {/* Awards section */}
 
       {/* full width image */}
-      <div className="showcase-details-2-fullwidth-img">
+      <div className="showcase-details-2-fullwidth-img program-photo-spacing">
           <Image data-speed=".8" src={fullwidth_img} alt="fullwidth_img" style={{height:'auto'}}/>
       </div>
       {/* full width image */}
@@ -684,8 +684,16 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         
         /* Réduire l'espace entre "Le Programme" et la photo sur mobile */
         @media (max-width: 991px) {
+          /* Réduire drastiquement le padding-bottom de la section Awards */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 60px !important;
+            padding-bottom: 30px !important;
+            margin-bottom: 0 !important;
+          }
+          
+          /* Supprimer tout margin/padding en haut de la photo */
+          .program-photo-spacing {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
           }
         }
         
@@ -694,9 +702,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             white-space: normal !important;
           }
           
-          /* Encore plus petit sur très petits écrans */
+          /* Encore plus petit sur mobiles */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 40px !important;
+            padding-bottom: 20px !important;
+            margin-bottom: 0 !important;
+          }
+          
+          .program-photo-spacing {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
           }
         }
         
