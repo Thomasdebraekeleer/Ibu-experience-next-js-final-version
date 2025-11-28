@@ -342,7 +342,9 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       {/* details title avec galerie intégrée */}
 
       {/* Awards section - The Program */}
-      <AwardOne cls="pt-120 pb-250" />
+      <div className="tp-award-wrapper">
+        <AwardOne cls="pt-120 pb-250" />
+      </div>
       {/* Awards section */}
 
       {/* full width image */}
@@ -680,9 +682,21 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           transform: translateZ(0);
         }
         
+        /* Réduire l'espace entre "Le Programme" et la photo sur mobile */
+        @media (max-width: 991px) {
+          .tp-award-wrapper :global(.tp-award-area) {
+            padding-bottom: 60px !important;
+          }
+        }
+        
         @media (max-width: 768px) {
           .showcase-details-2-title {
             white-space: normal !important;
+          }
+          
+          /* Encore plus petit sur très petits écrans */
+          .tp-award-wrapper :global(.tp-award-area) {
+            padding-bottom: 40px !important;
           }
         }
         
