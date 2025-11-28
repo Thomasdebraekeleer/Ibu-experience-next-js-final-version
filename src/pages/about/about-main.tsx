@@ -167,6 +167,10 @@ const AboutMain = () => {
             margin-top: 20px !important;
             padding-bottom: 40px !important;
           }
+          /* Réduire l'espace entre la vidéo et "Ils nous accompagnent" */
+          .ils-nous-accompagnent-section {
+            margin-top: 48px !important; /* 120px / 2.5 */
+          }
           .histoire-famille-row {
             flex-direction: column !important;
           }
@@ -361,7 +365,7 @@ const AboutMain = () => {
             {/* Gallery Section end */}
 
             {/* Section StartLab.Brussels */}
-            <div className="showcase-details-2-area pb-120" style={{marginTop: '120px'}}>
+            <div className="showcase-details-2-area pb-120 ils-nous-accompagnent-section" style={{marginTop: '120px'}}>
               <div className="container">
                 <div className="row">
                   <div className="col-xl-12">
