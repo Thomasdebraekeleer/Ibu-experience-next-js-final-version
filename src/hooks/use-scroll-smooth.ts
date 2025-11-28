@@ -12,14 +12,24 @@ import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect';
  */
 export default function useScrollSmooth() {
   useIsomorphicLayoutEffect(() => {
-    // Vérifier si on est sur mobile
+    // Vérifier si on est sur mobile ou en mode DevTools mobile
     const isMobile = window.innerWidth < 992;
     const isTablet = window.innerWidth >= 768 && window.innerWidth < 992;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Détecter si on est en mode DevTools (simulation mobile sur desktop)
+    const isDevToolsMobile = isMobile && !('ontouchstart' in window) && navigator.maxTouchPoints === 0;
 
     // Ne pas activer le smooth scroll sur mobile/tablette ou si reduced motion
+    // OU si on est en mode DevTools mobile (pour permettre le scroll dans l'inspecteur)
     if (isMobile || isTablet || prefersReducedMotion) {
-      console.log('Smooth scroll désactivé sur mobile/tablette pour meilleures performances');
+      console.log('Smooth scroll désactivé:', { 
+        isMobile, 
+        isTablet, 
+        prefersReducedMotion,
+        isDevToolsMobile,
+        reason: isDevToolsMobile ? 'DevTools mobile mode' : 'Mobile/Tablet device'
+      });
       return;
     }
 
@@ -65,21 +75,56 @@ export default function useScrollSmooth() {
     };
   }, []);
 
-  // Désactiver le smooth scroll temporairement pendant le resize sur desktop
+  // Gérer le resize dynamique (important pour DevTools responsive mode)
   useEffect(() => {
-    const isMobile = window.innerWidth < 992;
-    if (isMobile) return;
-
     let resizeTimer: NodeJS.Timeout;
+    let lastWidth = window.innerWidth;
+    let wasDesktop = window.innerWidth >= 992;
     
     const handleResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        // Refresh ScrollSmoother après resize
-        const smoother = (ScrollSmoother as any).get();
-        if (smoother) {
-          smoother.refresh();
+        const currentWidth = window.innerWidth;
+        const isNowDesktop = currentWidth >= 992;
+        const isNowMobile = currentWidth < 992;
+        
+        // Si on passe de desktop à mobile (ex: ouverture DevTools en mode mobile)
+        if (wasDesktop && isNowMobile) {
+          console.log('🔄 Passage en mode mobile détecté - Désactivation du ScrollSmoother');
+          const smoother = (ScrollSmoother as any).get();
+          if (smoother) {
+            smoother.kill();
+            // Restaurer le scroll natif
+            document.body.style.overflow = '';
+            const wrapper = document.getElementById("smooth-wrapper");
+            const content = document.getElementById("smooth-content");
+            if (wrapper) wrapper.style.overflow = '';
+            if (content) content.style.transform = '';
+          }
         }
+        
+        // Si on passe de mobile à desktop (ex: fermeture DevTools)
+        if (!wasDesktop && isNowDesktop) {
+          console.log('🔄 Passage en mode desktop détecté - Réinitialisation du ScrollSmoother');
+          const smoother = (ScrollSmoother as any).get();
+          if (smoother) {
+            smoother.refresh();
+          } else {
+            // Réinitialiser si nécessaire
+            window.location.reload();
+          }
+        }
+        
+        // Si on reste en desktop, juste refresh
+        if (wasDesktop && isNowDesktop) {
+          const smoother = (ScrollSmoother as any).get();
+          if (smoother) {
+            smoother.refresh();
+          }
+        }
+        
+        lastWidth = currentWidth;
+        wasDesktop = isNowDesktop;
       }, 250);
     };
 
