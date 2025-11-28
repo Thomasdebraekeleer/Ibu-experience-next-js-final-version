@@ -437,6 +437,10 @@ const VideoTwo = () => {
               transform: none !important;
               justify-content: flex-end !important;
             }
+            /* Réduire le padding-bottom de la section vidéo sur mobile */
+            .video-two-section {
+              padding-bottom: 0 !important;
+            }
           }
         `}</style>
       
