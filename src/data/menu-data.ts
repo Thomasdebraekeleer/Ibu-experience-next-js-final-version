@@ -9,18 +9,8 @@ const menu_data:IMenuDT[] = [
   },
   {
     id: 2,
-    title: 'EXPÉRIENCES',
+    title: "L'EXPÉRIENCE",
     link: '/experiences',
-    dropdown_menus: [
-      {
-        title: 'IBÙ Bien-être',
-        link: '/experiences/ibu-bien-etre',
-      },
-      {
-        title: 'IBÙ Signature',
-        link: '/experiences/ibu-signature',
-      },
-    ],
   },
   {
     id: 3,
@@ -67,18 +57,9 @@ export const mobile_menu_data:{
   },
   {
     id: 2,
-    title: 'EXPÉRIENCES',
+    title: "L'EXPÉRIENCE",
     link: '/experiences',
-    dropdown_menus: [
-      {
-        title: 'IBÙ Bien-être',
-        link: '/experiences/ibu-bien-etre',
-      },
-      {
-        title: 'IBÙ Signature',
-        link: '/experiences/ibu-signature',
-      },
-    ],
+    dropdown_menus:[]
   },
   {
     id: 3,

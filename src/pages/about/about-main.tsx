@@ -12,6 +12,7 @@ import HeaderVBU from "@/layouts/headers/header-vbu";
 import FooterThree from "@/layouts/footers/footer-three";
 import Image from "next/image";
 import { Leaf } from '@/components/svg';
+import KultKefirLogo from '@/components/svg/KultKefirLogo';
 
 // image imports
 import histoire_famille_img from '@/assets/img/inner-project/A propos/Une histoire de famille.jpg';
@@ -171,6 +172,14 @@ const AboutMain = () => {
           .ils-nous-accompagnent-section {
             margin-top: -350px !important; /* Marge négative très forte pour compenser l'espacement automatique entre sections */
           }
+          /* Styles responsifs pour la section partenaires */
+          .partner-logo-container {
+            padding: 20px 10px !important;
+          }
+          .partner-logo-container a {
+            max-width: 250px !important;
+          }
+          /* Styles mobile pour la section Une histoire de famille */
           .histoire-famille-row {
             flex-direction: column !important;
           }
@@ -364,9 +373,10 @@ const AboutMain = () => {
             </div>
             {/* Gallery Section end */}
 
-            {/* Section StartLab.Brussels */}
+            {/* Section Ils nous accompagnent et Nos partenaires (fusionnées) */}
             <div className="showcase-details-2-area pb-120 ils-nous-accompagnent-section" style={{marginTop: '120px'}}>
               <div className="container">
+                {/* Titre principal Ils nous accompagnent */}
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="showcase-details-2-section-box">
@@ -374,6 +384,8 @@ const AboutMain = () => {
                     </div>
                   </div>
                 </div>
+                
+                {/* Contenu StartLab */}
                 <div className="row">
                   <div className="col-xl-3">
                     <div className="showcase-details-2-section-left">
@@ -425,8 +437,90 @@ const AboutMain = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Section Nos partenaires (maintenant dans la même div container) */}
+                <div className="row" style={{marginTop: '80px'}}>
+                  <div className="col-xl-12">
+                    <div className="showcase-details-2-section-box mb-60">
+                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{color: '#053725'}}>Nos partenaires</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="row justify-content-center">
+                  <div className="col-xl-12">
+                    <div className="partner-logo-container" style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '40px',
+                      padding: '40px 20px',
+                      flexWrap: 'wrap'
+                    }}>
+                      {/* Logo Kult Kefir */}
+                      <a 
+                        href="https://www.kultkefir.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'block',
+                          maxWidth: '150px',
+                          width: '100%',
+                          transition: 'transform 0.3s ease, opacity 0.3s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)';
+                          (e.currentTarget as HTMLElement).style.opacity = '0.8';
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+                          (e.currentTarget as HTMLElement).style.opacity = '1';
+                        }}
+                      >
+                        <KultKefirLogo color="#053725" width="100%" height="auto" />
+                      </a>
+
+                      {/* Emplacements "coming soon" */}
+                      {[1, 2, 3, 4].map((index) => (
+                        <div 
+                          key={index}
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            maxWidth: '150px',
+                            width: '100%',
+                            height: '80px',
+                            textAlign: 'center'
+                          }}
+                        >
+                          <span style={{
+                            fontSize: '18px',
+                            color: '#999',
+                            fontWeight: '400',
+                            lineHeight: '1.2',
+                            display: 'block'
+                          }}>
+                            coming
+                          </span>
+                          <span style={{
+                            fontSize: '18px',
+                            color: '#999',
+                            fontWeight: '400',
+                            lineHeight: '1.2',
+                            display: 'block'
+                          }}>
+                            soon
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            {/* Section fusionnée end */}
 
             {/* Image parallax */}
             <div className="tp-project-details-3-full-width-thumb mb-120" style={{width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>

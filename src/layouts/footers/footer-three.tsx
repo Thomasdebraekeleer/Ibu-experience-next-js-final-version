@@ -56,7 +56,7 @@ export default function FooterThree() {
                   <h4 className="tp-footer-2-widget-title">Sitemap</h4>
                                                        <ul>
                     <li><Link href="/accueil">Accueil</Link></li>
-                    <li><Link href="/experiences">Expériences</Link></li>
+                    <li><Link href="/experiences">L'expérience</Link></li>
                     <li><Link href="/reservations">Réservation</Link></li>
                     <li><Link href="/a-propos">À Propos</Link></li>
                     <li><Link href="/devenir-partenaire">Devenir Partenaire</Link></li>
