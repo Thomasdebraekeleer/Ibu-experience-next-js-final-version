@@ -1029,6 +1029,19 @@ const ExperiencesMain = () => {
             padding-bottom: 30px !important;
           }
           
+          /* Réduction des espacements spécifiques sur mobile */
+          .tp-project-details-3-full-width-thumb.mb-120 {
+            margin-bottom: 40px !important;
+          }
+          
+          .showcase-details-2-area.pb-120 {
+            padding-bottom: 60px !important;
+          }
+          
+          #xyz.tp-project-details-3-thumb.mb-120 {
+            margin-bottom: 60px !important;
+          }
+          
           /* Styles pour les titres des options sur mobile */
           .visite-chai-title {
             font-size: clamp(1.5rem, 4vw, 2rem) !important;
