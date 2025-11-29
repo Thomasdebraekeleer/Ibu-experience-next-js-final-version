@@ -72,7 +72,7 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
             <div className="col-xl-12">
               <div className="tp-award-title-box mb-50 text-left">
                 <h4 className="showcase-details-2-section-title tp-char-animation">
-                  Le <br /> <span>Programme</span>
+                  L&apos;instant <br /> <span>IBÙ</span>
                 </h4>
               </div>
             </div>

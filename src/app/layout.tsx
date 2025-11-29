@@ -79,11 +79,20 @@ export const metadata: Metadata = {
     description: "Découvrez des expériences de voyage authentiques et immersives avec IBÙ Experience. Des séjours uniques nichés dans des lieux d'exception en Belgique.",
     type: "website",
     locale: "fr_FR",
+    images: [
+      {
+        url: '/assets/img/inner-project/Photo%20lien/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'IBÙ Experience - Expériences uniques',
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "IBÙ Experience - Expériences uniques et immersives",
     description: "Découvrez des expériences de voyage authentiques et immersives avec IBÙ Experience.",
+    images: ['/assets/img/inner-project/Photo%20lien/og-image.jpg'],
   },
   icons: {
     icon: '/favicon.ico',

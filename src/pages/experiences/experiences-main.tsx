@@ -226,7 +226,7 @@ const service_accordion = [
     id: 1,
     icon: <CheckInOutIcon />,
     title: "Check-in, Check-out",
-    desc: "Votre séjour commence à 17h00 pour le check-in et se termine à 10h30 pour le check-out, vous offrant ainsi un moment privilégié de détente et de ressourcement.",
+    desc: "Votre séjour commence à 17h00 et se termine à 10h30, vous offrant ainsi un moment privilégié de détente et de ressourcement.",
   },
   {
     id: 2,
@@ -404,7 +404,7 @@ const ExperiencesMain = () => {
             </div>
             
             {/* Section L'expérience IBU Bien-être */}
-            <div className="showcase-details-2-area pb-120">
+            <div className="showcase-details-2-area" style={{ paddingBottom: '40px' }}>
               <div className="container">
                 <div className="row">
                   <div className="col-xl-12">
@@ -428,20 +428,11 @@ const ExperiencesMain = () => {
                     </div>
                   </div>
                 </div>
-                
-                {/* Deuxième photo - déplacée dans la même section */}
-                <div className="row" style={{marginTop: '40px'}}>
-                  <div className="col-xl-12">
-                    <div className="tp-project-details-3-thumb-box">
-                      <Image data-speed=".8" src={full_image_2} alt="IBÙ Bien-être Collection" style={{ height: 'auto' }}/>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             
             {/* Section Ce que comprend IBU bien-être - intégrée après la photo */}
-            <div id="services-section" className="tp-service-2-area tp-service-2-pt pb-150 z-index-5" style={{ paddingBottom: '60px' }}>
+            <div id="services-section" className="tp-service-2-area pb-150 z-index-5" style={{ paddingTop: '40px', paddingBottom: '60px' }}>
               <div className="container container-1480">
                 <div className="row">
                   <div className="col-xl-8">

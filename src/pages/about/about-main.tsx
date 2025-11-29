@@ -550,6 +550,7 @@ const AboutMain = () => {
                 <div className="row justify-content-center">
                   <div className="col-xl-10">
                     <div className="tp-testimonial-slider-wrapper p-relative">
+                      {/* Flèches pour desktop - positionnées sur les côtés */}
                       <div className="tp-testimonial-arrow-box d-none d-lg-block">
                         <button className="tp-testimonial-prev" style={{
                           background: 'transparent',
@@ -600,6 +601,50 @@ const AboutMain = () => {
                           </SwiperSlide>
                         ))}
                       </Swiper>
+                      {/* Flèches pour mobile - positionnées en dessous */}
+                      <div className="tp-testimonial-arrow-box-mobile d-lg-none" style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        gap: '20px',
+                        marginTop: '30px'
+                      }}>
+                        <button className="tp-testimonial-prev" style={{
+                          background: 'transparent',
+                          border: '2px solid #053725',
+                          color: '#053725',
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold',
+                          position: 'static',
+                          transform: 'none'
+                        }}>
+                          ←
+                        </button>
+                        <button className="tp-testimonial-next" style={{
+                          background: 'transparent',
+                          border: '2px solid #053725',
+                          color: '#053725',
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold',
+                          position: 'static',
+                          transform: 'none'
+                        }}>
+                          →
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

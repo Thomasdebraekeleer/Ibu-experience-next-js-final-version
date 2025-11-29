@@ -39,6 +39,7 @@ export default function LineTextSyne({cls=""}:IProps) {
                   fontVariant: "normal",
                   textDecoration: "none"
                 }}
+                className="footer-marquee-text"
               >
                 <span 
                   className="d-none d-md-inline-block mr-40"

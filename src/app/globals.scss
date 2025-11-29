@@ -238,3 +238,67 @@
     display: none !important;
   }
 }
+
+/* Réduire la taille du texte défilant du footer sur mobile */
+@media (max-width: 767px) {
+  .footer-marquee-text {
+    font-size: 40px !important;
+    letter-spacing: -0.9px !important;
+    padding-right: 30px !important;
+  }
+  
+  .footer-marquee-text span {
+    margin-right: 20px !important;
+    transform: translateY(8px) !important;
+  }
+
+  /* Réduire l'espace entre le bouton Contactez-nous et le logo sur mobile */
+  .tp-footer-4-area {
+    padding-bottom: 40px !important;
+  }
+
+  /* Rendre uniquement le menu burger fixe sur mobile (pas le logo) */
+  .tp-inner-header-2-bar,
+  .tp-inner-header-2-right {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 999 !important;
+  }
+  
+  /* Le logo garde son comportement normal (il disparaît lors du scroll) */
+  .tp-header-logo {
+    position: relative !important;
+  }
+}
+
+/* Animation d'opacité rapide pour le sous-titre */
+.fade-in-fast {
+  opacity: 0;
+  animation: fadeInFast 0.6s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInFast {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Masquer la première image sur mobile uniquement (page devenir partenaire) */
+@media (max-width: 991px) {
+  .hide-first-img-mobile {
+    display: none !important;
+  }
+  
+  /* Réduire la taille des boutons formulaire sur mobile */
+  .tp-btn-wrapper a {
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+  }
+}

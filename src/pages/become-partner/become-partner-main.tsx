@@ -313,41 +313,9 @@ const BecomePartnerMain = () => {
                   <div className="col-xl-12">
                     <div className="tp-project-details-3-title-box">
                       <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={{ whiteSpace: 'nowrap', fontSize: 'clamp(1.5rem, 6vw, 6rem)' }}>DEVENIR PARTENAIRE</h2>
-                      <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 4vw, 3rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: 'clamp(20px, 3vw, 80px)', lineHeight: '1.4' }}>Envie de transformer votre domaine en destination? Rejoignez l&apos;aventure IBÙ !</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* hero section end */}
-            
-            {/* grid images section start */}
-            <div className="showcase-details-2-grid-area pb-90" style={{ marginTop: 'clamp(-30px, -3vw, 0px)' }}>
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-6 col-lg-6">
-                    <div className="showcase-details-2-grid-img mb-30">
-                      <Image className="img-left" src={partner_img_1} alt="Devenir partenaire IBÙ" style={{height:'auto'}}/>
-                    </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6">
-                    <div className="showcase-details-2-grid-img mb-30">
-                      <Image className="img-right" src={partner_img_2} alt="Partenariat IBÙ Experience" style={{height:'auto'}}/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* call to action section start */}
-            <div className="tp-project-details-3-top" style={{ paddingTop: 'clamp(20px, 4vw, 60px)', paddingBottom: '60px' }}>
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-12">
-                    <div className="tp-project-details-3-title-box text-center">
-                      <h3 className="tp-section-subtitle-3" style={{ fontSize: 'clamp(1.2rem, 4vw, 2.5rem)', fontWeight: '500', color: '#053725', marginBottom: '40px', lineHeight: '1.4' }}>Cliquez sur le bouton ci-dessous pour accéder au formulaire de candidature.</h3>
+                      <h3 className="tp-section-subtitle-3 fade-in-fast" style={{ fontSize: 'clamp(1.2rem, 4vw, 3rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: 'clamp(30px, 4vw, 50px)', lineHeight: '1.4' }}>Envie de transformer votre domaine en destination? Rejoignez l&apos;aventure IBÙ ! Completez le formulaire ci-dessous</h3>
                       
-                      <div className="tp-btn-wrapper d-flex justify-content-center gap-4 flex-wrap">
+                      <div className="tp-btn-wrapper d-flex gap-4 flex-wrap">
                         <a 
                           href="https://form.typeform.com/to/JqIvbztX" 
                           target="_blank" 
@@ -396,21 +364,39 @@ const BecomePartnerMain = () => {
                 </div>
               </div>
             </div>
-            {/* call to action section end */}
+            {/* hero section end */}
+            
+            {/* grid images section start */}
+            <div className="showcase-details-2-grid-area pb-30" style={{ marginTop: 'clamp(-20px, -2vw, 0px)' }}>
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-6 col-lg-6 hide-first-img-mobile">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image className="img-left" src={partner_img_1} alt="Devenir partenaire IBÙ" style={{height:'auto'}}/>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image className="img-right" src={partner_img_2} alt="Partenariat IBÙ Experience" style={{height:'auto'}}/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             {/* advantages section start */}
-            <div className="tp-service-2-area tp-service-2-pt pb-150 z-index-5" style={{ paddingBottom: '100px', paddingTop: 'clamp(40px, 8vw, 0px)' }}>
+            <div className="tp-service-2-area tp-service-2-pt pb-150 z-index-5" style={{ paddingBottom: '30px', paddingTop: 'clamp(20px, 3vw, 40px)' }}>
               <div className="container container-1480">
                 <div className="row">
                   <div className="col-xl-8">
-                    <div className="tp-service-2-title-box mb-70">
-                      <span className="tp-section-subtitle-3" style={{ fontSize: 'clamp(0.8rem, 3vw, 1.2rem)' }}>
+                    <div className="tp-service-2-title-box mb-20">
+                      <span className="tp-section-subtitle-3" style={{ fontSize: 'clamp(1.1rem, 4vw, 1.8rem)', fontWeight: '600' }}>
                         <span>
                           <Leaf />
                         </span>
                         POURQUOI DEVENIR PARTENAIRE IBÙ
                       </span>
-                      <h4 className="tp-section-title-40" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
+                      <h4 className="tp-section-title-40" style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.8rem)', marginBottom: '0' }}>
                         Rejoignez un réseau d&apos;excellence et transformez votre domaine en destination d&apos;exception.
                       </h4>
                     </div>
@@ -444,12 +430,12 @@ const BecomePartnerMain = () => {
             {/* advantages section end */}
             
             {/* process section start */}
-            <section className="tp-process-area pt-100 pb-150">
+            <section className="tp-process-area pt-30 pb-50">
               <div className="container">
                 <div className="row">
                   <div className="col-xl-8">
-                    <div className="showcase-details-2-section-box mb-80">
-                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 4vw, 3.5rem)', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>LE FONCTIONNEMENT</h4>
+                    <div className="showcase-details-2-section-box mb-40">
+                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 4vw, 3.5rem)', letterSpacing: '0.05em', whiteSpace: 'nowrap', paddingLeft: 'clamp(0px, 5vw, 100px)', marginTop: '20px' }}>LE FONCTIONNEMENT</h4>
                     </div>
                   </div>
                 </div>

@@ -50,7 +50,7 @@ export default function FooterThree() {
                  </div>
               </div>
             </div>
-            <div className="col-xl-2 col-lg-3 col-md-6 mb-50">
+            <div className="col-xl-2 col-lg-3 col-md-6 mb-50 d-none d-md-block">
               <div className="tp-footer-2-widget footer-col-2-2">
                 <div className="tp-footer-2-widget-menu">
                   <h4 className="tp-footer-2-widget-title">Sitemap</h4>

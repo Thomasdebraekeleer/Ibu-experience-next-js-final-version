@@ -14,12 +14,70 @@ import HeaderHomepage from "@/layouts/headers/header-homepage";
 import PortfolioDetailsShowcaseTwoArea from "@/components/portfolio/details/portfolio-details-showcase-2-area";
 import FooterThree from "@/layouts/footers/footer-three";
 import NewsletterPopup from "@/components/modal/newsletter-popup";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { SwiperOptions } from "swiper/types";
 
 // animation
 import { hoverBtn } from "@/utils/hover-btn";
 import { footerTwoAnimation } from "@/utils/footer-anim";
 import { charAnimation, titleAnimation } from "@/utils/title-animation";
 import { movingImageSlider } from "@/utils/scroll-marque";
+
+// Testimonial data
+const testimonial_data = [
+  {
+    id: 1,
+    desc: `"Touchée par votre projet et les valeurs qu'il met en exergue, je vous félicite pour cette initiative ! Bonne chance et beaucoup de succès dans cette aventure !"`,
+    name: "Sophie Levecq",
+    designation: "",
+  },
+  {
+    id: 2,
+    desc: `"Super idée, le début d'une grande aventure! Tout notre soutien"`,
+    name: "Evelyne Delmotte",
+    designation: "",
+  },
+  {
+    id: 3,
+    desc: `"Magnifique initiative et qui porte le nom d'un homme génial qui nous manque."`,
+    name: "Veronica Britom",
+    designation: "",
+  },
+  {
+    id: 4,
+    desc: `"Bravo pour ce super projet"`,
+    name: "Justine Raskin",
+    designation: "",
+  },
+  {
+    id: 5,
+    desc: `"Hâte que ce magnifique projet, prenne 100% vie! Il en vaut largement la peine"`,
+    name: "Sophie Ileka",
+    designation: "",
+  },
+  {
+    id: 6,
+    desc: `"Quel projet magnifique!!!"`,
+    name: "Debo Landroux",
+    designation: "",
+  },
+];
+
+// Slider settings
+const testimonial_slider_setting: SwiperOptions = {
+  slidesPerView: 1,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  speed: 1000,
+  navigation: {
+    nextEl: ".tp-testimonial-next",
+    prevEl: ".tp-testimonial-prev",
+  },
+};
 
 /**
  * Page d'accueil principale
@@ -122,6 +180,120 @@ const HomeMain = () => {
             {/* portfolio showcase details area */}
             <PortfolioDetailsShowcaseTwoArea />
             {/* portfolio showcase details area */}
+
+            {/* Section Témoignages */}
+            <div className="tp-testimonial-area pb-120 pt-120">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-8">
+                    <div className="showcase-details-2-section-box mb-60">
+                      <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous soutiennent</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="row justify-content-center">
+                  <div className="col-xl-10">
+                    <div className="tp-testimonial-slider-wrapper p-relative">
+                      {/* Flèches pour desktop - positionnées sur les côtés */}
+                      <div className="tp-testimonial-arrow-box d-none d-lg-block">
+                        <button className="tp-testimonial-prev" style={{
+                          background: 'transparent',
+                          border: '2px solid #053725',
+                          color: '#053725',
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold'
+                        }}>
+                          ←
+                        </button>
+                        <button className="tp-testimonial-next" style={{
+                          background: 'transparent',
+                          border: '2px solid #053725',
+                          color: '#053725',
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold'
+                        }}>
+                          →
+                        </button>
+                      </div>
+                      <Swiper
+                        {...testimonial_slider_setting}
+                        modules={[Navigation]}
+                        className="swiper-container tp-testimonial-slider-active fix"
+                      >
+                        {testimonial_data.map((item) => (
+                          <SwiperSlide key={item.id}>
+                            <div className="tp-testimonial-item text-center">
+                              <p>{item.desc}</p>
+                              <span>
+                                <em>{item.name}</em>{item.designation && ` - ${item.designation}`}
+                              </span>
+                            </div>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                      {/* Flèches pour mobile - positionnées en dessous */}
+                      <div className="tp-testimonial-arrow-box-mobile d-lg-none" style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        gap: '20px',
+                        marginTop: '30px'
+                      }}>
+                        <button className="tp-testimonial-prev" style={{
+                          background: 'transparent',
+                          border: '2px solid #053725',
+                          color: '#053725',
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold',
+                          position: 'static',
+                          transform: 'none'
+                        }}>
+                          ←
+                        </button>
+                        <button className="tp-testimonial-next" style={{
+                          background: 'transparent',
+                          border: '2px solid #053725',
+                          color: '#053725',
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          fontWeight: 'bold',
+                          position: 'static',
+                          transform: 'none'
+                        }}>
+                          →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </main>
 
