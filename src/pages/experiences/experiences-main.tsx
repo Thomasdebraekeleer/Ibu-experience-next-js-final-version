@@ -428,13 +428,9 @@ const ExperiencesMain = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Deuxième photo */}
-            <div id="xyz" className="tp-project-details-3-thumb mb-120">
-              <div className="container container-1560">
-                <div className="row">
+                
+                {/* Deuxième photo - déplacée dans la même section */}
+                <div className="row" style={{marginTop: '40px'}}>
                   <div className="col-xl-12">
                     <div className="tp-project-details-3-thumb-box">
                       <Image data-speed=".8" src={full_image_2} alt="IBÙ Bien-être Collection" style={{ height: 'auto' }}/>
@@ -444,20 +440,21 @@ const ExperiencesMain = () => {
               </div>
             </div>
             
-            {/* Section Ce que comprend IBU bien-être */}
+            {/* Section Ce que comprend IBU bien-être - intégrée après la photo */}
             <div id="services-section" className="tp-service-2-area tp-service-2-pt pb-150 z-index-5" style={{ paddingBottom: '60px' }}>
               <div className="container container-1480">
                 <div className="row">
                   <div className="col-xl-8">
                     <div className="tp-service-2-title-box mb-70">
-                      <span className="tp-section-subtitle-3" style={{
+                      <span className="tp-section-subtitle-3 ce-que-comprend-title" style={{
                         fontSize: 'clamp(1.8rem, 4.5vw, 3rem)',
                         fontWeight: '500',
                         color: '#053725',
                         marginTop: '10px',
                         marginBottom: '80px',
                         lineHeight: '1.1',
-                        whiteSpace: 'nowrap'
+                        whiteSpace: 'nowrap',
+                        display: 'block'
                       }}>
                         <span>
                           <Leaf />
@@ -1002,6 +999,12 @@ const ExperiencesMain = () => {
             line-height: 1.1 !important;
           }
           
+          /* Permettre au titre CE QUE COMPREND de passer sur 2 lignes sur mobile */
+          .ce-que-comprend-title {
+            white-space: normal !important;
+            word-wrap: break-word !important;
+          }
+          
           .tp-project-details-3-thumb-box img {
             height: 60vh !important;
             object-fit: cover !important;
@@ -1031,15 +1034,7 @@ const ExperiencesMain = () => {
           
           /* Réduction des espacements spécifiques sur mobile */
           .tp-project-details-3-full-width-thumb.mb-120 {
-            margin-bottom: 40px !important;
-          }
-          
-          .showcase-details-2-area.pb-120 {
-            padding-bottom: 60px !important;
-          }
-          
-          #xyz.tp-project-details-3-thumb.mb-120 {
-            margin-bottom: 60px !important;
+            margin-bottom: -140px !important;
           }
           
           /* Styles pour les titres des options sur mobile */
