@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
+import Script from "next/script";
 
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
@@ -295,6 +296,72 @@ const HomeMain = () => {
               </div>
             </div>
 
+            {/* Section Widget Lodgify */}
+            <div className="tp-lodgify-search-area pb-120">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="showcase-details-2-title-box mb-60">
+                      <h5 className="showcase-details-2-title tp-char-animation" style={{
+                        fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
+                        lineHeight: '0.8',
+                        letterSpacing: '0.08em',
+                        fontWeight: '700',
+                        textTransform: 'uppercase',
+                        color: '#053725'
+                      }}>
+                        Réservez votre séjour
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div className="row justify-content-center">
+                  <div className="col-xl-10">
+                    <style dangerouslySetInnerHTML={{__html: `
+                      :root {
+                        --ldg-psb-background: #ffffff;
+                        --ldg-psb-border-radius: 0.42em;
+                        --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
+                        --ldg-psb-padding: 14px;
+                        --ldg-psb-input-background: #ffffff;
+                        --ldg-psb-button-border-radius: 0px;
+                        --ldg-psb-color-primary: #053725;
+                        --ldg-psb-color-primary-lighter:#829b92;
+                        --ldg-psb-color-primary-darker: #031c13;
+                        --ldg-psb-color-primary-contrast: #ffffff;
+                        --ldg-semantic-color-primary:  #053725;
+                        --ldg-semantic-color-primary-lighter: #829b92;
+                        --ldg-semantic-color-primary-darker: #031c13;
+                        --ldg-semantic-color-primary-contrast: #ffffff;
+                        --ldg-component-modal-z-index: 999;
+                      }
+                      #lodgify-search-bar {
+                        width:100%;
+                      }
+                    `}} />
+                    <div
+                      id="lodgify-search-bar"
+                      data-website-id="607668"
+                      data-language-code="fr"
+                      data-search-page-url='https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes'
+                      
+                      data-dates-check-in-label='Arrivée'
+                      data-dates-check-out-label='Départ'
+                      data-guests-counter-label='Invités'
+                      data-guests-input-singular-label='{{NumberOfGuests}} invité'
+                      data-guests-input-plural-label='{{NumberOfGuests}} invités'
+                      data-location-input-label='Emplacement'
+                      data-search-button-label='Rechercher'
+                      data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
+                      
+                      data-new-tab="true"
+                      data-version="stable"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </main>
 
           {/* footer area */}
@@ -305,6 +372,12 @@ const HomeMain = () => {
       
       {/* Newsletter Popup */}
       <NewsletterPopup />
+      
+      {/* Script Lodgify */}
+      <Script 
+        src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js"
+        strategy="lazyOnload"
+      />
     </Wrapper>
   );
 };

@@ -1,0 +1,31 @@
+/* Réduction TRÈS agressive de l'espace entre le carrousel et la section Le logement sur mobile */
+@media (max-width: 991px) {
+  /* Cibler uniquement la section Le logement pour la remonter */
+  body .logement-section-domaine.showcase-details-2-area {
+    margin-top: -550px !important;
+    padding-top: 40px !important;
+  }
+  
+  /* Réduire l'espace du carrousel en dessous */
+  body .showcase-details-2-area.pb-120:has(.pd-visual-slider-wrap) {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Encore plus agressif sur petits écrans */
+  body .logement-section-domaine.showcase-details-2-area {
+    margin-top: -600px !important;
+    padding-top: 40px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Maximum d'aggressivité sur très petits écrans */
+  body .logement-section-domaine.showcase-details-2-area {
+    margin-top: -650px !important;
+    padding-top: 40px !important;
+  }
+}
+

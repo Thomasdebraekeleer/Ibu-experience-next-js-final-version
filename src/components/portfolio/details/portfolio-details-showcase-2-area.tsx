@@ -31,8 +31,19 @@ import cocons_img_3 from '@/assets/img/inner-project/experiences-cocons/cocons-3
 import cocons_img_4 from '@/assets/img/inner-project/experiences-cocons/cocons-4.jpg';
 
 
-// img data
+// img data pour version PC
 const img_data = [port_d_1, port_d_2, port_d_3, port_d_4, port_d_5, port_d_6, port_d_7, port_d_8];
+
+// img data pour carrousel mobile (section Évasion)
+const mobile_carousel_images = [
+  '/assets/img/inner-project/Caroussel pictures/Image 1.webp',
+  '/assets/img/inner-project/Caroussel pictures/Image 2.webp',
+  '/assets/img/inner-project/Caroussel pictures/Image 3.webp',
+  '/assets/img/inner-project/Caroussel pictures/Image 4.webp',
+  '/assets/img/inner-project/Caroussel pictures/Image 5.webp',
+  '/assets/img/inner-project/Caroussel pictures/Image 6.webp',
+  '/assets/img/inner-project/Caroussel pictures/Image 7.webp',
+];
 
 export default function PortfolioDetailsShowcaseTwoArea() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -294,12 +305,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             </div>
           </div>
 
-          {/* Version Mobile - Carrousel */}
-          <div className="d-block d-lg-none" style={{marginTop: '60px'}}>
+          {/* Version Mobile - Carrousel pleine largeur */}
+          <div className="d-block d-lg-none" style={{
+            marginTop: '60px',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginRight: 'calc(-50vw + 50%)',
+            width: '100vw'
+          }}>
             <Swiper
               slidesPerView={1}
               centeredSlides={true}
-              spaceBetween={20}
+              spaceBetween={0}
               loop={true}
               autoplay={{
                 delay: 4000,
@@ -313,23 +329,25 @@ export default function PortfolioDetailsShowcaseTwoArea() {
               modules={[Autoplay, Pagination]}
               className="evasion-mobile-carousel"
               style={{
-                padding: '0 20px 40px 20px'
+                padding: '0 0 40px 0'
               }}
             >
-              {img_data.filter((imgSrc, i) => i !== 0).map((imgSrc, i) => (
+              {mobile_carousel_images.map((imgSrc, i) => (
                 <SwiperSlide key={i}>
                   <div className="evasion-mobile-item" style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    width: '100%'
                   }}>
                     <Image 
                       src={imgSrc} 
-                      alt="Évasion IBÙ" 
+                      alt={`Évasion IBÙ - Image ${i + 1}`}
+                      width={500}
+                      height={400}
                       style={{
                         width: '100%',
-                        maxWidth: '350px',
-                        height: '280px',
+                        height: 'auto',
                         objectFit: 'cover'
                       }}
                     />
@@ -384,7 +402,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       {/* detail title 3 */}
 
       {/* grid images */}
-      <div className="showcase-details-2-grid-area pb-90 grid-before-engagements">
+      <div className="showcase-details-2-grid-area pb-90 grid-before-engagements after-mission-photos">
           <div className="container">
             <div className="row">
                 <div className="col-xl-6 col-lg-6">
@@ -630,6 +648,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           
           .engagements-section {
             padding-top: 30px !important; /* 60px / 2 */
+          }
+          
+          /* Réduire l'espace entre "sublimer le terroir local" et les photos sur mobile */
+          .after-mission-photos {
+            margin-top: -80px !important;
           }
         }
         

@@ -11,6 +11,9 @@ import Script from "next/script";
 import "./globals.scss";
 import "../../public/assets/css/animation-fallbacks.css";
 import "../../public/assets/css/hero-mobile-optimizations.css";
+import "./ibu-bien-etre-mobile-fix.css";
+import "./domaine-mehaignoul-mobile-fix.css";
+import "./about-mobile-fix.css";
 
 const gellery = localFont({
   src: [

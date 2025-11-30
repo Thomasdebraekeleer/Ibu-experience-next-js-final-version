@@ -13,6 +13,7 @@ import FooterThree from "@/layouts/footers/footer-three";
 import Image from "next/image";
 import { Leaf } from '@/components/svg';
 import KultKefirLogo from '@/components/svg/KultKefirLogo';
+import SupernovaLogo from '@/components/svg/SupernovaLogo';
 
 // image imports
 import histoire_famille_img from '@/assets/img/inner-project/A propos/Une histoire de famille.jpg';
@@ -477,11 +478,35 @@ const AboutMain = () => {
                           (e.currentTarget as HTMLElement).style.opacity = '1';
                         }}
                       >
-                        <KultKefirLogo color="#053725" width="100%" height="auto" />
+                        <KultKefirLogo color="#E8772E" width="100%" height="auto" />
+                      </a>
+
+                      {/* Logo Supernova */}
+                      <a 
+                        href="#" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'block',
+                          maxWidth: '150px',
+                          width: '100%',
+                          transition: 'transform 0.3s ease, opacity 0.3s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)';
+                          (e.currentTarget as HTMLElement).style.opacity = '0.8';
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+                          (e.currentTarget as HTMLElement).style.opacity = '1';
+                        }}
+                      >
+                        <SupernovaLogo width="100%" height="auto" />
                       </a>
 
                       {/* Emplacements "coming soon" */}
-                      {[1, 2, 3, 4].map((index) => (
+                      {[1, 2, 3].map((index) => (
                         <div 
                           key={index}
                           style={{

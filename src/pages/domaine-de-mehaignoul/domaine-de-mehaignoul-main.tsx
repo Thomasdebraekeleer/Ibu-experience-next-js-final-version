@@ -15,7 +15,6 @@ import { Leaf, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
-import BookNowBox from '@/components/BookNowBox';
 
 // image imports
 import showcase_img_14 from '@/assets/img/inner-project/showcase/showcase-details-2-14.jpg';
@@ -26,11 +25,11 @@ import cocons_img_3 from '@/assets/img/inner-project/experiences-cocons/cocons-3
 import cocons_img_4 from '@/assets/img/inner-project/experiences-cocons/cocons-4.jpg';
 
 // nouvelles images pour la section Le logement
-import logement_img_1 from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 5.jpg';
-import logement_img_2 from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 6.jpg';
+import logement_img_1 from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-5.jpg';
+import logement_img_2 from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-6.jpg';
 
 // image pour la section parallax
-import parallax_img from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 7.jpg';
+import parallax_img from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-7.jpg';
 
 // slider images for Domaine de Mehaignoul
 const slider_images = [
@@ -144,12 +143,147 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                   </div>
                   
-                  {/* Widget Book Now Box */}
-                  <div className="row" style={{marginTop: '40px'}}>
-                    <div className="col-xl-12">
-                      <BookNowBox />
+                  {/* Section Widgets Lodgify - Cocon 1 et Cocon 2 */}
+                  <div className="row cocons-widgets-row" style={{marginTop: '80px', marginBottom: '40px'}}>
+                    {/* Colonne Cocon 1 */}
+                    <div className="col-lg-6 mb-lg-0 cocon-widget-col">
+                      <div className="lodgify-widget-container">
+                        <h5 className="text-center mb-4" style={{
+                          fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                          fontWeight: '600',
+                          color: '#053725'
+                        }}>Cocon IBÙ 1</h5>
+                        <div className="widget-photo-container mb-4" style={{
+                          width: '100%',
+                          maxHeight: '200px',
+                          overflow: 'hidden',
+                          borderRadius: '0'
+                        }}>
+                          <Image 
+                            src="/assets/img/inner-project/Cocons/Cocon1.webp"
+                            alt="Cocon IBÙ 1" 
+                            width={500}
+                            height={200}
+                            style={{
+                              width: '100%',
+                              height: '200px',
+                              objectFit: 'cover',
+                              borderRadius: '0'
+                            }}
+                          />
+                        </div>
+                        <a 
+                          href="https://wbp-mallen-jallow.lodgify.com/fr/cocon-ibu-1---domaine-de-mehaignoul?adults=1"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '60px',
+                            lineHeight: '60px',
+                            borderRadius: '0',
+                            padding: '0 42px',
+                            fontWeight: 500,
+                            fontSize: '16px',
+                            letterSpacing: '0.03em',
+                            textAlign: 'center',
+                            textDecoration: 'none',
+                            textTransform: 'capitalize',
+                            backgroundColor: '#053725',
+                            color: 'white',
+                            transition: 'background-color 0.3s ease',
+                            cursor: 'pointer',
+                            border: 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#074d32';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#053725';
+                          }}
+                        >
+                          Voir les disponibilités
+                        </a>
+                      </div>
+                    </div>
+                    
+                    {/* Colonne Cocon 2 */}
+                    <div className="col-lg-6 mb-lg-0 cocon-widget-col">
+                      <div className="lodgify-widget-container">
+                        <h5 className="text-center mb-4" style={{
+                          fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                          fontWeight: '600',
+                          color: '#053725'
+                        }}>Cocon IBÙ 2</h5>
+                        <div className="widget-photo-container mb-4" style={{
+                          width: '100%',
+                          maxHeight: '200px',
+                          overflow: 'hidden',
+                          borderRadius: '0'
+                        }}>
+                          <Image 
+                            src="/assets/img/inner-project/Cocons/Cocon2.webp"
+                            alt="Cocon IBÙ 2" 
+                            width={500}
+                            height={200}
+                            style={{
+                              width: '100%',
+                              height: '200px',
+                              objectFit: 'cover',
+                              borderRadius: '0'
+                            }}
+                          />
+                        </div>
+                        <a 
+                          href="https://wbp-mallen-jallow.lodgify.com/fr/cocon-ibu-2---domaine-de-mehaignoul?adults=1"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '60px',
+                            lineHeight: '60px',
+                            borderRadius: '0',
+                            padding: '0 42px',
+                            fontWeight: 500,
+                            fontSize: '16px',
+                            letterSpacing: '0.03em',
+                            textAlign: 'center',
+                            textDecoration: 'none',
+                            textTransform: 'capitalize',
+                            backgroundColor: '#053725',
+                            color: 'white',
+                            transition: 'background-color 0.3s ease',
+                            cursor: 'pointer',
+                            border: 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#074d32';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#053725';
+                          }}
+                        >
+                          Voir les disponibilités
+                        </a>
+                      </div>
                     </div>
                   </div>
+                  
+                  {/* Styles pour espacer correctement les cocons sur mobile */}
+                  <style jsx>{`
+                    @media (max-width: 991px) {
+                      .cocons-widgets-row {
+                        margin-bottom: 160px !important;
+                      }
+                      .cocon-widget-col {
+                        margin-bottom: 50px !important;
+                      }
+                      .cocon-widget-col:last-child {
+                        margin-bottom: 0 !important;
+                      }
+                    }
+                  `}</style>
                 </div>
             </div>
                          {/* NOS COCONS IBÙ Experience section */}
@@ -179,7 +313,7 @@ const DomaineDeMehaignoulMain = () => {
                            {/* Slider images section */}
 
                              {/* Le logement section */}
-            <div className="showcase-details-2-area pb-120">
+            <div className="showcase-details-2-area pb-120 logement-section-domaine">
                 <div className="container">
                   <div className="row">
                       <div className="col-xl-8">
@@ -369,38 +503,9 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* 2 photos du logement intégrées */}
-                  <div className="row" style={{marginTop: '40px'}}>
-                      <div className="col-xl-6">
-                        <div className="tp-project-details-3-thumb-box mb-30">
-                            <Image className="w-100" src={logement_img_1} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
-                        </div>
-                      </div>
-                      <div className="col-xl-6">
-                        <div className="tp-project-details-3-thumb-box mb-30">
-                          <Image className="w-100" src={logement_img_2} alt="Logement Domaine de Mehaignoul" style={{height:'auto'}}/>
-                        </div>
-                      </div>
-                  </div>
                 </div>
             </div>
             {/* Le logement section */}
-
-
-             {/* Parallax image section */}
-            <div className="tp-project-details-3-thumb mb-120">
-                <div className="container container-1560">
-                  <div className="row">
-                      <div className="col-xl-12">
-                        <div className="tp-project-details-3-thumb-box">
-                            <Image data-speed=".8" src={parallax_img} alt="Domaine de Mehaignoul Parallax" style={{ height: 'auto' }}/>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-            {/* Parallax image section */}
 
             {/* footer area start */}
             <FooterThree />

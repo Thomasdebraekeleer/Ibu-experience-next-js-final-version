@@ -1,0 +1,44 @@
+/* Réduction TRÈS agressive de l'espace entre la vidéo et "Ils nous accompagnent" sur mobile */
+@media (max-width: 991px) {
+  /* Faire remonter la section "Ils nous accompagnent" */
+  body .ils-nous-accompagnent-section.showcase-details-2-area {
+    margin-top: -180px !important;
+    padding-top: 40px !important;
+  }
+  
+  /* Réduire l'espace en bas de la section Gallery avec la vidéo */
+  body .showcase-details-2-area.pt-60.pb-60 {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Cibler la section vidéo */
+  body .video-section {
+    margin-bottom: -120px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Encore plus agressif sur petits écrans */
+  body .ils-nous-accompagnent-section.showcase-details-2-area {
+    margin-top: -220px !important;
+    padding-top: 40px !important;
+  }
+  
+  body .video-section {
+    margin-bottom: -140px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Maximum d'aggressivité sur très petits écrans */
+  body .ils-nous-accompagnent-section.showcase-details-2-area {
+    margin-top: -260px !important;
+    padding-top: 40px !important;
+  }
+  
+  body .video-section {
+    margin-bottom: -160px !important;
+  }
+}
+
