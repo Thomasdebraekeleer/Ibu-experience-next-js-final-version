@@ -864,7 +864,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           /* Surcharger le fichier ibu-bien-etre-mobile-fix.css avec une spécificité très élevée */
           .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container,
           body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container {
-            top: 65% !important; /* Position ajustée - remonté encore un peu */
+            top: 60% !important; /* Position ajustée - remonté encore */
             left: 5% !important;
             width: 90% !important;
             max-width: 90% !important;
@@ -932,7 +932,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container,
           body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container {
             left: 50% !important;
-            top: 65% !important; /* Position ajustée - remonté encore un peu */
+            top: 60% !important; /* Position ajustée - remonté encore */
             z-index: 4 !important; /* Au-dessus de l'image premier plan (z-index 3) mais en dessous du texte (z-index 100+) */
             transform: translate(-50%, -50%) !important;
             width: 90% !important;
