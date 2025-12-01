@@ -149,12 +149,22 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     <>
       {/* portfolio hero avec superposition d'images et parallaxe */}
       <div ref={heroRef} className="showcase-details-2-area showcase-details-2-bg p-relative overflow-hidden">
-        {/* Image de fond avec parallaxe */}
+        {/* Image de fond avec parallaxe - Version PC */}
         <div 
           ref={backgroundRef}
-          className="hero-background-image p-absolute w-100 h-100"
+          className="hero-background-image p-absolute w-100 h-100 d-none d-lg-block"
           style={{
-            backgroundImage: "url(/assets/img/inner-project/showcase/Image%20hero%201%20Background.webp)",
+            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20PC%20Second%20plan.webp)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            zIndex: 1
+          }}
+        />
+        {/* Image de fond avec parallaxe - Version Mobile */}
+        <div 
+          className="hero-background-image p-absolute w-100 h-100 d-block d-lg-none"
+          style={{
+            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20mobile%20Second%20plan.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
             zIndex: 1
@@ -235,12 +245,23 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           <LodgifySearchBar />
         </div>
 
-        {/* Image PNG au premier plan avec effet parallaxe */}
+        {/* Image PNG au premier plan avec effet parallaxe - Version PC */}
         <div 
           ref={foregroundRef}
-          className="hero-foreground-image p-absolute w-100 h-100"
+          className="hero-foreground-image p-absolute w-100 h-100 d-none d-lg-block"
           style={{
-            backgroundImage: "url(/assets/img/inner-project/showcase/Image%20hero%202%20pods.webp)",
+            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20PC%20premier%20plan.webp)",
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            zIndex: 3,
+            pointerEvents: "none"
+          }}
+        />
+        {/* Image PNG au premier plan avec effet parallaxe - Version Mobile */}
+        <div 
+          className="hero-foreground-image p-absolute w-100 h-100 d-block d-lg-none"
+          style={{
+            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20mobile%20premier%20plan.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
             zIndex: 3,
