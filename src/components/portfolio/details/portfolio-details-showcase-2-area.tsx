@@ -813,10 +813,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         
         /* Styles CSS pour le widget de booking Lodgify dans le hero - Apparence harmonieuse */
         .lodgify-hero-container :global(#lodgify-book-now-box) {
-          --ldg-bnb-background: #ffffff !important;
+          --ldg-bnb-background: transparent !important;
           --ldg-bnb-border-radius: 0.42em !important;
-          --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          --ldg-bnb-padding: 14px !important;
+          --ldg-bnb-box-shadow: none !important;
+          --ldg-bnb-padding: 0px !important;
           --ldg-bnb-input-background: #ffffff !important;
           --ldg-bnb-button-border-radius: 0px !important;
           --ldg-bnb-color-primary: #053701 !important;
@@ -829,11 +829,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           --ldg-component-calendar-cell-selected-color: #ffffff !important;
           --ldg-bnb-font-family: inherit !important;
           width: 100% !important;
-          /* Annuler les styles globaux qui modifient le widget */
-          background: #ffffff !important;
-          box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          padding: 14px !important;
-          border-radius: 0.42em !important;
+          /* Enlever l'encadré blanc - background transparent */
+          background: transparent !important;
+          box-shadow: none !important;
+          padding: 0px !important;
+          border-radius: 0 !important;
         }
         
         /* Annuler les styles globaux qui suppriment les bordures */
