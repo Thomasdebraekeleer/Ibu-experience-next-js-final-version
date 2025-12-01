@@ -2,28 +2,34 @@
 
 export default function LodgifySearchBar() {
   return (
-    <div className="lodgify-glass not-prose">
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        :root {
+          --ldg-psb-background: #ffffff !important;
+          --ldg-psb-border-radius: 0.42em !important;
+          --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          --ldg-psb-padding: 14px !important;
+          --ldg-psb-input-background: #ffffff !important;
+          --ldg-psb-button-border-radius: 0px !important;
+          --ldg-psb-color-primary: #053701 !important;
+          --ldg-psb-color-primary-lighter: #829b80 !important;
+          --ldg-psb-color-primary-darker: #031c01 !important;
+          --ldg-psb-color-primary-contrast: #ffffff !important;
+          --ldg-semantic-color-primary: #053701 !important;
+          --ldg-semantic-color-primary-lighter: #829b80 !important;
+          --ldg-semantic-color-primary-darker: #031c01 !important;
+          --ldg-semantic-color-primary-contrast: #ffffff !important;
+          --ldg-component-modal-z-index: 999 !important;
+        }
+        #lodgify-search-bar {
+          width: 100% !important;
+        }
+      `}} />
       <div
         id="lodgify-search-bar"
-        /* Sécurité : redéfinir en inline les variables critiques (priorité max) */
-        style={{
-          ['--ldg-psb-background' as any]: 'transparent',
-          ['--ldg-psb-box-shadow' as any]: 'none',
-          ['--ldg-psb-padding' as any]: '40px',
-          ['--ldg-psb-border-radius' as any]: '0px',
-          ['--ldg-psb-button-border-radius' as any]: '10px',
-          ['--ldg-psb-input-background' as any]: '#ffffff',
-          ['--ldg-psb-color-primary' as any]: '#053725',
-          ['--ldg-psb-color-primary-lighter' as any]: '#7aa293',
-          ['--ldg-psb-color-primary-darker' as any]: '#032017',
-          ['--ldg-psb-color-primary-contrast' as any]: '#ffffff',
-          ['--ldg-component-modal-z-index' as any]: 999,
-        } as React.CSSProperties}
-
         data-website-id="607668"
         data-language-code="fr"
-        data-checkout-page-url="https://checkout.lodgify.com/mallen-jallow/fr/#/710587"
-
+        data-search-page-url="https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes"
         data-dates-check-in-label="Arrivée"
         data-dates-check-out-label="Départ"
         data-guests-counter-label="Invités"
@@ -32,22 +38,9 @@ export default function LodgifySearchBar() {
         data-location-input-label="Emplacement"
         data-search-button-label="Rechercher"
         data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
-        data-guests-breakdown-label="Invités"
-        data-adults-label='{"one":"adulte","other":"adultes"}'
-        data-adults-description='Âges {minAge} ou plus'
-        data-children-label='{"one":"enfant","other":"enfants"}'
-        data-children-description='Âges {minAge} - {maxAge}'
-        data-children-not-allowed-label="Non adapté aux enfants"
-        data-infants-label='{"one":"bébé","other":"bébés"}'
-        data-infants-description="Moins de {maxAge}"
-        data-infants-not-allowed-label="Non adapté aux bébés"
-        data-pets-label='{"one":"animal de compagnie","other":"animaux de compagnie"}'
-        data-pets-not-allowed-label="Non autorisé"
-        data-done-label="Terminé"
-
         data-new-tab="true"
         data-version="stable"
       />
-    </div>
+    </>
   );
 }

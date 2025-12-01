@@ -4,27 +4,34 @@
 @import '../../public/assets/scss/main.scss';
 @import '../../public/assets/css/custom-hero-effects.css';
 
-/* —— Thème du widget : transparent & sans carte interne —— */
+/* —— Thème du widget : protégé avec !important pour éviter les modifications du site —— */
 #lodgify-search-bar {
-  --ldg-psb-background: transparent;  /* pas de fond interne */
-  --ldg-psb-box-shadow: none;         /* pas d'ombre interne */
-  --ldg-psb-padding: 0px;             /* pas de padding interne */
-
-  /* coins/boutons & palette */
-  --ldg-psb-border-radius: 10px;
-  --ldg-psb-button-border-radius: 10px;
-  --ldg-psb-input-background: #ffffff; /* mettre 'transparent' si tu veux voir l'images de fond dans les inputs */
-  --ldg-psb-color-primary: #053725;
-  --ldg-psb-color-primary-lighter: #7aa293;
-  --ldg-psb-color-primary-darker: #032017;
-  --ldg-psb-color-primary-contrast: #ffffff;
-
-  --ldg-component-modal-z-index: 999;
-  width: 100%;
+  --ldg-psb-background: #ffffff !important;
+  --ldg-psb-border-radius: 0.42em !important;
+  --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+  --ldg-psb-padding: 14px !important;
+  --ldg-psb-input-background: #ffffff !important;
+  --ldg-psb-button-border-radius: 0px !important;
+  --ldg-psb-color-primary: #053701 !important;
+  --ldg-psb-color-primary-lighter: #829b80 !important;
+  --ldg-psb-color-primary-darker: #031c01 !important;
+  --ldg-psb-color-primary-contrast: #ffffff !important;
+  --ldg-semantic-color-primary: #053701 !important;
+  --ldg-semantic-color-primary-lighter: #829b80 !important;
+  --ldg-semantic-color-primary-darker: #031c01 !important;
+  --ldg-semantic-color-primary-contrast: #ffffff !important;
+  --ldg-component-modal-z-index: 999 !important;
+  width: 100% !important;
 }
 
 /* Neutraliser l'effet de @tailwindcss/typography si présent */
 .prose #lodgify-search-bar { all: revert; display:block; }
+
+/* Protéger le widget Lodgify de toute modification du site */
+#lodgify-search-bar {
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+}
 
 /* ========== Book Now Box : thème interne minimal ========== */
 #lodgify-book-now-box {
