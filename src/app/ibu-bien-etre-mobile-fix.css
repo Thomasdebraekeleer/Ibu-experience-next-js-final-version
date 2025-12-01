@@ -131,26 +131,26 @@
   /* ANNULER la réduction pour l'image parallax sur page about */
   /* Utiliser un sélecteur très spécifique pour override */
   body .tp-project-details-3-full-width-thumb.mb-120 {
-    margin-bottom: 150px !important;
+    margin-bottom: 250px !important;
     margin-top: 0px !important;
   }
   
-  /* Descendre "Ils nous soutiennent" */
+  /* Descendre BEAUCOUP "Ils nous soutiennent" */
   body .tp-testimonial-area.pb-120 {
-    margin-top: 0px !important;
-    padding-top: 120px !important;
+    margin-top: 100px !important;
+    padding-top: 150px !important;
   }
 }
 
 @media (max-width: 768px) {
   body .tp-project-details-3-full-width-thumb.mb-120 {
-    margin-bottom: 180px !important;
+    margin-bottom: 300px !important;
     margin-top: 0px !important;
   }
   
   body .tp-testimonial-area.pb-120 {
-    margin-top: 0px !important;
-    padding-top: 150px !important;
+    margin-top: 150px !important;
+    padding-top: 200px !important;
   }
 }
 
