@@ -2,7 +2,7 @@
 @media (max-width: 991px) {
   /* Cibler uniquement la section Le logement pour la remonter légèrement */
   body .logement-section-domaine.showcase-details-2-area {
-    margin-top: -250px !important;
+    margin-top: -380px !important;
     padding-top: 40px !important;
   }
   
@@ -16,7 +16,7 @@
 @media (max-width: 768px) {
   /* Ajustement pour petits écrans */
   body .logement-section-domaine.showcase-details-2-area {
-    margin-top: -300px !important;
+    margin-top: -420px !important;
     padding-top: 40px !important;
   }
 }
@@ -24,7 +24,7 @@
 @media (max-width: 576px) {
   /* Ajustement pour très petits écrans */
   body .logement-section-domaine.showcase-details-2-area {
-    margin-top: -350px !important;
+    margin-top: -460px !important;
     padding-top: 40px !important;
   }
 }
