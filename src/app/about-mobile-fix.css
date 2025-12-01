@@ -42,3 +42,54 @@
   }
 }
 
+/* Correction de l'espacement entre la photo parallax et "Ils nous soutiennent" sur mobile */
+@media (max-width: 991px) {
+  /* Réduire l'espace en bas de la photo parallax */
+  body .tp-project-details-3-full-width-thumb.mb-120 {
+    margin-bottom: 40px !important;
+  }
+  
+  /* Faire remonter la section "Ils nous soutiennent" */
+  body .tp-testimonial-area.pb-120 {
+    margin-top: -60px !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Corriger le crop de la photo parallax sur mobile - afficher l'image complète */
+  body .tp-project-details-3-full-width-thumb img {
+    object-fit: contain !important;
+    max-height: 60vh !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ajustement pour petits écrans */
+  body .tp-project-details-3-full-width-thumb.mb-120 {
+    margin-bottom: 30px !important;
+  }
+  
+  body .tp-testimonial-area.pb-120 {
+    margin-top: -80px !important;
+  }
+  
+  body .tp-project-details-3-full-width-thumb img {
+    max-height: 50vh !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Ajustement pour très petits écrans */
+  body .tp-project-details-3-full-width-thumb.mb-120 {
+    margin-bottom: 20px !important;
+  }
+  
+  body .tp-testimonial-area.pb-120 {
+    margin-top: -100px !important;
+  }
+  
+  body .tp-project-details-3-full-width-thumb img {
+    max-height: 45vh !important;
+  }
+}
+
