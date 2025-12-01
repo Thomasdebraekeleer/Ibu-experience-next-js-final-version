@@ -184,4 +184,39 @@
   }
 }
 
+/* ========================================================= */
+/* FIX MOBILE: Page d'accueil - Augmenter espace entre */
+/* icônes cocons et section "Ils nous soutiennent" */
+/* ========================================================= */
+
+@media (max-width: 991px) {
+  /* Augmenter l'espace après les icônes cocons sur mobile */
+  /* Cibler la div qui contient les icônes mobile (2x2) avec les classes spécifiques */
+  body .showcase-details-2-area .d-block.d-lg-none .cocon-feature-item {
+    margin-bottom: 0px !important;
+  }
+  
+  /* Cibler le parent qui contient les icônes mobile */
+  body .showcase-details-2-area .d-block.d-lg-none {
+    margin-bottom: 100px !important;
+  }
+  
+  /* Augmenter l'espace avant "Ils nous soutiennent" sur page d'accueil */
+  body .tp-testimonial-area.pb-120.pt-120 {
+    padding-top: 80px !important;
+    margin-top: 40px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body .showcase-details-2-area .d-block.d-lg-none {
+    margin-bottom: 120px !important;
+  }
+  
+  body .tp-testimonial-area.pb-120.pt-120 {
+    padding-top: 100px !important;
+    margin-top: 60px !important;
+  }
+}
+
 
