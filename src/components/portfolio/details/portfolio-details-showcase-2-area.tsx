@@ -236,7 +236,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           style={{
             width: 'auto',
             maxWidth: '500px',
-            zIndex: 10,
             pointerEvents: 'auto'
           }}
         >
@@ -825,7 +824,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         @media (max-width: 991px) {
           .hero-content-wrapper {
             margin-top: clamp(-40px, -5vw, -60px) !important;
-            z-index: 20 !important; /* Au-dessus du widget sur mobile */
+            z-index: 100 !important; /* Au-dessus du widget sur mobile */
             position: relative !important;
           }
           /* S'assurer que le texte est au-dessus du widget */
@@ -834,7 +833,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .showcase-details-2-subtitle,
           .hero-keywords {
             position: relative !important;
-            z-index: 21 !important; /* Au-dessus du contenu wrapper */
+            z-index: 101 !important; /* Au-dessus du contenu wrapper */
           }
           /* Désactiver l'effet parallax sur mobile pour éviter les saccades */
           .showcase-details-2-fullwidth-img img {
@@ -849,24 +848,28 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         
         /* Styles pour le widget Lodgify dans le hero */
         .lodgify-hero-container {
-          /* Positionnement par défaut */
+          /* Positionnement par défaut - PC */
+          z-index: 10; /* Au-dessus de l'image premier plan (z-index 3) sur PC */
         }
         
         @media (min-width: 769px) {
           .lodgify-hero-container {
             width: 60% !important;
             max-width: 800px !important;
+            z-index: 10 !important;
           }
         }
         
         @media (max-width: 768px) {
-          .lodgify-hero-container {
-            top: 75% !important;
+          /* Surcharger le fichier ibu-bien-etre-mobile-fix.css avec une spécificité très élevée */
+          .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container,
+          body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container {
+            top: 85% !important; /* Descendre beaucoup plus bas sur mobile - surcharge le CSS externe qui met à 42% */
             left: 5% !important;
             width: 90% !important;
             max-width: 90% !important;
             right: 5% !important;
-            z-index: 5 !important; /* En dessous du texte sur mobile */
+            z-index: 4 !important; /* Au-dessus de l'image premier plan (z-index 3) mais en dessous du texte (z-index 100+) */
           }
         }
         
@@ -923,12 +926,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
         }
         
-        /* Sur mobile : centrer le widget - Descendre pour éviter chevauchement */
+        /* Sur mobile : centrer le widget - Descendre beaucoup plus bas pour éviter chevauchement */
         @media (max-width: 991px) {
-          .lodgify-hero-container {
+          /* Surcharger le fichier ibu-bien-etre-mobile-fix.css avec une spécificité très élevée */
+          .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container,
+          body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container {
             left: 50% !important;
-            top: 70% !important;
-            z-index: 5 !important; /* En dessous du texte sur mobile */
+            top: 85% !important; /* Descendre beaucoup plus bas pour être en dessous du texte - surcharge le CSS externe */
+            z-index: 4 !important; /* Au-dessus de l'image premier plan (z-index 3) mais en dessous du texte (z-index 100+) */
             transform: translate(-50%, -50%) !important;
             width: 90% !important;
             max-width: 450px !important;
