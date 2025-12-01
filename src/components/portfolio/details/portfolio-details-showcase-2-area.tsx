@@ -663,6 +663,56 @@ export default function PortfolioDetailsShowcaseTwoArea() {
        </div>
        {/* details title 5 */}
 
+      {/* Section Widget Booking Lodgify en bas de page */}
+      <div className="tp-lodgify-booking-area pb-120 pt-120">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-12">
+              <div className="showcase-details-2-title-box mb-60">
+                <h5 className="showcase-details-2-title tp-char-animation" style={{
+                  fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
+                  lineHeight: '0.8',
+                  letterSpacing: '0.08em',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  color: '#053725'
+                }}>
+                  RÉSERVEZ VOTRE SÉJOUR
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-xl-10">
+              {/* Widget de booking Lodgify - Même que dans le hero */}
+              <div
+                id="lodgify-book-now-box-bottom"
+                data-rental-id="738662"
+                data-website-id="607668"
+                data-slug="mallen-jallow"
+                data-language-code="fr"
+                data-new-tab="true"
+                data-version="stable"
+                data-book-button-label="Réservez maintenant"
+                data-dates-check-in-label="Arrivée"
+                data-dates-check-out-label="Départ"
+                data-guests-counter-label="Invités"
+                data-guests-input-singular-label='{{NumberOfGuests}} invité'
+                data-guests-input-plural-label='{{NumberOfGuests}} invités'
+                data-price-display-label="À partir de"
+                data-price-display-currency="€"
+                data-price-display-period="par nuit"
+                data-price-display-tooltip-text="Sélectionnez les dates pour voir le prix total"
+                data-hide-pets="true"
+                data-hide-children="true"
+                data-hide-infants="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Section Widget Booking Lodgify en bas de page */}
+
 
       {/* Styles consolidés */}
       <style jsx>{`
@@ -944,6 +994,38 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           box-shadow: initial !important;
           background: initial !important;
           border-radius: initial !important;
+        }
+        
+        /* Styles pour le widget de booking en bas de page */
+        .tp-lodgify-booking-area :global(#lodgify-book-now-box-bottom) {
+          --ldg-bnb-background: #ffffff !important;
+          --ldg-bnb-border-radius: 0.42em !important;
+          --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          --ldg-bnb-padding: 14px !important;
+          --ldg-bnb-input-background: #ffffff !important;
+          --ldg-bnb-button-border-radius: 0px !important;
+          --ldg-bnb-color-primary: #053701 !important;
+          --ldg-bnb-color-primary-lighter: #829b80 !important;
+          --ldg-bnb-color-primary-darker: #031c01 !important;
+          --ldg-bnb-color-primary-contrast: #ffffff !important;
+          --ldg-component-calendar-cell-selection-bg-color: #053701 !important;
+          --ldg-component-calendar-cell-selection-color: #ffffff !important;
+          --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
+          --ldg-component-calendar-cell-selected-color: #ffffff !important;
+          --ldg-bnb-font-family: inherit !important;
+          background: #ffffff !important;
+          box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          padding: 14px !important;
+          border-radius: 0.42em !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          display: block !important;
+          margin: 0 auto !important;
+        }
+        
+        /* S'assurer que le titre est bien visible en vert */
+        .tp-lodgify-booking-area .showcase-details-2-title {
+          color: #053725 !important;
         }
       `}</style>
     </>
