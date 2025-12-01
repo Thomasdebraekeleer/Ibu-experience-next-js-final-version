@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
-import LodgifySearchBar from '@/components/LodgifySearchBar';
+// Widget de booking Lodgify remplace le widget de recherche
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -230,7 +230,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           </div>
         </div>
 
-        {/* Widget Lodgify avec style verre dépoli */}
+        {/* Widget Lodgify Booking avec style personnalisé */}
         <div 
           className="lodgify-hero-container p-absolute"
           style={{
@@ -242,7 +242,105 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             pointerEvents: 'auto'
           }}
         >
-          <LodgifySearchBar />
+          {/* Styles CSS pour le widget de booking - Apparence par défaut */}
+          <style jsx global>{`
+            /* Styles spécifiques pour le widget du hero - Apparence par défaut */
+            .lodgify-hero-container #lodgify-book-now-box {
+              --ldg-bnb-background: #ffffff !important;
+              --ldg-bnb-border-radius: 0.42em !important;
+              --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+              --ldg-bnb-padding: 14px !important;
+              --ldg-bnb-input-background: #ffffff !important;
+              --ldg-bnb-button-border-radius: 0px !important;
+              --ldg-bnb-color-primary: #053701 !important;
+              --ldg-bnb-color-primary-lighter: #829b80 !important;
+              --ldg-bnb-color-primary-darker: #031c01 !important;
+              --ldg-bnb-color-primary-contrast: #ffffff !important;
+              --ldg-component-calendar-cell-selection-bg-color: #053701 !important;
+              --ldg-component-calendar-cell-selection-color: #ffffff !important;
+              --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
+              --ldg-component-calendar-cell-selected-color: #ffffff !important;
+              --ldg-bnb-font-family: inherit !important;
+              width: 100% !important;
+            }
+            
+            /* Réinitialiser tous les styles globaux pour le widget du hero */
+            .lodgify-hero-container #lodgify-book-now-box * {
+              box-sizing: border-box !important;
+            }
+            
+            .lodgify-hero-container #lodgify-book-now-box input[type="number"],
+            .lodgify-hero-container #lodgify-book-now-box .number-input,
+            .lodgify-hero-container #lodgify-book-now-box .guest-counter,
+            .lodgify-hero-container #lodgify-book-now-box .price-display,
+            .lodgify-hero-container #lodgify-book-now-box .total-price,
+            .lodgify-hero-container #lodgify-book-now-box .minimum-price,
+            .lodgify-hero-container #lodgify-book-now-box .price-amount,
+            .lodgify-hero-container #lodgify-book-now-box .guest-count {
+              border: revert !important;
+              outline: revert !important;
+              box-shadow: revert !important;
+              background: revert !important;
+            }
+            
+            .lodgify-hero-container #lodgify-book-now-box input[type="text"],
+            .lodgify-hero-container #lodgify-book-now-box input[type="date"],
+            .lodgify-hero-container #lodgify-book-now-box select {
+              background: revert !important;
+              border: revert !important;
+              border-radius: revert !important;
+              box-shadow: revert !important;
+            }
+            
+            .lodgify-hero-container #lodgify-book-now-box .guest-selector,
+            .lodgify-hero-container #lodgify-book-now-box .guest-counter-container,
+            .lodgify-hero-container #lodgify-book-now-box .guest-input-container,
+            .lodgify-hero-container #lodgify-book-now-box .guest-field,
+            .lodgify-hero-container #lodgify-book-now-box .guest-wrapper {
+              border: revert !important;
+              box-shadow: revert !important;
+              background: revert !important;
+            }
+            
+            .lodgify-hero-container #lodgify-book-now-box .date-selector,
+            .lodgify-hero-container #lodgify-book-now-box .date-container,
+            .lodgify-hero-container #lodgify-book-now-box .date-field,
+            .lodgify-hero-container #lodgify-book-now-box .date-wrapper {
+              border: revert !important;
+              border-radius: revert !important;
+              background: revert !important;
+              box-shadow: revert !important;
+            }
+          `}</style>
+          
+          {/* Widget de booking Lodgify - Seulement nombre d'invités (adultes uniquement) */}
+          <div
+            id="lodgify-book-now-box"
+            data-rental-id="738662"
+            data-website-id="607668"
+            data-slug="mallen-jallow"
+            data-language-code="fr"
+            data-new-tab="true"
+            data-version="stable"
+            data-currency-code="EUR"
+            data-check-in-label="Arrivée"
+            data-check-out-label="Départ"
+            data-guests-label="Invités"
+            data-guests-singular-label="{{NumberOfGuests}} invité"
+            data-guests-plural-label="{{NumberOfGuests}} invités"
+            data-location-input-label="Emplacement"
+            data-total-price-label="Prix total :"
+            data-select-dates-to-see-price-label="Sélectionnez les dates pour voir le prix total"
+            data-minimum-price-per-night-first-label="À partir de"
+            data-minimum-price-per-night-second-label="par nuit"
+            data-book-button-label="Réservez maintenant"
+            data-adults-label='{"one":"adulte","other":"adultes"}'
+            data-adults-description="Âges {minAge} ou plus"
+            data-children-not-allowed-label="Non adapté aux enfants"
+            data-infants-not-allowed-label="Non adapté aux bébés"
+            data-pets-not-allowed-label="Non autorisé"
+            data-done-label="Terminé"
+          ></div>
         </div>
 
         {/* Image PNG au premier plan avec effet parallaxe - Version PC */}
