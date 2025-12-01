@@ -825,6 +825,16 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         @media (max-width: 991px) {
           .hero-content-wrapper {
             margin-top: clamp(-40px, -5vw, -60px) !important;
+            z-index: 20 !important; /* Au-dessus du widget sur mobile */
+            position: relative !important;
+          }
+          /* S'assurer que le texte est au-dessus du widget */
+          .showcase-details-2-title-box,
+          .showcase-details-2-title,
+          .showcase-details-2-subtitle,
+          .hero-keywords {
+            position: relative !important;
+            z-index: 21 !important; /* Au-dessus du contenu wrapper */
           }
           /* Désactiver l'effet parallax sur mobile pour éviter les saccades */
           .showcase-details-2-fullwidth-img img {
@@ -856,6 +866,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             width: 90% !important;
             max-width: 90% !important;
             right: 5% !important;
+            z-index: 5 !important; /* En dessous du texte sur mobile */
           }
         }
         
@@ -917,6 +928,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .lodgify-hero-container {
             left: 50% !important;
             top: 70% !important;
+            z-index: 5 !important; /* En dessous du texte sur mobile */
             transform: translate(-50%, -50%) !important;
             width: 90% !important;
             max-width: 450px !important;
