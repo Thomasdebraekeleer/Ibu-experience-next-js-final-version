@@ -236,7 +236,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           style={{
             top: '50%',
             left: '5%',
-            width: '50%',
+            width: 'auto',
             maxWidth: '600px',
             zIndex: 10,
             pointerEvents: 'auto'
@@ -813,10 +813,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         
         /* Styles CSS pour le widget de booking Lodgify dans le hero - Apparence harmonieuse */
         .lodgify-hero-container :global(#lodgify-book-now-box) {
-          --ldg-bnb-background: transparent !important;
+          --ldg-bnb-background: #ffffff !important;
           --ldg-bnb-border-radius: 0.42em !important;
-          --ldg-bnb-box-shadow: none !important;
-          --ldg-bnb-padding: 0px !important;
+          --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          --ldg-bnb-padding: 14px !important;
           --ldg-bnb-input-background: #ffffff !important;
           --ldg-bnb-button-border-radius: 0px !important;
           --ldg-bnb-color-primary: #053701 !important;
@@ -828,12 +828,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
           --ldg-component-calendar-cell-selected-color: #ffffff !important;
           --ldg-bnb-font-family: inherit !important;
-          width: 100% !important;
-          /* Enlever l'encadré blanc - background transparent */
-          background: transparent !important;
-          box-shadow: none !important;
-          padding: 0px !important;
-          border-radius: 0 !important;
+          /* Fond blanc qui s'adapte exactement au contenu du widget */
+          background: #ffffff !important;
+          box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          padding: 14px !important;
+          border-radius: 0.42em !important;
+          /* S'assurer que le fond s'adapte au contenu sans dépasser */
+          width: fit-content !important;
+          min-width: 100% !important;
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+          display: block !important;
         }
         
         /* Annuler les styles globaux qui suppriment les bordures */
