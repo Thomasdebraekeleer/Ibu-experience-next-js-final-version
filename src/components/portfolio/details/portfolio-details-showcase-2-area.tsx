@@ -811,7 +811,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
         }
         
-        /* Styles CSS pour le widget de booking Lodgify dans le hero - Apparence par défaut */
+        /* Styles CSS pour le widget de booking Lodgify dans le hero - Apparence harmonieuse */
         .lodgify-hero-container :global(#lodgify-book-now-box) {
           --ldg-bnb-background: #ffffff !important;
           --ldg-bnb-border-radius: 0.42em !important;
@@ -829,13 +829,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           --ldg-component-calendar-cell-selected-color: #ffffff !important;
           --ldg-bnb-font-family: inherit !important;
           width: 100% !important;
+          /* Annuler les styles globaux qui modifient le widget */
+          background: #ffffff !important;
+          box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          padding: 14px !important;
+          border-radius: 0.42em !important;
         }
         
-        /* Réinitialiser tous les styles globaux pour le widget du hero */
-        .lodgify-hero-container :global(#lodgify-book-now-box) :global(*) {
-          box-sizing: border-box !important;
-        }
-        
+        /* Annuler les styles globaux qui suppriment les bordures */
         .lodgify-hero-container :global(#lodgify-book-now-box input[type="number"]),
         .lodgify-hero-container :global(#lodgify-book-now-box .number-input),
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-counter),
@@ -844,39 +845,56 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         .lodgify-hero-container :global(#lodgify-book-now-box .minimum-price),
         .lodgify-hero-container :global(#lodgify-book-now-box .price-amount),
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-count) {
-          border: revert !important;
-          outline: revert !important;
-          box-shadow: revert !important;
-          background: revert !important;
+          border: initial !important;
+          outline: initial !important;
+          box-shadow: initial !important;
+          background: initial !important;
         }
         
+        /* Annuler les styles globaux pour les champs de dates */
         .lodgify-hero-container :global(#lodgify-book-now-box input[type="text"]),
         .lodgify-hero-container :global(#lodgify-book-now-box input[type="date"]),
         .lodgify-hero-container :global(#lodgify-book-now-box select) {
-          background: revert !important;
-          border: revert !important;
-          border-radius: revert !important;
-          box-shadow: revert !important;
+          background: #ffffff !important;
+          border: 1px solid #ddd !important;
+          border-radius: 4px !important;
+          box-shadow: none !important;
         }
         
+        /* Annuler les styles globaux pour les conteneurs d'invités */
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-selector),
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-counter-container),
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-input-container),
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-field),
         .lodgify-hero-container :global(#lodgify-book-now-box .guest-wrapper) {
-          border: revert !important;
-          box-shadow: revert !important;
-          background: revert !important;
+          border: initial !important;
+          box-shadow: initial !important;
+          background: initial !important;
         }
         
+        /* Annuler les styles globaux pour les conteneurs de dates */
         .lodgify-hero-container :global(#lodgify-book-now-box .date-selector),
         .lodgify-hero-container :global(#lodgify-book-now-box .date-container),
         .lodgify-hero-container :global(#lodgify-book-now-box .date-field),
         .lodgify-hero-container :global(#lodgify-book-now-box .date-wrapper) {
-          border: revert !important;
-          border-radius: revert !important;
-          background: revert !important;
-          box-shadow: revert !important;
+          border: initial !important;
+          border-radius: initial !important;
+          background: initial !important;
+          box-shadow: initial !important;
+        }
+        
+        /* Annuler les styles globaux pour les boutons +/- */
+        .lodgify-hero-container :global(#lodgify-book-now-box button[aria-label*="plus"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box button[aria-label*="moins"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box button[aria-label*="increase"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box button[aria-label*="decrease"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box .increment-button),
+        .lodgify-hero-container :global(#lodgify-book-now-box .decrement-button) {
+          border: initial !important;
+          outline: initial !important;
+          box-shadow: initial !important;
+          background: initial !important;
+          border-radius: initial !important;
         }
       `}</style>
     </>
