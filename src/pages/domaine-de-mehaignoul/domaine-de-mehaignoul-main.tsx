@@ -33,10 +33,10 @@ import parallax_img from '@/assets/img/inner-project/portfolio-details-domaine-m
 
 // slider images for Domaine de Mehaignoul
 const slider_images = [
-  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 1.jpg',
-  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 2.jpg',
-  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 3.jpg',
-  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine de Mehaignoul img 4.jpg'
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-1.jpg',
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-2.jpg',
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-3.jpg',
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-4.jpg'
 ];
 
 // slider setting
