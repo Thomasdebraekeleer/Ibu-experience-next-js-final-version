@@ -173,7 +173,7 @@ const DomaineDeMehaignoulMain = () => {
                           />
                         </div>
                         <a 
-                          href="https://wbp-mallen-jallow.lodgify.com/fr/cocon-ibu-1---domaine-de-mehaignoul?adults=1"
+                          href="https://mallen-jallow.lodgify.com/fr/ibu-experience---cocon-1---domaine-de-mehaignoul?arrival=2026-04-10&departure=2026-04-11&adults=1&children=0&pets=0&infants=0"
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
@@ -235,7 +235,7 @@ const DomaineDeMehaignoulMain = () => {
                           />
                         </div>
                         <a 
-                          href="https://wbp-mallen-jallow.lodgify.com/fr/cocon-ibu-2---domaine-de-mehaignoul?adults=1"
+                          href="https://mallen-jallow.lodgify.com/fr/ibu-experience---cocon-2---domaine-de-mehaignoul?arrival=2026-04-10&departure=2026-04-11&adults=1&children=0&pets=0&infants=0"
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
