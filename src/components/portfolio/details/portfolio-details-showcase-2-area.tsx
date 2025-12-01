@@ -242,77 +242,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             pointerEvents: 'auto'
           }}
         >
-          {/* Styles CSS pour le widget de booking - Apparence par défaut */}
-          <style jsx global>{`
-            /* Styles spécifiques pour le widget du hero - Apparence par défaut */
-            .lodgify-hero-container #lodgify-book-now-box {
-              --ldg-bnb-background: #ffffff !important;
-              --ldg-bnb-border-radius: 0.42em !important;
-              --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-              --ldg-bnb-padding: 14px !important;
-              --ldg-bnb-input-background: #ffffff !important;
-              --ldg-bnb-button-border-radius: 0px !important;
-              --ldg-bnb-color-primary: #053701 !important;
-              --ldg-bnb-color-primary-lighter: #829b80 !important;
-              --ldg-bnb-color-primary-darker: #031c01 !important;
-              --ldg-bnb-color-primary-contrast: #ffffff !important;
-              --ldg-component-calendar-cell-selection-bg-color: #053701 !important;
-              --ldg-component-calendar-cell-selection-color: #ffffff !important;
-              --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
-              --ldg-component-calendar-cell-selected-color: #ffffff !important;
-              --ldg-bnb-font-family: inherit !important;
-              width: 100% !important;
-            }
-            
-            /* Réinitialiser tous les styles globaux pour le widget du hero */
-            .lodgify-hero-container #lodgify-book-now-box * {
-              box-sizing: border-box !important;
-            }
-            
-            .lodgify-hero-container #lodgify-book-now-box input[type="number"],
-            .lodgify-hero-container #lodgify-book-now-box .number-input,
-            .lodgify-hero-container #lodgify-book-now-box .guest-counter,
-            .lodgify-hero-container #lodgify-book-now-box .price-display,
-            .lodgify-hero-container #lodgify-book-now-box .total-price,
-            .lodgify-hero-container #lodgify-book-now-box .minimum-price,
-            .lodgify-hero-container #lodgify-book-now-box .price-amount,
-            .lodgify-hero-container #lodgify-book-now-box .guest-count {
-              border: revert !important;
-              outline: revert !important;
-              box-shadow: revert !important;
-              background: revert !important;
-            }
-            
-            .lodgify-hero-container #lodgify-book-now-box input[type="text"],
-            .lodgify-hero-container #lodgify-book-now-box input[type="date"],
-            .lodgify-hero-container #lodgify-book-now-box select {
-              background: revert !important;
-              border: revert !important;
-              border-radius: revert !important;
-              box-shadow: revert !important;
-            }
-            
-            .lodgify-hero-container #lodgify-book-now-box .guest-selector,
-            .lodgify-hero-container #lodgify-book-now-box .guest-counter-container,
-            .lodgify-hero-container #lodgify-book-now-box .guest-input-container,
-            .lodgify-hero-container #lodgify-book-now-box .guest-field,
-            .lodgify-hero-container #lodgify-book-now-box .guest-wrapper {
-              border: revert !important;
-              box-shadow: revert !important;
-              background: revert !important;
-            }
-            
-            .lodgify-hero-container #lodgify-book-now-box .date-selector,
-            .lodgify-hero-container #lodgify-book-now-box .date-container,
-            .lodgify-hero-container #lodgify-book-now-box .date-field,
-            .lodgify-hero-container #lodgify-book-now-box .date-wrapper {
-              border: revert !important;
-              border-radius: revert !important;
-              background: revert !important;
-              box-shadow: revert !important;
-            }
-          `}</style>
-          
           {/* Widget de booking Lodgify - Seulement nombre d'invités (adultes uniquement) */}
           <div
             id="lodgify-book-now-box"
@@ -880,6 +809,74 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             max-width: 90% !important;
             right: 5% !important;
           }
+        }
+        
+        /* Styles CSS pour le widget de booking Lodgify dans le hero - Apparence par défaut */
+        .lodgify-hero-container :global(#lodgify-book-now-box) {
+          --ldg-bnb-background: #ffffff !important;
+          --ldg-bnb-border-radius: 0.42em !important;
+          --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
+          --ldg-bnb-padding: 14px !important;
+          --ldg-bnb-input-background: #ffffff !important;
+          --ldg-bnb-button-border-radius: 0px !important;
+          --ldg-bnb-color-primary: #053701 !important;
+          --ldg-bnb-color-primary-lighter: #829b80 !important;
+          --ldg-bnb-color-primary-darker: #031c01 !important;
+          --ldg-bnb-color-primary-contrast: #ffffff !important;
+          --ldg-component-calendar-cell-selection-bg-color: #053701 !important;
+          --ldg-component-calendar-cell-selection-color: #ffffff !important;
+          --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
+          --ldg-component-calendar-cell-selected-color: #ffffff !important;
+          --ldg-bnb-font-family: inherit !important;
+          width: 100% !important;
+        }
+        
+        /* Réinitialiser tous les styles globaux pour le widget du hero */
+        .lodgify-hero-container :global(#lodgify-book-now-box) :global(*) {
+          box-sizing: border-box !important;
+        }
+        
+        .lodgify-hero-container :global(#lodgify-book-now-box input[type="number"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box .number-input),
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-counter),
+        .lodgify-hero-container :global(#lodgify-book-now-box .price-display),
+        .lodgify-hero-container :global(#lodgify-book-now-box .total-price),
+        .lodgify-hero-container :global(#lodgify-book-now-box .minimum-price),
+        .lodgify-hero-container :global(#lodgify-book-now-box .price-amount),
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-count) {
+          border: revert !important;
+          outline: revert !important;
+          box-shadow: revert !important;
+          background: revert !important;
+        }
+        
+        .lodgify-hero-container :global(#lodgify-book-now-box input[type="text"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box input[type="date"]),
+        .lodgify-hero-container :global(#lodgify-book-now-box select) {
+          background: revert !important;
+          border: revert !important;
+          border-radius: revert !important;
+          box-shadow: revert !important;
+        }
+        
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-selector),
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-counter-container),
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-input-container),
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-field),
+        .lodgify-hero-container :global(#lodgify-book-now-box .guest-wrapper) {
+          border: revert !important;
+          box-shadow: revert !important;
+          background: revert !important;
+        }
+        
+        .lodgify-hero-container :global(#lodgify-book-now-box .date-selector),
+        .lodgify-hero-container :global(#lodgify-book-now-box .date-container),
+        .lodgify-hero-container :global(#lodgify-book-now-box .date-field),
+        .lodgify-hero-container :global(#lodgify-book-now-box .date-wrapper) {
+          border: revert !important;
+          border-radius: revert !important;
+          background: revert !important;
+          box-shadow: revert !important;
         }
       `}</style>
     </>
