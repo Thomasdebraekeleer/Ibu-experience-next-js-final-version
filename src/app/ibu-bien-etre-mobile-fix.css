@@ -154,4 +154,34 @@
   }
 }
 
+/* ========================================================= */
+/* FIX MOBILE: Page d'accueil - Réduire UNIQUEMENT l'espace */
+/* entre texte hero et widget Lodgify (sans affecter autres sections) */
+/* ========================================================= */
+
+@media (max-width: 991px) {
+  /* Cibler UNIQUEMENT le hero-keywords dans le hero-content-wrapper */
+  /* Pas les autres sections qui utilisent hero-keywords */
+  body .showcase-details-2-area.showcase-details-2-bg .hero-content-wrapper .hero-keywords {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  
+  /* Cibler UNIQUEMENT le widget Lodgify dans le hero */
+  body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container {
+    top: 45% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body .showcase-details-2-area.showcase-details-2-bg .hero-content-wrapper .hero-keywords {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  
+  body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container {
+    top: 42% !important;
+  }
+}
+
 
