@@ -235,7 +235,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           className="lodgify-hero-container p-absolute"
           style={{
             top: '50%',
-            left: '5%',
             width: 'auto',
             maxWidth: '500px',
             zIndex: 10,
@@ -845,6 +844,31 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         .lodgify-hero-container {
           margin: 0 !important;
           padding: 0 !important;
+        }
+        
+        /* Sur PC : aligner le widget à gauche avec le texte du conteneur */
+        @media (min-width: 1400px) {
+          .lodgify-hero-container {
+            left: calc((100% - 1550px) / 2) !important;
+            transform: translateY(-50%) !important;
+          }
+        }
+        
+        @media (min-width: 992px) and (max-width: 1399px) {
+          .lodgify-hero-container {
+            left: 15px !important;
+            transform: translateY(-50%) !important;
+          }
+        }
+        
+        /* Sur mobile : centrer le widget */
+        @media (max-width: 991px) {
+          .lodgify-hero-container {
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 90% !important;
+            max-width: 450px !important;
+          }
         }
         
         /* Enlever les marges/paddings des éléments internes qui créent de l'espace */
