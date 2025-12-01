@@ -1,5 +1,5 @@
 /* FIX MOBILE: Réduction ULTRA DRASTIQUE de l'espace entre le paragraphe et "CE QUE COMPREND IBÙ BIEN-ÊTRE" */
-
+  
 @media (max-width: 991px) {
   /* Réduction MAXIMALE du padding-bottom de la section du paragraphe */
   body .showcase-details-2-area.pb-120 {
@@ -8,7 +8,8 @@
   }
   
   /* Réduction MAXIMALE des marges de la photo */
-  body .tp-project-details-3-thumb.mb-120 {
+  /* SAUF pour les images full-width (page about) */
+  body .tp-project-details-3-thumb.mb-120:not(.tp-project-details-3-full-width-thumb) {
     margin-bottom: 0px !important;
     margin-top: -120px !important;
   }
@@ -37,6 +38,61 @@
     padding-top: 0px !important;
     padding-bottom: 30px !important;
   }
+  
+  /* ========================================================= */
+  /* AJUSTEMENT DES TAILLES DE TEXTE SUR MOBILE - PAGE EXPERIENCES */
+  /* ========================================================= */
+  
+  /* AGRANDIR le titre "CE QUE COMPREND IBÙ BIEN-ÊTRE" */
+  body .ce-que-comprend-title {
+    font-size: clamp(2.2rem, 5.5vw, 3.5rem) !important;
+    white-space: normal !important;
+  }
+  
+  /* RÉDUIRE le texte "IBÙ Bien-être, vous invite à vivre..." */
+  body .tp-section-title-40 {
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem) !important;
+  }
+  
+  /* RÉORGANISER L'ORDRE sur mobile : Photo > Titres > Accordéon */
+  /* Utiliser display: contents pour aplatir la structure */
+  body #services-section > .container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Aplatir le deuxième row pour accéder à ses enfants */
+  body #services-section > .container > .row:nth-child(2) {
+    display: contents !important;
+  }
+  
+  /* Row 1 (titres) : ordre 2 - au milieu */
+  body #services-section > .container > .row:first-child {
+    order: 2 !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+  }
+  
+  /* La colonne avec la photo : ordre 1 - en haut */
+  body #services-section > .container > .row:nth-child(2) > div:first-child {
+    order: 1 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 0px !important;
+  }
+  
+  /* La colonne avec l'accordéon : ordre 3 - en bas */
+  body #services-section > .container > .row:nth-child(2) > div:last-child {
+    order: 3 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+  }
+  
+  /* La photo prend toute la largeur */
+  body #services-section .text-center {
+    height: auto !important;
+  }
 }
 
 /* Media query encore plus agressif pour petits mobiles */
@@ -46,7 +102,7 @@
     margin-bottom: -120px !important;
   }
   
-  body .tp-project-details-3-thumb.mb-120 {
+  body .tp-project-details-3-thumb.mb-120:not(.tp-project-details-3-full-width-thumb) {
     margin-bottom: 0px !important;
     margin-top: -150px !important;
   }
@@ -55,7 +111,47 @@
     padding-top: 0px !important;
     margin-top: -220px !important;
   }
+  
+  /* Ajuster encore plus sur petits mobiles */
+  body .ce-que-comprend-title {
+    font-size: clamp(2rem, 6vw, 3.2rem) !important;
+  }
+  
+  body .tp-section-title-40 {
+    font-size: clamp(1rem, 3vw, 1.4rem) !important;
+  }
 }
 
+/* ========================================================= */
+/* FIX MOBILE: Page À PROPOS - Descendre "Ils nous soutiennent" */
+/* Pour annuler les réductions d'espace sur cette page */
+/* ========================================================= */
+
+@media (max-width: 991px) {
+  /* ANNULER la réduction pour l'image parallax sur page about */
+  /* Utiliser un sélecteur très spécifique pour override */
+  body .tp-project-details-3-full-width-thumb.mb-120 {
+    margin-bottom: 150px !important;
+    margin-top: 0px !important;
+  }
+  
+  /* Descendre "Ils nous soutiennent" */
+  body .tp-testimonial-area.pb-120 {
+    margin-top: 0px !important;
+    padding-top: 120px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body .tp-project-details-3-full-width-thumb.mb-120 {
+    margin-bottom: 180px !important;
+    margin-top: 0px !important;
+  }
+  
+  body .tp-testimonial-area.pb-120 {
+    margin-top: 0px !important;
+    padding-top: 150px !important;
+  }
+}
 
 
