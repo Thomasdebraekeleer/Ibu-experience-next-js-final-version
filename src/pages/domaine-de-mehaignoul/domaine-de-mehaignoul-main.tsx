@@ -289,7 +289,7 @@ const DomaineDeMehaignoulMain = () => {
                          {/* NOS COCONS IBÙ Experience section */}
 
                            {/* Slider images section */}
-              <div className="showcase-details-2-area pb-120 carousel-section-domaine">
+              <div className="showcase-details-2-area pb-120">
                   <div className="container-fluid">
                     <div className="pd-visual-slider-wrap pb-40">
                       <Swiper {...slider_setting} modules={[Autoplay]} className="swiper-container pd-visual-slider-active">
@@ -309,20 +309,6 @@ const DomaineDeMehaignoulMain = () => {
                       </Swiper>
                     </div>
                   </div>
-                  
-                  {/* Style pour augmenter l'espace après le carrousel sur mobile */}
-                  <style jsx>{`
-                    @media (max-width: 991px) {
-                      .carousel-section-domaine {
-                        padding-bottom: 200px !important;
-                      }
-                    }
-                    @media (max-width: 576px) {
-                      .carousel-section-domaine {
-                        padding-bottom: 250px !important;
-                      }
-                    }
-                  `}</style>
               </div>
                            {/* Slider images section */}
 
