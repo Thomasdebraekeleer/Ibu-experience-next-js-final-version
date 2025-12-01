@@ -811,7 +811,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
         }
         
-        /* Styles CSS pour le widget de booking Lodgify dans le hero - Apparence harmonieuse */
+        /* Styles CSS pour le widget de booking Lodgify dans le hero - Rectangle blanc simple */
         .lodgify-hero-container :global(#lodgify-book-now-box) {
           --ldg-bnb-background: #ffffff !important;
           --ldg-bnb-border-radius: 0.42em !important;
@@ -828,17 +828,37 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
           --ldg-component-calendar-cell-selected-color: #ffffff !important;
           --ldg-bnb-font-family: inherit !important;
-          /* Fond blanc qui s'adapte exactement au contenu du widget */
+          /* Rectangle blanc simple qui colle exactement au contenu */
           background: #ffffff !important;
           box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
           padding: 14px !important;
           border-radius: 0.42em !important;
-          /* S'assurer que le fond s'adapte au contenu sans dépasser */
-          width: fit-content !important;
-          min-width: 100% !important;
-          max-width: 100% !important;
+          width: 100% !important;
           box-sizing: border-box !important;
           display: block !important;
+          margin: 0 !important;
+          /* Enlever tout espace supplémentaire */
+          overflow: hidden !important;
+        }
+        
+        /* S'assurer que le conteneur parent ne crée pas d'espace supplémentaire */
+        .lodgify-hero-container {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        
+        /* Enlever les marges/paddings des éléments internes qui créent de l'espace */
+        .lodgify-hero-container :global(#lodgify-book-now-box) > * {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+        }
+        
+        .lodgify-hero-container :global(#lodgify-book-now-box) > *:first-child {
+          margin-top: 0 !important;
+        }
+        
+        .lodgify-hero-container :global(#lodgify-book-now-box) > *:last-child {
+          margin-bottom: 0 !important;
         }
         
         /* Annuler les styles globaux qui suppriment les bordures */
