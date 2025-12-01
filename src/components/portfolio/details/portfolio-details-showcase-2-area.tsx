@@ -811,12 +811,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
         }
         
-        /* Styles CSS pour le widget de booking Lodgify dans le hero - Rectangle blanc simple */
+        /* Styles CSS pour le widget de booking Lodgify dans le hero - Sans encadré blanc */
         .lodgify-hero-container :global(#lodgify-book-now-box) {
-          --ldg-bnb-background: #ffffff !important;
-          --ldg-bnb-border-radius: 0.42em !important;
-          --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          --ldg-bnb-padding: 14px !important;
+          --ldg-bnb-background: transparent !important;
+          --ldg-bnb-border-radius: 0 !important;
+          --ldg-bnb-box-shadow: none !important;
+          --ldg-bnb-padding: 0px !important;
           --ldg-bnb-input-background: #ffffff !important;
           --ldg-bnb-button-border-radius: 0px !important;
           --ldg-bnb-color-primary: #053701 !important;
@@ -828,17 +828,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
           --ldg-component-calendar-cell-selected-color: #ffffff !important;
           --ldg-bnb-font-family: inherit !important;
-          /* Rectangle blanc simple qui colle exactement au contenu */
-          background: #ffffff !important;
-          box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          padding: 14px !important;
-          border-radius: 0.42em !important;
+          /* ENLEVER complètement l'encadré blanc */
+          background: transparent !important;
+          box-shadow: none !important;
+          padding: 0px !important;
+          border-radius: 0 !important;
           width: 100% !important;
           box-sizing: border-box !important;
           display: block !important;
           margin: 0 !important;
-          /* Enlever tout espace supplémentaire */
-          overflow: hidden !important;
         }
         
         /* S'assurer que le conteneur parent ne crée pas d'espace supplémentaire */
