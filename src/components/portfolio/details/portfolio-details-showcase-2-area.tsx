@@ -826,14 +826,21 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             margin-top: clamp(-40px, -5vw, -60px) !important;
             z-index: 100 !important; /* Au-dessus du widget sur mobile */
             position: relative !important;
+            pointer-events: none !important; /* Permet les interactions avec le widget en dessous */
           }
-          /* S'assurer que le texte est au-dessus du widget */
+          /* S'assurer que le texte est au-dessus du widget mais n'empêche pas les interactions */
           .showcase-details-2-title-box,
           .showcase-details-2-title,
           .showcase-details-2-subtitle,
           .hero-keywords {
             position: relative !important;
             z-index: 101 !important; /* Au-dessus du contenu wrapper */
+            pointer-events: none !important; /* Permet les interactions avec le widget en dessous */
+          }
+          /* Réactiver pointer-events pour les liens si nécessaire */
+          .showcase-details-2-title-box a,
+          .showcase-details-2-title a {
+            pointer-events: auto !important;
           }
           /* Désactiver l'effet parallax sur mobile pour éviter les saccades */
           .showcase-details-2-fullwidth-img img {
@@ -870,6 +877,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             max-width: 90% !important;
             right: 5% !important;
             z-index: 4 !important; /* Au-dessus de l'image premier plan (z-index 3) mais en dessous du texte (z-index 100+) */
+            pointer-events: auto !important; /* Permet les interactions avec le widget */
+          }
+          /* S'assurer que le widget lui-même accepte les interactions */
+          .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container :global(#lodgify-book-now-box),
+          body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container :global(#lodgify-book-now-box) {
+            pointer-events: auto !important;
           }
         }
         
@@ -937,6 +950,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             transform: translate(-50%, -50%) !important;
             width: 90% !important;
             max-width: 450px !important;
+            pointer-events: auto !important; /* Permet les interactions avec le widget */
+          }
+          /* S'assurer que le widget lui-même accepte les interactions */
+          .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container :global(#lodgify-book-now-box),
+          body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container :global(#lodgify-book-now-box) {
+            pointer-events: auto !important;
           }
         }
         
