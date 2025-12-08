@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { usePathname } from 'next/navigation';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
 // Widget de booking Lodgify remplace le widget de recherche
@@ -105,6 +106,9 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const foregroundRef = useRef<HTMLDivElement>(null);
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
+  const lodgifyWidgetRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const [widgetKey, setWidgetKey] = useState(0);
 
   // === Parallaxe optimisée: rAF + désactivation mobile ===
   useIsomorphicLayoutEffect(() => {
@@ -198,6 +202,154 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       io.disconnect();
     };
   }, []);
+
+  // === Fonction utilitaire pour initialiser le widget Lodgify ===
+  const initLodgifyWidget = React.useCallback(() => {
+    const widgetElement = lodgifyWidgetRef.current;
+    if (!widgetElement) return;
+
+    // Vérifier si le script Lodgify est chargé
+    const checkScriptLoaded = () => {
+      return typeof window !== 'undefined' && 
+             (window as any).renderBookNowBox !== undefined;
+    };
+
+    // Fonction pour forcer le rechargement du widget
+    const forceReloadWidget = () => {
+      // Supprimer complètement l'ancien contenu
+      widgetElement.innerHTML = '';
+      
+      // Supprimer tous les attributs data existants
+      Array.from(widgetElement.attributes).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          widgetElement.removeAttribute(attr.name);
+        }
+      });
+      
+      // Réinitialiser les attributs data
+      const dataAttributes = {
+        'data-rental-id': '738662',
+        'data-website-id': '607668',
+        'data-slug': 'mallen-jallow',
+        'data-language-code': 'fr',
+        'data-new-tab': 'true',
+        'data-version': 'stable',
+        'data-currency-code': 'EUR',
+        'data-check-in-label': 'Arrivée',
+        'data-check-out-label': 'Départ',
+        'data-guests-label': 'Invités',
+        'data-guests-singular-label': '{{NumberOfGuests}} invité',
+        'data-guests-plural-label': '{{NumberOfGuests}} invités',
+        'data-location-input-label': 'Emplacement',
+        'data-total-price-label': 'Prix total :',
+        'data-select-dates-to-see-price-label': 'Sélectionnez les dates pour voir le prix total',
+        'data-minimum-price-per-night-first-label': 'À partir de',
+        'data-minimum-price-per-night-second-label': 'par nuit',
+        'data-book-button-label': 'Réservez maintenant',
+        'data-adults-label': '{"one":"adulte","other":"adultes"}',
+        'data-adults-description': 'Âges {minAge} ou plus',
+        'data-children-not-allowed-label': 'Non adapté aux enfants',
+        'data-infants-not-allowed-label': 'Non adapté aux bébés',
+        'data-pets-not-allowed-label': 'Non autorisé',
+        'data-done-label': 'Terminé'
+      };
+
+      Object.entries(dataAttributes).forEach(([key, value]) => {
+        widgetElement.setAttribute(key, value);
+      });
+
+      // Attendre que le DOM soit prêt puis appeler le script
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          try {
+            // Appeler la fonction de rendu Lodgify
+            if ((window as any).renderBookNowBox) {
+              (window as any).renderBookNowBox();
+            }
+          } catch (error) {
+            console.warn('Erreur lors du rendu du widget Lodgify:', error);
+          }
+        }, 150);
+      });
+    };
+
+    // Attendre que le script soit chargé
+    const waitForScript = (retries = 30, delay = 100) => {
+      if (checkScriptLoaded()) {
+        forceReloadWidget();
+      } else if (retries > 0) {
+        setTimeout(() => waitForScript(retries - 1, delay), delay);
+      } else {
+        // Si le script n'est pas chargé après plusieurs tentatives, réessayer périodiquement
+        const intervalId = setInterval(() => {
+          if (checkScriptLoaded()) {
+            clearInterval(intervalId);
+            forceReloadWidget();
+          }
+        }, 500);
+        
+        // Nettoyer après 10 secondes
+        setTimeout(() => clearInterval(intervalId), 10000);
+      }
+    };
+
+    // Démarrer l'attente du script
+    waitForScript();
+  }, []);
+
+  // === Réinitialisation du widget Lodgify lors de la navigation ===
+  useEffect(() => {
+    // Incrémenter la clé pour forcer le remontage du widget
+    setWidgetKey(prev => prev + 1);
+
+    // Petit délai pour s'assurer que le DOM est prêt
+    const timer = setTimeout(() => {
+      initLodgifyWidget();
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [pathname, initLodgifyWidget]);
+
+  // === Réinitialisation du widget au montage du composant ===
+  useEffect(() => {
+    // Initialiser le widget au montage
+    const timer = setTimeout(() => {
+      initLodgifyWidget();
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [initLodgifyWidget]);
+
+  // === MutationObserver pour détecter l'ajout du widget au DOM ===
+  useEffect(() => {
+    const widgetElement = lodgifyWidgetRef.current;
+    if (!widgetElement) return;
+
+    // Observer les changements dans le widget
+    const observer = new MutationObserver((mutations) => {
+      // Si le widget est vide ou n'a pas de contenu, réessayer de le charger
+      if (widgetElement.children.length === 0 && widgetElement.innerHTML.trim() === '') {
+        // Attendre un peu puis réessayer
+        setTimeout(() => {
+          initLodgifyWidget();
+        }, 500);
+      }
+    });
+
+    observer.observe(widgetElement, {
+      childList: true,
+      subtree: true,
+      attributes: false
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [initLodgifyWidget, widgetKey]);
 
   return (
     <>
@@ -295,6 +447,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         >
           {/* Widget de booking Lodgify - Seulement nombre d'invités (adultes uniquement) */}
           <div
+            ref={lodgifyWidgetRef}
+            key={`lodgify-widget-${widgetKey}`}
             id="lodgify-book-now-box"
             data-rental-id="738662"
             data-website-id="607668"
@@ -832,55 +986,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         </div>
       </div>
 
-      {/* Section Widget Booking Lodgify en bas de page */}
-      <div className="tp-lodgify-booking-area pb-120 pt-120">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="showcase-details-2-title-box mb-60">
-                <h5 className="showcase-details-2-title tp-char-animation" style={{
-                  fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
-                  lineHeight: '0.8',
-                  letterSpacing: '0.08em',
-                  fontWeight: '700',
-                  textTransform: 'uppercase',
-                  color: '#053725'
-                }}>
-                  RÉSERVEZ VOTRE SÉJOUR
-                </h5>
-              </div>
-            </div>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-xl-10">
-              {/* Widget de booking Lodgify - Même que dans le hero */}
-              <div
-                id="lodgify-book-now-box-bottom"
-                data-rental-id="738662"
-                data-website-id="607668"
-                data-slug="mallen-jallow"
-                data-language-code="fr"
-                data-new-tab="true"
-                data-version="stable"
-                data-book-button-label="Réservez maintenant"
-                data-dates-check-in-label="Arrivée"
-                data-dates-check-out-label="Départ"
-                data-guests-counter-label="Invités"
-                data-guests-input-singular-label='{{NumberOfGuests}} invité'
-                data-guests-input-plural-label='{{NumberOfGuests}} invités'
-                data-price-display-label="À partir de"
-                data-price-display-currency="€"
-                data-price-display-period="par nuit"
-                data-price-display-tooltip-text="Sélectionnez les dates pour voir le prix total"
-                data-hide-pets="true"
-                data-hide-children="true"
-                data-hide-infants="true"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Section Widget Booking Lodgify en bas de page */}
 
 
       {/* Styles consolidés */}
@@ -1253,45 +1358,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           box-shadow: initial !important;
           background: initial !important;
           border-radius: initial !important;
-        }
-        
-        /* Styles pour le widget de booking en bas de page */
-        .tp-lodgify-booking-area :global(#lodgify-book-now-box-bottom) {
-          --ldg-bnb-background: #ffffff !important;
-          --ldg-bnb-border-radius: 0.42em !important;
-          --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          --ldg-bnb-padding: 14px !important;
-          --ldg-bnb-input-background: #ffffff !important;
-          --ldg-bnb-button-border-radius: 0px !important;
-          --ldg-bnb-color-primary: #053701 !important;
-          --ldg-bnb-color-primary-lighter: #829b80 !important;
-          --ldg-bnb-color-primary-darker: #031c01 !important;
-          --ldg-bnb-color-primary-contrast: #ffffff !important;
-          --ldg-component-calendar-cell-selection-bg-color: #053701 !important;
-          --ldg-component-calendar-cell-selection-color: #ffffff !important;
-          --ldg-component-calendar-cell-selected-bg-color: #829b80 !important;
-          --ldg-component-calendar-cell-selected-color: #ffffff !important;
-          --ldg-bnb-font-family: inherit !important;
-          background: #ffffff !important;
-          box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          padding: 14px !important;
-          border-radius: 0.42em !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
-          display: block !important;
-          margin: 0 auto !important;
-        }
-        /* Si le widget ne se charge pas, masquer le conteneur pour éviter un bloc blanc */
-        .tp-lodgify-booking-area :global(#lodgify-book-now-box-bottom:empty) {
-          display: none !important;
-        }
-        .tp-lodgify-booking-area {
-          padding-bottom: 60px !important;
-        }
-        
-        /* S'assurer que le titre est bien visible en vert */
-        .tp-lodgify-booking-area .showcase-details-2-title {
-          color: #053725 !important;
         }
         /* Espacement pour la section Ils nous soutiennent */
         .ils-nous-soutiennent-section {

@@ -3,7 +3,7 @@
 @media (max-width: 991px) {
   /* Réduction MAXIMALE du padding-bottom de la section du paragraphe */
   body .showcase-details-2-area.pb-120 {
-    padding-bottom: 24px !important;
+    padding-bottom: 16px !important;
     margin-bottom: 0px !important;
   }
   
@@ -17,8 +17,14 @@
   /* Réduction MAXIMALE du padding-top de la section services */
   body #services-section.tp-service-2-pt,
   body #services-section {
-    padding-top: 32px !important;
-    margin-top: 0px !important;
+    padding-top: 24px !important;
+    margin-top: -24px !important;
+  }
+
+  /* Bouton "Lieux et Disponibilités" : l'éloigner des icônes au-dessus */
+  body .tp-project-details-3-thumb.pb-130 {
+    padding-top: 60px !important;
+    margin-top: 20px !important;
   }
   
   /* Réduction MAXIMALE des marges du titre */
@@ -98,7 +104,7 @@
 /* Media query encore plus agressif pour petits mobiles */
 @media (max-width: 768px) {
   body .showcase-details-2-area.pb-120 {
-    padding-bottom: 24px !important;
+    padding-bottom: 14px !important;
     margin-bottom: 0px !important;
   }
   
@@ -108,8 +114,14 @@
   }
   
   body #services-section {
-    padding-top: 28px !important;
-    margin-top: 0px !important;
+    padding-top: 20px !important;
+    margin-top: -28px !important;
+  }
+
+  /* Bouton "Lieux et Disponibilités" : plus d'espace sur très petits écrans */
+  body .tp-project-details-3-thumb.pb-130 {
+    padding-top: 50px !important;
+    margin-top: 16px !important;
   }
   
   /* Ajuster encore plus sur petits mobiles */
