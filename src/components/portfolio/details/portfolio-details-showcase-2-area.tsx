@@ -897,17 +897,18 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         @media (max-width: 991px) {
           /* Forcer un espacement au-dessus du titre pour éviter qu'il ne passe sous la section précédente */
           .tp-award-wrapper {
-            padding-top: 90px !important;
+            padding-top: 8px !important;
             margin-top: 0 !important;
           }
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-top: 70px !important;
+            padding-top: 12px !important;
+            padding-bottom: 28px !important;
             margin-top: 0 !important;
           }
           /* Décaler le bloc titre pour éviter toute découpe visuelle */
           .tp-award-wrapper :global(.tp-award-title-box) {
-            margin-top: 30px !important;
-            padding-top: 10px !important;
+            margin-top: 4px !important;
+            padding-top: 0 !important;
           }
           /* Garantir que le titre "L'instant IBÙ" s'affiche sur mobile */
           .tp-award-wrapper :global(.tp-award-title-box),
@@ -923,7 +924,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           
           /* Réduire drastiquement le padding-bottom de la section Awards */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 0 !important;
+            padding-bottom: 28px !important;
             margin-bottom: 0 !important;
           }
           
@@ -968,7 +969,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           
           /* Encore plus de remontée sur petits mobiles */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 0 !important;
+            padding-top: 10px !important;
+            padding-bottom: 22px !important;
             margin-bottom: 0 !important;
           }
           
