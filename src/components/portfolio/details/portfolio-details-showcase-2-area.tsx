@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
 // Widget de booking Lodgify remplace le widget de recherche
@@ -44,6 +44,60 @@ const mobile_carousel_images = [
   '/assets/img/inner-project/Caroussel pictures/Image 6.webp',
   '/assets/img/inner-project/Caroussel pictures/Image 7.webp',
 ];
+
+// Témoignages (mêmes contenus que la page À propos)
+const testimonial_data = [
+  {
+    id: 1,
+    desc: `"Touchée par votre projet et les valeurs qu'il met en exergue, je vous félicite pour cette initiative ! Bonne chance et beaucoup de succès dans cette aventure !"`,
+    name: "Sophie Levecq",
+    designation: "",
+  },
+  {
+    id: 2,
+    desc: `"Super idée, le début d'une grande aventure! Tout notre soutien"`,
+    name: "Evelyne Delmotte",
+    designation: "",
+  },
+  {
+    id: 3,
+    desc: `"Magnifique initiative et qui porte le nom d'un homme génial qui nous manque."`,
+    name: "Veronica Britom",
+    designation: "",
+  },
+  {
+    id: 4,
+    desc: `"Bravo pour ce super projet"`,
+    name: "Justine Raskin",
+    designation: "",
+  },
+  {
+    id: 5,
+    desc: `"Hâte que ce magnifique projet, prenne 100% vie! Il en vaut largement la peine"`,
+    name: "Sophie Ileka",
+    designation: "",
+  },
+  {
+    id: 6,
+    desc: `"Quel projet magnifique!!!"`,
+    name: "Debo Landroux",
+    designation: "",
+  },
+];
+
+const testimonial_slider_setting = {
+  slidesPerView: 1,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  speed: 1000,
+  navigation: {
+    nextEl: ".tp-testimonial-next",
+    prevEl: ".tp-testimonial-prev",
+  },
+};
 
 export default function PortfolioDetailsShowcaseTwoArea() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -661,6 +715,123 @@ export default function PortfolioDetailsShowcaseTwoArea() {
        </div>
        {/* details title 5 */}
 
+      {/* Section Ils nous soutiennent + avis clients (même logique que page À propos) */}
+      <div className="tp-testimonial-area pb-120 pt-120 ils-nous-soutiennent-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-8">
+              <div className="showcase-details-2-section-box mb-60">
+                <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous soutiennent</h4>
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-xl-10">
+              <div className="tp-testimonial-slider-wrapper p-relative">
+                {/* Flèches desktop */}
+                <div className="tp-testimonial-arrow-box d-none d-lg-block">
+                  <button className="tp-testimonial-prev" style={{
+                    background: 'transparent',
+                    border: '2px solid #053725',
+                    color: '#053725',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '18px',
+                    fontWeight: 'bold'
+                  }}>
+                    ←
+                  </button>
+                  <button className="tp-testimonial-next" style={{
+                    background: 'transparent',
+                    border: '2px solid #053725',
+                    color: '#053725',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '18px',
+                    fontWeight: 'bold'
+                  }}>
+                    →
+                  </button>
+                </div>
+
+                <Swiper
+                  {...testimonial_slider_setting}
+                  modules={[Navigation]}
+                  className="swiper-container tp-testimonial-slider-active fix"
+                >
+                  {testimonial_data.map((item) => (
+                    <SwiperSlide key={item.id}>
+                      <div className="tp-testimonial-item text-center">
+                        <p>{item.desc}</p>
+                        <span>
+                          <em>{item.name}</em>{item.designation && ` - ${item.designation}`}
+                        </span>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                {/* Flèches mobile */}
+                <div className="tp-testimonial-arrow-box-mobile d-lg-none" style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '20px',
+                  marginTop: '30px'
+                }}>
+                  <button className="tp-testimonial-prev" style={{
+                    background: 'transparent',
+                    border: '2px solid #053725',
+                    color: '#053725',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    position: 'static',
+                    transform: 'none'
+                  }}>
+                    ←
+                  </button>
+                  <button className="tp-testimonial-next" style={{
+                    background: 'transparent',
+                    border: '2px solid #053725',
+                    color: '#053725',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    position: 'static',
+                    transform: 'none'
+                  }}>
+                    →
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Section Widget Booking Lodgify en bas de page */}
       <div className="tp-lodgify-booking-area pb-120 pt-120">
         <div className="container">
@@ -724,16 +895,55 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         
         /* Réduire l'espace entre "Le Programme" et la photo sur mobile */
         @media (max-width: 991px) {
+          /* Forcer un espacement au-dessus du titre pour éviter qu'il ne passe sous la section précédente */
+          .tp-award-wrapper {
+            padding-top: 90px !important;
+            margin-top: 0 !important;
+          }
+          .tp-award-wrapper :global(.tp-award-area) {
+            padding-top: 70px !important;
+            margin-top: 0 !important;
+          }
+          /* Décaler le bloc titre pour éviter toute découpe visuelle */
+          .tp-award-wrapper :global(.tp-award-title-box) {
+            margin-top: 30px !important;
+            padding-top: 10px !important;
+          }
+          /* Garantir que le titre "L'instant IBÙ" s'affiche sur mobile */
+          .tp-award-wrapper :global(.tp-award-title-box),
+          .tp-award-wrapper :global(.tp-award-title-box h4),
+          .tp-award-wrapper :global(.tp-award-title-box .showcase-details-2-section-title) {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            font-size: clamp(3rem, 9vw, 4.6rem) !important;
+            line-height: 1.05 !important;
+            letter-spacing: 0.02em !important;
+          }
+          
           /* Réduire drastiquement le padding-bottom de la section Awards */
           .tp-award-wrapper :global(.tp-award-area) {
             padding-bottom: 0 !important;
             margin-bottom: 0 !important;
           }
           
-          /* Faire remonter la photo avec une marge négative */
+          /* Garder la photo complète sans découpe - retirer la marge négative */
           .program-photo-spacing {
-            margin-top: -180px !important;
-            padding-top: 0 !important;
+            margin-top: 0 !important;
+            padding-top: 40px !important;
+          }
+          
+          /* Garantir que l'image garde sa taille originale et ne se coupe pas */
+          .showcase-details-2-fullwidth-img {
+            overflow: visible !important;
+          }
+          
+          .showcase-details-2-fullwidth-img img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            object-position: center top !important;
+            max-height: none !important;
           }
           
           /* Réduire de moitié l'espace entre les photos et "Engagements" */
@@ -763,8 +973,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
           
           .program-photo-spacing {
-            margin-top: -200px !important;
-            padding-top: 0 !important;
+            margin-top: 0 !important;
+            padding-top: 40px !important;
+          }
+          
+          /* Garantir que l'image garde sa taille originale et ne se coupe pas sur petits écrans */
+          .showcase-details-2-fullwidth-img img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            object-position: center top !important;
+            max-height: none !important;
           }
           
           /* Réduire de moitié l'espace entre les photos et "Engagements" */
@@ -1060,10 +1279,24 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           display: block !important;
           margin: 0 auto !important;
         }
+        /* Si le widget ne se charge pas, masquer le conteneur pour éviter un bloc blanc */
+        .tp-lodgify-booking-area :global(#lodgify-book-now-box-bottom:empty) {
+          display: none !important;
+        }
+        .tp-lodgify-booking-area {
+          padding-bottom: 60px !important;
+        }
         
         /* S'assurer que le titre est bien visible en vert */
         .tp-lodgify-booking-area .showcase-details-2-title {
           color: #053725 !important;
+        }
+        /* Espacement pour la section Ils nous soutiennent */
+        .ils-nous-soutiennent-section {
+          background: #ffffff;
+          margin-top: 0 !important;
+          padding-top: 80px !important;
+          padding-bottom: 20px !important;
         }
       `}</style>
     </>

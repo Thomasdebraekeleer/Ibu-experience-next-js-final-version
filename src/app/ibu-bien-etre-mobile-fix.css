@@ -3,22 +3,22 @@
 @media (max-width: 991px) {
   /* Réduction MAXIMALE du padding-bottom de la section du paragraphe */
   body .showcase-details-2-area.pb-120 {
-    padding-bottom: 0px !important;
-    margin-bottom: -100px !important;
+    padding-bottom: 24px !important;
+    margin-bottom: 0px !important;
   }
   
   /* Réduction MAXIMALE des marges de la photo */
   /* SAUF pour les images full-width (page about) */
   body .tp-project-details-3-thumb.mb-120:not(.tp-project-details-3-full-width-thumb) {
-    margin-bottom: 0px !important;
-    margin-top: -120px !important;
+    margin-bottom: 16px !important;
+    margin-top: 0px !important;
   }
   
   /* Réduction MAXIMALE du padding-top de la section services */
   body #services-section.tp-service-2-pt,
   body #services-section {
-    padding-top: 0px !important;
-    margin-top: -180px !important;
+    padding-top: 32px !important;
+    margin-top: 0px !important;
   }
   
   /* Réduction MAXIMALE des marges du titre */
@@ -98,18 +98,18 @@
 /* Media query encore plus agressif pour petits mobiles */
 @media (max-width: 768px) {
   body .showcase-details-2-area.pb-120 {
-    padding-bottom: 0px !important;
-    margin-bottom: -120px !important;
+    padding-bottom: 24px !important;
+    margin-bottom: 0px !important;
   }
   
   body .tp-project-details-3-thumb.mb-120:not(.tp-project-details-3-full-width-thumb) {
-    margin-bottom: 0px !important;
-    margin-top: -150px !important;
+    margin-bottom: 20px !important;
+    margin-top: 0px !important;
   }
   
   body #services-section {
-    padding-top: 0px !important;
-    margin-top: -220px !important;
+    padding-top: 28px !important;
+    margin-top: 0px !important;
   }
   
   /* Ajuster encore plus sur petits mobiles */

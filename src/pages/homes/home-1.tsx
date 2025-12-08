@@ -2,7 +2,6 @@
 import { gsap } from "gsap";
 import React, { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import Script from "next/script";
 
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
@@ -15,70 +14,12 @@ import HeaderHomepage from "@/layouts/headers/header-homepage";
 import PortfolioDetailsShowcaseTwoArea from "@/components/portfolio/details/portfolio-details-showcase-2-area";
 import FooterThree from "@/layouts/footers/footer-three";
 import NewsletterPopup from "@/components/modal/newsletter-popup";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { SwiperOptions } from "swiper/types";
 
 // animation
 import { hoverBtn } from "@/utils/hover-btn";
 import { footerTwoAnimation } from "@/utils/footer-anim";
 import { charAnimation, titleAnimation } from "@/utils/title-animation";
 import { movingImageSlider } from "@/utils/scroll-marque";
-
-// Testimonial data
-const testimonial_data = [
-  {
-    id: 1,
-    desc: `"Touchée par votre projet et les valeurs qu'il met en exergue, je vous félicite pour cette initiative ! Bonne chance et beaucoup de succès dans cette aventure !"`,
-    name: "Sophie Levecq",
-    designation: "",
-  },
-  {
-    id: 2,
-    desc: `"Super idée, le début d'une grande aventure! Tout notre soutien"`,
-    name: "Evelyne Delmotte",
-    designation: "",
-  },
-  {
-    id: 3,
-    desc: `"Magnifique initiative et qui porte le nom d'un homme génial qui nous manque."`,
-    name: "Veronica Britom",
-    designation: "",
-  },
-  {
-    id: 4,
-    desc: `"Bravo pour ce super projet"`,
-    name: "Justine Raskin",
-    designation: "",
-  },
-  {
-    id: 5,
-    desc: `"Hâte que ce magnifique projet, prenne 100% vie! Il en vaut largement la peine"`,
-    name: "Sophie Ileka",
-    designation: "",
-  },
-  {
-    id: 6,
-    desc: `"Quel projet magnifique!!!"`,
-    name: "Debo Landroux",
-    designation: "",
-  },
-];
-
-// Slider settings
-const testimonial_slider_setting: SwiperOptions = {
-  slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
-  speed: 1000,
-  navigation: {
-    nextEl: ".tp-testimonial-next",
-    prevEl: ".tp-testimonial-prev",
-  },
-};
 
 /**
  * Page d'accueil principale
@@ -182,186 +123,6 @@ const HomeMain = () => {
             <PortfolioDetailsShowcaseTwoArea />
             {/* portfolio showcase details area */}
 
-            {/* Section Témoignages */}
-            <div className="tp-testimonial-area pb-120 pt-120">
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-8">
-                    <div className="showcase-details-2-section-box mb-60">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous soutiennent</h4>
-                    </div>
-                  </div>
-                </div>
-                <div className="row justify-content-center">
-                  <div className="col-xl-10">
-                    <div className="tp-testimonial-slider-wrapper p-relative">
-                      {/* Flèches pour desktop - positionnées sur les côtés */}
-                      <div className="tp-testimonial-arrow-box d-none d-lg-block">
-                        <button className="tp-testimonial-prev" style={{
-                          background: 'transparent',
-                          border: '2px solid #053725',
-                          color: '#053725',
-                          width: '50px',
-                          height: '50px',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold'
-                        }}>
-                          ←
-                        </button>
-                        <button className="tp-testimonial-next" style={{
-                          background: 'transparent',
-                          border: '2px solid #053725',
-                          color: '#053725',
-                          width: '50px',
-                          height: '50px',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold'
-                        }}>
-                          →
-                        </button>
-                      </div>
-                      <Swiper
-                        {...testimonial_slider_setting}
-                        modules={[Navigation]}
-                        className="swiper-container tp-testimonial-slider-active fix"
-                      >
-                        {testimonial_data.map((item) => (
-                          <SwiperSlide key={item.id}>
-                            <div className="tp-testimonial-item text-center">
-                              <p>{item.desc}</p>
-                              <span>
-                                <em>{item.name}</em>{item.designation && ` - ${item.designation}`}
-                              </span>
-                            </div>
-                          </SwiperSlide>
-                        ))}
-                      </Swiper>
-                      {/* Flèches pour mobile - positionnées en dessous */}
-                      <div className="tp-testimonial-arrow-box-mobile d-lg-none" style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        gap: '20px',
-                        marginTop: '30px'
-                      }}>
-                        <button className="tp-testimonial-prev" style={{
-                          background: 'transparent',
-                          border: '2px solid #053725',
-                          color: '#053725',
-                          width: '50px',
-                          height: '50px',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold',
-                          position: 'static',
-                          transform: 'none'
-                        }}>
-                          ←
-                        </button>
-                        <button className="tp-testimonial-next" style={{
-                          background: 'transparent',
-                          border: '2px solid #053725',
-                          color: '#053725',
-                          width: '50px',
-                          height: '50px',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          fontSize: '18px',
-                          fontWeight: 'bold',
-                          position: 'static',
-                          transform: 'none'
-                        }}>
-                          →
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Section Widget Lodgify */}
-            <div className="tp-lodgify-search-area pb-120">
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-12">
-                    <div className="showcase-details-2-title-box mb-60">
-                      <h5 className="showcase-details-2-title tp-char-animation" style={{
-                        fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
-                        lineHeight: '0.8',
-                        letterSpacing: '0.08em',
-                        fontWeight: '700',
-                        textTransform: 'uppercase',
-                        color: '#053725'
-                      }}>
-                        Réservez votre séjour
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="row justify-content-center">
-                  <div className="col-xl-10">
-                    <style dangerouslySetInnerHTML={{__html: `
-                      :root {
-                        --ldg-psb-background: #ffffff;
-                        --ldg-psb-border-radius: 0.42em;
-                        --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
-                        --ldg-psb-padding: 14px;
-                        --ldg-psb-input-background: #ffffff;
-                        --ldg-psb-button-border-radius: 0px;
-                        --ldg-psb-color-primary: #053725;
-                        --ldg-psb-color-primary-lighter:#829b92;
-                        --ldg-psb-color-primary-darker: #031c13;
-                        --ldg-psb-color-primary-contrast: #ffffff;
-                        --ldg-semantic-color-primary:  #053725;
-                        --ldg-semantic-color-primary-lighter: #829b92;
-                        --ldg-semantic-color-primary-darker: #031c13;
-                        --ldg-semantic-color-primary-contrast: #ffffff;
-                        --ldg-component-modal-z-index: 999;
-                      }
-                      #lodgify-search-bar {
-                        width:100%;
-                      }
-                    `}} />
-                    <div
-                      id="lodgify-search-bar"
-                      data-website-id="607668"
-                      data-language-code="fr"
-                      data-search-page-url='https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes'
-                      
-                      data-dates-check-in-label='Arrivée'
-                      data-dates-check-out-label='Départ'
-                      data-guests-counter-label='Invités'
-                      data-guests-input-singular-label='{{NumberOfGuests}} invité'
-                      data-guests-input-plural-label='{{NumberOfGuests}} invités'
-                      data-location-input-label='Emplacement'
-                      data-search-button-label='Rechercher'
-                      data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
-                      
-                      data-new-tab="true"
-                      data-version="stable"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </main>
 
           {/* footer area */}
@@ -372,12 +133,6 @@ const HomeMain = () => {
       
       {/* Newsletter Popup */}
       <NewsletterPopup />
-      
-      {/* Script Lodgify */}
-      <Script 
-        src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js"
-        strategy="lazyOnload"
-      />
     </Wrapper>
   );
 };

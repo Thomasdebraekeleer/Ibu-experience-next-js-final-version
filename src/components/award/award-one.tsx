@@ -66,12 +66,23 @@ const AwardOne = ({cls="pt-125 pb-125",abStyle=false}: IProps) => {
   return (
     <div className={`tp-award-area ${cls}`}>
       <div className="container container-1630">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                       {/* Titre séparé */}
+        {/* Titre séparé */}
         {!abStyle && (
           <div className="row">
-            <div className="col-xl-12">
-              <div className="tp-award-title-box mb-50 text-left">
-                <h4 className="showcase-details-2-section-title tp-char-animation">
+            <div className="col-xl-12 col-12">
+              <div className="tp-award-title-box mb-50 text-left" style={{
+                display: 'block',
+                visibility: 'visible',
+                opacity: 1
+              }}>
+                <h4 className="showcase-details-2-section-title tp-char-animation" style={{
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: 1,
+                  fontSize: 'clamp(2rem, 6vw, 4rem)',
+                  lineHeight: '1.2',
+                  color: '#053725'
+                }}>
                   L&apos;instant <br /> <span>IBÙ</span>
                 </h4>
               </div>
