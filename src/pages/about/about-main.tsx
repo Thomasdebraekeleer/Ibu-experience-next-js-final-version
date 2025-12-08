@@ -639,42 +639,6 @@ const AboutMain = () => {
                           </g>
                         </svg>
                       </a>
-
-                      {/* Emplacements "coming soon" */}
-                      {[1, 2, 3].map((index) => (
-                        <div 
-                          key={index}
-                          style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            maxWidth: '150px',
-                            width: '100%',
-                            height: '80px',
-                            textAlign: 'center'
-                          }}
-                        >
-                          <span style={{
-                            fontSize: '18px',
-                            color: '#999',
-                            fontWeight: '400',
-                            lineHeight: '1.2',
-                            display: 'block'
-                          }}>
-                            coming
-                          </span>
-                          <span style={{
-                            fontSize: '18px',
-                            color: '#999',
-                            fontWeight: '400',
-                            lineHeight: '1.2',
-                            display: 'block'
-                          }}>
-                            soon
-                          </span>
-                        </div>
-                      ))}
                     </div>
                   </div>
                 </div>
