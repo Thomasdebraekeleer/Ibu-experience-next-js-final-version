@@ -439,7 +439,9 @@ const VideoTwo = () => {
             }
             /* Ajustement de l'espacement de la section vidéo sur mobile */
             .video-two-section {
+              padding-top: 80px !important;
               padding-bottom: 60px !important;
+              margin-top: 0 !important;
               margin-bottom: 0 !important;
             }
           }
