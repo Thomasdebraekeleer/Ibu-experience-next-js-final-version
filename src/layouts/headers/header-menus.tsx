@@ -197,6 +197,12 @@ const HeaderMenus = () => {
           ) : null}
         </li>
       ))}
+      {/* Bouton Carte cadeau */}
+      <li className="tp-gift-card-menu-btn-wrapper">
+        <Link href="/gift-card" className="tp-gift-card-menu-btn">
+          Carte cadeau
+        </Link>
+      </li>
     </ul>
   );
 };

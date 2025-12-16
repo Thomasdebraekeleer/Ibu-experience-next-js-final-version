@@ -131,10 +131,83 @@
     }
     &-right{
         & button,
-        & a{
+        & a:not(.tp-gift-card-menu-btn-mobile){
             margin-left: 30px;
             @media #{$xs}{
                 margin-left: 20px;
+            }
+        }
+        // Bouton Carte cadeau mobile
+        & .tp-gift-card-menu-btn-mobile{
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
+            padding: 8px 18px;
+            display: inline-block;
+            text-transform: uppercase;
+            color: var(--tp-common-black); // #053725 - texte vert
+            background-color: transparent; // Fond transparent
+            border: 2px solid var(--tp-common-black); // Bordure verte
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            font-family: var(--tp-ff-syne);
+            white-space: nowrap;
+            margin-left: 0; // Pas de margin-left pour le bouton mobile
+            margin-right: 12px; // Espacement à droite avant le menu burger
+            z-index: 1; // Z-index inférieur au menu burger
+            position: relative;
+            
+            &:hover{
+                background-color: transparent; // Pas de changement de fond
+                color: var(--tp-common-black); // Texte reste vert
+                border-color: var(--tp-common-black); // Bordure reste verte
+            }
+            
+            @media #{$xs}{
+                font-size: 11px;
+                padding: 6px 12px;
+                margin-right: 10px;
+            }
+            
+            @media (max-width: 480px){
+                font-size: 10px;
+                padding: 5px 10px;
+                margin-right: 8px;
+            }
+        }
+    }
+    // Bouton Carte cadeau dans le menu desktop
+    &-menu{
+        & > nav{
+            & > ul{
+                & .tp-gift-card-menu-btn-wrapper{
+                    list-style-type: none;
+                    display: inline-block;
+                    margin: 0px 22px;
+                    @media #{$xl}{
+                        margin: 0px 15px;
+                    }
+                    & .tp-gift-card-menu-btn{
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 1;
+                        padding: 10px 24px;
+                        display: inline-block;
+                        text-transform: uppercase;
+                        color: var(--tp-common-black); // #053725 - texte vert
+                        background-color: transparent; // Fond transparent
+                        border: 2px solid var(--tp-common-black); // Bordure verte
+                        border-radius: 100px;
+                        transition: all 0.3s ease;
+                        font-family: var(--tp-ff-syne);
+                        
+                        &:hover{
+                            background-color: transparent; // Pas de changement de fond
+                            color: var(--tp-common-black); // Texte reste vert
+                            border-color: var(--tp-common-black); // Bordure reste verte
+                        }
+                    }
+                }
             }
         }
     }

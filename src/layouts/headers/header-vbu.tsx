@@ -46,6 +46,30 @@ export default function HeaderVBU() {
         .header-other-pages .tp-inner-header-2-bar span {
           color: #053725 !important;
         }
+        
+        /* Bouton Carte cadeau mobile - autres pages */
+        .header-other-pages .tp-gift-card-menu-btn-mobile {
+          color: #053725 !important;
+          background-color: transparent !important;
+          border: 2px solid #053725 !important;
+        }
+        .header-other-pages .tp-gift-card-menu-btn-mobile:hover {
+          background-color: transparent !important;
+          border: 2px solid #053725 !important;
+          color: #053725 !important;
+        }
+        
+        /* Bouton Carte cadeau desktop - autres pages */
+        .header-other-pages .tp-gift-card-menu-btn {
+          color: #053725 !important;
+          background-color: transparent !important;
+          border: 2px solid #053725 !important;
+        }
+        .header-other-pages .tp-gift-card-menu-btn:hover {
+          background-color: transparent !important;
+          border: 2px solid #053725 !important;
+          color: #053725 !important;
+        }
       `}</style>
       <header className="tp-header-height z-index-5 header-other-pages">
         <div className="tp-inner-header-2-area tp-shop-mob-space tp-transparent tp-inner-header-white">
@@ -69,6 +93,10 @@ export default function HeaderVBU() {
               </div>
               <div className="col-xl-2 col-lg-8 col-md-8 col-8">
                 <div className="tp-inner-header-2-right d-flex align-items-center justify-content-end">
+                  {/* Bouton Carte cadeau mobile */}
+                  <Link href="/gift-card" className="tp-gift-card-menu-btn-mobile d-lg-none d-block me-3">
+                    Carte cadeau
+                  </Link>
                   <button onClick={()=> setOpenOffcanvas(true)} className="tp-inner-header-2-bar tp-offcanvas-open-btn">
                     <span>
                       <Menu/>
