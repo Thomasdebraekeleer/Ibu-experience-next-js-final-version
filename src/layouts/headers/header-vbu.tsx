@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import HeaderMenus from './header-menus';
 import useSticky from '@/hooks/use-sticky';
 import { Menu } from '@/components/svg';
@@ -14,6 +15,8 @@ export default function HeaderVBU() {
   const {sticky,headerFullWidth} = useSticky();
   const [openOffCanvas, setOpenOffcanvas] = React.useState(false);
   const isHomepage = useIsHomepage();
+  const pathname = usePathname();
+  const isGiftCardPage = pathname === '/gift-card';
   
   useEffect(() => {
     headerFullWidth();
@@ -93,10 +96,12 @@ export default function HeaderVBU() {
               </div>
               <div className="col-xl-2 col-lg-8 col-md-8 col-8">
                 <div className="tp-inner-header-2-right d-flex align-items-center justify-content-end">
-                  {/* Bouton Carte cadeau mobile */}
-                  <Link href="/gift-card" className="tp-gift-card-menu-btn-mobile d-lg-none d-block me-3">
-                    Carte cadeau
-                  </Link>
+                  {/* Bouton Carte cadeau mobile - masqué sur la page gift-card */}
+                  {!isGiftCardPage && (
+                    <Link href="/gift-card" className="tp-gift-card-menu-btn-mobile d-lg-none d-block me-3">
+                      Carte cadeau
+                    </Link>
+                  )}
                   <button onClick={()=> setOpenOffcanvas(true)} className="tp-inner-header-2-bar tp-offcanvas-open-btn">
                     <span>
                       <Menu/>

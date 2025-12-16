@@ -1,10 +1,14 @@
+'use client';
 import React, { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import menu_data from "@/data/menu-data";
 
 const imgStyle:CSSProperties = { width: "100%", height: "auto", objectFit: "cover" };
 const HeaderMenus = () => {
+  const pathname = usePathname();
+  const isGiftCardPage = pathname === '/gift-card';
   return (
     <ul>
       {menu_data.map((menu) => (
@@ -197,12 +201,14 @@ const HeaderMenus = () => {
           ) : null}
         </li>
       ))}
-      {/* Bouton Carte cadeau */}
-      <li className="tp-gift-card-menu-btn-wrapper">
-        <Link href="/gift-card" className="tp-gift-card-menu-btn">
-          Carte cadeau
-        </Link>
-      </li>
+      {/* Bouton Carte cadeau - masqué sur la page gift-card */}
+      {!isGiftCardPage && (
+        <li className="tp-gift-card-menu-btn-wrapper">
+          <Link href="/gift-card" className="tp-gift-card-menu-btn">
+            Carte cadeau
+          </Link>
+        </li>
+      )}
     </ul>
   );
 };
