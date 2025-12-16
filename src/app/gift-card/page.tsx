@@ -73,7 +73,7 @@ export default function GiftCardPage() {
           <main>
             <div className="tp-gift-card-page">
               <div className="container container-1530">
-                <div className="row align-items-center">
+                <div className="row align-items-stretch">
                   {/* Image Section - À gauche sur desktop, deuxième sur mobile */}
                   <div className="col-lg-6 order-2 order-lg-1 mb-50 mb-lg-0">
                     <div className="tp-gift-card-image-wrapper">

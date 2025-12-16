@@ -47,26 +47,26 @@ export default function HeaderHomepage() {
         
         /* Bouton Carte cadeau mobile - homepage */
         .header-homepage .tp-gift-card-menu-btn-mobile {
-          color: #053725 !important;
+          color: #fcf8e3 !important;
           background-color: transparent !important;
-          border: 2px solid #053725 !important;
+          border: 2px solid #fcf8e3 !important;
         }
         .header-homepage .tp-gift-card-menu-btn-mobile:hover {
           background-color: transparent !important;
-          border: 2px solid #053725 !important;
-          color: #053725 !important;
+          border: 2px solid #fcf8e3 !important;
+          color: #fcf8e3 !important;
         }
         
         /* Bouton Carte cadeau desktop - homepage */
         .header-homepage .tp-gift-card-menu-btn {
-          color: #053725 !important;
+          color: #fcf8e3 !important;
           background-color: transparent !important;
-          border: 2px solid #053725 !important;
+          border: 2px solid #fcf8e3 !important;
         }
         .header-homepage .tp-gift-card-menu-btn:hover {
           background-color: transparent !important;
-          border: 2px solid #053725 !important;
-          color: #053725 !important;
+          border: 2px solid #fcf8e3 !important;
+          color: #fcf8e3 !important;
         }
       `}</style>
       <header className="tp-header-height z-index-5 header-homepage">
