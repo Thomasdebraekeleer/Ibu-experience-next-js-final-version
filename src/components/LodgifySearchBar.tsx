@@ -5,24 +5,24 @@ export default function LodgifySearchBar() {
     <>
       <style dangerouslySetInnerHTML={{__html: `
         :root {
-          --ldg-psb-background: #ffffff !important;
-          --ldg-psb-border-radius: 0.42em !important;
-          --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1) !important;
-          --ldg-psb-padding: 14px !important;
-          --ldg-psb-input-background: #ffffff !important;
-          --ldg-psb-button-border-radius: 0px !important;
-          --ldg-psb-color-primary: #053701 !important;
-          --ldg-psb-color-primary-lighter: #829b80 !important;
-          --ldg-psb-color-primary-darker: #031c01 !important;
-          --ldg-psb-color-primary-contrast: #ffffff !important;
-          --ldg-semantic-color-primary: #053701 !important;
-          --ldg-semantic-color-primary-lighter: #829b80 !important;
-          --ldg-semantic-color-primary-darker: #031c01 !important;
-          --ldg-semantic-color-primary-contrast: #ffffff !important;
-          --ldg-component-modal-z-index: 999 !important;
+          --ldg-psb-background: #ffffff;
+          --ldg-psb-border-radius: 0.42em;
+          --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
+          --ldg-psb-padding: 14px;
+          --ldg-psb-input-background: #ffffff;
+          --ldg-psb-button-border-radius: 0px;
+          --ldg-psb-color-primary: #053725;
+          --ldg-psb-color-primary-lighter: #829b92;
+          --ldg-psb-color-primary-darker: #031c13;
+          --ldg-psb-color-primary-contrast: #ffffff;
+          --ldg-semantic-color-primary: #053725;
+          --ldg-semantic-color-primary-lighter: #829b92;
+          --ldg-semantic-color-primary-darker: #031c13;
+          --ldg-semantic-color-primary-contrast: #ffffff;
+          --ldg-component-modal-z-index: 999;
         }
         #lodgify-search-bar {
-          width: 100% !important;
+          width: 100%;
         }
       `}} />
       <div

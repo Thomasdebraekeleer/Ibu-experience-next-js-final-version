@@ -6,7 +6,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { usePathname } from 'next/navigation';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
-// Widget de booking Lodgify remplace le widget de recherche
+// Widget de recherche Lodgify
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -211,7 +211,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     // Vérifier si le script Lodgify est chargé
     const checkScriptLoaded = () => {
       return typeof window !== 'undefined' && 
-             (window as any).renderBookNowBox !== undefined;
+             (window as any).renderPortableSearchBar !== undefined;
     };
 
     // Fonction pour forcer le rechargement du widget
@@ -226,45 +226,38 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         }
       });
       
-      // Réinitialiser les attributs data
+      // Réinitialiser les attributs data pour le widget de recherche
       const dataAttributes = {
-        'data-rental-id': '738662',
         'data-website-id': '607668',
-        'data-slug': 'mallen-jallow',
         'data-language-code': 'fr',
-        'data-new-tab': 'true',
-        'data-version': 'stable',
-        'data-currency-code': 'EUR',
-        'data-check-in-label': 'Arrivée',
-        'data-check-out-label': 'Départ',
-        'data-guests-label': 'Invités',
-        'data-guests-singular-label': '{{NumberOfGuests}} invité',
-        'data-guests-plural-label': '{{NumberOfGuests}} invités',
+        'data-search-page-url': 'https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes',
+        'data-dates-check-in-label': 'Arrivée',
+        'data-dates-check-out-label': 'Départ',
+        'data-guests-counter-label': 'Invités',
+        'data-guests-input-singular-label': '{{NumberOfGuests}} invité',
+        'data-guests-input-plural-label': '{{NumberOfGuests}} invités',
         'data-location-input-label': 'Emplacement',
-        'data-total-price-label': 'Prix total :',
-        'data-select-dates-to-see-price-label': 'Sélectionnez les dates pour voir le prix total',
-        'data-minimum-price-per-night-first-label': 'À partir de',
-        'data-minimum-price-per-night-second-label': 'par nuit',
-        'data-book-button-label': 'Réservez maintenant',
-        'data-adults-label': '{"one":"adulte","other":"adultes"}',
-        'data-adults-description': 'Âges {minAge} ou plus',
-        'data-children-not-allowed-label': 'Non adapté aux enfants',
-        'data-infants-not-allowed-label': 'Non adapté aux bébés',
-        'data-pets-not-allowed-label': 'Non autorisé',
-        'data-done-label': 'Terminé'
+        'data-search-button-label': 'Rechercher',
+        'data-dates-input-min-stay-tooltip-text': '{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}',
+        'data-new-tab': 'true',
+        'data-version': 'stable'
       };
 
       Object.entries(dataAttributes).forEach(([key, value]) => {
-        widgetElement.setAttribute(key, value);
+        if (value !== '') {
+          widgetElement.setAttribute(key, value);
+        } else {
+          widgetElement.setAttribute(key, '');
+        }
       });
 
       // Attendre que le DOM soit prêt puis appeler le script
       requestAnimationFrame(() => {
         setTimeout(() => {
           try {
-            // Appeler la fonction de rendu Lodgify
-            if ((window as any).renderBookNowBox) {
-              (window as any).renderBookNowBox();
+            // Appeler la fonction de rendu Lodgify pour le widget de recherche
+            if ((window as any).renderPortableSearchBar) {
+              (window as any).renderPortableSearchBar();
             }
           } catch (error) {
             console.warn('Erreur lors du rendu du widget Lodgify:', error);
@@ -436,7 +429,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           </div>
         </div>
 
-        {/* Widget Lodgify Booking avec style personnalisé */}
+        {/* Widget Lodgify Search avec style personnalisé */}
         <div 
           className="lodgify-hero-container p-absolute"
           style={{
@@ -445,35 +438,24 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             pointerEvents: 'auto'
           }}
         >
-          {/* Widget de booking Lodgify - Seulement nombre d'invités (adultes uniquement) */}
+          {/* Widget de recherche Lodgify */}
           <div
             ref={lodgifyWidgetRef}
             key={`lodgify-widget-${widgetKey}`}
-            id="lodgify-book-now-box"
-            data-rental-id="738662"
+            id="lodgify-search-bar"
             data-website-id="607668"
-            data-slug="mallen-jallow"
             data-language-code="fr"
+            data-search-page-url="https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes"
+            data-dates-check-in-label="Arrivée"
+            data-dates-check-out-label="Départ"
+            data-guests-counter-label="Invités"
+            data-guests-input-singular-label='{{NumberOfGuests}} invité'
+            data-guests-input-plural-label='{{NumberOfGuests}} invités'
+            data-location-input-label="Emplacement"
+            data-search-button-label="Rechercher"
+            data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
             data-new-tab="true"
             data-version="stable"
-            data-currency-code="EUR"
-            data-check-in-label="Arrivée"
-            data-check-out-label="Départ"
-            data-guests-label="Invités"
-            data-guests-singular-label="{{NumberOfGuests}} invité"
-            data-guests-plural-label="{{NumberOfGuests}} invités"
-            data-location-input-label="Emplacement"
-            data-total-price-label="Prix total :"
-            data-select-dates-to-see-price-label="Sélectionnez les dates pour voir le prix total"
-            data-minimum-price-per-night-first-label="À partir de"
-            data-minimum-price-per-night-second-label="par nuit"
-            data-book-button-label="Réservez maintenant"
-            data-adults-label='{"one":"adulte","other":"adultes"}'
-            data-adults-description="Âges {minAge} ou plus"
-            data-children-not-allowed-label="Non adapté aux enfants"
-            data-infants-not-allowed-label="Non adapté aux bébés"
-            data-pets-not-allowed-label="Non autorisé"
-            data-done-label="Terminé"
           ></div>
         </div>
 
