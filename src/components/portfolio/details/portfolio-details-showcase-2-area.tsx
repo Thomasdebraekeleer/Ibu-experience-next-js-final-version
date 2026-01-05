@@ -226,28 +226,21 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         }
       });
       
-      // Réinitialiser les attributs data pour le widget de recherche
+      // Réinitialiser les attributs data pour le widget de recherche (adultes uniquement)
       const dataAttributes = {
         'data-website-id': '607668',
         'data-language-code': 'fr',
         'data-search-page-url': 'https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes',
         'data-dates-check-in-label': 'Arrivée',
         'data-dates-check-out-label': 'Départ',
-        'data-guests-counter-label': 'Invités',
-        'data-guests-input-singular-label': '{{NumberOfGuests}} invité',
-        'data-guests-input-plural-label': '{{NumberOfGuests}} invités',
+        'data-guests-counter-label': 'Adultes',
+        'data-guests-input-singular-label': '{{NumberOfGuests}} adulte',
+        'data-guests-input-plural-label': '{{NumberOfGuests}} adultes',
         'data-location-input-label': 'Emplacement',
         'data-search-button-label': 'Rechercher',
         'data-dates-input-min-stay-tooltip-text': '{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}',
-        'data-guests-breakdown-label': 'Invités',
-        'data-adults-label': '{"one":"adulte","other":"adultes"}',
-        'data-adults-description': 'Âges {minAge} ou plus',
-        'data-children-label': '{"one":"enfant","other":"enfants"}',
-        'data-children-description': 'Âges {minAge} - {maxAge}',
-        'data-done-label': 'Terminé',
         'data-new-tab': 'true',
-        'data-version': 'stable',
-        'data-has-guests-breakdown': ''
+        'data-version': 'stable'
       };
 
       Object.entries(dataAttributes).forEach(([key, value]) => {
@@ -456,21 +449,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             data-search-page-url="https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes"
             data-dates-check-in-label="Arrivée"
             data-dates-check-out-label="Départ"
-            data-guests-counter-label="Invités"
-            data-guests-input-singular-label='{{NumberOfGuests}} invité'
-            data-guests-input-plural-label='{{NumberOfGuests}} invités'
+            data-guests-counter-label="Adultes"
+            data-guests-input-singular-label="{{NumberOfGuests}} adulte"
+            data-guests-input-plural-label="{{NumberOfGuests}} adultes"
             data-location-input-label="Emplacement"
             data-search-button-label="Rechercher"
             data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
-            data-guests-breakdown-label="Invités"
-            data-adults-label='{"one":"adulte","other":"adultes"}'
-            data-adults-description="Âges {minAge} ou plus"
-            data-children-label='{"one":"enfant","other":"enfants"}'
-            data-children-description="Âges {minAge} - {maxAge}"
-            data-done-label="Terminé"
             data-new-tab="true"
             data-version="stable"
-            data-has-guests-breakdown
           ></div>
         </div>
 
