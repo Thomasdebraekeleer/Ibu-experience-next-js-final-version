@@ -159,6 +159,14 @@ const AboutMain = () => {
           max-width: none !important;
           width: 100% !important;
         }
+        
+        /* Style pour "Ils nous soutiennent" - override GSAP animations */
+        .ils-nous-soutiennent-title {
+          font-size: clamp(60px, 10vw, 150px) !important;
+          line-height: 1.1 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+        }
 
         /* Espacement entre les lettres sur mobile uniquement - compensation pour l'effet GSAP */
         @media (max-width: 991px) {
@@ -665,9 +673,14 @@ const AboutMain = () => {
             <div className="tp-testimonial-area pb-120">
               <div className="container">
                 <div className="row">
-                  <div className="col-xl-8">
+                  <div className="col-xl-12">
                     <div className="showcase-details-2-section-box mb-60">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous soutiennent</h4>
+                      <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title" style={{
+                        fontSize: 'clamp(60px, 10vw, 150px)',
+                        lineHeight: '1.1',
+                        maxWidth: '100%',
+                        width: '100%'
+                      }}>Ils nous soutiennent</h4>
                     </div>
                   </div>
                 </div>
