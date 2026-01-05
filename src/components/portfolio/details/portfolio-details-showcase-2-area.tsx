@@ -435,7 +435,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           style={{
             width: 'auto',
             maxWidth: '500px',
-            pointerEvents: 'auto'
+            pointerEvents: 'auto',
+            minWidth: 0
           }}
         >
           {/* Widget de recherche Lodgify */}
@@ -1170,13 +1171,23 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         .lodgify-hero-container {
           /* Positionnement par défaut - PC */
           z-index: 10; /* Au-dessus de l'image premier plan (z-index 3) sur PC */
+          box-sizing: border-box !important;
+        }
+        
+        /* Empêcher le widget de dépasser à gauche du viewport */
+        .lodgify-hero-container #lodgify-search-bar {
+          max-width: 100% !important;
+          box-sizing: border-box !important;
         }
         
         @media (min-width: 769px) {
           .lodgify-hero-container {
-            width: 60% !important;
-            max-width: 800px !important;
+            width: auto !important;
+            max-width: 600px !important;
+            min-width: 0 !important;
             z-index: 10 !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
           }
         }
         
@@ -1238,17 +1249,19 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         /* Sur PC : aligner le widget à gauche avec le texte du conteneur - Descendre pour éviter chevauchement */
         @media (min-width: 1400px) {
           .lodgify-hero-container {
-            left: calc((100% - 1550px) / 2) !important;
+            left: max(30px, calc((100vw - 1550px) / 2 + 15px)) !important;
             top: 60% !important;
             transform: translateY(-50%) !important;
+            margin-left: 0 !important;
           }
         }
         
         @media (min-width: 992px) and (max-width: 1399px) {
           .lodgify-hero-container {
-            left: 15px !important;
+            left: max(30px, 3%) !important;
             top: 60% !important;
             transform: translateY(-50%) !important;
+            margin-left: 0 !important;
           }
         }
         
