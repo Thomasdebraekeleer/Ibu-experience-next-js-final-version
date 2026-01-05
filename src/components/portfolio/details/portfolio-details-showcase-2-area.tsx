@@ -857,7 +857,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           <div className="row">
             <div className="col-xl-8">
               <div className="showcase-details-2-section-box mb-60">
-                <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous soutiennent</h4>
+                <h4 className="showcase-details-2-section-title tp-char-animation ils-nous-soutiennent-title">Ils nous soutiennent</h4>
               </div>
             </div>
           </div>
@@ -1347,6 +1347,37 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           margin-top: 0 !important;
           padding-top: 80px !important;
           padding-bottom: 20px !important;
+        }
+        
+        /* Style responsive pour "Ils nous soutiennent" - maximum 2 lignes */
+        .ils-nous-soutiennent-title {
+          font-size: clamp(60px, 10vw, 150px) !important;
+          line-height: 1.1 !important;
+          max-width: 100% !important;
+          word-wrap: break-word !important;
+          hyphens: none !important;
+        }
+        
+        /* Sur les écrans moyens (tablettes et petits laptops), ajuster pour 2 lignes max */
+        @media (min-width: 768px) and (max-width: 1400px) {
+          .ils-nous-soutiennent-title {
+            font-size: clamp(70px, 8vw, 110px) !important;
+            line-height: 1.15 !important;
+          }
+        }
+        
+        /* Sur desktop large, garder la taille maximale */
+        @media (min-width: 1401px) {
+          .ils-nous-soutiennent-title {
+            font-size: clamp(110px, 9vw, 150px) !important;
+          }
+        }
+        
+        /* Sur mobile, taille réduite mais lisible */
+        @media (max-width: 767px) {
+          .ils-nous-soutiennent-title {
+            font-size: clamp(50px, 12vw, 70px) !important;
+          }
         }
       `}</style>
     </>
