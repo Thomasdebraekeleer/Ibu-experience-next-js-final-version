@@ -27,6 +27,28 @@
   width: 100%;
   box-sizing: border-box !important;
   font-family: inherit !important;
+  
+  /* Fix pour rendre visible le compteur d'adultes */
+  input[type="number"],
+  input[type="text"]:not([type="button"]) {
+    color: #053725 !important;
+    -webkit-text-fill-color: #053725 !important;
+    opacity: 1 !important;
+    font-size: 16px !important;
+    text-align: center !important;
+    min-width: 1.5ch !important;
+  }
+  
+  /* Cibler aussi les inputs dans les steppers/counters */
+  [class*="stepper"] input,
+  [class*="counter"] input,
+  [class*="quantity"] input {
+    color: #053725 !important;
+    -webkit-text-fill-color: #053725 !important;
+    opacity: 1 !important;
+    font-size: 16px !important;
+    text-align: center !important;
+  }
 }
 
 /* Neutraliser l'effet de @tailwindcss/typography si présent */

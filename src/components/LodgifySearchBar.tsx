@@ -22,6 +22,26 @@ export default function LodgifySearchBar() {
           --ldg-component-modal-z-index: 999;
         }
         #lodgify-search-bar { width:100%; }
+        
+        /* Fix pour rendre visible le compteur d'adultes (stepper) */
+        #lodgify-search-bar input[type="number"],
+        #lodgify-search-bar input[type="text"]:not([type="button"]),
+        #lodgify-search-bar [class*="stepper"] input,
+        #lodgify-search-bar [class*="counter"] input,
+        #lodgify-search-bar [class*="quantity"] input {
+          color: #053725 !important;
+          -webkit-text-fill-color: #053725 !important;
+          opacity: 1 !important;
+          font-size: 16px !important;
+          text-align: center !important;
+          min-width: 1.5ch !important;
+        }
+        
+        /* S'assurer que les boutons +/- et "Rechercher" gardent leur style */
+        #lodgify-search-bar button {
+          color: inherit !important;
+          -webkit-text-fill-color: inherit !important;
+        }
       `}} />
       <div
         id="lodgify-search-bar"
