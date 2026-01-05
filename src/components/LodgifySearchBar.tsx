@@ -43,8 +43,6 @@ export default function LodgifySearchBar() {
         data-adults-description="Âges {minAge} ou plus"
         data-children-label='{"one":"enfant","other":"enfants"}'
         data-children-description="Âges {minAge} - {maxAge}"
-        data-infants-not-allowed-label="Non adapté aux bébés"
-        data-pets-not-allowed-label="Non autorisé"
         data-done-label="Terminé"
         data-new-tab="true"
         data-version="stable"
