@@ -8,6 +8,8 @@ import {
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
+import MetaPixel from "@/components/MetaPixel";
+import MetaPixelRouteChange from "@/components/MetaPixelRouteChange";
 import "./globals.scss";
 import "../../public/assets/css/animation-fallbacks.css";
 import "../../public/assets/css/hero-mobile-optimizations.css";
@@ -116,6 +118,10 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className={`${gellery.variable} ${aladin.variable} ${syne_body.variable} ${syne_heading.variable} ${syne_p.variable} ${syne.variable} ${big_shoulders.variable} ${marcellus.variable}`}
       >
+        {/* Meta Pixel (Facebook Pixel) */}
+        <MetaPixel />
+        <MetaPixelRouteChange />
+        
         <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
         <Script 
           id="lodgify-psb" 
