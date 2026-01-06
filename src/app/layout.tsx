@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   Syne,
   Aladin,
@@ -120,7 +121,9 @@ export default function RootLayout({
       >
         {/* Meta Pixel (Facebook Pixel) */}
         <MetaPixel />
-        <MetaPixelRouteChange />
+        <Suspense fallback={null}>
+          <MetaPixelRouteChange />
+        </Suspense>
         
         <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
         <Script 
