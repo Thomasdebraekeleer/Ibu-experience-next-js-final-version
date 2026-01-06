@@ -7,10 +7,11 @@ import Script from 'next/script';
 export default function MetaPixel() {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || '850620137569894';
   
-  // Ne charge pas le pixel en développement
-  if (process.env.NODE_ENV !== 'production') {
-    return null;
-  }
+  // TEMPORAIRE : Chargement en dev pour tests
+  // TODO : Remettre la condition "if (process.env.NODE_ENV !== 'production') return null;" après les tests
+  // if (process.env.NODE_ENV !== 'production') {
+  //   return null;
+  // }
 
   return (
     <>
@@ -19,6 +20,7 @@ export default function MetaPixel() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
+            console.log('🎯 Meta Pixel - Initialisation...', 'ID: ${pixelId}', 'ENV:', '${process.env.NODE_ENV}');
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -29,6 +31,7 @@ export default function MetaPixel() {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${pixelId}');
             fbq('track', 'PageView');
+            console.log('✅ Meta Pixel - Initialisé avec succès', window.fbq);
           `,
         }}
       />
