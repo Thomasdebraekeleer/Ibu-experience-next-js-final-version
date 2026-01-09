@@ -28,6 +28,45 @@
   box-sizing: border-box !important;
   font-family: inherit !important;
   
+  /* Layout hybride : dates côte à côte, compteur sur une ligne, bouton pleine largeur */
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+  
+  /* Conteneur principal en colonne */
+  > div,
+  form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  /* Container des dates en ligne (Arrivée | Départ) */
+  [class*="dates"],
+  [class*="date-picker"],
+  > div > div:first-child {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+  }
+  
+  /* Container du compteur adultes en ligne (- 1 adulte +) */
+  [class*="guest"],
+  [class*="counter"],
+  [class*="stepper"] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  
+  /* Bouton rechercher pleine largeur */
+  button[type="submit"],
+  [class*="submit-button"],
+  [class*="search-button"] {
+    width: 100% !important;
+  }
+  
   /* Fix pour rendre visible le compteur d'adultes */
   input[type="number"],
   input[type="text"]:not([type="button"]) {

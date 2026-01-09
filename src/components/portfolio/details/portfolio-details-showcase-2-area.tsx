@@ -457,6 +457,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
             data-new-tab="true"
             data-version="stable"
+            style={{
+              width: '100%',
+              maxWidth: '600px'
+            }}
           ></div>
         </div>
 

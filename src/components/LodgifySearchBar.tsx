@@ -21,7 +21,61 @@ export default function LodgifySearchBar() {
           --ldg-semantic-color-primary-contrast: #ffffff;
           --ldg-component-modal-z-index: 999;
         }
-        #lodgify-search-bar { width:100%; }
+        #lodgify-search-bar { 
+          width:100%;
+          max-width: 600px !important;
+          margin: 0 auto !important;
+        }
+        
+        /* Layout compact : dates côte à côte, compteur adultes sur une ligne, bouton en dessous */
+        #lodgify-search-bar > div,
+        #lodgify-search-bar form {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 10px !important;
+        }
+        
+        /* Container des dates : Arrivée et Départ côte à côte */
+        #lodgify-search-bar [class*="dates"],
+        #lodgify-search-bar [class*="date-picker"],
+        #lodgify-search-bar > div > div:first-child,
+        #lodgify-search-bar form > div:first-child {
+          display: flex !important;
+          flex-direction: row !important;
+          gap: 10px !important;
+          width: 100% !important;
+        }
+        
+        /* Chaque champ de date prend 50% */
+        #lodgify-search-bar [class*="date"]:not([class*="dates"]) input,
+        #lodgify-search-bar [class*="check-in"],
+        #lodgify-search-bar [class*="check-out"],
+        #lodgify-search-bar [class*="arrival"],
+        #lodgify-search-bar [class*="departure"] {
+          flex: 1 !important;
+          width: 50% !important;
+          min-width: 0 !important;
+        }
+        
+        /* Container du compteur adultes : tout sur une ligne */
+        #lodgify-search-bar [class*="guest"],
+        #lodgify-search-bar [class*="counter"],
+        #lodgify-search-bar [class*="stepper"] {
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 10px !important;
+          width: 100% !important;
+        }
+        
+        /* Bouton Rechercher : pleine largeur */
+        #lodgify-search-bar button[type="submit"],
+        #lodgify-search-bar [class*="submit"],
+        #lodgify-search-bar [class*="search-button"] {
+          width: 100% !important;
+          flex: 0 0 100% !important;
+        }
         
         /* Fix pour rendre visible le compteur d'adultes (stepper) */
         #lodgify-search-bar input[type="number"],
