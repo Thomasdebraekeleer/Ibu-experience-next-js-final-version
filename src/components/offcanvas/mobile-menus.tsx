@@ -1,12 +1,18 @@
+'use client';
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import menu_data from "@/data/menu-data";
 import shop_banner from '@/assets/img/menu/shop-menu/banner-1.jpg';
 import port_img from '@/assets/img/menu/portfolio-menu/portfolio.png';
 
 export default function MobileMenus() {
   const [navTitle, setNavTitle] = React.useState<string>("");
+  const pathname = usePathname();
+  
+  // Filtrer les éléments du menu pour exclure la page actuelle
+  const filteredMenuData = menu_data.filter((menu) => menu.link !== pathname);
 
   //openMobileMenu
   const openMobileMenu = (menu: string) => {
@@ -20,7 +26,7 @@ export default function MobileMenus() {
     <>
       <nav className="tp-main-menu-content">
         <ul>
-          {menu_data.map((menu) => (
+          {filteredMenuData.map((menu) => (
             <li
               key={menu.id}
               className={`has-dropdown ${

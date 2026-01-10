@@ -9,9 +9,13 @@ const imgStyle:CSSProperties = { width: "100%", height: "auto", objectFit: "cove
 const HeaderMenus = () => {
   const pathname = usePathname();
   const isGiftCardPage = pathname === '/gift-card';
+  
+  // Filtrer les éléments du menu pour exclure la page actuelle
+  const filteredMenuData = menu_data.filter((menu) => menu.link !== pathname);
+  
   return (
     <ul>
-      {menu_data.map((menu) => (
+      {filteredMenuData.map((menu) => (
         <li key={menu.id} className="has-dropdown">
           <Link href={menu.link}>{menu.title}</Link>
           {menu.home_menus ? (

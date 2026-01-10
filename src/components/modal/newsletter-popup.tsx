@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { CloseTwo } from '@/components/svg';
 
 export default function NewsletterPopup() {
+  // POPUP DÉSACTIVÉ - Pour réactiver, supprimez simplement la ligne ci-dessous
+  return null;
+  
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
