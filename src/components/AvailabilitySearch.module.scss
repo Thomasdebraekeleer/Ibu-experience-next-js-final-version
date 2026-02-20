@@ -269,23 +269,70 @@ $radius-sm: 8px;
   }
 }
 
-// Mobile : stack vertical, bouton full width
+// Mobile : Arrivée | Départ côte à côte, puis Adultes + Rechercher (layout compact)
 @media (max-width: 768px) {
   .wrapper {
-    padding: 16px;
+    padding: 12px 14px;
+    max-width: 100%;
   }
 
-  .row {
+  .form {
+    gap: 12px;
+  }
+
+  /* Première ligne : Arrivée et Départ côte à côte */
+  .form > .row:first-child {
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .form > .row:first-child .fieldGroup {
+    flex: 1;
+    min-width: 0; /* évite le débordement */
+  }
+
+  .form > .row:first-child .input,
+  .form > .row:first-child .dateInputWrap {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Deuxième ligne : Adultes et bouton empilés verticalement */
+  .form > .row:last-child {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .form > .row:last-child .fieldGroupAdults {
+    width: 100%;
+  }
+
+  .form > .row:last-child .submitWrapper {
+    width: 100%;
   }
 
   .fieldGroupDates {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    min-width: 0; /* pas de min-width pour éviter débordement */
+  }
+
+  .label {
+    font-size: 0.7rem;
+  }
+
+  .input {
+    padding: 10px 12px;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .stepper {
+    min-height: 44px;
   }
 
   .submitBtn {
     width: 100%;
+    min-height: 48px;
   }
 }
