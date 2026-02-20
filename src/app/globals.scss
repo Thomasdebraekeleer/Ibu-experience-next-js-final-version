@@ -4,7 +4,7 @@
 @import '../../public/assets/scss/main.scss';
 @import '../../public/assets/css/custom-hero-effects.css';
 
-/* —— Thème du widget de recherche Lodgify : styles de base —— */
+/* â€”â€” Thème du widget de recherche Lodgify : styles de base â€”â€” */
 :root {
   --ldg-psb-background: #ffffff;
   --ldg-psb-border-radius: 0.42em;
@@ -28,7 +28,7 @@
   box-sizing: border-box !important;
   font-family: inherit !important;
   
-  /* Layout hybride : dates côte à côte, compteur sur une ligne, bouton pleine largeur */
+  /* Layout hybride : dates côte Ã  côte, compteur sur une ligne, bouton pleine largeur */
   *, *::before, *::after {
     box-sizing: border-box !important;
   }
@@ -198,7 +198,7 @@
   border-radius: 0 !important;
 }
 
-/* —— Wrapper "verre dépoli" —— */
+/* â€”â€” Wrapper "verre dépoli" â€”â€” */
 .lodgify-glass {
   width: 100%;
   max-width: 960px;
@@ -332,7 +332,7 @@
     z-index: 999 !important;
   }
   
-  /* Le bouton Carte cadeau mobile doit être à gauche du burger */
+  /* Le bouton Carte cadeau mobile doit être Ã  gauche du burger */
   .tp-gift-card-menu-btn-mobile {
     position: relative !important;
     z-index: 1 !important;

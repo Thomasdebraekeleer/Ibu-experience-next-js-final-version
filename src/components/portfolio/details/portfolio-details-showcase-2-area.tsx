@@ -3,10 +3,9 @@ import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { usePathname } from 'next/navigation';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
-// Widget de recherche Lodgify
+import AvailabilitySearch from '@/components/AvailabilitySearch';
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -106,10 +105,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const foregroundRef = useRef<HTMLDivElement>(null);
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
-  const lodgifyWidgetRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
-  const [widgetKey, setWidgetKey] = useState(0);
-
   // === Parallaxe optimisée: rAF + désactivation mobile ===
   useIsomorphicLayoutEffect(() => {
     const bg = backgroundRef.current;
@@ -203,147 +198,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     };
   }, []);
 
-  // === Fonction utilitaire pour initialiser le widget Lodgify ===
-  const initLodgifyWidget = React.useCallback(() => {
-    const widgetElement = lodgifyWidgetRef.current;
-    if (!widgetElement) return;
-
-    // Vérifier si le script Lodgify est chargé
-    const checkScriptLoaded = () => {
-      return typeof window !== 'undefined' && 
-             (window as any).renderPortableSearchBar !== undefined;
-    };
-
-    // Fonction pour forcer le rechargement du widget
-    const forceReloadWidget = () => {
-      // Supprimer complètement l'ancien contenu
-      widgetElement.innerHTML = '';
-      
-      // Supprimer tous les attributs data existants
-      Array.from(widgetElement.attributes).forEach(attr => {
-        if (attr.name.startsWith('data-')) {
-          widgetElement.removeAttribute(attr.name);
-        }
-      });
-      
-      // Réinitialiser les attributs data pour le widget de recherche (adultes uniquement)
-      const dataAttributes = {
-        'data-website-id': '607668',
-        'data-language-code': 'fr',
-        'data-search-page-url': 'https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes',
-        'data-dates-check-in-label': 'Arrivée',
-        'data-dates-check-out-label': 'Départ',
-        'data-guests-counter-label': 'Adultes',
-        'data-guests-input-singular-label': '{{NumberOfGuests}} adulte',
-        'data-guests-input-plural-label': '{{NumberOfGuests}} adultes',
-        'data-location-input-label': 'Emplacement',
-        'data-search-button-label': 'Rechercher',
-        'data-dates-input-min-stay-tooltip-text': '{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}',
-        'data-new-tab': 'true',
-        'data-version': 'stable'
-      };
-
-      Object.entries(dataAttributes).forEach(([key, value]) => {
-        if (value !== '') {
-          widgetElement.setAttribute(key, value);
-        } else {
-          widgetElement.setAttribute(key, '');
-        }
-      });
-
-      // Attendre que le DOM soit prêt puis appeler le script
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          try {
-            // Appeler la fonction de rendu Lodgify pour le widget de recherche
-            if ((window as any).renderPortableSearchBar) {
-              (window as any).renderPortableSearchBar();
-            }
-          } catch (error) {
-            console.warn('Erreur lors du rendu du widget Lodgify:', error);
-          }
-        }, 150);
-      });
-    };
-
-    // Attendre que le script soit chargé
-    const waitForScript = (retries = 30, delay = 100) => {
-      if (checkScriptLoaded()) {
-        forceReloadWidget();
-      } else if (retries > 0) {
-        setTimeout(() => waitForScript(retries - 1, delay), delay);
-      } else {
-        // Si le script n'est pas chargé après plusieurs tentatives, réessayer périodiquement
-        const intervalId = setInterval(() => {
-          if (checkScriptLoaded()) {
-            clearInterval(intervalId);
-            forceReloadWidget();
-          }
-        }, 500);
-        
-        // Nettoyer après 10 secondes
-        setTimeout(() => clearInterval(intervalId), 10000);
-      }
-    };
-
-    // Démarrer l'attente du script
-    waitForScript();
-  }, []);
-
-  // === Réinitialisation du widget Lodgify lors de la navigation ===
-  useEffect(() => {
-    // Incrémenter la clé pour forcer le remontage du widget
-    setWidgetKey(prev => prev + 1);
-
-    // Petit délai pour s'assurer que le DOM est prêt
-    const timer = setTimeout(() => {
-      initLodgifyWidget();
-    }, 200);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [pathname, initLodgifyWidget]);
-
-  // === Réinitialisation du widget au montage du composant ===
-  useEffect(() => {
-    // Initialiser le widget au montage
-    const timer = setTimeout(() => {
-      initLodgifyWidget();
-    }, 300);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [initLodgifyWidget]);
-
-  // === MutationObserver pour détecter l'ajout du widget au DOM ===
-  useEffect(() => {
-    const widgetElement = lodgifyWidgetRef.current;
-    if (!widgetElement) return;
-
-    // Observer les changements dans le widget
-    const observer = new MutationObserver((mutations) => {
-      // Si le widget est vide ou n'a pas de contenu, réessayer de le charger
-      if (widgetElement.children.length === 0 && widgetElement.innerHTML.trim() === '') {
-        // Attendre un peu puis réessayer
-        setTimeout(() => {
-          initLodgifyWidget();
-        }, 500);
-      }
-    });
-
-    observer.observe(widgetElement, {
-      childList: true,
-      subtree: true,
-      attributes: false
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [initLodgifyWidget, widgetKey]);
-
   return (
     <>
       {/* portfolio hero avec superposition d'images et parallaxe */}
@@ -429,39 +283,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           </div>
         </div>
 
-        {/* Widget Lodgify Search avec style personnalisé */}
+        {/* Barre de recherche de disponibilités (custom, redirection Lodgify) */}
         <div 
-          className="lodgify-hero-container p-absolute"
+          className="lodgify-hero-container p-absolute availability-search-hero-wrapper"
           style={{
             width: 'auto',
-            maxWidth: '500px',
+            maxWidth: '820px',
             pointerEvents: 'auto',
             minWidth: 0
           }}
         >
-          {/* Widget de recherche Lodgify */}
-          <div
-            ref={lodgifyWidgetRef}
-            key={`lodgify-widget-${widgetKey}`}
-            id="lodgify-search-bar"
-            data-website-id="607668"
-            data-language-code="fr"
-            data-search-page-url="https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes"
-            data-dates-check-in-label="Arrivée"
-            data-dates-check-out-label="Départ"
-            data-guests-counter-label="Adultes"
-            data-guests-input-singular-label="{{NumberOfGuests}} adulte"
-            data-guests-input-plural-label="{{NumberOfGuests}} adultes"
-            data-location-input-label="Emplacement"
-            data-search-button-label="Rechercher"
-            data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} nuit","other":"Minimum de {minStay} nuits"}'
-            data-new-tab="true"
-            data-version="stable"
-            style={{
-              width: '100%',
-              maxWidth: '600px'
-            }}
-          ></div>
+          <AvailabilitySearch className="w-100" variant="hero" />
         </div>
 
         {/* Image PNG au premier plan avec effet parallaxe - Version PC */}
@@ -1187,7 +1019,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         @media (min-width: 769px) {
           .lodgify-hero-container {
             width: auto !important;
-            max-width: 600px !important;
+            max-width: 820px !important;
             min-width: 0 !important;
             z-index: 10 !important;
             padding-left: 15px !important;
