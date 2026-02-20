@@ -270,33 +270,53 @@ $radius-sm: 8px;
 }
 
 // Mobile : Arrivée | Départ côte à côte, puis Adultes + Rechercher (layout compact)
+// Optimisé pour iPhone / Safari (évite chevauchement, débordement, affichage dates)
 @media (max-width: 768px) {
   .wrapper {
     padding: 12px 14px;
     max-width: 100%;
+    overflow: hidden; /* empêche tout débordement */
+    box-sizing: border-box;
   }
 
   .form {
     gap: 12px;
+    overflow: hidden;
   }
 
-  /* Première ligne : Arrivée et Départ côte à côte */
+  /* Première ligne : Arrivée et Départ côte à côte avec espace garanti */
   .form > .row:first-child {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-    align-items: flex-start;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .form > .row:first-child .fieldGroup {
-    flex: 1;
-    min-width: 0; /* évite le débordement */
+    min-width: 0;
+    overflow: hidden;
   }
 
-  .form > .row:first-child .input,
   .form > .row:first-child .dateInputWrap {
     width: 100%;
     min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
     box-sizing: border-box;
+  }
+
+  .form > .row:first-child .input {
+    width: 100% !important;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* iOS Safari : font-size 16px évite le zoom et aide l'affichage du datepicker */
+    font-size: 16px;
+    /* Réserve de l'espace pour l'icône calendrier native sur iOS */
+    padding-right: 8px;
   }
 
   /* Deuxième ligne : Adultes et bouton empilés verticalement */
@@ -314,7 +334,7 @@ $radius-sm: 8px;
   }
 
   .fieldGroupDates {
-    min-width: 0; /* pas de min-width pour éviter débordement */
+    min-width: 0;
   }
 
   .label {
@@ -322,9 +342,9 @@ $radius-sm: 8px;
   }
 
   .input {
-    padding: 10px 12px;
+    padding: 10px 8px 10px 10px;
     min-height: 44px;
-    font-size: 14px;
+    font-size: 16px; /* 16px min pour éviter zoom iOS et afficher le datepicker */
   }
 
   .stepper {
@@ -334,5 +354,16 @@ $radius-sm: 8px;
   .submitBtn {
     width: 100%;
     min-height: 48px;
+  }
+}
+
+/* Très petits écrans (< 360px) : espacement réduit */
+@media (max-width: 360px) {
+  .wrapper {
+    padding: 10px 12px;
+  }
+
+  .form > .row:first-child {
+    gap: 8px;
   }
 }
