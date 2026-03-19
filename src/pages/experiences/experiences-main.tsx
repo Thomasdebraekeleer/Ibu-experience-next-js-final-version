@@ -686,10 +686,10 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Départ tardif - 13h30 (29eur)
+                        Arrivée anticipée et/ou départ tardif
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Prolongez votre parenthèse bien-être et profitez encore de nos installations, que ce soit après une douce grasse matinée en toute intimité ou une promenade matinale dans les environs. L&apos;occasion idéale de savourer un peu plus longtemps votre expérience IBÙ après un bon petit-déjeuner.</p>
+                        <p>Prolongez votre parenthèse bien-être et profitez encore davantage de votre expérience IBÙ. Que ce soit en arrivant plus tôt pour vous installer tranquillement et découvrir les lieux, ou en prenant le temps de savourer la matinée après une douce grasse matinée ou une promenade dans les environs, cette option vous permet de vivre l&apos;instant sans vous presser.</p>
                       </div>
                     </div>
                   </div>
