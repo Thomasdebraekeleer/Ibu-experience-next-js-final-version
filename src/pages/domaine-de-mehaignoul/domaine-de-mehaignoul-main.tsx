@@ -173,7 +173,7 @@ const DomaineDeMehaignoulMain = () => {
                           />
                         </div>
                         <a 
-                          href="https://ibu-experience.lodgify.com/fr/cocon-ibu-1---domaine-de-mehaignoul"
+                          href="https://ibu-experience.lodgify.com/fr/ibu-experience---cocon-1---domaine-de-mehaignoul"
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
@@ -235,7 +235,7 @@ const DomaineDeMehaignoulMain = () => {
                           />
                         </div>
                         <a 
-                          href="https://ibu-experience.lodgify.com/fr/cocon-ibu-2---domaine-de-mehaignoul"
+                          href="https://npreview-ibu-experience.lodgify.com/fr/ibu-experience---cocon-2---domaine-de-mehaignoul"
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
