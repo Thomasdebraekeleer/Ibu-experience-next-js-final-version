@@ -26,7 +26,6 @@ import full_image from '@/assets/img/inner-project/portfolio-details-ibu-bien-et
 import full_image_2 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-2.jpg';
 import shape from "@/assets/img/home-02/service/Picture ibu bien être.jpg";
 import visite_chai from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Visite de Chai.webp';
-import plats_priche from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Plats Priche.webp';
 import planche_aperitif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche apéritif.webp';
 import depart_tardif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Départ tardif.webp';
 import slider_img_1 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-5.jpg';
@@ -527,8 +526,13 @@ const ExperiencesMain = () => {
                   </div>
                 </div>
                 
-                {/* Option 1: Visite de Chai */}
+                {/* Option 1: Visite de Chai — image à gauche, texte à droite */}
                 <div className="row" style={{marginTop: '20px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={visite_chai} alt="Visite de Chai" style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="mb-30">
                       <h5 className="visite-chai-title" style={{
@@ -559,64 +563,9 @@ const ExperiencesMain = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-xl-6 col-lg-6">
-                    <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={visite_chai} alt="Visite de Chai" style={{height:'auto', width: '100%'}}/>
-                    </div>
-                  </div>
                 </div>
                 
-                {/* Option 2: Plats Priche */}
-                <div className="row" style={{marginTop: '40px'}}>
-                  <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
-                    <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={plats_priche} alt="Plats Priche" style={{height:'auto', width: '100%'}}/>
-                    </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
-                    <div className="mb-30">
-                      <h5 className="visite-chai-title" style={{
-                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
-                        fontWeight: '500',
-                        color: '#053725',
-                        marginTop: '10px',
-                        marginBottom: '20px',
-                        lineHeight: '1.4',
-                        display: 'block',
-                        textTransform: 'none',
-                        whiteSpace: 'normal',
-                        wordWrap: 'break-word'
-                      }}>
-                        Dîner gourmet 3 services (120eur/2pers)
-                      </h5>
-                      <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Offrez-vous une parenthèse sans aucun effort : un menu gourmet 3 services, de saison, imaginé par le chef <a href="https://www.priche.be/" target="_blank" rel="noopener noreferrer" style={{color: '#053725', textDecoration: 'underline'}}>@priche</a>.</p>
-                        <p>Le dîner vous est livré juste avant votre arrivée. Il ne vous reste qu&apos;à réchauffer et savourer…</p>
-                        <p>Une expérience culinaire intime, élégante et sans contraintes, directement dans votre cocon. Option végétarienne disponible</p>
-                        <p style={{
-                          fontSize: '0.85rem',
-                          fontStyle: 'italic',
-                          color: '#666',
-                          marginTop: '15px',
-                          lineHeight: '1.5'
-                        }}>
-                          * Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)
-                        </p>
-                        <p style={{
-                          fontSize: '0.85rem',
-                          fontStyle: 'italic',
-                          color: '#666',
-                          marginTop: '5px',
-                          lineHeight: '1.5'
-                        }}>
-                          * En cas d&apos;allergie, merci de le mentionner en commentaire lors de votre réservation.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Option 3: Planche apéritif */}
+                {/* Option 2: Planche apéritif */}
                 <div className="row" style={{marginTop: '40px'}}>
                   <div className="col-xl-6 col-lg-6">
                     <div className="mb-30">
@@ -665,7 +614,7 @@ const ExperiencesMain = () => {
                   </div>
                 </div>
                 
-                {/* Option 4: Départ tardif */}
+                {/* Option 3: Départ tardif */}
                 <div className="row" style={{marginTop: '40px'}}>
                   <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
