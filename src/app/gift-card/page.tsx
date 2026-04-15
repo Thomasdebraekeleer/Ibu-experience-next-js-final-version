@@ -17,8 +17,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 const GIFT_CARD_OPTIONS = [
   { amount: 50, label: "50 €", url: "https://buy.stripe.com/14A9ASaweenRgvc9Qt1Fe00", description: undefined },
   { amount: 100, label: "100 €", url: "https://buy.stripe.com/8x28wO47QbbFbaSaUx1Fe01", description: undefined },
-  { amount: 250, label: "250 €", url: "https://buy.stripe.com/6oUdR88o6bbF92K3s51Fe02", description: "Séjour IBÙ semaine" },
-  { amount: 299, label: "299 €", url: "https://buy.stripe.com/3cI7sK9sa7Ztgvc8Mp1Fe03", description: "Séjour IBÙ week-end" },
+  { amount: 265, label: "265 €", url: "https://buy.stripe.com/00w14mbAi4Nh4Mu7Il1Fe05", description: "Séjour IBÙ semaine" },
+  { amount: 315, label: "315 €", url: "https://buy.stripe.com/28EeVcbAibbFbaS8Mp1Fe04", description: "Séjour IBÙ week-end" },
 ] as const;
 
 export default function GiftCardPage() {

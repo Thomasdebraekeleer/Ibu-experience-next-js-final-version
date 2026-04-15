@@ -72,6 +72,7 @@ const slider_setting: SwiperOptions = {
 import { charAnimation, titleAnimation } from "@/utils/title-animation";
 import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
+import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
 
 const DomaineDeMehaignoulMain = () => {
   useScrollSmooth();
@@ -506,6 +507,12 @@ const DomaineDeMehaignoulMain = () => {
                 </div>
             </div>
             {/* Le logement section */}
+
+            <ExperienceServicesInclusSection
+              sectionId="services-section-domaine"
+              accordionParentId="accordion-domaine-inclus"
+              collapseIdPrefix="collapse-domaine-inclus"
+            />
 
             {/* footer area start */}
             <FooterThree />

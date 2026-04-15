@@ -1,4 +1,4 @@
-/* FIX MOBILE: Réduction ULTRA DRASTIQUE de l'espace entre le paragraphe et "CE QUE COMPREND IBÙ BIEN-ÊTRE" */
+/* FIX MOBILE: Réduction ULTRA DRASTIQUE de l'espace entre le paragraphe et "CE QUE COMPREND VOTRE EXPÉRIENCE" */
   
 @media (max-width: 991px) {
   /* Réduction MAXIMALE du padding-bottom de la section du paragraphe */
@@ -49,13 +49,13 @@
   /* AJUSTEMENT DES TAILLES DE TEXTE SUR MOBILE - PAGE EXPERIENCES */
   /* ========================================================= */
   
-  /* AGRANDIR le titre "CE QUE COMPREND IBÙ BIEN-ÊTRE" */
+  /* AGRANDIR le titre "CE QUE COMPREND VOTRE EXPÉRIENCE" */
   body .ce-que-comprend-title {
     font-size: clamp(2.2rem, 5.5vw, 3.5rem) !important;
     white-space: normal !important;
   }
   
-  /* RÉDUIRE le texte "IBÙ Bien-être, vous invite à vivre..." */
+  /* RÉDUIRE le texte "IBÙ vous invite à vivre..." */
   body .tp-section-title-40 {
     font-size: clamp(1.2rem, 3.5vw, 1.6rem) !important;
   }
