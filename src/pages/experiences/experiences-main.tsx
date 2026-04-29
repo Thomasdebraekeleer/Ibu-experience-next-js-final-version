@@ -261,7 +261,7 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Visite de Chai (30eur/2pers)
+                        Visite de Chai (avec ou sans dégustation) (30eur/2pers)
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
                         <p>Découvrez les coulisses de la vinification au cœur du chai : fermentation, élevage en cuve ou en barrique, et secrets de production. Une immersion guidée, authentique et sensorielle pour comprendre le savoir-faire du domaine et apprécier les vins autrement.</p>

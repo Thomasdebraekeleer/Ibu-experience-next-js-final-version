@@ -531,7 +531,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                  </div>
                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                       <p>Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
+                       <p>Conçus dans un esprit minimaliste et chaleureux, nos cocons offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, salle de bain moderne, kitchenette fonctionnel et mini garde robe.</p>
                        <p style={{marginBottom: '50px'}}>Pour prolonger l&apos;expérience, profitez d&apos;options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.</p>
                    </div>
                  </div>
@@ -637,7 +637,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                        <div className="cocon-icon-wrapper mb-20">
                            <GardeRobeIcon />
                        </div>
-                       <h6 className="cocon-feature-title">Garde robe</h6>
+                       <h6 className="cocon-feature-title">Mini garde robe</h6>
                    </div>
                  </div>
              </div>
@@ -679,7 +679,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                      <div className="cocon-icon-wrapper mb-15">
                        <GardeRobeIcon />
                      </div>
-                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Garde robe</h6>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Mini garde robe</h6>
                    </div>
                  </div>
                </div>
