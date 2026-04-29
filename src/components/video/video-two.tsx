@@ -206,30 +206,13 @@ const VideoTwo = () => {
       }
     );
 
-    // Animation pour la section StartLab.Brussels
+    // Animations des blocs showcase (titres et paragraphes)
     gsap.fromTo(".showcase-details-2-area .showcase-details-2-section-title", 
       { opacity: 0, y: 50 },
       { 
         opacity: 1, 
         y: 0, 
         duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".showcase-details-2-area",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
-
-    gsap.fromTo(".powered-by-container", 
-      { opacity: 0, x: -30 },
-      { 
-        opacity: 1, 
-        x: 0, 
-        duration: 1,
-        delay: 0.2,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".showcase-details-2-area",

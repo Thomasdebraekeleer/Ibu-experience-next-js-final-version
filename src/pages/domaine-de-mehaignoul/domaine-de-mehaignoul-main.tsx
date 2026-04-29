@@ -73,6 +73,7 @@ import { charAnimation, titleAnimation } from "@/utils/title-animation";
 import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
+import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-option-row";
 
 const DomaineDeMehaignoulMain = () => {
   useScrollSmooth();
@@ -513,6 +514,29 @@ const DomaineDeMehaignoulMain = () => {
               accordionParentId="accordion-domaine-inclus"
               collapseIdPrefix="collapse-domaine-inclus"
             />
+
+            <div className="showcase-details-2-area pb-120 pt-40">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-8">
+                    <div className="showcase-details-2-section-box">
+                      <h4 className="showcase-details-2-section-title tp-char-animation">Les options</h4>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="showcase-details-2-section-left">
+                      <span className="ab-inner-subtitle mb-25" style={{ whiteSpace: "nowrap" }}>
+                        <Leaf />
+                        Personnalisez votre séjour inoubliable
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <PetitDejeunerOptionRow marginTop="20px" />
+              </div>
+            </div>
 
             {/* footer area start */}
             <FooterThree />

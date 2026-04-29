@@ -37,6 +37,7 @@ import { charAnimation, titleAnimation } from "@/utils/title-animation";
 import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
+import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-option-row";
 
 // slider images
 const slider_images = [slider_img_1, slider_img_2, slider_img_3, slider_img_4];
@@ -348,14 +349,19 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Arrivée anticipée et/ou départ tardif
+                        Départ tardif (13h30) (31eur)
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Prolongez votre parenthèse bien-être et profitez encore davantage de votre expérience IBÙ. Que ce soit en arrivant plus tôt pour vous installer tranquillement et découvrir les lieux, ou en prenant le temps de savourer la matinée après une douce grasse matinée ou une promenade dans les environs, cette option vous permet de vivre l&apos;instant sans vous presser.</p>
+                        <p>
+                          Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l&apos;heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à&nbsp;13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Option 4: Petit déjeuner local */}
+                <PetitDejeunerOptionRow />
               </div>
             </div>
             

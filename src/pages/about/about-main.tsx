@@ -27,7 +27,6 @@ import VideoTwo from "@/components/video/video-two";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { SwiperOptions } from "swiper/types";
-import startlab_logo from "@/assets/img/inner-project/Press/Logo StarLab Brussels.png";
 import parallax_img from "@/assets/img/inner-project/A propos/A propos parrallax image.jpg";
 import { UpArrow } from '@/components/svg';
 
@@ -176,10 +175,6 @@ const AboutMain = () => {
           .showcase-details-2-area.pb-120 {
             margin-top: 20px !important;
             padding-bottom: 40px !important;
-          }
-          /* Réduire drastiquement l'espace entre la vidéo et "Ils nous accompagnent" avec marge négative TRÈS agressive */
-          .ils-nous-accompagnent-section {
-            margin-top: -350px !important; /* Marge négative très forte pour compenser l'espacement automatique entre sections */
           }
           /* Styles responsifs pour la section partenaires */
           .partner-logo-container {
@@ -382,72 +377,9 @@ const AboutMain = () => {
             </div>
             {/* Gallery Section end */}
 
-            {/* Section Ils nous accompagnent et Nos partenaires (fusionnées) */}
-            <div className="showcase-details-2-area pb-120 ils-nous-accompagnent-section" style={{marginTop: '120px'}}>
+            {/* Section Nos partenaires */}
+            <div className="showcase-details-2-area pb-120 nos-partenaires-about-section" style={{marginTop: '120px'}}>
               <div className="container">
-                {/* Titre principal Ils nous accompagnent */}
-                <div className="row">
-                  <div className="col-xl-12">
-                    <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Ils nous accompagnent</h4>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Contenu StartLab */}
-                <div className="row">
-                  <div className="col-xl-3">
-                    <div className="showcase-details-2-section-left">
-                      <div className="powered-by-container" style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '25px'}}>
-                        <span className="ab-inner-subtitle" style={{marginBottom: '0'}}>
-                          <Leaf/>
-                          Powered by
-                        </span>
-                        <div className="startlab-logo-container">
-                          <Image 
-                            src={startlab_logo} 
-                            alt="StartLab Brussels Logo" 
-                            style={{
-                              width: 'auto',
-                              height: '40px',
-                              maxWidth: '160px',
-                              objectFit: 'contain'
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-9">
-                    <div className="showcase-details-2-content-right tp_title_anim">
-                      <p className="pb-25" style={{opacity: 1, color: 'inherit'}}>
-                        IBU Experience est accompagné par{' '}
-                        <a 
-                          href="https://www.startlab.brussels/fr" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          style={{
-                            color: '#053725',
-                            textDecoration: 'underline',
-                            fontWeight: '500',
-                            transition: 'color 0.3s ease'
-                          }}
-                          onMouseEnter={(e) => {
-                            (e.target as HTMLElement).style.color = '#031c13';
-                          }}
-                          onMouseLeave={(e) => {
-                            (e.target as HTMLElement).style.color = '#053725';
-                          }}
-                        >
-                          StartLab.Brussels
-                        </a>
-                        , l&apos;incubateur early-stage de Bruxelles qui coach, forme et connecte des primo-entrepreneurs et des profils académiques pour transformer des idées audacieuses en startups à impact, au sein d&apos;une communauté trilingue (FR/NL/EN).
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Section Nos partenaires (maintenant dans la même div container) */}
                 <div className="row" style={{marginTop: '80px'}}>
                   <div className="col-xl-12">
                     <div className="showcase-details-2-section-box mb-60">
@@ -631,7 +563,7 @@ const AboutMain = () => {
                 </div>
               </div>
             </div>
-            {/* Section fusionnée end */}
+            {/* Section Nos partenaires end */}
 
             {/* Image parallax */}
             <div className="tp-project-details-3-full-width-thumb mb-120" style={{width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>
