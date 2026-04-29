@@ -355,7 +355,7 @@ const AboutMain = () => {
                         boxShadow: '0 10px 40px rgba(0,0,0,0.1)'
                       }}>
                         <iframe
-                          src="https://www.youtube.com/embed/S92vBO7Isj4?rel=0&showinfo=0&modestbranding=1"
+                          src="https://www.youtube.com/embed/fyYRwGT32Gc?rel=0&showinfo=0&modestbranding=1"
                           title="IBÙ Experience - Notre Univers"
                           style={{
                             position: 'absolute',
