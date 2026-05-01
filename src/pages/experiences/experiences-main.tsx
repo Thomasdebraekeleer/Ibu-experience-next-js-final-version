@@ -26,6 +26,7 @@ import full_image from '@/assets/img/inner-project/portfolio-details-ibu-bien-et
 import full_image_2 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-2.jpg';
 import visite_chai from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Visite de Chai.webp';
 import planche_aperitif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche apéritif.webp';
+import planche_gourmande from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche Gourmande.webp';
 import depart_tardif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Départ tardif.webp';
 import slider_img_1 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-5.jpg';
 import slider_img_2 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-6.jpg';
@@ -272,14 +273,14 @@ const ExperiencesMain = () => {
                           marginTop: '15px',
                           lineHeight: '1.5'
                         }}>
-                          * Pour réserver la visite du Chai, veuillez le préciser en commentaire lors de votre réservation. Le paiement s&apos;effectue directement sur place.
+                          * Pour réserver la visite du Chai, veuillez sélectionner l&apos;option lors de votre réservation. Le paiement s&apos;effectue directement sur place.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                {/* Option 2: Planche apéritif */}
+                {/* Option 2: Planche apéritive */}
                 <div className="row" style={{marginTop: '40px'}}>
                   <div className="col-xl-6 col-lg-6">
                     <div className="mb-30">
@@ -295,11 +296,11 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Planche apéritif dinatoire (40eur/2pers)
+                        Planche apéritive (40eur/2pers)
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Une généreuse planche composée exclusivement de produits du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et autres produits frais 100% belges.</p>
-                        <p>Une sélection authentique et gourmande, parfaite pour accompagner un verre de vin et débuter votre expérience IBÙ en douceur.</p>
+                        <p>Une délicate planche apéritive composée de produits du terroir : sélection de fromages locaux, charcuteries artisanales et accompagnements de saison.</p>
+                        <p>Parfaite pour accompagner votre bouteille de bienvenue et savourer un premier moment au cœur des vignes.</p>
                         <p style={{
                           fontSize: '0.85rem',
                           fontStyle: 'italic',
@@ -308,15 +309,6 @@ const ExperiencesMain = () => {
                           lineHeight: '1.5'
                         }}>
                           * Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)
-                        </p>
-                        <p style={{
-                          fontSize: '0.85rem',
-                          fontStyle: 'italic',
-                          color: '#666',
-                          marginTop: '5px',
-                          lineHeight: '1.5'
-                        }}>
-                          * En cas d&apos;allergie, merci de le mentionner en commentaire lors de votre réservation.
                         </p>
                       </div>
                     </div>
@@ -328,14 +320,40 @@ const ExperiencesMain = () => {
                   </div>
                 </div>
                 
-                {/* Option 3: Départ tardif */}
+                {/* Option 3: Planche gourmande dinatoire — image à gauche, texte à droite */}
                 <div className="row" style={{marginTop: '40px'}}>
-                  <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
+                  <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={depart_tardif} alt="Départ tardif" style={{height:'auto', width: '100%'}}/>
+                      <Image src={planche_gourmande} alt="Planche gourmande dinatoire" style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
-                  <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        Planche gourmande dinatoire (65eur/2pers)
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>Une généreuse planche gourmande aux saveurs du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et produits frais 100% belges.</p>
+                        <p>Une expérience complète et conviviale, idéale pour un dîner à deux au cœur des vignes.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Option 4: Départ tardif — texte à gauche, photo à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6">
                     <div className="mb-30">
                       <h5 className="visite-chai-title" style={{
                         fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
@@ -358,9 +376,14 @@ const ExperiencesMain = () => {
                       </div>
                     </div>
                   </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={depart_tardif} alt="Départ tardif" style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Option 4: Petit déjeuner local */}
+                {/* Option 5: Petit déjeuner local */}
                 <PetitDejeunerOptionRow />
               </div>
             </div>

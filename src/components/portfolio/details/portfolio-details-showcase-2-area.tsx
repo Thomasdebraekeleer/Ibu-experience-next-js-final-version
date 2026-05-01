@@ -662,7 +662,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             <div className="col-xl-12 text-center">
               <div className="showcase-details-2-section-box mb-60 text-center">
                 <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title ibu-title-no-split">
-                  Vos retours, notre fierté
+                  Ils ont testé avant vous
                 </h4>
               </div>
             </div>

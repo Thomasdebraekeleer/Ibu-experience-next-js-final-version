@@ -12,6 +12,17 @@ export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
   return (
     <div className="row" style={{ marginTop }}>
       <div className="col-xl-6 col-lg-6">
+        <div className="showcase-details-2-grid-img mb-30">
+          <Image
+            src={PETIT_DEJEUNER_IMG}
+            alt="Petit déjeuner local"
+            width={1200}
+            height={900}
+            style={{ height: "auto", width: "100%" }}
+          />
+        </div>
+      </div>
+      <div className="col-xl-6 col-lg-6">
         <div className="mb-30">
           <h5
             className="visite-chai-title"
@@ -54,17 +65,6 @@ export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
               douceur avant de profiter pleinement de votre séjour IBÙ.
             </p>
           </div>
-        </div>
-      </div>
-      <div className="col-xl-6 col-lg-6">
-        <div className="showcase-details-2-grid-img mb-30">
-          <Image
-            src={PETIT_DEJEUNER_IMG}
-            alt="Petit déjeuner local"
-            width={1200}
-            height={900}
-            style={{ height: "auto", width: "100%" }}
-          />
         </div>
       </div>
     </div>
