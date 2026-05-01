@@ -30,46 +30,9 @@ import { SwiperOptions } from "swiper/types";
 import parallax_img from "@/assets/img/inner-project/A propos/A propos parrallax image.jpg";
 import { UpArrow } from '@/components/svg';
 
+import { IBU_REVIEWS } from "@/data/ibu-reviews";
+import ExpandableReviewText from "@/components/testimonial/expandable-review-text";
 
-// Testimonial data
-const testimonial_data = [
-  {
-    id: 1,
-    desc: `"Touchée par votre projet et les valeurs qu'il met en exergue, je vous félicite pour cette initiative ! Bonne chance et beaucoup de succès dans cette aventure !"`,
-    name: "Sophie Levecq",
-    designation: "",
-  },
-  {
-    id: 2,
-    desc: `"Super idée, le début d'une grande aventure! Tout notre soutien"`,
-    name: "Evelyne Delmotte",
-    designation: "",
-  },
-  {
-    id: 3,
-    desc: `"Magnifique initiative et qui porte le nom d'un homme génial qui nous manque."`,
-    name: "Veronica Britom",
-    designation: "",
-  },
-  {
-    id: 4,
-    desc: `"Bravo pour ce super projet"`,
-    name: "Justine Raskin",
-    designation: "",
-  },
-  {
-    id: 5,
-    desc: `"Hâte que ce magnifique projet, prenne 100% vie! Il en vaut largement la peine"`,
-    name: "Sophie Ileka",
-    designation: "",
-  },
-  {
-    id: 6,
-    desc: `"Quel projet magnifique!!!"`,
-    name: "Debo Landroux",
-    designation: "",
-  },
-];
 
 // Slider settings
 const testimonial_slider_setting: SwiperOptions = {
@@ -159,12 +122,15 @@ const AboutMain = () => {
           width: 100% !important;
         }
         
-        /* Style pour "Ils nous soutiennent" - override GSAP animations */
-        .ils-nous-soutiennent-title {
-          font-size: clamp(60px, 10vw, 150px) !important;
-          line-height: 1.1 !important;
+        /* Titre témoignages — même taille accueil & à propos, lisible sur grands écrans */
+        h4.showcase-details-2-section-title.ils-nous-soutiennent-title {
+          font-size: clamp(1.75rem, 3.25vw, 3rem) !important;
+          line-height: 1.15 !important;
           max-width: 100% !important;
           width: 100% !important;
+          letter-spacing: 0.045em !important;
+          word-spacing: 0.06em !important;
+          text-align: center !important;
         }
 
         /* Espacement entre les lettres sur mobile uniquement - compensation pour l'effet GSAP */
@@ -310,9 +276,9 @@ const AboutMain = () => {
             </div>
             {/* Section Une histoire de famille end */}
 
-            {/* Section On parle de nous */}
+            {/* Section Ils parlent de nous */}
             <VideoTwo />
-            {/* Section On parle de nous end */}
+            {/* Section Ils parlent de nous end */}
 
             {/* Gallery Section with scroll effect */}
             <div className="showcase-details-2-area pt-60 pb-60">
@@ -583,15 +549,12 @@ const AboutMain = () => {
             {/* Section Témoignages */}
             <div className="tp-testimonial-area pb-120">
               <div className="container">
-                <div className="row">
-                  <div className="col-xl-12">
-                    <div className="showcase-details-2-section-box mb-60">
-                      <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title" style={{
-                        fontSize: 'clamp(60px, 10vw, 150px)',
-                        lineHeight: '1.1',
-                        maxWidth: '100%',
-                        width: '100%'
-                      }}>Ils nous soutiennent</h4>
+                <div className="row justify-content-center">
+                  <div className="col-xl-12 text-center">
+                    <div className="showcase-details-2-section-box mb-60 text-center">
+                      <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title ibu-title-no-split">
+                        Vos retours, notre fierté
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -638,12 +601,13 @@ const AboutMain = () => {
                         modules={[Navigation]}
                         className="swiper-container tp-testimonial-slider-active fix"
                       >
-                        {testimonial_data.map((item) => (
+                        {IBU_REVIEWS.map((item) => (
                           <SwiperSlide key={item.id}>
                             <div className="tp-testimonial-item text-center">
-                              <p>{item.desc}</p>
-                              <span>
-                                <em>{item.name}</em>{item.designation && ` - ${item.designation}`}
+                              <ExpandableReviewText text={item.desc} />
+                              <span style={{ fontSize: "clamp(0.85rem, 2vw, 0.95rem)", color: "#053725" }}>
+                                <em>{item.name}</em>
+                                {item.designation ? ` - ${item.designation}` : ""}
                               </span>
                             </div>
                           </SwiperSlide>

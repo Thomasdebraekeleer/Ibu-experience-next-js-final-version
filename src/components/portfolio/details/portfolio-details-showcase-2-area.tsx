@@ -6,6 +6,9 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
 import AvailabilitySearch from '@/components/AvailabilitySearch';
+import VideoTwo from '@/components/video/video-two';
+import { IBU_REVIEWS } from '@/data/ibu-reviews';
+import ExpandableReviewText from '@/components/testimonial/expandable-review-text';
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -45,45 +48,7 @@ const mobile_carousel_images = [
   '/assets/img/inner-project/Caroussel pictures/Image 7.webp',
 ];
 
-// Témoignages (mêmes contenus que la page À propos)
-const testimonial_data = [
-  {
-    id: 1,
-    desc: `"Touchée par votre projet et les valeurs qu'il met en exergue, je vous félicite pour cette initiative ! Bonne chance et beaucoup de succès dans cette aventure !"`,
-    name: "Sophie Levecq",
-    designation: "",
-  },
-  {
-    id: 2,
-    desc: `"Super idée, le début d'une grande aventure! Tout notre soutien"`,
-    name: "Evelyne Delmotte",
-    designation: "",
-  },
-  {
-    id: 3,
-    desc: `"Magnifique initiative et qui porte le nom d'un homme génial qui nous manque."`,
-    name: "Veronica Britom",
-    designation: "",
-  },
-  {
-    id: 4,
-    desc: `"Bravo pour ce super projet"`,
-    name: "Justine Raskin",
-    designation: "",
-  },
-  {
-    id: 5,
-    desc: `"Hâte que ce magnifique projet, prenne 100% vie! Il en vaut largement la peine"`,
-    name: "Sophie Ileka",
-    designation: "",
-  },
-  {
-    id: 6,
-    desc: `"Quel projet magnifique!!!"`,
-    name: "Debo Landroux",
-    designation: "",
-  },
-];
+// Voir src/data/ibu-reviews.ts (utilisée aussi page À propos)
 
 const testimonial_slider_setting = {
   slidesPerView: 1,
@@ -688,18 +653,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
        </div>
        {/* details title 5 */}
 
-      {/* Section Ils nous soutiennent + avis clients (même logique que page À propos) */}
+      <VideoTwo />
+
+      {/* Avis clients (à propos + accueil) */}
       <div className="tp-testimonial-area pb-120 pt-120 ils-nous-soutiennent-section">
         <div className="container">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="showcase-details-2-section-box mb-60">
-                <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title" style={{
-                  fontSize: 'clamp(60px, 10vw, 150px)',
-                  lineHeight: '1.1',
-                  maxWidth: '100%',
-                  width: '100%'
-                }}>Ils nous soutiennent</h4>
+          <div className="row justify-content-center">
+            <div className="col-xl-12 text-center">
+              <div className="showcase-details-2-section-box mb-60 text-center">
+                <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title ibu-title-no-split">
+                  Vos retours, notre fierté
+                </h4>
               </div>
             </div>
           </div>
@@ -747,12 +711,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   modules={[Navigation]}
                   className="swiper-container tp-testimonial-slider-active fix"
                 >
-                  {testimonial_data.map((item) => (
+                  {IBU_REVIEWS.map((item) => (
                     <SwiperSlide key={item.id}>
                       <div className="tp-testimonial-item text-center">
-                        <p>{item.desc}</p>
-                        <span>
-                          <em>{item.name}</em>{item.designation && ` - ${item.designation}`}
+                        <ExpandableReviewText text={item.desc} />
+                        <span style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#053725' }}>
+                          <em>{item.name}</em>
+                          {item.designation ? ` - ${item.designation}` : ''}
                         </span>
                       </div>
                     </SwiperSlide>
@@ -1203,14 +1168,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           padding-bottom: 20px !important;
         }
         
-        /* Style responsive pour "Ils nous soutiennent" - override GSAP animations */
-        .ils-nous-soutiennent-title {
-          font-size: clamp(60px, 10vw, 150px) !important;
-          line-height: 1.1 !important;
+        /* Titre avis — harmonisé avec la page À propos, taille raisonnable sur grands écrans */
+        h4.showcase-details-2-section-title.ils-nous-soutiennent-title {
+          font-size: clamp(1.75rem, 3.25vw, 3rem) !important;
+          line-height: 1.15 !important;
           max-width: 100% !important;
           width: 100% !important;
           word-wrap: break-word !important;
           hyphens: none !important;
+          letter-spacing: 0.045em !important;
+          word-spacing: 0.06em !important;
+          text-align: center !important;
         }
       `}</style>
     </>

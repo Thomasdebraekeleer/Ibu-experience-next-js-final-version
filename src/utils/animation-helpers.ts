@@ -59,8 +59,13 @@ export function animateCharacters(
     y = 100,
   } = options;
 
-  const el = typeof element === 'string' ? document.querySelector(element) : element;
+  const el =
+    typeof element === "string" ? document.querySelector(element) : element;
   if (!el) return null;
+
+  if ((el as HTMLElement).classList?.contains?.("ibu-title-no-split")) {
+    return simpleFadeIn(el as HTMLElement, 0.8);
+  }
 
   // Si mobile ou reduced motion, simple fade
   if (isMobileDevice() || prefersReducedMotion()) {
@@ -73,7 +78,7 @@ export function animateCharacters(
       linesClass: 'tp-reveal-line',
     });
 
-    gsap.set(el, { perspective: 300 });
+    gsap.set(el, { perspective: 300, letterSpacing: "0.03em" });
 
     const animation = gsap.from(split.chars, {
       duration,

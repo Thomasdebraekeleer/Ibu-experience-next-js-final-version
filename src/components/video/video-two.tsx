@@ -3,63 +3,117 @@ import React, { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Leaf, NextIcon, PrevIcon, UpArrow } from "../svg";
+import { Leaf } from "../svg";
 import Image from "next/image";
-import gael_ibu_img from "@/assets/img/inner-project/Press/GAEL - Ibu Expérience.jpg";
-import interview_tvcom_img from "@/assets/img/inner-project/Press/interview Tvcom - IBU Experience.jpg";
 import gael_logo from "@/assets/img/inner-project/A propos/Logo Gael Magazine x IBUExperience.png";
 import tvcom_logo from "@/assets/img/inner-project/A propos/Logo TVCom x Ibu Expérience.png";
 
+/** Visuels & logos dédiés (dossier public / « A propos ») */
+const A_PROPOS = "/assets/img/inner-project/A propos";
+
 gsap.registerPlugin(ScrollTrigger);
 
+type PressSlideImage = string;
+type PressSlideLogo = typeof gael_logo | string;
+
+type PressSlide = {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: PressSlideImage;
+  logo: PressSlideLogo;
+  alt: string;
+  link: string;
+  linkText: string;
+};
+
+const PRESS_SLIDES: PressSlide[] = [
+  {
+    id: "gael",
+    title: "Gael Magazine",
+    subtitle: "Article",
+    image: `${A_PROPOS}/Gael image.png`,
+    logo: gael_logo,
+    alt: "GAEL - Ibu Expérience",
+    link: "https://www.gael.be/lifestyle/tourisme/ibu-des-cabanes-de-luxe-pour-une-nuit-insolite-en-wallonie/",
+    linkText: "Voir l'article",
+  },
+  {
+    id: "interview",
+    title: "TV COM",
+    subtitle: "Interview",
+    image: `${A_PROPOS}/Tvcom image.png`,
+    logo: tvcom_logo,
+    alt: "Interview TV COM - IBU Experience",
+    link: "https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210",
+    linkText: "Voir l'interview",
+  },
+  {
+    id: "fooding",
+    title: "Le Fooding",
+    subtitle: "Article",
+    image: `${A_PROPOS}/Fooding image.png`,
+    logo: `${A_PROPOS}/Logo Fooding x Ibu Expérience.png`,
+    alt: "Le Fooding - IBÙ Experience",
+    link: "https://lefooding.com/hotels/ibu-experience",
+    linkText: "Voir l'article",
+  },
+  {
+    id: "flair",
+    title: "Flair",
+    subtitle: "Article",
+    image: `${A_PROPOS}/Flair image.png`,
+    logo: `${A_PROPOS}/Logo Flair x Ibu Expérience.png`,
+    alt: "Flair - IBÙ Experience",
+    link: "https://www.flair.be/fr/chillax/voyages/on-a-teste-ibu-un-nouveau-logement-insolite-au-coeur-des-vignes-wallonnes/",
+    linkText: "Voir l'article",
+  },
+  {
+    id: "sudinfo",
+    title: "Sudinfo",
+    subtitle: "Article",
+    image: `${A_PROPOS}/Sudinfo image.png`,
+    logo: `${A_PROPOS}/Logo Sudinfo x IBUExperience.png`,
+    alt: "Sudinfo - IBÙ Experience",
+    link: "https://www.sudinfo.be/id1135727/article/2026-04-11/insolite-ce-nouveau-logement-vous-permet-de-dormir-face-aux-vignes",
+    linkText: "Voir l'article",
+  },
+  {
+    id: "lesoir",
+    title: "Le Soir",
+    subtitle: "Article",
+    image: `${A_PROPOS}/Le soir image.png`,
+    logo: `${A_PROPOS}/Logo Le soir x IBUExperience.png`,
+    alt: "Le Soir — SoSoir - IBÙ Experience",
+    link: "https://sosoir.lesoir.be/739116/article/2026-04-06/long-week-end-en-vue-cinq-sublimes-logements-en-pleine-nature-tester-en-belgique",
+    linkText: "Voir l'article",
+  },
+];
 
 const VideoTwo = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  
-  const slides = [
-    {
-      id: 'gael',
-      title: 'Gael Magazine',
-      subtitle: 'Article',
-      image: gael_ibu_img,
-      logo: gael_logo,
-      alt: 'GAEL - Ibu Expérience',
-      link: 'https://www.gael.be/lifestyle/tourisme/ibu-des-cabanes-de-luxe-pour-une-nuit-insolite-en-wallonie/',
-      linkText: 'Voir l\'article'
-    },
-    {
-      id: 'interview',
-      title: 'Interview TVcom',
-      subtitle: 'Interview',
-      image: interview_tvcom_img,
-      logo: tvcom_logo,
-      alt: 'Interview TVcom - IBU Experience',
-      link: 'https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210',
-      linkText: 'Voir l\'interview'
-    }
-  ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => (prev + 1) % PRESS_SLIDES.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => (prev - 1 + PRESS_SLIDES.length) % PRESS_SLIDES.length);
   };
 
   // Auto-play du carousel
   useEffect(() => {
     if (!isHovered) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setCurrentSlide((prev) => (prev + 1) % PRESS_SLIDES.length);
       }, 5000); // Change toutes les 5 secondes
 
       return () => clearInterval(interval);
     }
-  }, [slides.length, isHovered]);
+  }, [isHovered]);
   useGSAP(() => {
-    // Animation pour la section "On parle de nous"
+    // Animation pour la section "Ils parlent de nous"
     gsap.fromTo(".video-two-section .showcase-details-2-section-title", 
       { opacity: 0, y: 50 },
       { 
@@ -206,75 +260,6 @@ const VideoTwo = () => {
       }
     );
 
-    // Animations des blocs showcase (titres et paragraphes)
-    gsap.fromTo(".showcase-details-2-area .showcase-details-2-section-title", 
-      { opacity: 0, y: 50 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".showcase-details-2-area",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
-
-    gsap.fromTo(".showcase-details-2-area .showcase-details-2-content-right p", 
-      { opacity: 0, y: 30 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 1,
-        delay: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".showcase-details-2-area",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
-
-    // Animation pour la section Témoignages
-    gsap.fromTo(".tp-testimonial-area .showcase-details-2-section-title", 
-      { opacity: 0, y: 50 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".tp-testimonial-area",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
-
-    gsap.fromTo(".tp-testimonial-slider-wrapper", 
-      { opacity: 0, y: 30 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 1,
-        delay: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".tp-testimonial-area",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
-
-    // Effet hover GSAP sur les flèches de témoignages
     const testimonialPrevBtn = document.querySelector(".tp-testimonial-prev");
     const testimonialNextBtn = document.querySelector(".tp-testimonial-next");
 
@@ -383,11 +368,13 @@ const VideoTwo = () => {
         .carousel-indicators {
           position: absolute;
           bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
+          right: 24px;
+          left: auto;
+          transform: none;
           display: flex;
           gap: 10px;
-          z-index: 10;
+          z-index: 12;
+          justify-content: flex-end;
         }
         .carousel-indicator {
           width: 12px;
@@ -414,11 +401,12 @@ const VideoTwo = () => {
             }
             .carousel-indicators {
               position: absolute !important;
-              bottom: 30px !important;
-              right: 30px !important;
+              bottom: 22px !important;
+              right: 16px !important;
               left: auto !important;
               transform: none !important;
               justify-content: flex-end !important;
+              z-index: 12 !important;
             }
             /* Ajustement de l'espacement de la section vidéo sur mobile */
             .video-two-section {
@@ -430,13 +418,13 @@ const VideoTwo = () => {
           }
         `}</style>
       
-      {/* Section On parle de nous avec carousel intégré */}
+      {/* Section Ils parlent de nous avec carousel intégré */}
       <div className="showcase-details-2-area pb-60 video-two-section" style={{maxWidth: '1200px', margin: '0 auto'}}>
         <div className="container">
           <div className="row">
             <div className="col-xl-8">
               <div className="showcase-details-2-section-box">
-                <h4 className="showcase-details-2-section-title tp-char-animation">On parle de nous</h4>
+                <h4 className="showcase-details-2-section-title tp-char-animation">Ils parlent de nous</h4>
               </div>
             </div>
           </div>
@@ -465,7 +453,7 @@ const VideoTwo = () => {
           onMouseLeave={() => setIsHovered(false)}
         >
         <div className="carousel-track" style={{transform: `translateX(-${currentSlide * 100}%)`}}>
-          {slides.map((slide, index) => (
+          {PRESS_SLIDES.map((slide, index) => (
             <div key={slide.id} className="carousel-slide">
               <div className="tp-video-area" style={{background: 'transparent', height: '100%'}}>
                 <div className="container" style={{height: '100%', maxWidth: '100%'}}>
@@ -473,14 +461,39 @@ const VideoTwo = () => {
                     <div className="col-xl-12" style={{height: '100%'}}>
                       <div className="tp-video-wrap p-relative" style={{background: 'transparent', position: 'relative', height: '100%'}}>
                         <a href={slide.link} target="_blank" rel="noopener noreferrer" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 3, textDecoration: 'none'}}></a>
-                        <div className="tp-video-bg-image" style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1}}>
+                        <div
+                          className="tp-video-bg-image press-slide-bg"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            zIndex: 1,
+                            overflow: "hidden",
+                          }}
+                        >
                           <Image
                             src={slide.image}
                             alt={slide.alt}
                             fill
+                            sizes="100vw"
                             style={{
-                              objectFit: 'cover',
-                              objectPosition: 'center'
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              filter: "blur(6px)",
+                              transform: "scale(1.08)",
+                            }}
+                          />
+                          <div
+                            aria-hidden
+                            className="press-slide-bg-scrim"
+                            style={{
+                              position: "absolute",
+                              inset: 0,
+                              zIndex: 1,
+                              background: "rgba(0, 0, 0, 0.5)",
+                              pointerEvents: "none",
                             }}
                           />
                         </div>
@@ -499,6 +512,9 @@ const VideoTwo = () => {
                               <Image
                                 src={slide.logo}
                                 alt={`Logo ${slide.title}`}
+                                width={280}
+                                height={80}
+                                sizes="(max-width: 991px) 200px, 250px"
                                 style={{
                                   height: 'auto',
                                   width: 'auto',
@@ -553,7 +569,7 @@ const VideoTwo = () => {
         
         {/* Indicators */}
         <div className="carousel-indicators">
-          {slides.map((_, index) => (
+          {PRESS_SLIDES.map((_, index) => (
             <div
               key={index}
               className={`carousel-indicator ${index === currentSlide ? 'active' : ''}`}

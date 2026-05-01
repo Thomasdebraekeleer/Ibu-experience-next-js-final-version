@@ -160,7 +160,9 @@ function bounceAnimation() {
  * OPTIMISATION: Utilise le helper animateCharacters avec fallback
  */
 function charAnimation() {
-  const elements = document.querySelectorAll(".tp-char-animation");
+  const elements = document.querySelectorAll(
+    ".tp-char-animation:not(.ibu-title-no-split)"
+  );
   if (elements.length === 0) return;
 
   elements.forEach((element) => {
