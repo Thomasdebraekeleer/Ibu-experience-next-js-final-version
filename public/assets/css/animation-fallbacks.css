@@ -101,7 +101,8 @@
 
   /* Désactiver background-attachment fixed sur mobile (cause de lag) */
   .hero-background-image,
-  .hero-foreground-image {
+  .hero-foreground-image,
+  .hero-video-layer {
     background-attachment: scroll !important;
   }
 }
@@ -148,7 +149,8 @@
 }
 
 .hero-background-image,
-.hero-foreground-image {
+.hero-foreground-image,
+.hero-video-layer {
   /* Optimiser le rendu des images */
   content-visibility: auto;
   contain: layout paint;

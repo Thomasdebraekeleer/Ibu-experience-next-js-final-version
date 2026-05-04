@@ -23,6 +23,19 @@
   transition: transform 0.1s ease-out;
 }
 
+/* Vidéo de fond hero (page d’accueil) — même empilement que l’ancienne image de fond */
+.hero-video-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
 /* Contenu du hero - REMONTÉ AU MAXIMUM ABSOLU */
 .hero-content-wrapper {
   position: relative;
@@ -144,7 +157,8 @@
 /* Effet de parallaxe au scroll */
 @media (prefers-reduced-motion: no-preference) {
   .hero-background-image,
-  .hero-foreground-image {
+  .hero-foreground-image,
+  .hero-video-layer {
     transition: transform 0.1s ease-out;
   }
 }
@@ -154,6 +168,11 @@
   .hero-background-image,
   .hero-foreground-image {
     background-attachment: scroll;
+  }
+
+  .hero-video-layer {
+    transform: none !important;
+    will-change: auto !important;
   }
   
   .hero-content-wrapper {
@@ -203,7 +222,8 @@
 
 /* Optimisation des performances */
 .hero-background-image,
-.hero-foreground-image {
+.hero-foreground-image,
+.hero-video-layer {
   backface-visibility: hidden;
   perspective: 1000px;
   transform-style: preserve-3d;

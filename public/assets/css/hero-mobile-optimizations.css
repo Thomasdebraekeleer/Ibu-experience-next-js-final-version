@@ -3,7 +3,8 @@
 /* Désactivation des effets coûteux sur mobile */
 @media (max-width: 991px) {
   .hero-background-image,
-  .hero-foreground-image {
+  .hero-foreground-image,
+  .hero-video-layer {
     background-attachment: scroll !important;
     transform: none !important;
     will-change: auto !important;
@@ -16,7 +17,8 @@
   
   /* Optimisation des images de fond */
   .hero-background-image,
-  .hero-foreground-image {
+  .hero-foreground-image,
+  .hero-video-layer {
     contain: layout paint;
     backface-visibility: hidden;
   }
@@ -24,7 +26,8 @@
 
 /* Optimisations générales pour les performances */
 .hero-background-image,
-.hero-foreground-image {
+.hero-foreground-image,
+.hero-video-layer {
   will-change: transform;
   contain: layout paint size;
   transform: translateZ(0);

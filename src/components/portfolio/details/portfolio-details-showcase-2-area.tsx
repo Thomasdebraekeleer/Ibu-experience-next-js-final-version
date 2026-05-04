@@ -50,6 +50,11 @@ const mobile_carousel_images = [
 
 // Voir src/data/ibu-reviews.ts (utilisée aussi page À propos)
 
+const HERO_VIDEO_PC_SRC =
+  '/assets/img/inner-project/showcase/IBU-hero%20PC%20video.mp4';
+const HERO_VIDEO_MOBILE_SRC =
+  '/assets/img/inner-project/showcase/IBU-hero%20mobile%20video.mp4';
+
 const testimonial_slider_setting = {
   slidesPerView: 1,
   loop: true,
@@ -66,15 +71,16 @@ const testimonial_slider_setting = {
 
 export default function PortfolioDetailsShowcaseTwoArea() {
   const heroRef = useRef<HTMLDivElement>(null);
+  /** Conteneur vidéo desktop — parallaxe au scroll */
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const foregroundRef = useRef<HTMLDivElement>(null);
+  const videoDesktopRef = useRef<HTMLVideoElement>(null);
+  const videoMobileRef = useRef<HTMLVideoElement>(null);
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
   // === Parallaxe optimisée: rAF + désactivation mobile ===
   useIsomorphicLayoutEffect(() => {
     const bg = backgroundRef.current;
-    const fg = foregroundRef.current;
-    if (!bg || !fg) return;
+    if (!bg) return;
 
     const isMobile = window.innerWidth < 992;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -82,37 +88,25 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
     // IMPORTANT: Désactiver sur mobile ET si reduced motion
     if (isMobile || prefersReducedMotion) {
-      bg.style.backgroundAttachment = 'scroll';
-      fg.style.backgroundAttachment = 'scroll';
       bg.style.transform = 'translateY(0)';
-      fg.style.transform = 'translateY(0)';
       return;
     }
 
-    // Configuration desktop avec optimisations GPU
-    bg.style.backgroundAttachment = 'scroll';
-    fg.style.backgroundAttachment = 'scroll';
     bg.style.willChange = 'transform';
-    fg.style.willChange = 'transform';
     (bg.style as any).backfaceVisibility = 'hidden';
-    (fg.style as any).backfaceVisibility = 'hidden';
 
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
-      
+
       requestAnimationFrame(() => {
         const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
-        
-        // Limiter l'effet de parallaxe pour éviter les transformations excessives
+
         const maxScroll = 2000;
         const clampedScroll = Math.min(scrolled, maxScroll);
-        
         const rateBg = clampedScroll * -0.5;
-        const rateFg = clampedScroll * -0.3;
-        
+
         bg.style.transform = `translate3d(0, ${rateBg}px, 0)`;
-        fg.style.transform = `translate3d(0, ${rateFg}px, 0)`;
         ticking = false;
       });
     };
@@ -122,9 +116,44 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
     return () => {
       window.removeEventListener('scroll', onScroll as any);
-      // Nettoyer will-change pour libérer les ressources
       bg.style.willChange = 'auto';
-      fg.style.willChange = 'auto';
+    };
+  }, []);
+
+  /** Lecture fiable (autoplay policies) + respect reduced-motion ; une seule vidéo active selon la largeur */
+  useEffect(() => {
+    const tryPlay = (v: HTMLVideoElement | null) => {
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      void v.play().catch(() => {});
+    };
+
+    const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mqLg = window.matchMedia('(min-width: 992px)');
+    const syncPlayback = () => {
+      const desktop = videoDesktopRef.current;
+      const mobile = videoMobileRef.current;
+      if (mqReduced.matches) {
+        desktop?.pause();
+        mobile?.pause();
+        return;
+      }
+      if (mqLg.matches) {
+        mobile?.pause();
+        tryPlay(desktop);
+      } else {
+        desktop?.pause();
+        tryPlay(mobile);
+      }
+    };
+
+    syncPlayback();
+    mqReduced.addEventListener('change', syncPlayback);
+    mqLg.addEventListener('change', syncPlayback);
+    return () => {
+      mqReduced.removeEventListener('change', syncPlayback);
+      mqLg.removeEventListener('change', syncPlayback);
     };
   }, []);
 
@@ -165,29 +194,49 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
   return (
     <>
-      {/* portfolio hero avec superposition d'images et parallaxe */}
+      {/* portfolio hero — vidéos de fond en boucle (PC / mobile), sans son */}
       <div ref={heroRef} className="showcase-details-2-area showcase-details-2-bg p-relative overflow-hidden">
-        {/* Image de fond avec parallaxe - Version PC */}
-        <div 
+        <div
           ref={backgroundRef}
-          className="hero-background-image p-absolute w-100 h-100 d-none d-lg-block"
+          className="hero-video-layer p-absolute w-100 h-100 d-none d-lg-block"
           style={{
-            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20PC%20Second%20plan.webp)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            zIndex: 1
+            zIndex: 1,
+            overflow: 'hidden',
+            pointerEvents: 'none',
           }}
-        />
-        {/* Image de fond avec parallaxe - Version Mobile */}
-        <div 
-          className="hero-background-image p-absolute w-100 h-100 d-block d-lg-none"
+        >
+          <video
+            ref={videoDesktopRef}
+            src={HERO_VIDEO_PC_SRC}
+            className="hero-video-media"
+            muted
+            playsInline
+            loop
+            autoPlay
+            preload="auto"
+            aria-hidden="true"
+          />
+        </div>
+        <div
+          className="hero-video-layer p-absolute w-100 h-100 d-block d-lg-none"
           style={{
-            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20mobile%20Second%20plan.webp)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            zIndex: 1
+            zIndex: 1,
+            overflow: 'hidden',
+            pointerEvents: 'none',
           }}
-        />
+        >
+          <video
+            ref={videoMobileRef}
+            src={HERO_VIDEO_MOBILE_SRC}
+            className="hero-video-media"
+            muted
+            playsInline
+            loop
+            autoPlay
+            preload="auto"
+            aria-hidden="true"
+          />
+        </div>
         
         {/* Contenu du hero avec textes */}
         <div 
@@ -260,31 +309,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         >
           <AvailabilitySearch className="w-100" variant="hero" />
         </div>
-
-        {/* Image PNG au premier plan avec effet parallaxe - Version PC */}
-        <div 
-          ref={foregroundRef}
-          className="hero-foreground-image p-absolute w-100 h-100 d-none d-lg-block"
-          style={{
-            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20PC%20premier%20plan.webp)",
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-            zIndex: 3,
-            pointerEvents: "none"
-          }}
-        />
-        {/* Image PNG au premier plan avec effet parallaxe - Version Mobile */}
-        <div 
-          className="hero-foreground-image p-absolute w-100 h-100 d-block d-lg-none"
-          style={{
-            backgroundImage: "url(/assets/img/inner-project/Header%20photo/Header%20image%20mobile%20premier%20plan.webp)",
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-            zIndex: 3,
-            pointerEvents: "none"
-          }}
-        />
-
 
       </div>
       {/* portfolio hero */}
@@ -780,11 +804,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       {/* Styles consolidés */}
       <style jsx>{`
         /* Optimisations pour les performances du hero */
-        .hero-background-image,
-        .hero-foreground-image {
+        .hero-video-layer {
           will-change: transform;
           contain: layout paint size;
           transform: translateZ(0);
+        }
+        .hero-video-media {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
         }
         
         /* Réduire l'espace entre "Le Programme" et la photo sur mobile */
