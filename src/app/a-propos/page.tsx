@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import AboutMain from "@/pages/about/about-main";
+import AboutMain from "@/views/about/about-main";
 
 export const metadata: Metadata = {
   title: "IBÙ Experience - À Propos",

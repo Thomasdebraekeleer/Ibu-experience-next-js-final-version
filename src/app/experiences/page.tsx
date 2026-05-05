@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import ExperiencesMain from "@/pages/experiences/experiences-main";
+import ExperiencesMain from "@/views/experiences/experiences-main";
 
 export const metadata: Metadata = {
   title: "VBU Experience - Nos Expériences",

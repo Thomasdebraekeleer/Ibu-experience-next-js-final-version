@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import IBUBienEtreMain from "@/pages/experiences/ibu-bien-etre/ibu-bien-etre-main";
+import IBUBienEtreMain from "@/views/experiences/ibu-bien-etre/ibu-bien-etre-main";
 
 export const metadata: Metadata = {
   title: "VBU Experience - IBÙ Bien-être",

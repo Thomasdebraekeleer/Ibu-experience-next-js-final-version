@@ -1,14 +1,5 @@
-import { Metadata } from "next";
-import HomeOnePage from "./(homes)/home-1/page";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "IBÙ Experience - Expériences uniques et immersives",
-};
-
-export default function Home() {
-  return (
-    <>
-      <HomeOnePage />
-    </>
-  );
+export default function RootPage() {
+  redirect("/accueil");
 }
