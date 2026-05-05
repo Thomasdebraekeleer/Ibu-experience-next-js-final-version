@@ -420,7 +420,7 @@ const AboutMain = () => {
                         rel="noopener noreferrer"
                         style={{
                           display: 'block',
-                          maxWidth: '150px',
+                          maxWidth: '105px',
                           width: '100%',
                           transition: 'transform 0.3s ease, opacity 0.3s ease',
                           cursor: 'pointer'

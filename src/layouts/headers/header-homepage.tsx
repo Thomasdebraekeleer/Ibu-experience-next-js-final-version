@@ -29,6 +29,11 @@ export default function HeaderHomepage() {
           color: #fcf8e3 !important;
           transition: color 0.3s ease !important;
         }
+        @media (min-width: 1200px) {
+          .header-homepage .tp-main-menu-content > ul > li > a {
+            font-size: 15px !important;
+          }
+        }
         .header-homepage .tp-main-menu-content > ul > li > a:hover {
           color: #ffffff !important;
         }
@@ -66,6 +71,14 @@ export default function HeaderHomepage() {
           background-color: transparent !important;
           border: 2px solid #fcf8e3 !important;
         }
+        @media (min-width: 1200px) {
+          .header-homepage .tp-gift-card-menu-btn {
+            font-size: 13px !important;
+            padding: 9px 14px !important;
+            white-space: nowrap !important;
+            line-height: 1 !important;
+          }
+        }
         .header-homepage .tp-gift-card-menu-btn:hover {
           background-color: transparent !important;
           border: 2px solid #fcf8e3 !important;
@@ -83,7 +96,7 @@ export default function HeaderHomepage() {
                   </Link>
                 </div>
               </div>
-              <div className="col-xl-8 d-none d-xl-block">
+              <div className="col-xl-9 d-none d-xl-block">
                 <div className="tp-inner-header-2-menu header-main-menu">
                   <nav className="tp-main-menu-content">
                     {/* header menus */}
@@ -92,7 +105,7 @@ export default function HeaderHomepage() {
                   </nav>
                 </div>
               </div>
-              <div className="col-xl-2 col-lg-8 col-md-8 col-8">
+              <div className="col-xl-1 col-lg-8 col-md-8 col-8">
                 <div className="tp-inner-header-2-right d-flex align-items-center justify-content-end">
                   {/* Bouton Carte cadeau mobile - masqué sur la page gift-card */}
                   {!isGiftCardPage && (

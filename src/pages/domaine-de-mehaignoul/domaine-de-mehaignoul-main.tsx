@@ -30,13 +30,19 @@ import logement_img_2 from '@/assets/img/inner-project/portfolio-details-domaine
 
 // image pour la section parallax
 import parallax_img from '@/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-7.jpg';
+import visite_chai from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Visite de Chai.webp';
+import planche_aperitif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche apéritif.webp';
+import planche_gourmande from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche Gourmande.webp';
+import depart_tardif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Départ tardif.webp';
 
 // slider images for Domaine de Mehaignoul
 const slider_images = [
-  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-1.jpg',
   '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-2.jpg',
   '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-3.jpg',
-  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-4.jpg'
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-4.jpg',
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-9.jpg',
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-10.jpg',
+  '/assets/img/inner-project/portfolio-details-domaine-mehaignoul/Domaine-de-Mehaignoul-img-1.jpg'
 ];
 
 // slider setting
@@ -534,7 +540,150 @@ const DomaineDeMehaignoulMain = () => {
                     </div>
                   </div>
                 </div>
-                <PetitDejeunerOptionRow marginTop="20px" />
+                {/* Option 1: Visite de Chai — image à gauche, texte à droite */}
+                <div className="row" style={{marginTop: '20px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={visite_chai} alt="Visite de Chai" style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        Visite de Chai (avec dégustation) - 60EUR / 2 pers.
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>Découvrez les coulisses de la vinification au cœur du chai : fermentation, élevage en cuve ou en barrique, et secrets de production. Une immersion guidée, authentique et sensorielle pour comprendre le savoir-faire du domaine et apprécier les vins autrement.</p>
+                        <p style={{
+                          fontSize: '0.85rem',
+                          fontStyle: 'italic',
+                          color: '#666',
+                          marginTop: '15px',
+                          lineHeight: '1.5'
+                        }}>
+                          * Pour réserver la visite du chai (avec dégustation), veuillez sélectionner l&apos;option lors de votre réservation. Tarif : 60EUR / 2 pers. Paiement directement sur place.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 2: Planche apéritive */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        Planche apéritive (40eur/2pers)
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>Une délicate planche apéritive composée de produits du terroir : sélection de fromages locaux, charcuteries artisanales et accompagnements de saison.</p>
+                        <p>Parfaite pour accompagner votre bouteille de bienvenue et savourer un premier moment au cœur des vignes.</p>
+                        <p style={{
+                          fontSize: '0.85rem',
+                          fontStyle: 'italic',
+                          color: '#666',
+                          marginTop: '15px',
+                          lineHeight: '1.5'
+                        }}>
+                          * Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={planche_aperitif} alt="Planche apéritif" style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 3: Planche gourmande dinatoire — image à gauche, texte à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={planche_gourmande} alt="Planche gourmande dinatoire" style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        Planche gourmande dinatoire (65eur/2pers)
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>Une généreuse planche gourmande aux saveurs du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et produits frais 100% belges.</p>
+                        <p>Une expérience complète et conviviale, idéale pour un dîner à deux au cœur des vignes.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 4: Départ tardif — texte à gauche, photo à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        Départ tardif (13h30) (31eur)
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>
+                          Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l&apos;heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à&nbsp;13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={depart_tardif} alt="Départ tardif" style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 5: Petit déjeuner local */}
+                <PetitDejeunerOptionRow />
               </div>
             </div>
 

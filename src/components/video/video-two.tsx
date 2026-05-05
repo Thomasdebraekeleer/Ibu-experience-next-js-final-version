@@ -5,8 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Leaf } from "../svg";
 import Image from "next/image";
-import gael_logo from "@/assets/img/inner-project/A propos/Logo Gael Magazine x IBUExperience.png";
-import tvcom_logo from "@/assets/img/inner-project/A propos/Logo TVCom x Ibu Expérience.png";
 
 /** Visuels & logos dédiés (dossier public / « A propos ») */
 const A_PROPOS = "/assets/img/inner-project/A propos";
@@ -14,7 +12,7 @@ const A_PROPOS = "/assets/img/inner-project/A propos";
 gsap.registerPlugin(ScrollTrigger);
 
 type PressSlideImage = string;
-type PressSlideLogo = typeof gael_logo | string;
+type PressSlideLogo = string;
 
 type PressSlide = {
   id: string;
@@ -29,24 +27,24 @@ type PressSlide = {
 
 const PRESS_SLIDES: PressSlide[] = [
   {
+    id: "elle",
+    title: "ELLE Magazine",
+    subtitle: "Article",
+    image: `${A_PROPOS}/Elle image.png`,
+    logo: `${A_PROPOS}/Logo Elle Magazine x IBUExperience.png`,
+    alt: "ELLE Magazine - IBÙ Experience",
+    link: "https://www.elle.be/fr/471785-nuits-parmi-les-vignes-notre-experience-chez-ibu-experience.html",
+    linkText: "Voir l'article",
+  },
+  {
     id: "gael",
     title: "Gael Magazine",
     subtitle: "Article",
     image: `${A_PROPOS}/Gael image.png`,
-    logo: gael_logo,
+    logo: `${A_PROPOS}/Logo Gael Magazine x IBUExperience.png`,
     alt: "GAEL - Ibu Expérience",
     link: "https://www.gael.be/lifestyle/tourisme/ibu-des-cabanes-de-luxe-pour-une-nuit-insolite-en-wallonie/",
     linkText: "Voir l'article",
-  },
-  {
-    id: "interview",
-    title: "TV COM",
-    subtitle: "Interview",
-    image: `${A_PROPOS}/Tvcom image.png`,
-    logo: tvcom_logo,
-    alt: "Interview TV COM - IBU Experience",
-    link: "https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210",
-    linkText: "Voir l'interview",
   },
   {
     id: "fooding",
@@ -87,6 +85,26 @@ const PRESS_SLIDES: PressSlide[] = [
     alt: "Le Soir — SoSoir - IBÙ Experience",
     link: "https://sosoir.lesoir.be/739116/article/2026-04-06/long-week-end-en-vue-cinq-sublimes-logements-en-pleine-nature-tester-en-belgique",
     linkText: "Voir l'article",
+  },
+  {
+    id: "vivacite",
+    title: "Vivacité",
+    subtitle: "Interview",
+    image: `${A_PROPOS}/Vicacité image.png`,
+    logo: `${A_PROPOS}/Logo Vicacité  x IBUExperience.png`,
+    alt: "Vivacité - Interview IBÙ Experience",
+    link: "https://auvio.rtbf.be/media/namur-matin-ibu-les-cabanes-de-luxe-du-domaine-de-mehaignoul-3464743?fbclid=PAVERFWARlrhZleHRuA2FlbQIxMABzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacKQkHHudVx-V8rbvtcGNsXXxPoCGs6shlQh67IuiIEOKwgKFWp2TLTLljvdg_aem_xcC8jiS01bWTol67dQ9RSw",
+    linkText: "Voir l'interview",
+  },
+  {
+    id: "interview",
+    title: "TV COM",
+    subtitle: "Interview",
+    image: `${A_PROPOS}/Tvcom image.png`,
+    logo: `${A_PROPOS}/Logo TVCom x Ibu Expérience.png`,
+    alt: "Interview TV COM - IBU Experience",
+    link: "https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210",
+    linkText: "Voir l'interview",
   },
 ];
 
@@ -399,13 +417,17 @@ const VideoTwo = () => {
             .tp-video-title {
               font-size: clamp(2rem, 4vw, 3rem) !important;
             }
+            .press-slide-cta {
+              bottom: 64px !important;
+            }
             .carousel-indicators {
               position: absolute !important;
-              bottom: 22px !important;
-              right: 16px !important;
-              left: auto !important;
+              bottom: 18px !important;
+              left: 0 !important;
+              right: 0 !important;
+              width: 100% !important;
               transform: none !important;
-              justify-content: flex-end !important;
+              justify-content: center !important;
               z-index: 12 !important;
             }
             /* Ajustement de l'espacement de la section vidéo sur mobile */
@@ -527,7 +549,7 @@ const VideoTwo = () => {
                             <h2 className="tp-video-title" style={{fontSize: 'clamp(2.8rem, 5.5vw, 4.2rem)', letterSpacing: '0.1em'}}>{slide.title}</h2>
                           </div>
                         </div>
-                        <div style={{position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', zIndex: 4, textAlign: 'center'}}>
+                        <div className="press-slide-cta" style={{position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', zIndex: 4, textAlign: 'center'}}>
                           <a href={slide.link} target="_blank" rel="noopener noreferrer" style={{
                             color: '#fcf8e3',
                             textDecoration: 'none',
