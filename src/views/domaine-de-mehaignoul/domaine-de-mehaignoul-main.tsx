@@ -540,14 +540,14 @@ const DomaineDeMehaignoulMain = () => {
                     </div>
                   </div>
                 </div>
-                {/* Option 1: Visite de Chai — image à gauche, texte à droite */}
+                {/* Option 1: Visite de Chai — image à gauche, texte à droite (mobile : titre + texte puis photo) */}
                 <div className="row" style={{marginTop: '20px'}}>
-                  <div className="col-xl-6 col-lg-6">
+                  <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
                       <Image src={visite_chai} alt="Visite de Chai" style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
-                  <div className="col-xl-6 col-lg-6">
+                  <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
                     <div className="mb-30">
                       <h5 className="visite-chai-title" style={{
                         fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
@@ -619,14 +619,14 @@ const DomaineDeMehaignoulMain = () => {
                   </div>
                 </div>
 
-                {/* Option 3: Planche gourmande dinatoire — image à gauche, texte à droite */}
+                {/* Option 3: Planche gourmande dinatoire — image à gauche, texte à droite (mobile : titre + texte puis photo) */}
                 <div className="row" style={{marginTop: '40px'}}>
-                  <div className="col-xl-6 col-lg-6">
+                  <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
                       <Image src={planche_gourmande} alt="Planche gourmande dinatoire" style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
-                  <div className="col-xl-6 col-lg-6">
+                  <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
                     <div className="mb-30">
                       <h5 className="visite-chai-title" style={{
                         fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',

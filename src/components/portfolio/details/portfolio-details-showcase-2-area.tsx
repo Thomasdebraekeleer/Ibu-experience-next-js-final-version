@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+'use client';
+
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -50,10 +52,15 @@ const mobile_carousel_images = [
 
 // Voir src/data/ibu-reviews.ts (utilisée aussi page À propos)
 
-const HERO_VIDEO_PC_SRC =
-  '/assets/img/inner-project/showcase/IBU-hero%20PC%20video.mp4';
+/** ≥768px : horizontal — <768px : vertical (aligné sur Bootstrap `md`) */
+const HERO_VIDEO_BREAKPOINT_PX = 768;
+const HERO_SCROLL_SOUND_FADE_PX = 300;
+const HERO_SOUND_TARGET_VOLUME = 0.25;
+
+const HERO_VIDEO_DESKTOP_SRC =
+  'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-%20horizontal%20Hero%20desktop.mp4';
 const HERO_VIDEO_MOBILE_SRC =
-  '/assets/img/inner-project/showcase/IBU-hero%20mobile%20video.mp4';
+  'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-FINAL-VERTICAL%20HERO%20VIDEO.mp4';
 
 const testimonial_slider_setting = {
   slidesPerView: 1,
@@ -77,6 +84,71 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const videoMobileRef = useRef<HTMLVideoElement>(null);
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
+
+  /** Volontairement coupé par l’utilisateur (« Désactiver le son ») — ignore le fondu au scroll au retour en haut. */
+  const heroSoundMutedByUserRef = useRef(false);
+  const [heroSoundUserMuted, setHeroSoundUserMuted] = useState(false);
+  const [heroVidPreloadDesktop, setHeroVidPreloadDesktop] = useState<
+    'none' | 'metadata'
+  >('none');
+  const [heroVidPreloadMobile, setHeroVidPreloadMobile] = useState<
+    'none' | 'metadata'
+  >('none');
+  /** Après hydrate : évite d’afficher le CTA son si mouvement réduit. */
+  const [heroReduceMotion, setHeroReduceMotion] = useState<boolean | null>(
+    null
+  );
+
+  const getHeroScrollTop = () =>
+    typeof window !== 'undefined'
+      ? window.scrollY || document.documentElement.scrollTop || 0
+      : 0;
+
+  const applyHeroVideoAudio = useCallback((scrollY?: number) => {
+    const y =
+      typeof scrollY === 'number'
+        ? Math.max(0, scrollY)
+        : getHeroScrollTop();
+    const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mqDesk = window.matchMedia(
+      `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
+    );
+
+    const desktop = videoDesktopRef.current;
+    const mobile = videoMobileRef.current;
+    const active = mqDesk.matches ? desktop : mobile;
+    const inactive = mqDesk.matches ? mobile : desktop;
+
+    if (!active || mqReduce.matches || heroSoundMutedByUserRef.current) {
+      [desktop, mobile].forEach((v) => {
+        if (v) {
+          v.volume = HERO_SOUND_TARGET_VOLUME;
+          v.muted = true;
+        }
+      });
+      return;
+    }
+
+    [desktop, mobile].forEach((v) => {
+      if (v) v.volume = HERO_SOUND_TARGET_VOLUME;
+    });
+
+    if (y <= 0) {
+      active.muted = false;
+      active.volume = HERO_SOUND_TARGET_VOLUME;
+    } else if (y >= HERO_SCROLL_SOUND_FADE_PX) {
+      active.volume = HERO_SOUND_TARGET_VOLUME;
+      active.muted = true;
+    } else {
+      const vol =
+        HERO_SOUND_TARGET_VOLUME * (1 - y / HERO_SCROLL_SOUND_FADE_PX);
+      active.volume = vol;
+      active.muted = vol < 0.015;
+    }
+
+    inactive && (inactive.muted = true);
+  }, []);
+
   // === Parallaxe optimisée: rAF + désactivation mobile ===
   useIsomorphicLayoutEffect(() => {
     const bg = backgroundRef.current;
@@ -120,26 +192,45 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     };
   }, []);
 
-  /** Lecture fiable (autoplay policies) + respect reduced-motion ; une seule vidéo active selon la largeur */
+  /** Lecture fiable (autoplay) + préférence de mouvement ; une vidéo active selon ≥768px + sync audio hero */
   useEffect(() => {
+    const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mqMdUp = window.matchMedia(
+      `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
+    );
+
     const tryPlay = (v: HTMLVideoElement | null) => {
       if (!v) return;
+      v.volume = HERO_SOUND_TARGET_VOLUME;
       v.muted = true;
-      v.defaultMuted = true;
-      void v.play().catch(() => {});
+      void v
+        .play()
+        .then(() => {
+          if (mqReduced.matches || heroSoundMutedByUserRef.current) {
+            v.muted = true;
+            applyHeroVideoAudio(getHeroScrollTop());
+            return;
+          }
+          v.muted = false;
+          v.volume = HERO_SOUND_TARGET_VOLUME;
+          applyHeroVideoAudio(getHeroScrollTop());
+        })
+        .catch(() => {
+          applyHeroVideoAudio(getHeroScrollTop());
+        });
     };
 
-    const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const mqLg = window.matchMedia('(min-width: 992px)');
     const syncPlayback = () => {
       const desktop = videoDesktopRef.current;
       const mobile = videoMobileRef.current;
       if (mqReduced.matches) {
         desktop?.pause();
         mobile?.pause();
+        if (desktop) desktop.muted = true;
+        if (mobile) mobile.muted = true;
         return;
       }
-      if (mqLg.matches) {
+      if (mqMdUp.matches) {
         mobile?.pause();
         tryPlay(desktop);
       } else {
@@ -150,12 +241,105 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
     syncPlayback();
     mqReduced.addEventListener('change', syncPlayback);
-    mqLg.addEventListener('change', syncPlayback);
+    mqMdUp.addEventListener('change', syncPlayback);
     return () => {
       mqReduced.removeEventListener('change', syncPlayback);
-      mqLg.removeEventListener('change', syncPlayback);
+      mqMdUp.removeEventListener('change', syncPlayback);
     };
+  }, [applyHeroVideoAudio]);
+
+  /** Atténuation du volume sur les premiers px de scroll + retour sommet ;
+   * sauf si l’utilisateur a choisi « Désactiver le son ». */
+  useEffect(() => {
+    let raf = 0;
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        applyHeroVideoAudio(getHeroScrollTop());
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [applyHeroVideoAudio]);
+
+  /** Préférence mouvement réduit (SSR-safe). */
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setHeroReduceMotion(mq.matches);
+    const h = () => setHeroReduceMotion(mq.matches);
+    mq.addEventListener('change', h);
+    return () => mq.removeEventListener('change', h);
   }, []);
+
+  /** Préload : métadonnées pour la vidéo du viewport uniquement (`none` pour l’autre). */
+  useEffect(() => {
+    const mq = window.matchMedia(
+      `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
+    );
+    const syncPreload = () => {
+      if (mq.matches) {
+        setHeroVidPreloadDesktop('metadata');
+        setHeroVidPreloadMobile('none');
+      } else {
+        setHeroVidPreloadDesktop('none');
+        setHeroVidPreloadMobile('metadata');
+      }
+    };
+    syncPreload();
+    mq.addEventListener('change', syncPreload);
+    return () => mq.removeEventListener('change', syncPreload);
+  }, []);
+
+  /** Première synchro volume (sans prop React `muted`). */
+  useIsomorphicLayoutEffect(() => {
+    [videoDesktopRef.current, videoMobileRef.current].forEach((v) => {
+      if (!v) return;
+      v.volume = HERO_SOUND_TARGET_VOLUME;
+    });
+  }, []);
+
+  const muteHeroSoundByUser = () => {
+    heroSoundMutedByUserRef.current = true;
+    setHeroSoundUserMuted(true);
+    [videoDesktopRef.current, videoMobileRef.current].forEach((v) => {
+      if (!v) return;
+      v.volume = HERO_SOUND_TARGET_VOLUME;
+      v.muted = true;
+    });
+  };
+
+  const unmuteHeroSoundByUser = () => {
+    heroSoundMutedByUserRef.current = false;
+    setHeroSoundUserMuted(false);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    const mqDesk = window.matchMedia(
+      `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
+    ).matches;
+    const active = mqDesk ? videoDesktopRef.current : videoMobileRef.current;
+    if (!active) {
+      applyHeroVideoAudio(getHeroScrollTop());
+      return;
+    }
+    void active
+      .play()
+      .then(() => {
+        if (heroSoundMutedByUserRef.current) return;
+        active.muted = false;
+        active.volume = HERO_SOUND_TARGET_VOLUME;
+        applyHeroVideoAudio(getHeroScrollTop());
+      })
+      .catch(() => {
+        applyHeroVideoAudio(getHeroScrollTop());
+      });
+  };
 
   // === IntersectionObserver pour mobile hover states ===
   useEffect(() => {
@@ -194,50 +378,58 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
   return (
     <>
-      {/* portfolio hero — vidéos de fond en boucle (PC / mobile), sans son */}
+      {/* portfolio hero — vidéos R2 ; son visé au chargement (autoplay puis unmute si le navigateur l’autorise). */}
       <div ref={heroRef} className="showcase-details-2-area showcase-details-2-bg p-relative overflow-hidden">
         <div
           ref={backgroundRef}
-          className="hero-video-layer p-absolute w-100 h-100 d-none d-lg-block"
+          className="hero-video-layer p-absolute w-100 h-100 d-none d-md-block"
           style={{
             zIndex: 1,
             overflow: 'hidden',
             pointerEvents: 'none',
           }}
         >
+          {/* TODO(hero-video): poster="/..." quand une image poster dédiée sera disponible */}
           <video
             ref={videoDesktopRef}
-            src={HERO_VIDEO_PC_SRC}
+            src={HERO_VIDEO_DESKTOP_SRC}
             className="hero-video-media"
-            muted
             playsInline
             loop
             autoPlay
-            preload="auto"
+            preload={heroVidPreloadDesktop}
+            disablePictureInPicture
+            disableRemotePlayback
+            suppressHydrationWarning
             aria-hidden="true"
+            controls={false}
           />
         </div>
         <div
-          className="hero-video-layer p-absolute w-100 h-100 d-block d-lg-none"
+          className="hero-video-layer p-absolute w-100 h-100 d-block d-md-none"
           style={{
             zIndex: 1,
             overflow: 'hidden',
             pointerEvents: 'none',
           }}
         >
+          {/* TODO(hero-video): poster="/..." quand une image poster dédiée sera disponible */}
           <video
             ref={videoMobileRef}
             src={HERO_VIDEO_MOBILE_SRC}
             className="hero-video-media"
-            muted
             playsInline
             loop
             autoPlay
-            preload="auto"
+            preload={heroVidPreloadMobile}
+            disablePictureInPicture
+            disableRemotePlayback
+            suppressHydrationWarning
             aria-hidden="true"
+            controls={false}
           />
         </div>
-        
+
         {/* Contenu du hero avec textes */}
         <div 
           className="hero-content-wrapper p-relative" 
@@ -289,6 +481,31 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                         }}>
                           VIGNOBLE • CHÂTEAU • DOMAINE
                         </div>
+                        {heroReduceMotion === false && (
+                          <div
+                            className="hero-sound-inline"
+                            style={{ marginTop: '18px' }}
+                          >
+                            <button
+                              type="button"
+                              className="hero-sound-cta hero-sound-cta-under-keywords"
+                              onClick={
+                                heroSoundUserMuted
+                                  ? unmuteHeroSoundByUser
+                                  : muteHeroSoundByUser
+                              }
+                              aria-label={
+                                heroSoundUserMuted
+                                  ? 'Activer le son de la vidéo en arrière-plan'
+                                  : 'Désactiver le son de la vidéo en arrière-plan'
+                              }
+                            >
+                              {heroSoundUserMuted
+                                ? 'Activer le son'
+                                : 'Désactiver le son'}
+                            </button>
+                          </div>
+                        )}
                       </div>
                   </div>
                   
@@ -815,6 +1032,51 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           object-fit: cover;
           object-position: center;
           display: block;
+          pointer-events: none;
+        }
+        video.hero-video-media::-webkit-media-controls {
+          display: none !important;
+        }
+        video.hero-video-media::-webkit-media-controls-enclosure {
+          display: none !important;
+        }
+        .hero-sound-cta {
+          font-family: inherit;
+          font-size: clamp(13px, 2.8vw, 15px);
+          font-weight: 500;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          padding: 0.55rem 1.1rem;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.45);
+          background: rgba(0, 0, 0, 0.35);
+          color: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          cursor: pointer;
+          transition:
+            border-color 0.2s ease,
+            background 0.2s ease,
+            color 0.2s ease;
+        }
+        .hero-sound-cta:hover {
+          border-color: rgba(255, 255, 255, 0.75);
+          background: rgba(0, 0, 0, 0.48);
+          color: #fff;
+        }
+        .hero-sound-cta:focus-visible {
+          outline: 2px solid #fff;
+          outline-offset: 3px;
+        }
+        .hero-sound-cta.hero-sound-cta-under-keywords {
+          align-self: flex-start;
+          font-size: clamp(11px, 2.4vw, 13px);
+          padding: 0.42rem 0.88rem;
+          letter-spacing: 0.08em;
+        }
+        .hero-sound-inline {
+          display: flex;
+          justify-content: flex-start;
         }
         
         /* Réduire l'espace entre "Le Programme" et la photo sur mobile */

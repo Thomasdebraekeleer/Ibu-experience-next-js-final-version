@@ -11,7 +11,7 @@ type Props = {
 export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
   return (
     <div className="row" style={{ marginTop }}>
-      <div className="col-xl-6 col-lg-6">
+      <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
         <div className="showcase-details-2-grid-img mb-30">
           <Image
             src={PETIT_DEJEUNER_IMG}
@@ -22,7 +22,7 @@ export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
           />
         </div>
       </div>
-      <div className="col-xl-6 col-lg-6">
+      <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
         <div className="mb-30">
           <h5
             className="visite-chai-title"
