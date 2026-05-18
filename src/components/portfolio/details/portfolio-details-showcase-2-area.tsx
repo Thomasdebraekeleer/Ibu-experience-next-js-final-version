@@ -56,6 +56,12 @@ const mobile_carousel_images = [
 const HERO_VIDEO_BREAKPOINT_PX = 768;
 const HERO_SCROLL_SOUND_FADE_PX = 300;
 const HERO_SOUND_TARGET_VOLUME = 0.25;
+const HERO_AUDIO_ENABLE_FADE_MS = 450;
+const HERO_AUDIO_DISABLE_FADE_MS = 400;
+/** Lissage par frame vers la cible scroll (0–1, typ. 0.08–0.15) */
+const HERO_SCROLL_VOLUME_LERP = 0.12;
+const HERO_VOLUME_MUTE_THRESHOLD = 0.01;
+const HERO_VOLUME_STOP_LERP_EPS = 0.002;
 
 const HERO_VIDEO_DESKTOP_SRC =
   'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-%20horizontal%20Hero%20desktop.mp4';
@@ -96,58 +102,191 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   /** isAudioEnabled côté UI : false tant que pas d’activation / désactivé par le bouton. */
   const isAudioEnabled = hasUserActivatedAudio && !soundDisabledByToggle;
 
-  /** Après hydrate : évite d’afficher le CTA son si mouvement réduit. */
-  const [heroReduceMotion, setHeroReduceMotion] = useState<boolean | null>(
-    null
-  );
-
   const getHeroScrollTop = () =>
     typeof window !== 'undefined'
       ? window.scrollY || document.documentElement.scrollTop || 0
       : 0;
 
-  const applyHeroVideoAudio = useCallback((scrollY?: number) => {
-    const y =
-      typeof scrollY === 'number'
-        ? Math.max(0, scrollY)
-        : getHeroScrollTop();
+  /** Après hydrate : évite d’afficher le CTA son si mouvement réduit. */
+  const [heroReduceMotion, setHeroReduceMotion] = useState<boolean | null>(
+    null
+  );
+
+  /** Pendant une rampe volume manuelle (bouton), le lissage scroll est ignoré. */
+  const heroManualFadeBlockingRef = useRef(false);
+  const heroSmoothedScrollVolumeRef = useRef(0);
+  const heroManualVolumeRampRafRef = useRef<number | null>(null);
+  const heroScrollVolumeSmoothingRafRef = useRef<number | null>(null);
+
+  const cancelQueuedHeroScrollVolumeTick = useCallback(() => {
+    if (heroScrollVolumeSmoothingRafRef.current != null) {
+      cancelAnimationFrame(heroScrollVolumeSmoothingRafRef.current);
+      heroScrollVolumeSmoothingRafRef.current = null;
+    }
+  }, []);
+
+  const clampHeroVolume = useCallback((v: number) => {
+    return Math.min(Math.max(v, 0), HERO_SOUND_TARGET_VOLUME);
+  }, []);
+
+  /** Cible volume [0, 0.25] dérivée du scroll (linéaire sur HERO_SCROLL_SOUND_FADE_PX). */
+  const getHeroScrollDesiredVolume = useCallback((y: number) => {
+    if (y <= 0) return HERO_SOUND_TARGET_VOLUME;
+    if (y >= HERO_SCROLL_SOUND_FADE_PX) return 0;
+    return HERO_SOUND_TARGET_VOLUME * (1 - y / HERO_SCROLL_SOUND_FADE_PX);
+  }, []);
+
+  const cancelHeroManualVolumeRamp = useCallback(() => {
+    if (heroManualVolumeRampRafRef.current != null) {
+      cancelAnimationFrame(heroManualVolumeRampRafRef.current);
+      heroManualVolumeRampRafRef.current = null;
+    }
+    heroManualFadeBlockingRef.current = false;
+  }, []);
+
+  /** Rampe volume avec annulation de la rampe précédente et du pending scroll (smoothstep). */
+  const smoothSetHeroVolume = useCallback(
+    (
+      video: HTMLVideoElement,
+      fromVol: number,
+      toVol: number,
+      durationMs: number,
+      onComplete: () => void
+    ) => {
+      cancelHeroManualVolumeRamp();
+      cancelQueuedHeroScrollVolumeTick();
+      heroManualFadeBlockingRef.current = true;
+      const clampedFrom = clampHeroVolume(fromVol);
+      const clampedTo = clampHeroVolume(toVol);
+      video.volume = clampedFrom;
+      const t0 = performance.now();
+
+      const step = (now: number) => {
+        const elapsed = now - t0;
+        const u = Math.min(1, elapsed / durationMs);
+        const k = u * u * (3 - 2 * u);
+        const v = clampHeroVolume(clampedFrom + (clampedTo - clampedFrom) * k);
+        video.volume = v;
+        if (u >= 1) {
+          heroManualVolumeRampRafRef.current = null;
+          video.volume = clampedTo;
+          heroManualFadeBlockingRef.current = false;
+          onComplete();
+          return;
+        }
+        heroManualVolumeRampRafRef.current = requestAnimationFrame(step);
+      };
+      heroManualVolumeRampRafRef.current = requestAnimationFrame(step);
+    },
+    [cancelHeroManualVolumeRamp, cancelQueuedHeroScrollVolumeTick, clampHeroVolume]
+  );
+
+  /** Toutes les pistes mutées (autoplay / désactivation), sans pause. */
+  const commitHeroMutedAllVideos = useCallback(() => {
+    const desktop = videoDesktopRef.current;
+    const mobile = videoMobileRef.current;
+    [desktop, mobile].forEach((v) => {
+      if (!v) return;
+      v.muted = true;
+      v.volume = HERO_SOUND_TARGET_VOLUME;
+    });
+    heroSmoothedScrollVolumeRef.current = 0;
+  }, []);
+
+  /** Met à jour inactive = muet ; active = interpolation vers la cible scroll (rAF). */
+  const tickHeroScrollVolumeSmoothing = useCallback(() => {
+    heroScrollVolumeSmoothingRafRef.current = null;
+
+    if (heroManualFadeBlockingRef.current) return;
+
     const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const mqDesk = window.matchMedia(
       `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
     );
-
     const desktop = videoDesktopRef.current;
     const mobile = videoMobileRef.current;
     const active = mqDesk.matches ? desktop : mobile;
-    [desktop, mobile].forEach((v) => {
-      if (v) {
-        v.volume = HERO_SOUND_TARGET_VOLUME;
-        v.muted = true;
-      }
-    });
+    const inactive = mqDesk.matches ? mobile : desktop;
 
-    if (!active || mqReduce.matches) return;
+    const keepLooping = (): number | null => {
+      heroScrollVolumeSmoothingRafRef.current = requestAnimationFrame(
+        tickHeroScrollVolumeSmoothing
+      );
+      return heroScrollVolumeSmoothingRafRef.current;
+    };
+
+    if (inactive) {
+      inactive.muted = true;
+      inactive.volume = HERO_SOUND_TARGET_VOLUME;
+    }
+
+    if (!active || mqReduce.matches) {
+      commitHeroMutedAllVideos();
+      return;
+    }
 
     if (
       !hasUserActivatedAudioRef.current ||
       soundDisabledByToggleRef.current
     ) {
+      commitHeroMutedAllVideos();
       return;
     }
 
-    if (y <= 0) {
-      active.volume = HERO_SOUND_TARGET_VOLUME;
-      active.muted = false;
-    } else if (y >= HERO_SCROLL_SOUND_FADE_PX) {
-      active.volume = HERO_SOUND_TARGET_VOLUME;
-      active.muted = true;
-    } else {
-      const vol =
-        HERO_SOUND_TARGET_VOLUME * (1 - y / HERO_SCROLL_SOUND_FADE_PX);
-      active.volume = vol;
-      active.muted = vol < 0.015;
+    const y = getHeroScrollTop();
+    const desired = getHeroScrollDesiredVolume(y);
+
+    let s = heroSmoothedScrollVolumeRef.current;
+    if (
+      s <= 0 &&
+      desired > HERO_VOLUME_MUTE_THRESHOLD &&
+      active.volume <= HERO_VOLUME_MUTE_THRESHOLD
+    ) {
+      /* Reprise après mute : aligner sur la piste pour éviter un saut */
+      s = Math.min(active.volume, desired);
     }
-  }, []);
+    s += (desired - s) * HERO_SCROLL_VOLUME_LERP;
+    heroSmoothedScrollVolumeRef.current = s;
+
+    const out = clampHeroVolume(s);
+    active.volume = out;
+
+    /* Pas de mute=true tant que le volume (ou la cible) reste perceptible au-dessus du seuil. */
+    const shouldMuteOutput =
+      out <= HERO_VOLUME_MUTE_THRESHOLD &&
+      desired <= HERO_VOLUME_MUTE_THRESHOLD;
+
+    active.muted = shouldMuteOutput;
+
+    const diff = Math.abs(desired - out);
+    if (diff > HERO_VOLUME_STOP_LERP_EPS) keepLooping();
+  }, [
+    clampHeroVolume,
+    commitHeroMutedAllVideos,
+    getHeroScrollDesiredVolume,
+  ]);
+
+  const scheduleHeroScrollVolumeTick = useCallback(() => {
+    if (heroScrollVolumeSmoothingRafRef.current != null) {
+      cancelAnimationFrame(heroScrollVolumeSmoothingRafRef.current);
+    }
+    heroScrollVolumeSmoothingRafRef.current = requestAnimationFrame(
+      tickHeroScrollVolumeSmoothing
+    );
+  }, [tickHeroScrollVolumeSmoothing]);
+
+  /** Après autoplay muette : lissage scroll si l’audio user est actif ; sinon tout muet. */
+  const syncHeroMutedPlaybackAudio = useCallback(() => {
+    if (
+      hasUserActivatedAudioRef.current &&
+      !soundDisabledByToggleRef.current &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches === false
+    ) {
+      scheduleHeroScrollVolumeTick();
+    } else {
+      commitHeroMutedAllVideos();
+    }
+  }, [commitHeroMutedAllVideos, scheduleHeroScrollVolumeTick]);
 
   const configureHeroVideosMutedAutoplay = useCallback(() => {
     const desk = videoDesktopRef.current;
@@ -171,7 +310,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     );
   }, []);
 
-  /** Lecture muette uniquement ; ne touche pas au son utilisateur après activation (géré par applyHeroVideoAudio). */
+  /** Lecture muette uniquement ; le son utilisateur est géré par le lissage scroll / rampes bouton. */
   const attemptHeroMutedPlaybackOnly = useCallback((): Promise<void> => {
     configureHeroVideosMutedAutoplay();
     const els = getHeroVideoElements();
@@ -254,7 +393,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       void attemptHeroMutedPlaybackOnly().finally(() => {
         if (isActiveHeroPlayingMutedOk()) detachInteractionFallback();
       });
-      applyHeroVideoAudio(getHeroScrollTop());
+      syncHeroMutedPlaybackAudio();
     };
 
     detachInteractionFallback = () => {
@@ -289,7 +428,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           attachInteractionFallbackIfNeeded();
         }
       });
-      applyHeroVideoAudio(getHeroScrollTop());
+      syncHeroMutedPlaybackAudio();
     };
 
     kickMutedAutoplay();
@@ -301,27 +440,36 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       mqMdUp.removeEventListener('change', kickMutedAutoplay);
       detachInteractionFallback();
     };
-  }, [applyHeroVideoAudio, attemptHeroMutedPlaybackOnly]);
+  }, [attemptHeroMutedPlaybackOnly, syncHeroMutedPlaybackAudio]);
 
-  /** Atténuation du volume sur les premiers px de scroll + retour sommet ;
-   * sauf si l’utilisateur a choisi « Désactiver le son ». */
+  /** Relance uniquement une frame de lissage volume (pas de volume brut sur scroll). */
   useEffect(() => {
-    let raf = 0;
+    const shouldSmooth =
+      isAudioEnabled && heroReduceMotion === false;
+
+    if (!shouldSmooth) return;
+
+    let scrollCoalesceRaf = 0;
 
     const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        applyHeroVideoAudio(getHeroScrollTop());
+      cancelAnimationFrame(scrollCoalesceRaf);
+      scrollCoalesceRaf = requestAnimationFrame(() => {
+        scrollCoalesceRaf = 0;
+        scheduleHeroScrollVolumeTick();
       });
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    scheduleHeroScrollVolumeTick();
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(scrollCoalesceRaf);
       window.removeEventListener('scroll', onScroll);
     };
-  }, [applyHeroVideoAudio]);
+  }, [
+    heroReduceMotion,
+    isAudioEnabled,
+    scheduleHeroScrollVolumeTick,
+  ]);
 
   /** Préférence mouvement réduit (SSR-safe). */
   useEffect(() => {
@@ -332,49 +480,88 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /** Après re-render suite au bouton : ré-applique l’audio (corrige muted={true} côté React). */
+  /** Hors période « son utilisateur », force le muet cohérent (sans rejouer configure sur la rampe bouton). */
   useIsomorphicLayoutEffect(() => {
-    configureHeroVideosMutedAutoplay();
-    applyHeroVideoAudio(getHeroScrollTop());
+    if (!hasUserActivatedAudio || soundDisabledByToggle) {
+      cancelHeroManualVolumeRamp();
+      cancelQueuedHeroScrollVolumeTick();
+      commitHeroMutedAllVideos();
+    }
   }, [
     hasUserActivatedAudio,
     soundDisabledByToggle,
-    configureHeroVideosMutedAutoplay,
-    applyHeroVideoAudio,
+    cancelHeroManualVolumeRamp,
+    cancelQueuedHeroScrollVolumeTick,
+    commitHeroMutedAllVideos,
   ]);
 
   const muteHeroSoundByUser = () => {
-    soundDisabledByToggleRef.current = true;
-    setSoundDisabledByToggle(true);
-    getHeroVideoElements().forEach((v) => {
-      v.volume = HERO_SOUND_TARGET_VOLUME;
-      v.muted = true;
+    cancelQueuedHeroScrollVolumeTick();
+    const mqDesk = window.matchMedia(
+      `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
+    ).matches;
+    const active = mqDesk ? videoDesktopRef.current : videoMobileRef.current;
+    const inactive = mqDesk ? videoMobileRef.current : videoDesktopRef.current;
+    if (!active) {
+      soundDisabledByToggleRef.current = true;
+      setSoundDisabledByToggle(true);
+      commitHeroMutedAllVideos();
+      return;
+    }
+
+    const startVol = clampHeroVolume(active.volume);
+    smoothSetHeroVolume(active, startVol, 0, HERO_AUDIO_DISABLE_FADE_MS, () => {
+      active.muted = true;
+      active.volume = HERO_SOUND_TARGET_VOLUME;
+      if (inactive) {
+        inactive.muted = true;
+        inactive.volume = HERO_SOUND_TARGET_VOLUME;
+      }
+      heroSmoothedScrollVolumeRef.current = 0;
+      soundDisabledByToggleRef.current = true;
+      setSoundDisabledByToggle(true);
     });
-    applyHeroVideoAudio(getHeroScrollTop());
   };
 
   const unmuteHeroSoundByUser = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
+
+    cancelQueuedHeroScrollVolumeTick();
+
     hasUserActivatedAudioRef.current = true;
     soundDisabledByToggleRef.current = false;
     setHasUserActivatedAudio(true);
     setSoundDisabledByToggle(false);
+
     const mqDesk = window.matchMedia(
       `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
     ).matches;
     const active = mqDesk ? videoDesktopRef.current : videoMobileRef.current;
     const inactive = mqDesk ? videoMobileRef.current : videoDesktopRef.current;
     if (!active) return;
-    active.volume = HERO_SOUND_TARGET_VOLUME;
-    active.muted = false;
+
     if (inactive) {
       inactive.muted = true;
       inactive.volume = HERO_SOUND_TARGET_VOLUME;
     }
+
+    active.muted = false;
+    active.volume = 0;
+    heroSmoothedScrollVolumeRef.current = 0;
+
     void active.play().catch(() => {});
-    applyHeroVideoAudio(getHeroScrollTop());
+    smoothSetHeroVolume(
+      active,
+      0,
+      HERO_SOUND_TARGET_VOLUME,
+      HERO_AUDIO_ENABLE_FADE_MS,
+      () => {
+        heroSmoothedScrollVolumeRef.current = clampHeroVolume(active.volume);
+        scheduleHeroScrollVolumeTick();
+      }
+    );
   };
 
   const onHeroSoundToggleClick = () => {
