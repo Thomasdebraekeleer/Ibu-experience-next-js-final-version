@@ -85,15 +85,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
 
-  /** Volontairement coupé par l’utilisateur (« Désactiver le son ») — ignore le fondu au scroll au retour en haut. */
-  const heroSoundMutedByUserRef = useRef(false);
-  const [heroSoundUserMuted, setHeroSoundUserMuted] = useState(false);
-  const [heroVidPreloadDesktop, setHeroVidPreloadDesktop] = useState<
-    'none' | 'metadata'
-  >('none');
-  const [heroVidPreloadMobile, setHeroVidPreloadMobile] = useState<
-    'none' | 'metadata'
-  >('none');
+  /** Après avoir choisi « Activer le son » une première fois ; le fondu au scroll ne s’applique que si true. */
+  const hasUserActivatedAudioRef = useRef(false);
+  const [hasUserActivatedAudio, setHasUserActivatedAudio] = useState(false);
+
+  /** Muet volontairement via le bouton (n’inverse pas hasUserActivatedAudio). */
+  const soundDisabledByToggleRef = useRef(false);
+  const [soundDisabledByToggle, setSoundDisabledByToggle] = useState(false);
+
+  /** isAudioEnabled côté UI : false tant que pas d’activation / désactivé par le bouton. */
+  const isAudioEnabled = hasUserActivatedAudio && !soundDisabledByToggle;
+
   /** Après hydrate : évite d’afficher le CTA son si mouvement réduit. */
   const [heroReduceMotion, setHeroReduceMotion] = useState<boolean | null>(
     null
@@ -117,25 +119,25 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     const desktop = videoDesktopRef.current;
     const mobile = videoMobileRef.current;
     const active = mqDesk.matches ? desktop : mobile;
-    const inactive = mqDesk.matches ? mobile : desktop;
+    [desktop, mobile].forEach((v) => {
+      if (v) {
+        v.volume = HERO_SOUND_TARGET_VOLUME;
+        v.muted = true;
+      }
+    });
 
-    if (!active || mqReduce.matches || heroSoundMutedByUserRef.current) {
-      [desktop, mobile].forEach((v) => {
-        if (v) {
-          v.volume = HERO_SOUND_TARGET_VOLUME;
-          v.muted = true;
-        }
-      });
+    if (!active || mqReduce.matches) return;
+
+    if (
+      !hasUserActivatedAudioRef.current ||
+      soundDisabledByToggleRef.current
+    ) {
       return;
     }
 
-    [desktop, mobile].forEach((v) => {
-      if (v) v.volume = HERO_SOUND_TARGET_VOLUME;
-    });
-
     if (y <= 0) {
-      active.muted = false;
       active.volume = HERO_SOUND_TARGET_VOLUME;
+      active.muted = false;
     } else if (y >= HERO_SCROLL_SOUND_FADE_PX) {
       active.volume = HERO_SOUND_TARGET_VOLUME;
       active.muted = true;
@@ -145,9 +147,38 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       active.volume = vol;
       active.muted = vol < 0.015;
     }
-
-    inactive && (inactive.muted = true);
   }, []);
+
+  const configureHeroVideosMutedAutoplay = useCallback(() => {
+    const desk = videoDesktopRef.current;
+    const mob = videoMobileRef.current;
+    [desk, mob].forEach((v) => {
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      try {
+        (v as HTMLVideoElement).playsInline = true;
+      } catch {
+        /* ignore */
+      }
+      v.volume = HERO_SOUND_TARGET_VOLUME;
+    });
+  }, []);
+
+  const getHeroVideoElements = useCallback((): HTMLVideoElement[] => {
+    return [videoDesktopRef.current, videoMobileRef.current].filter(
+      (v): v is HTMLVideoElement => Boolean(v)
+    );
+  }, []);
+
+  /** Lecture muette uniquement ; ne touche pas au son utilisateur après activation (géré par applyHeroVideoAudio). */
+  const attemptHeroMutedPlaybackOnly = useCallback((): Promise<void> => {
+    configureHeroVideosMutedAutoplay();
+    const els = getHeroVideoElements();
+    return Promise.all(els.map((v) => v.play().catch(() => undefined))).then(
+      () => undefined
+    );
+  }, [configureHeroVideosMutedAutoplay, getHeroVideoElements]);
 
   // === Parallaxe optimisée: rAF + désactivation mobile ===
   useIsomorphicLayoutEffect(() => {
@@ -192,61 +223,85 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     };
   }, []);
 
-  /** Lecture fiable (autoplay) + préférence de mouvement ; une vidéo active selon ≥768px + sync audio hero */
+  /** Lecture muette (autoplay prod) + aucun pause() hero ; tentative au chargement puis filet sur interaction. */
   useEffect(() => {
-    const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const mqMdUp = window.matchMedia(
       `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
     );
-
-    const tryPlay = (v: HTMLVideoElement | null) => {
-      if (!v) return;
-      v.volume = HERO_SOUND_TARGET_VOLUME;
-      v.muted = true;
-      void v
-        .play()
-        .then(() => {
-          if (mqReduced.matches || heroSoundMutedByUserRef.current) {
-            v.muted = true;
-            applyHeroVideoAudio(getHeroScrollTop());
-            return;
-          }
-          v.muted = false;
-          v.volume = HERO_SOUND_TARGET_VOLUME;
-          applyHeroVideoAudio(getHeroScrollTop());
-        })
-        .catch(() => {
-          applyHeroVideoAudio(getHeroScrollTop());
-        });
+    const heroMutedPlayInteractionEvents = [
+      'pointerdown',
+      'touchstart',
+      'keydown',
+      'scroll',
+    ] as const;
+    const mutedPlayListenerOpts: AddEventListenerOptions = {
+      capture: true,
+      passive: true,
     };
 
-    const syncPlayback = () => {
-      const desktop = videoDesktopRef.current;
-      const mobile = videoMobileRef.current;
-      if (mqReduced.matches) {
-        desktop?.pause();
-        mobile?.pause();
-        if (desktop) desktop.muted = true;
-        if (mobile) mobile.muted = true;
-        return;
-      }
-      if (mqMdUp.matches) {
-        mobile?.pause();
-        tryPlay(desktop);
-      } else {
-        desktop?.pause();
-        tryPlay(mobile);
+    const isActiveHeroPlayingMutedOk = (): boolean => {
+      const active = mqMdUp.matches
+        ? videoDesktopRef.current
+        : videoMobileRef.current;
+      return Boolean(active && !active.paused);
+    };
+
+    let listenersMounted = false;
+
+    let detachInteractionFallback: () => void;
+
+    const onUserInteractionMutedPlay = () => {
+      void attemptHeroMutedPlaybackOnly().finally(() => {
+        if (isActiveHeroPlayingMutedOk()) detachInteractionFallback();
+      });
+      applyHeroVideoAudio(getHeroScrollTop());
+    };
+
+    detachInteractionFallback = () => {
+      if (!listenersMounted) return;
+      listenersMounted = false;
+      for (const evt of heroMutedPlayInteractionEvents) {
+        window.removeEventListener(
+          evt,
+          onUserInteractionMutedPlay,
+          mutedPlayListenerOpts
+        );
       }
     };
 
-    syncPlayback();
-    mqReduced.addEventListener('change', syncPlayback);
-    mqMdUp.addEventListener('change', syncPlayback);
+    const attachInteractionFallbackIfNeeded = () => {
+      if (listenersMounted) return;
+      listenersMounted = true;
+      for (const evt of heroMutedPlayInteractionEvents) {
+        window.addEventListener(
+          evt,
+          onUserInteractionMutedPlay,
+          mutedPlayListenerOpts
+        );
+      }
+    };
+
+    const kickMutedAutoplay = () => {
+      void attemptHeroMutedPlaybackOnly().finally(() => {
+        if (isActiveHeroPlayingMutedOk()) {
+          detachInteractionFallback();
+        } else {
+          attachInteractionFallbackIfNeeded();
+        }
+      });
+      applyHeroVideoAudio(getHeroScrollTop());
+    };
+
+    kickMutedAutoplay();
+    mqMdUp.addEventListener('change', kickMutedAutoplay);
+
+    attachInteractionFallbackIfNeeded();
+
     return () => {
-      mqReduced.removeEventListener('change', syncPlayback);
-      mqMdUp.removeEventListener('change', syncPlayback);
+      mqMdUp.removeEventListener('change', kickMutedAutoplay);
+      detachInteractionFallback();
     };
-  }, [applyHeroVideoAudio]);
+  }, [applyHeroVideoAudio, attemptHeroMutedPlaybackOnly]);
 
   /** Atténuation du volume sur les premiers px de scroll + retour sommet ;
    * sauf si l’utilisateur a choisi « Désactiver le son ». */
@@ -277,68 +332,54 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     return () => mq.removeEventListener('change', h);
   }, []);
 
-  /** Préload : métadonnées pour la vidéo du viewport uniquement (`none` pour l’autre). */
-  useEffect(() => {
-    const mq = window.matchMedia(
-      `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
-    );
-    const syncPreload = () => {
-      if (mq.matches) {
-        setHeroVidPreloadDesktop('metadata');
-        setHeroVidPreloadMobile('none');
-      } else {
-        setHeroVidPreloadDesktop('none');
-        setHeroVidPreloadMobile('metadata');
-      }
-    };
-    syncPreload();
-    mq.addEventListener('change', syncPreload);
-    return () => mq.removeEventListener('change', syncPreload);
-  }, []);
-
-  /** Première synchro volume (sans prop React `muted`). */
+  /** Après re-render suite au bouton : ré-applique l’audio (corrige muted={true} côté React). */
   useIsomorphicLayoutEffect(() => {
-    [videoDesktopRef.current, videoMobileRef.current].forEach((v) => {
-      if (!v) return;
-      v.volume = HERO_SOUND_TARGET_VOLUME;
-    });
-  }, []);
+    configureHeroVideosMutedAutoplay();
+    applyHeroVideoAudio(getHeroScrollTop());
+  }, [
+    hasUserActivatedAudio,
+    soundDisabledByToggle,
+    configureHeroVideosMutedAutoplay,
+    applyHeroVideoAudio,
+  ]);
 
   const muteHeroSoundByUser = () => {
-    heroSoundMutedByUserRef.current = true;
-    setHeroSoundUserMuted(true);
-    [videoDesktopRef.current, videoMobileRef.current].forEach((v) => {
-      if (!v) return;
+    soundDisabledByToggleRef.current = true;
+    setSoundDisabledByToggle(true);
+    getHeroVideoElements().forEach((v) => {
       v.volume = HERO_SOUND_TARGET_VOLUME;
       v.muted = true;
     });
+    applyHeroVideoAudio(getHeroScrollTop());
   };
 
   const unmuteHeroSoundByUser = () => {
-    heroSoundMutedByUserRef.current = false;
-    setHeroSoundUserMuted(false);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
+    hasUserActivatedAudioRef.current = true;
+    soundDisabledByToggleRef.current = false;
+    setHasUserActivatedAudio(true);
+    setSoundDisabledByToggle(false);
     const mqDesk = window.matchMedia(
       `(min-width: ${HERO_VIDEO_BREAKPOINT_PX}px)`
     ).matches;
     const active = mqDesk ? videoDesktopRef.current : videoMobileRef.current;
-    if (!active) {
-      applyHeroVideoAudio(getHeroScrollTop());
-      return;
+    const inactive = mqDesk ? videoMobileRef.current : videoDesktopRef.current;
+    if (!active) return;
+    active.volume = HERO_SOUND_TARGET_VOLUME;
+    active.muted = false;
+    if (inactive) {
+      inactive.muted = true;
+      inactive.volume = HERO_SOUND_TARGET_VOLUME;
     }
-    void active
-      .play()
-      .then(() => {
-        if (heroSoundMutedByUserRef.current) return;
-        active.muted = false;
-        active.volume = HERO_SOUND_TARGET_VOLUME;
-        applyHeroVideoAudio(getHeroScrollTop());
-      })
-      .catch(() => {
-        applyHeroVideoAudio(getHeroScrollTop());
-      });
+    void active.play().catch(() => {});
+    applyHeroVideoAudio(getHeroScrollTop());
+  };
+
+  const onHeroSoundToggleClick = () => {
+    if (isAudioEnabled) muteHeroSoundByUser();
+    else unmuteHeroSoundByUser();
   };
 
   // === IntersectionObserver pour mobile hover states ===
@@ -378,7 +419,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
   return (
     <>
-      {/* portfolio hero — vidéos R2 ; son visé au chargement (autoplay puis unmute si le navigateur l’autorise). */}
+      {/* portfolio hero — vidéos R2 ; autoplay muette garantie puis son uniquement après action utilisateur. */}
       <div ref={heroRef} className="showcase-details-2-area showcase-details-2-bg p-relative overflow-hidden">
         <div
           ref={backgroundRef}
@@ -394,10 +435,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             ref={videoDesktopRef}
             src={HERO_VIDEO_DESKTOP_SRC}
             className="hero-video-media"
+            muted
             playsInline
             loop
             autoPlay
-            preload={heroVidPreloadDesktop}
+            preload="auto"
             disablePictureInPicture
             disableRemotePlayback
             suppressHydrationWarning
@@ -418,10 +460,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             ref={videoMobileRef}
             src={HERO_VIDEO_MOBILE_SRC}
             className="hero-video-media"
+            muted
             playsInline
             loop
             autoPlay
-            preload={heroVidPreloadMobile}
+            preload="auto"
             disablePictureInPicture
             disableRemotePlayback
             suppressHydrationWarning
@@ -489,20 +532,16 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                             <button
                               type="button"
                               className="hero-sound-cta hero-sound-cta-under-keywords"
-                              onClick={
-                                heroSoundUserMuted
-                                  ? unmuteHeroSoundByUser
-                                  : muteHeroSoundByUser
-                              }
+                              onClick={onHeroSoundToggleClick}
                               aria-label={
-                                heroSoundUserMuted
-                                  ? 'Activer le son de la vidéo en arrière-plan'
-                                  : 'Désactiver le son de la vidéo en arrière-plan'
+                                isAudioEnabled
+                                  ? 'Désactiver le son de la vidéo en arrière-plan'
+                                  : 'Activer le son de la vidéo en arrière-plan'
                               }
                             >
-                              {heroSoundUserMuted
-                                ? 'Activer le son'
-                                : 'Désactiver le son'}
+                              {isAudioEnabled
+                                ? 'Désactiver le son'
+                                : 'Activer le son'}
                             </button>
                           </div>
                         )}
