@@ -10,9 +10,10 @@
     will-change: auto !important;
   }
   
-  /* Désactivation de la parallaxe sur mobile */
+  /* Désactivation de la parallaxe sur mobile — clip horizontal pour éviter le scroll latéral */
   .showcase-details-2-bg {
-    overflow: visible !important;
+    overflow-x: clip !important;
+    overflow-y: visible !important;
   }
   
   /* Optimisation des images de fond */

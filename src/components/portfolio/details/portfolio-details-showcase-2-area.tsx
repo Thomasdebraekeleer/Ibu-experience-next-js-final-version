@@ -50,6 +50,9 @@ const mobile_carousel_images = [
   '/assets/img/inner-project/Caroussel pictures/Image 7.webp',
 ];
 
+const PROGRAM_PHOTO_MOBILE_SRC =
+  '/assets/img/inner-project/Caroussel pictures/Image Mobile home page.webp';
+
 // Voir src/data/ibu-reviews.ts (utilisée aussi page À propos)
 
 /** ≥768px : horizontal — <768px : vertical (aligné sur Bootstrap `md`) */
@@ -64,7 +67,7 @@ const HERO_VOLUME_MUTE_THRESHOLD = 0.01;
 const HERO_VOLUME_STOP_LERP_EPS = 0.002;
 
 const HERO_VIDEO_DESKTOP_SRC =
-  'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-%20horizontal%20Hero%20desktop.mp4';
+  'https://pub-f75a4080d6fb43b6b0e593ff2ffe8b23.r2.dev/IBU-EXPERIENCE-VIDEO%20PC.mp4';
 const HERO_VIDEO_MOBILE_SRC =
   'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-FINAL-VERTICAL%20HERO%20VIDEO.mp4';
 
@@ -389,7 +392,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
     let detachInteractionFallback: () => void;
 
-    const onUserInteractionMutedPlay = () => {
+    const onUserInteractionMutedPlay = (e: Event) => {
+      const target = e.target;
+      if (
+        target instanceof Element &&
+        target.closest('.hero-sound-cta, .hero-sound-inline')
+      ) {
+        return;
+      }
       void attemptHeroMutedPlaybackOnly().finally(() => {
         if (isActiveHeroPlayingMutedOk()) detachInteractionFallback();
       });
@@ -552,6 +562,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     heroSmoothedScrollVolumeRef.current = 0;
 
     void active.play().catch(() => {});
+
+    /* Mobile / iOS : volume audible dans le même geste (rAF hors gesture = muet). */
+    if (!mqDesk) {
+      active.volume = HERO_SOUND_TARGET_VOLUME;
+      heroSmoothedScrollVolumeRef.current = HERO_SOUND_TARGET_VOLUME;
+      scheduleHeroScrollVolumeTick();
+      return;
+    }
+
     smoothSetHeroVolume(
       active,
       0,
@@ -660,6 +679,9 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           />
         </div>
 
+        {/* Voile léger pour améliorer la lisibilité du texte / menu au-dessus */}
+        <div className="hero-video-scrim p-absolute w-100 h-100" aria-hidden="true" />
+
         {/* Contenu du hero avec textes */}
         <div 
           className="hero-content-wrapper p-relative" 
@@ -680,15 +702,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           lineHeight: '0.8',
                           letterSpacing: '0.08em',
                           fontWeight: '700',
-                          width: '100vw',
-                          maxWidth: '100vw',
+                          width: '100%',
+                          maxWidth: '100%',
                           textAlign: 'left',
                           transform: 'translateX(0)',
                           position: 'relative',
                           zIndex: '1',
                           color: 'white',
                           textTransform: 'uppercase',
-                          overflow: 'visible',
+                          overflow: 'hidden',
                           marginLeft: '0',
                           paddingLeft: '0'
                         }}>
@@ -809,13 +831,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             </div>
           </div>
 
-          {/* Version Mobile - Carrousel pleine largeur */}
-          <div className="d-block d-lg-none" style={{
-            marginTop: '60px',
-            marginLeft: 'calc(-50vw + 50%)',
-            marginRight: 'calc(-50vw + 50%)',
-            width: '100vw'
-          }}>
+          {/* Version Mobile - Carrousel (pleine largeur sans 100vw → évite le scroll horizontal) */}
+          <div className="evasion-mobile-fullbleed d-block d-lg-none" style={{ marginTop: '60px' }}>
             <Swiper
               slidesPerView={1}
               centeredSlides={true}
@@ -869,9 +886,24 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       </div>
       {/* Awards section */}
 
-      {/* full width image */}
+      {/* full width image — PC : photo horizontale + parallaxe ; mobile : taille native */}
       <div className="showcase-details-2-fullwidth-img program-photo-spacing">
-          <Image data-speed=".8" src={fullwidth_img} alt="fullwidth_img" style={{height:'auto'}}/>
+          <Image
+            data-speed=".8"
+            src={fullwidth_img}
+            alt="fullwidth_img"
+            className="program-photo-desktop d-none d-md-block w-100"
+            style={{ height: 'auto' }}
+          />
+          <Image
+            src={PROGRAM_PHOTO_MOBILE_SRC}
+            alt="Le Programme IBÙ"
+            width={1200}
+            height={1600}
+            sizes="100vw"
+            className="program-photo-mobile-native d-block d-md-none w-100"
+            style={{ width: '100%', height: 'auto' }}
+          />
       </div>
       {/* full width image */}
 
@@ -1252,6 +1284,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           contain: layout paint size;
           transform: translateZ(0);
         }
+        .hero-video-scrim {
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          background: rgba(0, 0, 0, 0.1);
+        }
         .hero-video-media {
           width: 100%;
           height: 100%;
@@ -1307,6 +1345,37 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         
         /* Réduire l'espace entre "Le Programme" et la photo sur mobile */
         @media (max-width: 991px) {
+          /* Empêcher le micro scroll horizontal (100vw, titres nowrap, carrousels…) */
+          :global(body.home-page),
+          :global(body.home-page #smooth-wrapper),
+          :global(body.home-page #smooth-content),
+          :global(body.home-page main) {
+            overflow-x: clip;
+            max-width: 100%;
+          }
+
+          .showcase-details-2-area {
+            overflow-x: clip;
+            max-width: 100%;
+          }
+
+          .showcase-details-2-section-title {
+            white-space: normal !important;
+          }
+
+          /* Carrousel mobile : bord à bord via marges négatives du container, pas 100vw */
+          .evasion-mobile-fullbleed {
+            width: auto;
+            max-width: none;
+            margin-left: calc(-1 * var(--bs-gutter-x, 1.5rem) * 0.5);
+            margin-right: calc(-1 * var(--bs-gutter-x, 1.5rem) * 0.5);
+          }
+
+          .evasion-mobile-carousel {
+            max-width: 100%;
+            overflow: hidden;
+          }
+
           /* Forcer un espacement au-dessus du titre pour éviter qu'il ne passe sous la section précédente */
           .tp-award-wrapper {
             padding-top: 8px !important;
@@ -1346,12 +1415,28 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             padding-top: 40px !important;
           }
           
+          /* Mobile : photo verticale 1200×1600 — pleine largeur écran, ratio conservé, sans zoom/crop */
+          .program-photo-spacing.showcase-details-2-fullwidth-img {
+            height: auto !important;
+            min-height: 0 !important;
+            overflow: visible !important;
+          }
+
+          .program-photo-spacing .program-photo-mobile-native {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            object-position: center top !important;
+            display: block !important;
+          }
+          
           /* Garantir que l'image garde sa taille originale et ne se coupe pas */
           .showcase-details-2-fullwidth-img {
             overflow: visible !important;
           }
           
-          .showcase-details-2-fullwidth-img img {
+          .showcase-details-2-fullwidth-img img:not(.program-photo-mobile-native) {
             width: 100% !important;
             height: auto !important;
             object-fit: contain !important;
@@ -1392,7 +1477,18 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
           
           /* Garantir que l'image garde sa taille originale et ne se coupe pas sur petits écrans */
-          .showcase-details-2-fullwidth-img img {
+          .program-photo-spacing.showcase-details-2-fullwidth-img {
+            height: auto !important;
+          }
+
+          .program-photo-spacing .program-photo-mobile-native {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+          }
+
+          .showcase-details-2-fullwidth-img img:not(.program-photo-mobile-native) {
             width: 100% !important;
             height: auto !important;
             object-fit: contain !important;
@@ -1475,8 +1571,16 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .showcase-details-2-title a {
             pointer-events: auto !important;
           }
+          /* Bouton son : cliquable sur mobile (parent en pointer-events: none) */
+          .hero-sound-inline,
+          .hero-sound-cta {
+            pointer-events: auto !important;
+            position: relative !important;
+            z-index: 102 !important;
+            touch-action: manipulation;
+          }
           /* Désactiver l'effet parallax sur mobile pour éviter les saccades */
-          .showcase-details-2-fullwidth-img img {
+          .showcase-details-2-fullwidth-img img.program-photo-desktop {
             transform: none !important;
             will-change: auto !important;
           }
