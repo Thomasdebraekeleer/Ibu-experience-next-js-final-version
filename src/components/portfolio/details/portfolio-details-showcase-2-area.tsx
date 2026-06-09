@@ -69,7 +69,7 @@ const HERO_VOLUME_STOP_LERP_EPS = 0.002;
 const HERO_VIDEO_DESKTOP_SRC =
   'https://pub-f75a4080d6fb43b6b0e593ff2ffe8b23.r2.dev/IBU-EXPERIENCE-VIDEO%20PC.mp4';
 const HERO_VIDEO_MOBILE_SRC =
-  'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-FINAL-VERTICAL%20HERO%20VIDEO.mp4';
+  'https://pub-3b7b23a5bbcf4fe4a97e11f2b1f5fe2f.r2.dev/IBU-EXPERIENCE-VIDEO%20PHONE.mp4';
 
 const testimonial_slider_setting = {
   slidesPerView: 1,
