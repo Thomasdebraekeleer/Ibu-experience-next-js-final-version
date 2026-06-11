@@ -907,8 +907,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       </div>
       {/* full width image */}
 
-      {/* detail title 3 */}
-      <div className="showcase-details-2-area pt-120 pb-120">
+      {/* detail title 3 — Notre Approche */}
+      <div className="showcase-details-2-area mission-approach-section pt-120 pb-120">
           <div className="container">
             <div className="row">
                 <div className="col-xl-10">
@@ -1383,7 +1383,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
           .tp-award-wrapper :global(.tp-award-area) {
             padding-top: 12px !important;
-            padding-bottom: 28px !important;
+            padding-bottom: 8px !important;
             margin-top: 0 !important;
           }
           /* Décaler le bloc titre pour éviter toute découpe visuelle */
@@ -1405,14 +1405,30 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           
           /* Réduire drastiquement le padding-bottom de la section Awards */
           .tp-award-wrapper :global(.tp-award-area) {
-            padding-bottom: 28px !important;
+            padding-bottom: 8px !important;
             margin-bottom: 0 !important;
+          }
+
+          /* Annuler les gros espacements PC (custom-hero-effects) sur mobile */
+          .tp-award-wrapper :global(.tp-award-list-wrap) {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+          }
+          .tp-award-wrapper :global(.tp-award-area .col-xl-8),
+          .tp-award-wrapper :global(.tp-award-area .col-12) {
+            padding-bottom: 0 !important;
+          }
+          .tp-award-wrapper :global(.tp-award-list-item:last-child::after) {
+            margin-bottom: 0 !important;
+          }
+          .tp-award-wrapper :global(.tp-award-list-item:last-child) {
+            padding-bottom: 12px !important;
           }
           
           /* Garder la photo complète sans découpe - retirer la marge négative */
           .program-photo-spacing {
             margin-top: 0 !important;
-            padding-top: 40px !important;
+            padding-top: 0 !important;
           }
           
           /* Mobile : photo verticale 1200×1600 — pleine largeur écran, ratio conservé, sans zoom/crop */
@@ -1454,8 +1470,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           }
           
           /* Réduire l'espace entre "sublimer le terroir local" et les photos sur mobile */
+          .mission-approach-section.showcase-details-2-area {
+            padding-bottom: 24px !important;
+          }
+
           .after-mission-photos {
-            margin-top: -80px !important;
+            margin-top: -8px !important;
+            padding-top: 0 !important;
           }
         }
         
@@ -1467,13 +1488,23 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           /* Encore plus de remontée sur petits mobiles */
           .tp-award-wrapper :global(.tp-award-area) {
             padding-top: 10px !important;
-            padding-bottom: 22px !important;
+            padding-bottom: 4px !important;
             margin-bottom: 0 !important;
+          }
+
+          .tp-award-wrapper :global(.tp-award-list-wrap) {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+          }
+
+          .tp-award-wrapper :global(.tp-award-area .col-xl-8),
+          .tp-award-wrapper :global(.tp-award-area .col-12) {
+            padding-bottom: 0 !important;
           }
           
           .program-photo-spacing {
             margin-top: 0 !important;
-            padding-top: 40px !important;
+            padding-top: 0 !important;
           }
           
           /* Garantir que l'image garde sa taille originale et ne se coupe pas sur petits écrans */
@@ -1503,6 +1534,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           
           .engagements-section {
             padding-top: 30px !important; /* 60px / 2 */
+          }
+
+          .mission-approach-section.showcase-details-2-area {
+            padding-bottom: 16px !important;
+          }
+
+          .after-mission-photos {
+            margin-top: -4px !important;
           }
         }
         
