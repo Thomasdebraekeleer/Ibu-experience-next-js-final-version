@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
+import { useLocale, useTranslations } from "next-intl";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -80,8 +81,26 @@ import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
 import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-option-row";
+import {
+  getLodgifyMehaignoulCocon1Url,
+  getLodgifyMehaignoulCocon2Url,
+} from "@/config/lodgify";
+import type { Locale } from "@/i18n/routing";
+
+const COCON_FEATURE_KEYS = [
+  "doubleBed",
+  "bathroom",
+  "kitchenette",
+  "wardrobe",
+] as const;
 
 const DomaineDeMehaignoulMain = () => {
+  const locale = useLocale() as Locale;
+  const t = useTranslations("domaineMehaignoul");
+  const tExp = useTranslations("experiences");
+  const cocon1BookingUrl = getLodgifyMehaignoulCocon1Url(locale);
+  const cocon2BookingUrl = getLodgifyMehaignoulCocon2Url(locale);
+
   useScrollSmooth();
   useEffect(() => {
     document.body.classList.add("tp-magic-cursor");
@@ -104,7 +123,7 @@ const DomaineDeMehaignoulMain = () => {
       hoverBtn();
     }, 100);
     return () => clearTimeout(timer);
-  });
+  }, [locale]);
 
   return (
     <Wrapper showBackToTop={false}>
@@ -119,7 +138,7 @@ const DomaineDeMehaignoulMain = () => {
       {/* header area end */}
 
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" key={locale}>
           <main>
             
             {/* NOS COCONS IBÙ Experience section */}
@@ -129,8 +148,8 @@ const DomaineDeMehaignoulMain = () => {
                        <div className="col-xl-12">
                                                   <div className="showcase-details-2-section-box">
                               <h4 className="showcase-details-2-section-title tp-char-animation">
-                                Domaine<br />
-                                de Mehaignoul
+                                {t("hero.titleLine1")}<br />
+                                {t("hero.titleLine2")}
                               </h4>
                           </div>
                        </div>
@@ -140,13 +159,13 @@ const DomaineDeMehaignoulMain = () => {
                         <div className="showcase-details-2-section-left">
                             <span className="ab-inner-subtitle mb-25">
                               <Leaf/>
-                              Immersion dans un vignoble
+                              {t("intro.subtitle")}
                             </span>
                         </div>
                       </div>
                       <div className="col-xl-9">
                         <div className="showcase-details-2-content-right tp_title_anim">
-                            <p>Situé au cœur de la Wallonie à seulement 30 min de Bruxelles, le domaine de Mehaignoul est une ferme en carré datant du 13e siècle d&apos;une exceptionnelle authenticité. En plus de sa première fonction agricole, elle dispose d&apos;un charmant vignoble où règne une atmosphère champêtre et dépaysante.</p>
+                            <p>{t("intro.paragraph")}</p>
                         </div>
                       </div>
                   </div>
@@ -160,7 +179,7 @@ const DomaineDeMehaignoulMain = () => {
                           fontSize: 'clamp(1.5rem, 3vw, 2rem)',
                           fontWeight: '600',
                           color: '#053725'
-                        }}>Cocon IBÙ 1</h5>
+                        }}>{t("booking.cocon1.title")}</h5>
                         <div className="widget-photo-container mb-4" style={{
                           width: '100%',
                           maxHeight: '200px',
@@ -169,7 +188,7 @@ const DomaineDeMehaignoulMain = () => {
                         }}>
                           <Image 
                             src="/assets/img/inner-project/Cocons/Cocon1.webp"
-                            alt="Cocon IBÙ 1" 
+                            alt={t("booking.cocon1.imageAlt")} 
                             width={500}
                             height={200}
                             style={{
@@ -181,7 +200,7 @@ const DomaineDeMehaignoulMain = () => {
                           />
                         </div>
                         <a 
-                          href="https://ibu-experience.lodgify.com/fr/ibu-experience---cocon-1---domaine-de-mehaignoul"
+                          href={cocon1BookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
@@ -210,7 +229,7 @@ const DomaineDeMehaignoulMain = () => {
                             e.currentTarget.style.backgroundColor = '#053725';
                           }}
                         >
-                          Voir les disponibilités
+                          {t("booking.cocon1.availabilityCta")}
                         </a>
                       </div>
                     </div>
@@ -222,7 +241,7 @@ const DomaineDeMehaignoulMain = () => {
                           fontSize: 'clamp(1.5rem, 3vw, 2rem)',
                           fontWeight: '600',
                           color: '#053725'
-                        }}>Cocon IBÙ 2</h5>
+                        }}>{t("booking.cocon2.title")}</h5>
                         <div className="widget-photo-container mb-4" style={{
                           width: '100%',
                           maxHeight: '200px',
@@ -231,7 +250,7 @@ const DomaineDeMehaignoulMain = () => {
                         }}>
                           <Image 
                             src="/assets/img/inner-project/Cocons/Cocon2.webp"
-                            alt="Cocon IBÙ 2" 
+                            alt={t("booking.cocon2.imageAlt")} 
                             width={500}
                             height={200}
                             style={{
@@ -243,7 +262,7 @@ const DomaineDeMehaignoulMain = () => {
                           />
                         </div>
                         <a 
-                          href="https://npreview-ibu-experience.lodgify.com/fr/ibu-experience---cocon-2---domaine-de-mehaignoul"
+                          href={cocon2BookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
@@ -272,7 +291,7 @@ const DomaineDeMehaignoulMain = () => {
                             e.currentTarget.style.backgroundColor = '#053725';
                           }}
                         >
-                          Voir les disponibilités
+                          {t("booking.cocon2.availabilityCta")}
                         </a>
                       </div>
                     </div>
@@ -306,7 +325,7 @@ const DomaineDeMehaignoulMain = () => {
                               <div className="pd-visual-slider-thumb fix">
                                 <Image 
                                   src={imgSrc} 
-                                  alt="Domaine de Mehaignoul Gallery" 
+                                  alt={t("gallery.alt")} 
                                   width={600}
                                   height={400}
                                   style={{height:"auto"}}
@@ -326,7 +345,7 @@ const DomaineDeMehaignoulMain = () => {
                   <div className="row">
                       <div className="col-xl-8">
                         <div className="showcase-details-2-section-box">
-                            <h4 className="showcase-details-2-section-title tp-char-animation">Le logement</h4>
+                            <h4 className="showcase-details-2-section-title tp-char-animation">{t("cocons.title")}</h4>
                         </div>
                       </div>
                   </div>
@@ -335,13 +354,13 @@ const DomaineDeMehaignoulMain = () => {
                         <div className="showcase-details-2-section-left">
                             <span className="ab-inner-subtitle mb-25">
                               <Leaf/>
-                              Votre cocon
+                              {t("cocons.subtitle")}
                             </span>
                         </div>
                       </div>
                       <div className="col-xl-9">
                         <div className="showcase-details-2-content-right tp_title_anim">
-                            <p className="pb-25">Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
+                            <p className="pb-25">{t("cocons.paragraph")}</p>
                         </div>
                       </div>
                   </div>
@@ -401,7 +420,7 @@ const DomaineDeMehaignoulMain = () => {
                           }}>
                             <Image 
                               src={imgSrc} 
-                              alt="Le logement IBÙ" 
+                              alt={t("cocons.carouselAlt")} 
                               style={{
                                 width: '100%',
                                 maxWidth: '350px',
@@ -440,7 +459,7 @@ const DomaineDeMehaignoulMain = () => {
                             <div className="cocon-icon-wrapper mb-20">
                                 <LitDoubleIcon />
                             </div>
-                            <h6 className="cocon-feature-title">Lit double</h6>
+                            <h6 className="cocon-feature-title">{tExp(`cocons.features.${COCON_FEATURE_KEYS[0]}`)}</h6>
                         </div>
                       </div>
                       <div className="col-xl-3 col-lg-3">
@@ -448,7 +467,7 @@ const DomaineDeMehaignoulMain = () => {
                             <div className="cocon-icon-wrapper mb-20">
                                 <BathroomIcon />
                             </div>
-                            <h6 className="cocon-feature-title">Salle de bain</h6>
+                            <h6 className="cocon-feature-title">{tExp(`cocons.features.${COCON_FEATURE_KEYS[1]}`)}</h6>
                         </div>
                       </div>
                       <div className="col-xl-3 col-lg-3">
@@ -456,7 +475,7 @@ const DomaineDeMehaignoulMain = () => {
                             <div className="cocon-icon-wrapper mb-20">
                                 <KitchenetteIcon />
                             </div>
-                            <h6 className="cocon-feature-title">Kitchenette</h6>
+                            <h6 className="cocon-feature-title">{tExp(`cocons.features.${COCON_FEATURE_KEYS[2]}`)}</h6>
                         </div>
                       </div>
                       <div className="col-xl-3 col-lg-3">
@@ -464,7 +483,7 @@ const DomaineDeMehaignoulMain = () => {
                             <div className="cocon-icon-wrapper mb-20">
                                 <GardeRobeIcon />
                             </div>
-                            <h6 className="cocon-feature-title">Garde robe</h6>
+                            <h6 className="cocon-feature-title">{tExp(`cocons.features.${COCON_FEATURE_KEYS[3]}`)}</h6>
                         </div>
                       </div>
                   </div>
@@ -478,7 +497,7 @@ const DomaineDeMehaignoulMain = () => {
                           <div className="cocon-icon-wrapper mb-15">
                             <LitDoubleIcon />
                           </div>
-                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Lit double</h6>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tExp(`cocons.features.${COCON_FEATURE_KEYS[0]}`)}</h6>
                         </div>
                       </div>
                       <div className="col-6">
@@ -486,7 +505,7 @@ const DomaineDeMehaignoulMain = () => {
                           <div className="cocon-icon-wrapper mb-15">
                             <BathroomIcon />
                           </div>
-                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Salle de bain</h6>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tExp(`cocons.features.${COCON_FEATURE_KEYS[1]}`)}</h6>
                         </div>
                       </div>
                     </div>
@@ -498,7 +517,7 @@ const DomaineDeMehaignoulMain = () => {
                           <div className="cocon-icon-wrapper mb-15">
                             <KitchenetteIcon />
                           </div>
-                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Kitchenette</h6>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tExp(`cocons.features.${COCON_FEATURE_KEYS[2]}`)}</h6>
                         </div>
                       </div>
                       <div className="col-6">
@@ -506,7 +525,7 @@ const DomaineDeMehaignoulMain = () => {
                           <div className="cocon-icon-wrapper mb-15">
                             <GardeRobeIcon />
                           </div>
-                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Garde robe</h6>
+                          <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tExp(`cocons.features.${COCON_FEATURE_KEYS[3]}`)}</h6>
                         </div>
                       </div>
                     </div>
@@ -519,6 +538,7 @@ const DomaineDeMehaignoulMain = () => {
               sectionId="services-section-domaine"
               accordionParentId="accordion-domaine-inclus"
               collapseIdPrefix="collapse-domaine-inclus"
+              localize
             />
 
             <div className="showcase-details-2-area pb-120 pt-40">
@@ -526,7 +546,7 @@ const DomaineDeMehaignoulMain = () => {
                 <div className="row">
                   <div className="col-xl-8">
                     <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Les options</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">{tExp("options.title")}</h4>
                     </div>
                   </div>
                 </div>
@@ -535,7 +555,7 @@ const DomaineDeMehaignoulMain = () => {
                     <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25" style={{ whiteSpace: "nowrap" }}>
                         <Leaf />
-                        Personnalisez votre séjour inoubliable
+                        {tExp("options.subtitle")}
                       </span>
                     </div>
                   </div>
@@ -544,7 +564,7 @@ const DomaineDeMehaignoulMain = () => {
                 <div className="row" style={{marginTop: '20px'}}>
                   <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={visite_chai} alt="Visite de Chai" style={{height:'auto', width: '100%'}}/>
+                      <Image src={visite_chai} alt={tExp("options.cellarVisit.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
@@ -561,10 +581,10 @@ const DomaineDeMehaignoulMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Visite de Chai (avec dégustation) - 60EUR / 2 pers.
+                        {tExp("options.cellarVisit.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Découvrez les coulisses de la vinification au cœur du chai : fermentation, élevage en cuve ou en barrique, et secrets de production. Une immersion guidée, authentique et sensorielle pour comprendre le savoir-faire du domaine et apprécier les vins autrement.</p>
+                        <p>{tExp("options.cellarVisit.paragraph")}</p>
                         <p style={{
                           fontSize: '0.85rem',
                           fontStyle: 'italic',
@@ -572,7 +592,7 @@ const DomaineDeMehaignoulMain = () => {
                           marginTop: '15px',
                           lineHeight: '1.5'
                         }}>
-                          * Pour réserver la visite du chai (avec dégustation), veuillez sélectionner l&apos;option lors de votre réservation. Tarif : 60EUR / 2 pers. Paiement directement sur place.
+                          {tExp("options.cellarVisit.footnote")}
                         </p>
                       </div>
                     </div>
@@ -595,11 +615,11 @@ const DomaineDeMehaignoulMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Planche apéritive (40eur/2pers)
+                        {tExp("options.aperitifBoard.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Une délicate planche apéritive composée de produits du terroir : sélection de fromages locaux, charcuteries artisanales et accompagnements de saison.</p>
-                        <p>Parfaite pour accompagner votre bouteille de bienvenue et savourer un premier moment au cœur des vignes.</p>
+                        <p>{tExp("options.aperitifBoard.paragraph1")}</p>
+                        <p>{tExp("options.aperitifBoard.paragraph2")}</p>
                         <p style={{
                           fontSize: '0.85rem',
                           fontStyle: 'italic',
@@ -607,14 +627,14 @@ const DomaineDeMehaignoulMain = () => {
                           marginTop: '15px',
                           lineHeight: '1.5'
                         }}>
-                          * Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)
+                          {tExp("options.aperitifBoard.footnote")}
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={planche_aperitif} alt="Planche apéritif" style={{height:'auto', width: '100%'}}/>
+                      <Image src={planche_aperitif} alt={tExp("options.aperitifBoard.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                 </div>
@@ -623,7 +643,7 @@ const DomaineDeMehaignoulMain = () => {
                 <div className="row" style={{marginTop: '40px'}}>
                   <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={planche_gourmande} alt="Planche gourmande dinatoire" style={{height:'auto', width: '100%'}}/>
+                      <Image src={planche_gourmande} alt={tExp("options.dinnerBoard.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
@@ -640,11 +660,11 @@ const DomaineDeMehaignoulMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Planche gourmande dinatoire (65eur/2pers)
+                        {tExp("options.dinnerBoard.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Une généreuse planche gourmande aux saveurs du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et produits frais 100% belges.</p>
-                        <p>Une expérience complète et conviviale, idéale pour un dîner à deux au cœur des vignes.</p>
+                        <p>{tExp("options.dinnerBoard.paragraph1")}</p>
+                        <p>{tExp("options.dinnerBoard.paragraph2")}</p>
                       </div>
                     </div>
                   </div>
@@ -666,24 +686,24 @@ const DomaineDeMehaignoulMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Départ tardif (13h30) (31eur)
+                        {tExp("options.lateCheckout.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
                         <p>
-                          Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l&apos;heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à&nbsp;13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.
+                          {tExp("options.lateCheckout.paragraph")}
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={depart_tardif} alt="Départ tardif" style={{height:'auto', width: '100%'}}/>
+                      <Image src={depart_tardif} alt={tExp("options.lateCheckout.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                 </div>
 
                 {/* Option 5: Petit déjeuner local */}
-                <PetitDejeunerOptionRow />
+                <PetitDejeunerOptionRow localize />
               </div>
             </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,7 +10,6 @@ import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIc
 import AwardOne from '@/components/award/award-one';
 import AvailabilitySearch from '@/components/AvailabilitySearch';
 import VideoTwo from '@/components/video/video-two';
-import { IBU_REVIEWS } from '@/data/ibu-reviews';
 import ExpandableReviewText from '@/components/testimonial/expandable-review-text';
 
 // images 
@@ -53,7 +53,7 @@ const mobile_carousel_images = [
 const PROGRAM_PHOTO_MOBILE_SRC =
   '/assets/img/inner-project/Caroussel pictures/Image Mobile home page.webp';
 
-// Voir src/data/ibu-reviews.ts (utilisée aussi page À propos)
+// Avis clients via messages/home.reviews (accueil + à propos).
 
 /** ≥768px : horizontal — <768px : vertical (aligné sur Bootstrap `md`) */
 const HERO_VIDEO_BREAKPOINT_PX = 768;
@@ -85,7 +85,21 @@ const testimonial_slider_setting = {
   },
 };
 
+type HomeReview = {
+  id: number;
+  name: string;
+  desc: string;
+};
+
 export default function PortfolioDetailsShowcaseTwoArea() {
+  const locale = useLocale();
+  const tHero = useTranslations('home.hero');
+  const tEvasion = useTranslations('home.evasion');
+  const tApproach = useTranslations('home.approach');
+  const tCocons = useTranslations('home.cocons');
+  const tReviews = useTranslations('home.reviews');
+  const homeReviews = tReviews.raw('items') as HomeReview[];
+
   const heroRef = useRef<HTMLDivElement>(null);
   /** Conteneur vidéo desktop — parallaxe au scroll */
   const backgroundRef = useRef<HTMLDivElement>(null);
@@ -624,7 +638,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   }, []);
 
   return (
-    <>
+    <div key={locale}>
       {/* portfolio hero — vidéos R2 ; autoplay muette garantie puis son uniquement après action utilisateur. */}
       <div ref={heroRef} className="showcase-details-2-area showcase-details-2-bg p-relative overflow-hidden">
         <div
@@ -694,11 +708,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           <div className="showcase-details-2-wrapper" data-lag="0.2" data-stagger="0.08">
             <div className="container container-1550">
                 <div className="row">
-                  <div className="col-xl-8">
+                  <div className="col-xl-11">
                       <div className="showcase-details-2-title-box">
                         <h5 className="showcase-details-2-title mb-20 tp-char-animation force-visible" style={{
                           whiteSpace: 'nowrap',
-                          fontSize: 'clamp(2.2rem, 11vw, 7.8rem)',
+                          fontSize: 'clamp(2.2rem, 10.5vw, 7.8rem)',
                           lineHeight: '0.8',
                           letterSpacing: '0.08em',
                           fontWeight: '700',
@@ -710,11 +724,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           zIndex: '1',
                           color: 'white',
                           textTransform: 'uppercase',
-                          overflow: 'hidden',
                           marginLeft: '0',
                           paddingLeft: '0'
                         }}>
-                          IBÙ EXPERIENCE
+                          {tHero('title')}
                         </h5>
                         <span className="showcase-details-2-subtitle tp_title_anim force-visible" style={{
                           fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
@@ -722,7 +735,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           fontWeight: '400',
                           marginBottom: '20px',
                           display: 'block'
-                        }}>L&apos;art de s&apos;évader dans des lieux d&apos;exception</span>
+                        }}>{tHero('tagline')}</span>
                         <div className="hero-keywords" style={{
                           fontSize: 'clamp(1rem, 2.2vw, 1.3rem)',
                           color: 'white',
@@ -731,7 +744,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                           textTransform: 'uppercase',
                           opacity: '0.9'
                         }}>
-                          VIGNOBLE • CHÂTEAU • DOMAINE
+                          {tHero('keywords')}
                         </div>
                         {heroReduceMotion === false && (
                           <div
@@ -744,13 +757,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                               onClick={onHeroSoundToggleClick}
                               aria-label={
                                 isAudioEnabled
-                                  ? 'Désactiver le son de la vidéo en arrière-plan'
-                                  : 'Activer le son de la vidéo en arrière-plan'
+                                  ? tHero('soundDisableAria')
+                                  : tHero('soundEnableAria')
                               }
                             >
                               {isAudioEnabled
-                                ? 'Désactiver le son'
-                                : 'Activer le son'}
+                                ? tHero('soundDisable')
+                                : tHero('soundEnable')}
                             </button>
                           </div>
                         )}
@@ -789,7 +802,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                         fontSize: 'clamp(2.5rem, 8vw, 4rem)',
                         lineHeight: '1.1',
                         letterSpacing: 'clamp(0.05em, 0.5vw, 0.08em)'
-                      }}>IBÙ EXPERIENCE</h4>
+                      }}>{tEvasion('brand')}</h4>
                   </div>
                 </div>
             </div>
@@ -798,13 +811,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        Évasion
+                        {tEvasion('title')}
                       </span>
                   </div>
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-section-right tp_title_anim">
-                      <p>Dormez en pleine nature, nichés dans des vignobles, châteaux et autres lieux d&apos;exception, à travers la Belgique. Nos Cocons au design minimaliste et confortable vous accueillent pour une expérience hors du temps, entre élégance, bien-être et gastronomie locale, à vivre avec ceux que vous aimez.</p>
+                      <p>{tEvasion('description')}</p>
                   </div>
                 </div>
             </div>
@@ -863,7 +876,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   }}>
                     <Image 
                       src={imgSrc} 
-                      alt={`Évasion IBÙ - Image ${i + 1}`}
+                      alt={tEvasion('carouselImageAlt', { index: i + 1 })}
                       width={500}
                       height={400}
                       style={{
@@ -897,7 +910,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           />
           <Image
             src={PROGRAM_PHOTO_MOBILE_SRC}
-            alt="Le Programme IBÙ"
+            alt={tHero('programPhotoAlt')}
             width={1200}
             height={1600}
             sizes="100vw"
@@ -913,7 +926,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             <div className="row">
                 <div className="col-xl-10">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Notre Approche.</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">{tApproach('title')}</h4>
                   </div>
                 </div>
             </div>
@@ -922,14 +935,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        Mission
+                        {tApproach('missionLabel')}
                       </span>
                   </div>
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-content-right tp_title_anim">
-                      <p>IBÙ offre la chance de séjourner au cœur de domaines d&apos;exception en Belgique, en valorisant leur patrimoine, leurs produits et leur savoir-faire.</p>
-                      <p>Nous créons des expériences uniques qui allient hébergement raffiné et immersion dans des lieux emblématiques, pour sublimer le terroir local.</p>
+                      <p>{tApproach('missionParagraph1')}</p>
+                      <p>{tApproach('missionParagraph2')}</p>
                   </div>
                 </div>
             </div>
@@ -965,13 +978,13 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                    <div className="showcase-details-2-section-left">
                        <span className="ab-inner-subtitle mb-25">
                          <Leaf/>
-                         Engagements
+                         {tApproach('commitmentsLabel')}
                        </span>
                    </div>
                  </div>
                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                       <p style={{marginBottom: '60px'}}>Nos hébergements allient respect de l&apos;environnement, circuits courts et harmonie avec la nature. Conçus avec des matériaux durables, ils valorisent les producteurs locaux et intègrent des solutions éco-énergétiques pour offrir une expérience authentique et responsable..</p>
+                       <p style={{marginBottom: '60px'}}>{tApproach('commitmentsText')}</p>
                    </div>
                  </div>
              </div>
@@ -980,7 +993,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
              <div className="row" style={{marginTop: '60px'}}>
                  <div className="col-xl-8">
                    <div className="showcase-details-2-section-box">
-                       <h4 className="showcase-details-2-section-title tp-char-animation">NOS COCONS</h4>
+                       <h4 className="showcase-details-2-section-title tp-char-animation">{tCocons('title')}</h4>
                    </div>
                  </div>
              </div>
@@ -989,14 +1002,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                    <div className="showcase-details-2-section-left">
                        <span className="ab-inner-subtitle mb-25">
                          <Leaf/>
-                         Immersion naturelle
+                         {tCocons('subtitle')}
                        </span>
                    </div>
                  </div>
                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                       <p>Conçus dans un esprit minimaliste et chaleureux, nos cocons offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, salle de bain moderne, kitchenette fonctionnel et mini garde robe.</p>
-                       <p style={{marginBottom: '50px'}}>Pour prolonger l&apos;expérience, profitez d&apos;options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.</p>
+                       <p>{tCocons('paragraph1')}</p>
+                       <p style={{marginBottom: '50px'}}>{tCocons('paragraph2')}</p>
                    </div>
                  </div>
              </div>
@@ -1056,7 +1069,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                      }}>
                        <Image 
                          src={imgSrc} 
-                         alt="Nos Cocons IBÙ" 
+                         alt={tCocons('carouselAlt')} 
                          style={{
                            width: '100%',
                            maxWidth: '350px',
@@ -1077,7 +1090,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                        <div className="cocon-icon-wrapper mb-20">
                            <LitDoubleIcon />
                        </div>
-                       <h6 className="cocon-feature-title">Lit double</h6>
+                       <h6 className="cocon-feature-title">{tCocons('features.doubleBed')}</h6>
                    </div>
                  </div>
                  <div className="col-xl-3 col-lg-3">
@@ -1085,7 +1098,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                        <div className="cocon-icon-wrapper mb-20">
                            <BathroomIcon />
                        </div>
-                       <h6 className="cocon-feature-title">Salle de bain</h6>
+                       <h6 className="cocon-feature-title">{tCocons('features.bathroom')}</h6>
                    </div>
                  </div>
                  <div className="col-xl-3 col-lg-3">
@@ -1093,7 +1106,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                        <div className="cocon-icon-wrapper mb-20">
                            <KitchenetteIcon />
                        </div>
-                       <h6 className="cocon-feature-title">Kitchenette</h6>
+                       <h6 className="cocon-feature-title">{tCocons('features.kitchenette')}</h6>
                    </div>
                  </div>
                  <div className="col-xl-3 col-lg-3">
@@ -1101,7 +1114,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                        <div className="cocon-icon-wrapper mb-20">
                            <GardeRobeIcon />
                        </div>
-                       <h6 className="cocon-feature-title">Mini garde robe</h6>
+                       <h6 className="cocon-feature-title">{tCocons('features.wardrobe')}</h6>
                    </div>
                  </div>
              </div>
@@ -1115,7 +1128,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                      <div className="cocon-icon-wrapper mb-15">
                        <LitDoubleIcon />
                      </div>
-                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Lit double</h6>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tCocons('features.doubleBed')}</h6>
                    </div>
                  </div>
                  <div className="col-6">
@@ -1123,7 +1136,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                      <div className="cocon-icon-wrapper mb-15">
                        <BathroomIcon />
                      </div>
-                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Salle de bain</h6>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tCocons('features.bathroom')}</h6>
                    </div>
                  </div>
                </div>
@@ -1135,7 +1148,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                      <div className="cocon-icon-wrapper mb-15">
                        <KitchenetteIcon />
                      </div>
-                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Kitchenette</h6>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tCocons('features.kitchenette')}</h6>
                    </div>
                  </div>
                  <div className="col-6">
@@ -1143,7 +1156,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                      <div className="cocon-icon-wrapper mb-15">
                        <GardeRobeIcon />
                      </div>
-                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Mini garde robe</h6>
+                     <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>{tCocons('features.wardrobe')}</h6>
                    </div>
                  </div>
                </div>
@@ -1152,7 +1165,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
        </div>
        {/* details title 5 */}
 
-      <VideoTwo />
+      <VideoTwo localize />
 
       {/* Avis clients (à propos + accueil) */}
       <div className="tp-testimonial-area pb-120 pt-120 ils-nous-soutiennent-section">
@@ -1161,7 +1174,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             <div className="col-xl-12 text-center">
               <div className="showcase-details-2-section-box mb-60 text-center">
                 <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title ibu-title-no-split">
-                  Ils ont testé avant vous
+                  {tReviews('title')}
                 </h4>
               </div>
             </div>
@@ -1210,13 +1223,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                   modules={[Navigation]}
                   className="swiper-container tp-testimonial-slider-active fix"
                 >
-                  {IBU_REVIEWS.map((item) => (
+                  {homeReviews.map((item) => (
                     <SwiperSlide key={item.id}>
                       <div className="tp-testimonial-item text-center">
                         <ExpandableReviewText text={item.desc} />
                         <span style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#053725' }}>
                           <em>{item.name}</em>
-                          {item.designation ? ` - ${item.designation}` : ''}
                         </span>
                       </div>
                     </SwiperSlide>
@@ -1341,6 +1353,16 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         .hero-sound-inline {
           display: flex;
           justify-content: flex-start;
+        }
+
+        @media (min-width: 992px) {
+          .showcase-details-2-title-box {
+            width: 100%;
+            max-width: 100%;
+          }
+          .showcase-details-2-title {
+            overflow: visible !important;
+          }
         }
         
         /* Réduire l'espace entre "Le Programme" et la photo sur mobile */
@@ -1842,6 +1864,6 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           text-align: center !important;
         }
       `}</style>
-    </>
+    </div>
   )
 }

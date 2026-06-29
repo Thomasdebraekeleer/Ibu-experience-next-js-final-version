@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useCallback, useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { getLodgifyAllPropertiesSearchUrl } from "@/config/lodgify";
+import type { Locale } from "@/i18n/routing";
 import styles from "./AvailabilitySearch.module.scss";
-
-const LODGIFY_BASE_URL =
-  "https://ibu-experience.lodgify.com/fr/toutes-les-proprietes/";
 
 function formatDateForUrl(d: Date): string {
   const y = d.getFullYear();
@@ -26,6 +26,8 @@ export default function AvailabilitySearch({
   className = "",
   variant = "default",
 }: AvailabilitySearchProps) {
+  const locale = useLocale() as Locale;
+  const t = useTranslations("forms.availability");
   const [arrival, setArrival] = useState("");
   const [departure, setDeparture] = useState("");
   const [adults, setAdults] = useState(1);
@@ -72,15 +74,15 @@ export default function AvailabilitySearch({
       setError(null);
 
       if (!arrival?.trim()) {
-        setError("Veuillez choisir une date d'arrivée.");
+        setError(t("errors.missingArrival"));
         return;
       }
       if (!departure?.trim()) {
-        setError("Veuillez choisir une date de départ.");
+        setError(t("errors.missingDeparture"));
         return;
       }
       if (departure <= arrival) {
-        setError("La date de départ doit être après la date d'arrivée.");
+        setError(t("errors.invalidRange"));
         return;
       }
 
@@ -93,23 +95,19 @@ export default function AvailabilitySearch({
         infants: "0",
         pets: "0",
       });
-      const url = `${LODGIFY_BASE_URL}?${params.toString()}`;
+      const url = `${getLodgifyAllPropertiesSearchUrl(locale)}?${params.toString()}`;
       window.location.href = url;
     },
-    [arrival, departure, adults]
+    [arrival, departure, adults, locale, t]
   );
 
   const isHero = variant === "hero";
-  const wrapperClass = [
-    styles.wrapper,
-    isHero ? styles.hero : "",
-    className,
-  ]
+  const wrapperClass = [styles.wrapper, isHero ? styles.hero : "", className]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <div className={wrapperClass} role="search" aria-label="Recherche de disponibilités">
+    <div className={wrapperClass} role="search" aria-label={t("ariaSearch")}>
       <form
         className={styles.form}
         onSubmit={handleSubmit}
@@ -119,44 +117,38 @@ export default function AvailabilitySearch({
         <div className={styles.row}>
           <div className={`${styles.fieldGroup} ${styles.fieldGroupDates}`}>
             <label htmlFor="availability-arrival" className={styles.label}>
-              Arrivée
+              {t("arrival")}
             </label>
-            <div
-              className={styles.dateInputWrap}
-              onClick={openArrivalPicker}
-            >
+            <div className={styles.dateInputWrap} onClick={openArrivalPicker}>
               <input
                 ref={arrivalInputRef}
                 id="availability-arrival"
                 type="date"
                 className={styles.input}
-                placeholder="Arrivée"
+                placeholder={t("arrival")}
                 value={arrival}
                 min={minDate}
                 onChange={handleArrivalChange}
-                aria-label="Date d'arrivée"
+                aria-label={t("aria.arrivalDate")}
                 aria-required="true"
               />
             </div>
           </div>
           <div className={styles.fieldGroup}>
             <label htmlFor="availability-departure" className={styles.label}>
-              Départ
+              {t("departure")}
             </label>
-            <div
-              className={styles.dateInputWrap}
-              onClick={openDeparturePicker}
-            >
+            <div className={styles.dateInputWrap} onClick={openDeparturePicker}>
               <input
                 ref={departureInputRef}
                 id="availability-departure"
                 type="date"
                 className={styles.input}
-                placeholder="Départ"
+                placeholder={t("departure")}
                 value={departure}
                 min={arrival || minDate}
                 onChange={handleDepartureChange}
-                aria-label="Date de départ"
+                aria-label={t("aria.departureDate")}
                 aria-required="true"
               />
             </div>
@@ -166,7 +158,7 @@ export default function AvailabilitySearch({
         <div className={styles.row}>
           <div className={`${styles.fieldGroup} ${styles.fieldGroupAdults}`}>
             <span className={styles.label} id="adults-label">
-              Adultes
+              {t("adults")}
             </span>
             <div
               className={styles.stepper}
@@ -177,7 +169,7 @@ export default function AvailabilitySearch({
                 type="button"
                 className={styles.stepperBtn}
                 onClick={() => setAdults((a) => Math.max(1, a - 1))}
-                aria-label="Réduire le nombre d'adultes"
+                aria-label={t("aria.decreaseAdults")}
                 disabled={adults <= 1}
               >
                 −
@@ -193,7 +185,7 @@ export default function AvailabilitySearch({
                 type="button"
                 className={styles.stepperBtn}
                 onClick={() => setAdults((a) => Math.min(2, a + 1))}
-                aria-label="Augmenter le nombre d'adultes"
+                aria-label={t("aria.increaseAdults")}
                 disabled={adults >= 2}
               >
                 +
@@ -201,9 +193,26 @@ export default function AvailabilitySearch({
             </div>
           </div>
           <div className={styles.submitWrapper}>
-            <button type="submit" className={styles.submitBtn} aria-label="Lancer la recherche de disponibilités">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              Rechercher
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              aria-label={t("aria.submit")}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+              {t("search")}
             </button>
           </div>
         </div>
@@ -217,15 +226,3 @@ export default function AvailabilitySearch({
     </div>
   );
 }
-
-/*
- Checklist manuelle (tests rapides) :
- - [ ] Arrivée + Départ vides => clic Rechercher => message "Veuillez choisir une date d'arrivée."
- - [ ] Arrivée remplie, Départ vide => message "Veuillez choisir une date de départ."
- - [ ] Arrivée = Départ ou Départ < Arrivée => message "La date de départ doit être après la date d'arrivée."
- - [ ] Changer Arrivée après avoir choisi Départ : si Départ <= Arrivée, Départ est réinitialisé.
- - [ ] Dates valides + Adultes 1 ou 2 => clic Rechercher => redirection vers Lodgify avec query ?adults=1|2&sort=price&arrival=YYYY-MM-DD&departure=YYYY-MM-DD&children=0&infants=0&pets=0
- - [ ] Navigation clavier : Tab entre champs, focus visible.
- - [ ] Mobile : formulaire en colonne, bouton pleine largeur.
- - [ ] Desktop : disposition horizontale (dates + adultes + bouton).
- */

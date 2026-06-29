@@ -1,0 +1,667 @@
+{
+  "common": {
+    "brand": "IBÙ Experience",
+    "tagline": "L'art de s'évader dans des lieux d'exception",
+    "taglineFooterLine1": "L'art de s'évader",
+    "taglineFooterLine2": "dans les domaines d'exception"
+  },
+  "nav": {
+    "home": "ACCUEIL",
+    "experience": "L'EXPÉRIENCE",
+    "reservation": "RÉSERVATION",
+    "about": "À PROPOS",
+    "partner": "DEVENIR PARTENAIRE",
+    "contact": "CONTACT",
+    "giftCard": "Carte cadeau"
+  },
+  "footer": {
+    "ctaLine1": "Une question?",
+    "ctaLine2": "Contactez-nous",
+    "contactButton": "Contactez-nous",
+    "sitemap": "Sitemap",
+    "home": "Accueil",
+    "experience": "L'expérience",
+    "reservation": "Réservation",
+    "about": "À Propos",
+    "partner": "Devenir Partenaire",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "info": "Infos",
+    "addressLine1": "Rue de la brasserie 1-3, boîte 1",
+    "addressLine2": "1050 Ixelles",
+    "addressLine3": "Belgique",
+    "email": "E: info@ibu-experience.be",
+    "newsletter": "Abonnez-vous à notre newsletter",
+    "newsletterPlaceholder": "Entrez votre email...",
+    "copyright": "All rights reserved — {year} ©"
+  },
+  "offcanvas": {
+    "information": "Information",
+    "followUs": "Follow Us",
+    "addressLine1": "Rue de la brasserie 1-3, boîte 1",
+    "addressLine2": "1050 Ixelles",
+    "addressLine3": "Belgique"
+  },
+  "language": {
+    "switchToFrench": "Changer la langue en français",
+    "switchToDutch": "Change language to Dutch"
+  },
+  "notFound": {
+    "heading": "404",
+    "title": "Page introuvable",
+    "description": "Désolé, nous n'avons pas trouvé cette page.",
+    "backHome": "Retour à l'accueil"
+  },
+  "newsletterPopup": {
+    "emailRequired": "Veuillez entrer votre adresse email.",
+    "success": "Merci ! Vous êtes inscrit(e).",
+    "errorGeneric": "Une erreur est survenue.",
+    "errorPrefix": "Erreur : {message}",
+    "errorConnection": "Erreur : Impossible de se connecter au serveur.",
+    "title": "Soyez les premiers à réserver",
+    "description": "Les réservations arrivent très bientôt. Inscrivez-vous à la newsletter pour être alerté(e) en premier.",
+    "emailPlaceholder": "Votre adresse email",
+    "submitting": "Inscription...",
+    "submit": "S'inscrire"
+  },
+  "seo": {
+    "contact": {
+      "title": "IBÙ Experience - Contact",
+      "description": "Contactez IBÙ Experience pour toute question sur nos expériences uniques en Belgique",
+      "openGraphTitle": "IBÙ Experience - Contactez-nous",
+      "openGraphDescription": "Une question ? Contactez l'équipe IBÙ Experience pour planifier votre séjour ou obtenir des informations.",
+      "twitterTitle": "IBÙ Experience - Contact",
+      "twitterDescription": "Contactez IBÙ Experience pour toute question sur nos expériences uniques en Belgique."
+    },
+    "reservations": {
+      "title": "IBÙ Experience - Réservation",
+      "description": "Réservez votre expérience unique IBÙ Experience dans des domaines d'exception en Belgique",
+      "openGraphTitle": "IBÙ Experience - Réservez votre expérience",
+      "openGraphDescription": "Planifiez votre aventure immersive et réservez votre séjour dans nos cocons nichés en pleine nature.",
+      "twitterTitle": "IBÙ Experience - Réservation",
+      "twitterDescription": "Réservez votre expérience unique IBÙ Experience en Belgique."
+    },
+    "giftCard": {
+      "title": "IBÙ Experience - Carte cadeau",
+      "description": "Offrez une carte cadeau IBÙ Experience pour un séjour unique en Belgique",
+      "openGraphTitle": "IBÙ Experience - Carte cadeau",
+      "openGraphDescription": "Sélectionnez le montant de votre carte cadeau IBÙ Experience et offrez une expérience inoubliable.",
+      "twitterTitle": "IBÙ Experience - Carte cadeau",
+      "twitterDescription": "Offrez une carte cadeau IBÙ Experience pour un séjour unique en Belgique."
+    },
+    "faq": {
+      "title": "IBÙ Experience - FAQ",
+      "description": "Questions fréquemment posées sur IBÙ Experience",
+      "openGraphTitle": "IBÙ Experience - FAQ",
+      "openGraphDescription": "Retrouvez les réponses aux questions fréquemment posées sur IBÙ Experience.",
+      "twitterTitle": "IBÙ Experience - FAQ",
+      "twitterDescription": "Questions fréquemment posées sur IBÙ Experience."
+    },
+    "blog": {
+      "title": "IBÙ Experience - Blog",
+      "description": "Découvrez nos articles et actualités IBÙ Experience",
+      "openGraphTitle": "IBÙ Experience - Blog",
+      "openGraphDescription": "Articles et actualités IBÙ Experience.",
+      "twitterTitle": "IBÙ Experience - Blog",
+      "twitterDescription": "Découvrez nos articles et actualités IBÙ Experience."
+    },
+    "partner": {
+      "title": "IBÙ Experience - Devenir Partenaire",
+      "description": "Rejoignez le réseau IBÙ Experience et proposez des expériences uniques",
+      "openGraphTitle": "IBÙ Experience - Devenir Partenaire",
+      "openGraphDescription": "Transformez votre domaine en destination d'exception avec IBÙ Experience.",
+      "twitterTitle": "IBÙ Experience - Devenir Partenaire",
+      "twitterDescription": "Rejoignez le réseau IBÙ Experience et proposez des expériences uniques."
+    },
+    "experiences": {
+      "title": "IBÙ Experience - L'expérience",
+      "description": "Découvrez l'expérience IBÙ : bien-être, cocons et options personnalisées en pleine nature",
+      "openGraphTitle": "IBÙ Experience - L'expérience IBÙ",
+      "openGraphDescription": "Harmonie et sérénité au cœur de la nature. Découvrez nos cocons et options pour un séjour unique.",
+      "twitterTitle": "IBÙ Experience - L'expérience",
+      "twitterDescription": "Découvrez l'expérience IBÙ : bien-être, cocons et options personnalisées en pleine nature."
+    },
+    "experienceDetails": {
+      "ibuBienEtre": {
+        "title": "IBÙ Experience - IBÙ Bien-être",
+        "description": "Découvrez l'expérience IBÙ Bien-être : sauna, bain nordique et détente en pleine nature",
+        "openGraphTitle": "IBÙ Experience - IBÙ Bien-être",
+        "openGraphDescription": "Harmonie et sérénité avec l'expérience IBÙ Bien-être au cœur de la nature belge.",
+        "twitterTitle": "IBÙ Experience - IBÙ Bien-être",
+        "twitterDescription": "Découvrez l'expérience IBÙ Bien-être : sauna, bain nordique et détente en pleine nature."
+      },
+      "ibuSignature": {
+        "title": "IBÙ Experience - IBÙ Signature",
+        "description": "Découvrez l'expérience IBÙ Signature : gastronomie et bien-être en pleine nature",
+        "openGraphTitle": "IBÙ Experience - IBÙ Signature",
+        "openGraphDescription": "Une expérience exclusive où bien-être et gastronomie s'unissent au cœur de la nature.",
+        "twitterTitle": "IBÙ Experience - IBÙ Signature",
+        "twitterDescription": "Découvrez l'expérience IBÙ Signature : gastronomie et bien-être en pleine nature."
+      }
+    },
+    "about": {
+      "title": "IBÙ Experience - À Propos",
+      "description": "Découvrez l'histoire et la mission d'IBÙ Experience",
+      "openGraphTitle": "IBÙ Experience - À Propos",
+      "openGraphDescription": "Une histoire de famille, une vision de l'hospitalité premium au cœur des plus beaux domaines de Belgique.",
+      "twitterTitle": "IBÙ Experience - À Propos",
+      "twitterDescription": "Découvrez l'histoire et la mission d'IBÙ Experience."
+    },
+    "domaineMehaignoul": {
+      "title": "IBÙ Experience - Domaine de Mehaignoul",
+      "description": "Séjournez au Domaine de Mehaignoul : cocons IBÙ au cœur d'un vignoble wallon, à 30 min de Bruxelles",
+      "openGraphTitle": "IBÙ Experience - Domaine de Mehaignoul",
+      "openGraphDescription": "Immersion dans un vignoble d'exception. Réservez votre cocon IBÙ au Domaine de Mehaignoul.",
+      "twitterTitle": "IBÙ Experience - Domaine de Mehaignoul",
+      "twitterDescription": "Séjournez au Domaine de Mehaignoul : cocons IBÙ au cœur d'un vignoble wallon."
+    },
+    "home": {
+      "title": "IBÙ Experience - Accueil",
+      "description": "Découvrez IBÙ Experience - Des expériences uniques au cœur de la nature belge",
+      "keywords": "IBÙ Experience, expériences de voyage, séjours uniques, Belgique, bien-être, gastronomie, nature",
+      "openGraphTitle": "IBÙ Experience - Expériences uniques et immersives",
+      "openGraphDescription": "Découvrez des expériences de voyage authentiques et immersives avec IBÙ Experience. Des séjours uniques nichés dans des lieux d'exception en Belgique.",
+      "twitterTitle": "IBÙ Experience - Expériences uniques et immersives",
+      "twitterDescription": "Découvrez des expériences de voyage authentiques et immersives avec IBÙ Experience."
+    },
+    "notFound": {
+      "title": "IBÙ Experience - Page introuvable"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "IBÙ EXPERIENCE",
+      "tagline": "L'art de s'évader dans des lieux d'exception",
+      "keywords": "VIGNOBLE • CHÂTEAU • DOMAINE",
+      "soundEnable": "Activer le son",
+      "soundDisable": "Désactiver le son",
+      "soundEnableAria": "Activer le son de la vidéo en arrière-plan",
+      "soundDisableAria": "Désactiver le son de la vidéo en arrière-plan",
+      "programPhotoAlt": "Le Programme IBÙ"
+    },
+    "evasion": {
+      "brand": "IBÙ EXPERIENCE",
+      "title": "Évasion",
+      "description": "Dormez en pleine nature, nichés dans des vignobles, châteaux et autres lieux d'exception, à travers la Belgique. Nos Cocons au design minimaliste et confortable vous accueillent pour une expérience hors du temps, entre élégance, bien-être et gastronomie locale, à vivre avec ceux que vous aimez.",
+      "carouselImageAlt": "Évasion IBÙ - Image {index}"
+    },
+    "instantIbu": {
+      "titleBefore": "L'instant",
+      "titleBrand": "IBÙ",
+      "steps": [
+        { "id": 1, "text": "Déposez vos bagages et vos soucis." },
+        { "id": 2, "text": "Éteignez votre téléphone, éveillez vos sens." },
+        { "id": 3, "text": "Enveloppez-vous dans un doux peignoir." },
+        { "id": 4, "text": "Inspirez la quiétude." },
+        { "id": 5, "text": "Retissez le lien avec la nature et ceux que vous aimez." },
+        { "id": 6, "text": "Bienvenue dans votre instant hors du temps." }
+      ]
+    },
+    "approach": {
+      "title": "Notre Approche.",
+      "missionLabel": "Mission",
+      "missionParagraph1": "IBÙ offre la chance de séjourner au cœur de domaines d'exception en Belgique, en valorisant leur patrimoine, leurs produits et leur savoir-faire.",
+      "missionParagraph2": "Nous créons des expériences uniques qui allient hébergement raffiné et immersion dans des lieux emblématiques, pour sublimer le terroir local.",
+      "commitmentsLabel": "Engagements",
+      "commitmentsText": "Nos hébergements allient respect de l'environnement, circuits courts et harmonie avec la nature. Conçus avec des matériaux durables, ils valorisent les producteurs locaux et intègrent des solutions éco-énergétiques pour offrir une expérience authentique et responsable."
+    },
+    "cocons": {
+      "title": "NOS COCONS",
+      "subtitle": "Immersion naturelle",
+      "paragraph1": "Conçus dans un esprit minimaliste et chaleureux, nos cocons offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, salle de bain moderne, kitchenette fonctionnel et mini garde robe.",
+      "paragraph2": "Pour prolonger l'expérience, profitez d'options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.",
+      "carouselAlt": "Nos Cocons IBÙ",
+      "features": {
+        "doubleBed": "Lit double",
+        "bathroom": "Salle de bain",
+        "kitchenette": "Kitchenette",
+        "wardrobe": "Mini garde robe"
+      }
+    },
+    "press": {
+      "title": "Ils parlent de nous",
+      "subtitle": "Nos articles et interviews",
+      "description": "Découvrez IBÙ Experience à travers le regard de la presse et des médias. Ces articles et interviews témoignent de notre vision unique de l'hospitalité de luxe en pleine nature, et de notre engagement à créer des expériences authentiques au cœur des plus beaux domaines de Belgique.",
+      "article": "Article",
+      "interview": "Interview",
+      "viewArticle": "Voir l'article",
+      "viewInterview": "Voir l'interview"
+    },
+    "reviews": {
+      "title": "Ils ont testé avant vous",
+      "items": [
+        {
+          "id": 1,
+          "name": "Alex",
+          "desc": "On a adoré passer une nuit dans cette tiny au design très épuré avec une vue magnifique sur les vignes du domaine ! Tout était parfait et pensé dans les moindres détails. Le sauna et le bain nordique sont vraiment des + et on revient reposé de cette belle expérience !"
+        },
+        {
+          "id": 2,
+          "name": "Zoe G.",
+          "desc": "Magnifique séjour dans la tiny house au domaine de Mehaignoul ! Nous y avons séjourné avec notre nouveau né et l'accueil y était parfait. Calme et détente assurés. Une vraie bulle d'oxygène au milieu des vignes. On a passé un super séjour dans la tiny house IBU ! Une vraie parenthèse de calme dans un décor enchanteur. L'endroit est très joli, super bien décoré et tout est pensé pour ne manquer de rien."
+        },
+        {
+          "id": 3,
+          "name": "Noemi G.",
+          "desc": "C'était presque magique. Accueil chaleureux, endroit magnifique, produits locaux excellents. Mon point préféré : la literie !!! Je n'avais plus dormi si bien depuis longtemps. Je recommande pour tout le monde qui veut ralentir et de ressentir l'instant."
+        },
+        {
+          "id": 4,
+          "name": "Lynn DB",
+          "desc": "Hautement recommandé. Un cadre magnifique. Une ambiance formidable. Très beau, pratique et meublé avec goût. Le petit-déjeuner était également délicieux."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "IBÙ EXPERIENCE",
+      "title": "Une question?"
+    },
+    "section": {
+      "followUs": "Follow us",
+      "headingLine1": "Envoyez",
+      "headingLine2": "un message"
+    },
+    "form": {
+      "fields": {
+        "name": "Nom",
+        "email": "Email",
+        "message": "Message"
+      },
+      "placeholders": {
+        "name": "Votre nom",
+        "email": "Votre@email.com",
+        "message": "Votre message"
+      },
+      "errors": {
+        "invalidEmail": "Veuillez saisir une adresse email valide"
+      },
+      "submit": "Envoyer",
+      "success": "✓ Votre message a été préparé. Votre client mail va s'ouvrir pour l'envoyer.",
+      "mailto": {
+        "subject": "Contact IBÙ Experience",
+        "body": "Nom: {name}\nEmail: {email}\n\nMessage:\n{message}"
+      }
+    }
+  },
+  "reservations": {
+    "hero": {
+      "eyebrow": "IBÙ EXPERIENCE",
+      "title": "Réservez votre Expérience Unique",
+      "intro": "Planifiez votre aventure immersive et créez des souvenirs inoubliables avec nos expériences personnalisées."
+    },
+    "filters": {
+      "all": "VOIR TOUT",
+      "vignoble": "VIGNOBLE",
+      "chateau": "CHÂTEAU",
+      "domaine": "DOMAINE"
+    },
+    "grid": {
+      "categories": {
+        "vignoble": "Vignoble",
+        "chateau": "Château",
+        "domaine": "Domaine"
+      },
+      "titles": {
+        "domaineMehaignoul": "Domaine de Mehaignoul",
+        "comingSoon": "Coming Soon"
+      }
+    },
+    "cursor": {
+      "availability": "Voir les<br>disponibilités"
+    },
+    "cta": {
+      "line1": "Voir les",
+      "line2": "disponibilités"
+    }
+  },
+  "giftCard": {
+    "title": "Carte cadeau IBÙ",
+    "imageAlt": "Carte cadeau IBÙ",
+    "instructions": "Sélectionnez le montant de votre carte cadeau",
+    "order": "Commander",
+    "options": {
+      "weekStay": "Séjour IBÙ semaine",
+      "weekendStay": "Séjour IBÙ week-end"
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "underConstruction": "Page en construction"
+  },
+  "blog": {
+    "title": "Blog",
+    "underConstruction": "Page en construction"
+  },
+  "experiences": {
+    "hero": {
+      "title": "L'expérience IBÙ",
+      "subtitle": "Harmonie & Sérénité",
+      "discoverCta": "DÉCOUVRIR IBÙ",
+      "lodgingsLink": "Voir les différents logements",
+      "heroImageAlt": "Expérience IBÙ"
+    },
+    "intro": {
+      "title": "L'expérience IBÙ",
+      "subtitle": "Une approche holistique",
+      "paragraph": "Niché au cœur de la nature, IBÙ vous invite à une parenthèse de sérénité dans un cocon intimiste. Laissez-vous envelopper par la chaleur des infrastructures privatives, prolongez ce moment avec un kit de relaxation aux notes apaisantes, puis réveillez vos sens avec un petit-déjeuner aux saveurs locales. Ici, chaque détail est pensé pour offrir un voyage sensoriel où détente et harmonie se rencontrent."
+    },
+    "services": {
+      "eyebrow": "CE QUE COMPREND VOTRE EXPÉRIENCE (à pd de 265 €)",
+      "title": "IBÙ vous invite à vivre un moment de détente profonde en pleine nature.",
+      "imageAlt": "IBÙ",
+      "items": [
+        {
+          "title": "Check-in, Check-out",
+          "desc": "Votre séjour commence à 17h00 et se termine à 10h30, vous offrant ainsi un moment privilégié de détente et de ressourcement."
+        },
+        {
+          "title": "Bouteille de bienvenue",
+          "desc": "Savourez une bouteille de bulles belges dès votre arrivée, ou laissez-vous tenter par une alternative locale sans alcool pour bien démarrer votre séjour."
+        },
+        {
+          "title": "Sauna",
+          "desc": "Profitez d'un sauna exclusif pour une expérience de détente profonde. La chaleur du sauna favorise l'élimination des toxines, améliore la circulation sanguine et procure une relaxation musculaire complète dans un environnement intime et serein."
+        },
+        {
+          "title": "Bain nordique extérieur",
+          "desc": "Découvrez notre bain nordique extérieur privatif, une expérience unique qui combine les bienfaits de l'eau chaude et de l'air frais dans l'intimité de votre espace. Cette pratique ancestrale stimule le système immunitaire, améliore la circulation et procure une sensation de bien-être profond."
+        },
+        {
+          "title": "Kit de relaxation",
+          "desc": "Recevez un kit de relaxation personnalisé comprenant des tisanes apaisantes, des huiles de massage naturelles et d'autres accessoires de bien-être. Chaque élément est soigneusement sélectionné pour vous accompagner dans votre voyage vers la sérénité."
+        }
+      ]
+    },
+    "options": {
+      "title": "Les options",
+      "subtitle": "Personnalisez votre séjour inoubliable",
+      "cellarVisit": {
+        "title": "Visite de Chai (avec dégustation) - 60EUR / 2 pers.",
+        "paragraph": "Découvrez les coulisses de la vinification au cœur du chai : fermentation, élevage en cuve ou en barrique, et secrets de production. Une immersion guidée, authentique et sensorielle pour comprendre le savoir-faire du domaine et apprécier les vins autrement.",
+        "footnote": "* Pour réserver la visite du chai (avec dégustation), veuillez sélectionner l'option lors de votre réservation. Tarif : 60EUR / 2 pers. Paiement directement sur place.",
+        "imageAlt": "Visite de Chai"
+      },
+      "aperitifBoard": {
+        "title": "Planche apéritive (40eur/2pers)",
+        "paragraph1": "Une délicate planche apéritive composée de produits du terroir : sélection de fromages locaux, charcuteries artisanales et accompagnements de saison.",
+        "paragraph2": "Parfaite pour accompagner votre bouteille de bienvenue et savourer un premier moment au cœur des vignes.",
+        "footnote": "* Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)",
+        "imageAlt": "Planche apéritif"
+      },
+      "dinnerBoard": {
+        "title": "Planche gourmande dinatoire (65eur/2pers)",
+        "paragraph1": "Une généreuse planche gourmande aux saveurs du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et produits frais 100% belges.",
+        "paragraph2": "Une expérience complète et conviviale, idéale pour un dîner à deux au cœur des vignes.",
+        "imageAlt": "Planche gourmande dinatoire"
+      },
+      "lateCheckout": {
+        "title": "Départ tardif (13h30) (31eur)",
+        "paragraph": "Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l'heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à 13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.",
+        "imageAlt": "Départ tardif"
+      },
+      "breakfast": {
+        "title": "Petit déjeuner local (25eur)",
+        "paragraph1": "Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause gourmande : Petit pain à réchauffer, produits laitiers et charcuteries sélectionnées auprès d'artisans et de producteurs de la région, fruits de saison, jus et douceurs qui mettent en avant le terroir tout en restant légers.",
+        "paragraph2": "Chaque assiette révèle des saveurs honnêtes et des produits frais, pour un réveil en douceur avant de profiter pleinement de votre séjour IBÙ.",
+        "imageAlt": "Petit déjeuner local"
+      }
+    },
+    "cocons": {
+      "title": "NOS COCONS",
+      "subtitle": "Immersion naturelle",
+      "paragraph1": "Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.",
+      "paragraph2": "Pour prolonger l'expérience, profitez d'options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.",
+      "carouselAlt": "Nos Cocons IBÙ",
+      "features": {
+        "doubleBed": "Lit double",
+        "bathroom": "Salle de bain",
+        "kitchenette": "Kitchenette",
+        "wardrobe": "Garde robe"
+      }
+    },
+    "cta": {
+      "cursor": "Lieux et Disponibilités",
+      "line1": "Lieux et",
+      "line2": "Disponibilités"
+    },
+    "gallery": {
+      "alt": "IBÙ Experience Gallery"
+    }
+  },
+  "experienceDetails": {
+    "ibuBienEtre": {
+      "hero": {
+        "title": "IBÙ Bien-être",
+        "subtitle": "Harmonie & Sérénité",
+        "discoverCta": "DÉCOUVRIR IBÙ BIEN-ÊTRE",
+        "heroImageAlt": "IBÙ Bien-être Experience",
+        "collectionImageAlt": "IBÙ Bien-être Collection"
+      },
+      "intro": {
+        "title": "L'expérience IBÙ Bien-être",
+        "subtitle": "Une approche holistique",
+        "paragraph": "Niché au cœur de la nature, IBÙ Bien-Être vous invite à une parenthèse de sérénité dans un cocon intimiste. Laissez-vous envelopper par la chaleur des infrastructures privatives, prolongez ce moment avec un kit de relaxation aux notes apaisantes, puis réveillez vos sens avec un petit-déjeuner aux saveurs locales. Ici, chaque détail est pensé pour offrir un voyage sensoriel où détente et harmonie se rencontrent."
+      },
+      "services": {
+        "eyebrow": "CE QUE COMPREND IBÙ BIEN-ÊTRE",
+        "title": "IBÙ Bien-être, vous invite à vivre un moment de détente profonde en pleine nature.",
+        "imageAlt": "IBÙ Bien-être",
+        "items": [
+          {
+            "title": "Bouteille de bienvenue",
+            "desc": "Savourez une bouteille de bulles belges dès votre arrivée, ou laissez-vous tenter par une alternative locale sans alcool pour bien démarrer votre séjour."
+          },
+          {
+            "title": "Sauna privatif",
+            "desc": "Profitez d'un sauna privatif exclusif pour une expérience de détente profonde. La chaleur du sauna favorise l'élimination des toxines, améliore la circulation sanguine et procure une relaxation musculaire complète dans un environnement intime et serein."
+          },
+          {
+            "title": "Bain nordique extérieur",
+            "desc": "Découvrez notre bain nordique extérieur, une expérience unique qui combine les bienfaits de l'eau chaude et de l'air frais. Cette pratique ancestrale stimule le système immunitaire, améliore la circulation et procure une sensation de bien-être profond."
+          },
+          {
+            "title": "Kit de relaxation",
+            "desc": "Recevez un kit de relaxation personnalisé comprenant des tisanes apaisantes, des huiles de massage naturelles et d'autres accessoires de bien-être. Chaque élément est soigneusement sélectionné pour vous accompagner dans votre voyage vers la sérénité."
+          },
+          {
+            "title": "Petit déjeuner local",
+            "desc": "Savourez un petit déjeuner local préparé avec des produits frais et de saison."
+          }
+        ]
+      },
+      "foodOptions": {
+        "title": "Options Food & Boissons",
+        "subtitle": "Selon votre domaine",
+        "paragraph": "Découvrez les options food disponibles en choisissant votre domaine. Chaque lieu propose sa propre sélection de délices culinaires et de boissons, soigneusement pensée pour sublimer votre séjour et combler vos envies sans effort. Vous préférez cuisiner ? Une plaque de cuisson et un mini-four sont à votre disposition pour préparer vos propres repas en toute simplicité.",
+        "images": {
+          "dish1Alt": "Plat Priche 1",
+          "dish2Alt": "Plat Priche 2",
+          "dish3Alt": "Plat Priche 3"
+        }
+      },
+      "quote": "Ralentir, respirer, se retrouver.",
+      "photos": {
+        "spaAlt": "Spa & Massages",
+        "natureAlt": "Retraites Nature"
+      },
+      "gallery": {
+        "alt": "IBÙ Bien-être Gallery"
+      }
+    },
+    "ibuSignature": {
+      "hero": {
+        "title": "IBÙ Signature",
+        "subtitle": "Une Expérience Exclusive",
+        "discoverCta": "Découvrir nos Expériences",
+        "reserveCta": "Réservez votre Expérience IBÙ Signature",
+        "heroImageAlt": "IBÙ Signature Experience",
+        "collectionImageAlt": "IBÙ Signature Collection"
+      },
+      "intro": {
+        "title": "L'Expérience IBÙ Signature",
+        "subtitle": "L'expérience premium tout compris",
+        "paragraph1": "IBÙ Signature sublime votre séjour en une parenthèse intimiste et gastronomique au cœur de la nature. L'expérience se vit autant dans l'assiette que dans l'atmosphère : élégance du lieu, confort, accès au wellness.",
+        "paragraph2": "Une immersion où authenticité, intimité et excellence locale s'unissent pour créer un souvenir inoubliable."
+      },
+      "services": {
+        "eyebrow": "CE QUE COMPREND IBÙ SIGNATURE",
+        "title": "IBÙ Signature vous invite à vivre une expérience inédite où bien-être et gastronomie s'unissent au cœur de la nature.",
+        "imageAlt": "IBÙ Signature",
+        "items": [
+          {
+            "title": "Bouteille de bienvenue",
+            "desc": "Savourez une bouteille de bulles belges dès votre arrivée, ou laissez-vous tenter par une alternative locale sans alcool pour bien démarrer votre séjour."
+          },
+          {
+            "title": "Sauna, bain nordique",
+            "desc": "Profitez d'un sauna privatif exclusif et d'un bain nordique extérieur pour une expérience de détente complète. La chaleur du sauna favorise l'élimination des toxines et améliore la circulation, tandis que le bain nordique combine les bienfaits de l'eau chaude et de l'air frais pour stimuler le système immunitaire et procurer une sensation de bien-être profond dans un environnement intime et serein."
+          },
+          {
+            "title": "Kit de relaxation",
+            "desc": "Recevez un kit de relaxation personnalisé comprenant des tisanes apaisantes, des huiles de massage naturelles et d'autres accessoires de bien-être. Chaque élément est soigneusement sélectionné pour vous accompagner dans votre voyage vers la sérénité."
+          },
+          {
+            "title": "Dîner gourmet 3 services",
+            "desc": "Un catering frais 3 services livré juste avant votre arrivée pour que vous puissiez savourer à votre rythme. Choisissez parmi 3 menus raffinés mettant en valeur des saveurs locales et de saison, avec une option végétarienne disponible. Aucun service inclus, juste le plaisir d'une cuisine gastronomique dans l'intimité de votre cocon."
+          },
+          {
+            "title": "Petit déjeuner local",
+            "desc": "Savourez un petit déjeuner local préparé avec des produits frais et de saison."
+          },
+          {
+            "title": "Ambiance de table",
+            "desc": "Profitez d'une mise en scène raffinée pour vos repas avec une ambiance de table soignée qui transforme chaque moment en expérience mémorable."
+          },
+          {
+            "title": "Late check-out : 12h00",
+            "desc": "Prolongez votre séjour en toute tranquillité avec un départ à midi, pour savourer chaque instant sans précipitation."
+          }
+        ]
+      },
+      "excellence": {
+        "title": "L'Excellence",
+        "subtitle": "Notre engagement",
+        "paragraph": "L'excellence est notre standard quotidien. Chaque expérience Signature est le fruit d'une collaboration étroite avec des domaines d'exception, pour offrir bien plus qu'un séjour : une immersion élégante et intimiste au cœur de la nature.",
+        "vipImageAlt": "Expérience VIP",
+        "privateCollectionAlt": "Collection Privée"
+      },
+      "gallery": {
+        "alt": "IBÙ Signature Gallery"
+      }
+    }
+  },
+  "about": {
+    "family": {
+      "title": "UNE HISTOIRE DE FAMILLE",
+      "subtitle": "Héritage et passion",
+      "paragraph1": "IBÙ Experience a été créé par Mallen en hommage à son père qu'on surnommait \"Ibou\", figure rayonnante de l'hospitalité originaire de Gambie, qui avait comme projet de construire des lodges éco-chic pour les voyageurs.",
+      "paragraph2": "Aujourd'hui, ce rêve reprend vie en Belgique grâce à sa fille à travers des expériences immersives au sein de domaines prestigieux, où nature, bien-être et gastronomie s'unissent dans des tiny houses élégamment designées.",
+      "imageAlt": "Une histoire de famille"
+    },
+    "universe": {
+      "title": "Notre Univers",
+      "subtitle": "Découverte",
+      "paragraph": "Plongez dans l'univers IBÙ Experience à travers ces moments captés au cœur de nos domaines d'exception, où chaque détail raconte une histoire d'authenticité et d'évasion.",
+      "videoTitle": "IBÙ Experience - Notre Univers"
+    },
+    "partners": {
+      "title": "Nos partenaires"
+    },
+    "parallax": {
+      "imageAlt": "IBÙ Experience - À propos"
+    }
+  },
+  "domaineMehaignoul": {
+    "hero": {
+      "titleLine1": "Domaine",
+      "titleLine2": "de Mehaignoul"
+    },
+    "intro": {
+      "subtitle": "Immersion dans un vignoble",
+      "paragraph": "Situé au cœur de la Wallonie à seulement 30 min de Bruxelles, le domaine de Mehaignoul est une ferme en carré datant du 13e siècle d'une exceptionnelle authenticité. En plus de sa première fonction agricole, elle dispose d'un charmant vignoble où règne une atmosphère champêtre et dépaysante."
+    },
+    "booking": {
+      "cocon1": {
+        "title": "Cocon IBÙ 1",
+        "imageAlt": "Cocon IBÙ 1",
+        "availabilityCta": "Voir les disponibilités"
+      },
+      "cocon2": {
+        "title": "Cocon IBÙ 2",
+        "imageAlt": "Cocon IBÙ 2",
+        "availabilityCta": "Voir les disponibilités"
+      }
+    },
+    "gallery": {
+      "alt": "Domaine de Mehaignoul Gallery"
+    },
+    "cocons": {
+      "title": "Le logement",
+      "subtitle": "Votre cocon",
+      "paragraph": "Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.",
+      "carouselAlt": "Le logement IBÙ"
+    }
+  },
+  "partner": {
+    "hero": {
+      "title": "DEVENIR PARTENAIRE",
+      "subtitle": "Envie de transformer votre domaine en destination? Rejoignez l'aventure IBÙ ! Completez le formulaire ci-dessous"
+    },
+    "forms": {
+      "fr": "Formulaire FR",
+      "en": "Formulaire EN"
+    },
+    "images": {
+      "grid1Alt": "Devenir partenaire IBÙ",
+      "grid2Alt": "Partenariat IBÙ Experience",
+      "benefitsAlt": "Avantages partenariat IBÙ"
+    },
+    "benefits": {
+      "eyebrow": "POURQUOI DEVENIR PARTENAIRE IBÙ",
+      "title": "Rejoignez un réseau d'excellence et transformez votre domaine en destination d'exception.",
+      "items": [
+        "Valorisez votre patrimoine et faites-en un lieu d'accueil unique",
+        "Bénéficiez de revenus récurrents sans charge de gestion",
+        "Attirez une nouvelle clientèle curieuse, locale et internationale",
+        "Renforcez l'image et la notoriété de votre domaine",
+        "Créez des synergies avec des producteurs et artisans locaux"
+      ]
+    },
+    "timeline": {
+      "title": "LE FONCTIONNEMENT",
+      "steps": [
+        "Prise de contact & analyse des besoins",
+        "Étude du site & faisabilité technique",
+        "Création de l'expérience IBÙ × Votre Domaine",
+        "Design sur mesure de la tiny house",
+        "Intégration web & marketing",
+        "Livraison & installation (6 à 8 semaines)",
+        "Gestion assurée par IBÙ"
+      ]
+    }
+  },
+  "forms": {
+    "availability": {
+      "ariaSearch": "Recherche de disponibilités",
+      "arrival": "Arrivée",
+      "departure": "Départ",
+      "adults": "Adultes",
+      "search": "Rechercher",
+      "errors": {
+        "missingArrival": "Veuillez choisir une date d'arrivée.",
+        "missingDeparture": "Veuillez choisir une date de départ.",
+        "invalidRange": "La date de départ doit être après la date d'arrivée."
+      },
+      "aria": {
+        "arrivalDate": "Date d'arrivée",
+        "departureDate": "Date de départ",
+        "decreaseAdults": "Réduire le nombre d'adultes",
+        "increaseAdults": "Augmenter le nombre d'adultes",
+        "submit": "Lancer la recherche de disponibilités"
+      }
+    }
+  }
+}

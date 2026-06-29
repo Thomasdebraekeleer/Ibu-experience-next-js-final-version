@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import { useLocale, useTranslations } from "next-intl";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -11,6 +12,7 @@ import Wrapper from "@/layouts/wrapper";
 import HeaderVBU from "@/layouts/headers/header-vbu";
 import FooterThree from "@/layouts/footers/footer-three";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Leaf, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon, ScrollDownTwo, UpArrowFour, UpArrow } from '@/components/svg';
@@ -43,8 +45,23 @@ import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-optio
 // slider images
 const slider_images = [slider_img_1, slider_img_2, slider_img_3, slider_img_4];
 
+const COCON_FEATURE_KEYS = [
+  "doubleBed",
+  "bathroom",
+  "kitchenette",
+  "wardrobe",
+] as const;
+
+const COCON_FEATURE_ICONS = [
+  LitDoubleIcon,
+  BathroomIcon,
+  KitchenetteIcon,
+  GardeRobeIcon,
+];
 
 const ExperiencesMain = () => {
+  const locale = useLocale();
+  const t = useTranslations("experiences");
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = React.useState(false);
@@ -122,7 +139,32 @@ const ExperiencesMain = () => {
       hoverBtn();
     }, 100);
     return () => clearTimeout(timer);
-  });
+  }, [locale]);
+
+  const renderCoconFeatures = (mobile = false) =>
+    COCON_FEATURE_KEYS.map((key, index) => {
+      const Icon = COCON_FEATURE_ICONS[index];
+      return (
+        <div
+          key={key}
+          className={mobile ? "col-6" : "col-xl-3 col-lg-3"}
+        >
+          <div className="cocon-feature-item text-center">
+            <div
+              className={`cocon-icon-wrapper ${mobile ? "mb-15" : "mb-20"}`}
+            >
+              <Icon />
+            </div>
+            <h6
+              className="cocon-feature-title"
+              style={mobile ? { fontSize: "14px" } : undefined}
+            >
+              {t(`cocons.features.${key}`)}
+            </h6>
+          </div>
+        </div>
+      );
+    });
 
   return (
     <Wrapper showBackToTop={false}>
@@ -137,7 +179,7 @@ const ExperiencesMain = () => {
       {/* header area end */}
 
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" key={locale}>
           <main>
             
             {/* Section expérience IBÙ - Début */}
@@ -148,30 +190,30 @@ const ExperiencesMain = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tp-project-details-3-title-box">
-                      <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={isMobile ? { fontSize: 'clamp(1.8rem, 7vw, 3.2rem)', whiteSpace: 'nowrap', lineHeight: '1.1' } : {}}>L&apos;expérience IBÙ</h2>
-                      <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.8rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Harmonie & Sérénité</h3>
+                      <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={isMobile ? { fontSize: 'clamp(1.8rem, 7vw, 3.2rem)', whiteSpace: 'nowrap', lineHeight: '1.1' } : {}}>{t("hero.title")}</h2>
+                      <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.8rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>{t("hero.subtitle")}</h3>
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-xl-6">
                     <div className="tp-project-details-3-scroll smooth">
-                      <a href="/experiences/ibu-bien-etre" className="pointer">
+                      <Link href="/experiences/ibu-bien-etre" className="pointer">
                         <span>
                           <ScrollDownTwo/>
                         </span>
-                        DÉCOUVRIR IBÙ
-                      </a>
+                        {t("hero.discoverCta")}
+                      </Link>
                     </div>
                   </div>
                   <div className="col-xl-6">
                     <div className="tp-project-details-3-link mt-30 text-start text-md-end">
-                      <a href="/reservations">
-                        Voir les différents logements
+                      <Link href="/reservations">
+                        {t("hero.lodgingsLink")}
                         <span>
                           <UpArrowFour/>
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -180,7 +222,7 @@ const ExperiencesMain = () => {
             
             {/* Photo principale */}
             <div className="tp-project-details-3-full-width-thumb mb-120">
-              <Image data-speed=".8" src={full_image} alt="Expérience IBÙ" style={{ height: 'auto' }}/>
+              <Image data-speed=".8" src={full_image} alt={t("hero.heroImageAlt")} style={{ height: 'auto' }}/>
             </div>
             
             {/* Section L'expérience IBÙ */}
@@ -189,7 +231,7 @@ const ExperiencesMain = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;expérience IBÙ</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">{t("intro.title")}</h4>
                     </div>
                   </div>
                 </div>
@@ -198,13 +240,13 @@ const ExperiencesMain = () => {
                     <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        Une approche holistique
+                        {t("intro.subtitle")}
                       </span>
                     </div>
                   </div>
                   <div className="col-xl-9">
                     <div className="showcase-details-2-content-right tp_title_anim">
-                      <p className="pb-25">Niché au cœur de la nature, IBÙ vous invite à une parenthèse de sérénité dans un cocon intimiste. Laissez-vous envelopper par la chaleur des infrastructures privatives, prolongez ce moment avec un kit de relaxation aux notes apaisantes, puis réveillez vos sens avec un petit-déjeuner aux saveurs locales. Ici, chaque détail est pensé pour offrir un voyage sensoriel où détente et harmonie se rencontrent.</p>
+                      <p className="pb-25">{t("intro.paragraph")}</p>
                     </div>
                   </div>
                 </div>
@@ -215,6 +257,7 @@ const ExperiencesMain = () => {
             <ExperienceServicesInclusSection
               sectionId="services-section"
               accordionParentId="accordionExample"
+              localize
             />
             
             {/* Section expérience IBÙ - Fin */}
@@ -226,7 +269,7 @@ const ExperiencesMain = () => {
                 <div className="row">
                   <div className="col-xl-8">
                     <div className="showcase-details-2-section-box">
-                        <h4 className="showcase-details-2-section-title tp-char-animation">Les options</h4>
+                        <h4 className="showcase-details-2-section-title tp-char-animation">{t("options.title")}</h4>
                     </div>
                   </div>
                 </div>
@@ -235,7 +278,7 @@ const ExperiencesMain = () => {
                     <div className="showcase-details-2-section-left">
                         <span className="ab-inner-subtitle mb-25" style={{ whiteSpace: 'nowrap' }}>
                           <Leaf/>
-                          Personnalisez votre séjour inoubliable
+                          {t("options.subtitle")}
                         </span>
                     </div>
                   </div>
@@ -245,7 +288,7 @@ const ExperiencesMain = () => {
                 <div className="row" style={{marginTop: '20px'}}>
                   <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={visite_chai} alt="Visite de Chai" style={{height:'auto', width: '100%'}}/>
+                      <Image src={visite_chai} alt={t("options.cellarVisit.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
@@ -262,10 +305,10 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Visite de Chai (avec dégustation) - 60EUR / 2 pers.
+                        {t("options.cellarVisit.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Découvrez les coulisses de la vinification au cœur du chai : fermentation, élevage en cuve ou en barrique, et secrets de production. Une immersion guidée, authentique et sensorielle pour comprendre le savoir-faire du domaine et apprécier les vins autrement.</p>
+                        <p>{t("options.cellarVisit.paragraph")}</p>
                         <p style={{
                           fontSize: '0.85rem',
                           fontStyle: 'italic',
@@ -273,7 +316,7 @@ const ExperiencesMain = () => {
                           marginTop: '15px',
                           lineHeight: '1.5'
                         }}>
-                          * Pour réserver la visite du chai (avec dégustation), veuillez sélectionner l&apos;option lors de votre réservation. Tarif : 60EUR / 2 pers. Paiement directement sur place.
+                          {t("options.cellarVisit.footnote")}
                         </p>
                       </div>
                     </div>
@@ -296,11 +339,11 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Planche apéritive (40eur/2pers)
+                        {t("options.aperitifBoard.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Une délicate planche apéritive composée de produits du terroir : sélection de fromages locaux, charcuteries artisanales et accompagnements de saison.</p>
-                        <p>Parfaite pour accompagner votre bouteille de bienvenue et savourer un premier moment au cœur des vignes.</p>
+                        <p>{t("options.aperitifBoard.paragraph1")}</p>
+                        <p>{t("options.aperitifBoard.paragraph2")}</p>
                         <p style={{
                           fontSize: '0.85rem',
                           fontStyle: 'italic',
@@ -308,14 +351,14 @@ const ExperiencesMain = () => {
                           marginTop: '15px',
                           lineHeight: '1.5'
                         }}>
-                          * Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)
+                          {t("options.aperitifBoard.footnote")}
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={planche_aperitif} alt="Planche apéritif" style={{height:'auto', width: '100%'}}/>
+                      <Image src={planche_aperitif} alt={t("options.aperitifBoard.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                 </div>
@@ -324,7 +367,7 @@ const ExperiencesMain = () => {
                 <div className="row" style={{marginTop: '40px'}}>
                   <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={planche_gourmande} alt="Planche gourmande dinatoire" style={{height:'auto', width: '100%'}}/>
+                      <Image src={planche_gourmande} alt={t("options.dinnerBoard.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
@@ -341,11 +384,11 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Planche gourmande dinatoire (65eur/2pers)
+                        {t("options.dinnerBoard.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
-                        <p>Une généreuse planche gourmande aux saveurs du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et produits frais 100% belges.</p>
-                        <p>Une expérience complète et conviviale, idéale pour un dîner à deux au cœur des vignes.</p>
+                        <p>{t("options.dinnerBoard.paragraph1")}</p>
+                        <p>{t("options.dinnerBoard.paragraph2")}</p>
                       </div>
                     </div>
                   </div>
@@ -367,24 +410,24 @@ const ExperiencesMain = () => {
                         whiteSpace: 'normal',
                         wordWrap: 'break-word'
                       }}>
-                        Départ tardif (13h30) (31eur)
+                        {t("options.lateCheckout.title")}
                       </h5>
                       <div className="showcase-details-2-content-right tp_title_anim">
                         <p>
-                          Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l&apos;heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à&nbsp;13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.
+                          {t("options.lateCheckout.paragraph")}
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image src={depart_tardif} alt="Départ tardif" style={{height:'auto', width: '100%'}}/>
+                      <Image src={depart_tardif} alt={t("options.lateCheckout.imageAlt")} style={{height:'auto', width: '100%'}}/>
                     </div>
                   </div>
                 </div>
 
                 {/* Option 5: Petit déjeuner local */}
-                <PetitDejeunerOptionRow />
+                <PetitDejeunerOptionRow localize />
               </div>
             </div>
             
@@ -395,7 +438,7 @@ const ExperiencesMain = () => {
                 <div className="row">
                     <div className="col-xl-8">
                       <div className="showcase-details-2-section-box">
-                          <h4 className="showcase-details-2-section-title tp-char-animation">NOS COCONS</h4>
+                          <h4 className="showcase-details-2-section-title tp-char-animation">{t("cocons.title")}</h4>
                       </div>
                     </div>
                 </div>
@@ -404,14 +447,14 @@ const ExperiencesMain = () => {
                       <div className="showcase-details-2-section-left">
                           <span className="ab-inner-subtitle mb-25">
                             <Leaf/>
-                            Immersion naturelle
+                            {t("cocons.subtitle")}
                           </span>
                       </div>
                     </div>
                     <div className="col-xl-9">
                       <div className="showcase-details-2-content-right tp_title_anim">
-                          <p>Conçus dans un esprit minimaliste et chaleureux, nos pods offrent une immersion totale dans la nature sans compromis sur le confort : lit double avec baie vitrée panoramique, douche design, et toilettes sèches de nouvelle génération.</p>
-                          <p style={{marginBottom: '50px'}}>Pour prolonger l&apos;expérience, profitez d&apos;options bien-être en extérieur : sauna et bain nordique avec vue imprenable sur le domaine, en toute intimité.</p>
+                          <p>{t("cocons.paragraph1")}</p>
+                          <p style={{marginBottom: '50px'}}>{t("cocons.paragraph2")}</p>
                       </div>
                     </div>
                 </div>
@@ -471,7 +514,7 @@ const ExperiencesMain = () => {
                         }}>
                           <Image 
                             src={imgSrc} 
-                            alt="Nos Cocons IBÙ" 
+                            alt={t("cocons.carouselAlt")} 
                             style={{
                               width: '100%',
                               maxWidth: '350px',
@@ -488,80 +531,17 @@ const ExperiencesMain = () => {
                 
                 {/* Icônes des cocons - Version PC */}
                 <div className="row d-none d-lg-flex" style={{marginTop: '40px', marginBottom: '60px'}}>
-                    <div className="col-xl-3 col-lg-3">
-                      <div className="cocon-feature-item text-center">
-                          <div className="cocon-icon-wrapper mb-20">
-                              <LitDoubleIcon />
-                          </div>
-                          <h6 className="cocon-feature-title">Lit double</h6>
-                      </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3">
-                      <div className="cocon-feature-item text-center">
-                          <div className="cocon-icon-wrapper mb-20">
-                              <BathroomIcon />
-                          </div>
-                          <h6 className="cocon-feature-title">Salle de bain</h6>
-                      </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3">
-                      <div className="cocon-feature-item text-center">
-                          <div className="cocon-icon-wrapper mb-20">
-                              <KitchenetteIcon />
-                          </div>
-                          <h6 className="cocon-feature-title">Kitchenette</h6>
-                      </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3">
-                      <div className="cocon-feature-item text-center">
-                          <div className="cocon-icon-wrapper mb-20">
-                              <GardeRobeIcon />
-                          </div>
-                          <h6 className="cocon-feature-title">Garde robe</h6>
-                      </div>
-                    </div>
+                    {renderCoconFeatures()}
                 </div>
 
                 {/* Icônes des cocons - Version Mobile (2x2) */}
                 <div className="d-block d-lg-none" style={{marginTop: '40px', marginBottom: '60px'}}>
                   <div className="row">
-                    {/* Première ligne : Lit double + Salle de bain */}
-                    <div className="col-6">
-                      <div className="cocon-feature-item text-center">
-                        <div className="cocon-icon-wrapper mb-15">
-                          <LitDoubleIcon />
-                        </div>
-                        <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Lit double</h6>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="cocon-feature-item text-center">
-                        <div className="cocon-icon-wrapper mb-15">
-                          <BathroomIcon />
-                        </div>
-                        <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Salle de bain</h6>
-                      </div>
-                    </div>
+                    {renderCoconFeatures(true).slice(0, 2)}
                   </div>
                   
                   <div className="row" style={{marginTop: '30px'}}>
-                    {/* Deuxième ligne : Kitchenette + Garde robe */}
-                    <div className="col-6">
-                      <div className="cocon-feature-item text-center">
-                        <div className="cocon-icon-wrapper mb-15">
-                          <KitchenetteIcon />
-                        </div>
-                        <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Kitchenette</h6>
-                      </div>
-                    </div>
-                    <div className="col-6">
-                      <div className="cocon-feature-item text-center">
-                        <div className="cocon-icon-wrapper mb-15">
-                          <GardeRobeIcon />
-                        </div>
-                        <h6 className="cocon-feature-title" style={{fontSize: '14px'}}>Garde robe</h6>
-                      </div>
-                    </div>
+                    {renderCoconFeatures(true).slice(2, 4)}
                   </div>
                 </div>
                     </div>
@@ -575,15 +555,15 @@ const ExperiencesMain = () => {
                   <div className="col-xl-12">
                     <div className="tp-projct-5-2-btn-box d-flex justify-content-center">
                       <div className="tp-hover-btn-wrapper">
-                        <a href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor="Lieux et Disponibilités">
+                        <Link href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor={t("cta.cursor")}>
                           <span className="tp-btn-circle-text">
-                            Lieux et <br /> Disponibilités
+                            {t("cta.line1")} <br /> {t("cta.line2")}
                         </span>
                           <span className="tp-btn-circle-icon">
                             <UpArrow />
                             </span>
                           <i className="tp-btn-circle-dot"></i>
-                        </a>
+                        </Link>
                     </div>
                     </div>
                   </div>
@@ -625,7 +605,7 @@ const ExperiencesMain = () => {
                 {slider_images.map((imgSrc, index) => (
                   <SwiperSlide key={index}>
                     <div className="pd-visual-slider-thumb fix">
-                      <Image src={imgSrc} alt="IBÙ Experience Gallery" style={{height:"auto"}}/>
+                      <Image src={imgSrc} alt={t("gallery.alt")} style={{height:"auto"}}/>
                     </div>
                   </SwiperSlide>
                 ))}

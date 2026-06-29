@@ -1,9 +1,12 @@
+'use client';
 import React from 'react';
 import { scroller } from 'react-scroll';
+import { useTranslations } from 'next-intl';
 import {Swiper,SwiperSlide} from 'swiper/react';
 import {Autoplay} from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 import Image from 'next/image';
+import { Link } from '@/i18n/navigation';
 import { Leaf, ScrollDownTwo,UpArrowFour, UpArrow} from '@/components/svg';
 
 // images
@@ -197,39 +200,18 @@ const PetitDejeunerIcon = () => (
 // slider images
 const slider_images = [port_img_3,port_img_4,port_img_5,port_img_6];
 
-// service data for IBU-Bien être
-const service_accordion = [
-  {
-    id: 1,
-    icon: <BouteilleIcon />,
-    title: "Bouteille de bienvenue",
-    desc: "Savourez une bouteille de bulles belges dès votre arrivée, ou laissez-vous tenter par une alternative locale sans alcool pour bien démarrer votre séjour.",
-  },
-  {
-    id: 2,
-    icon: <SaunaIcon />,
-    title: "Sauna privatif",
-    desc: "Profitez d'un sauna privatif exclusif pour une expérience de détente profonde. La chaleur du sauna favorise l'élimination des toxines, améliore la circulation sanguine et procure une relaxation musculaire complète dans un environnement intime et serein.",
-  },
-  {
-    id: 3,
-    icon: <BainNordiqueIcon />,
-    title: "Bain nordique extérieur",
-    desc: "Découvrez notre bain nordique extérieur, une expérience unique qui combine les bienfaits de l'eau chaude et de l'air frais. Cette pratique ancestrale stimule le système immunitaire, améliore la circulation et procure une sensation de bien-être profond.",
-  },
-  {
-    id: 4,
-    icon: <KitRelaxationIcon />,
-    title: "Kit de relaxation",
-    desc: "Recevez un kit de relaxation personnalisé comprenant des tisanes apaisantes, des huiles de massage naturelles et d'autres accessoires de bien-être. Chaque élément est soigneusement sélectionné pour vous accompagner dans votre voyage vers la sérénité.",
-  },
-  {
-    id: 5,
-    icon: <PetitDejeunerIcon />,
-    title: "Petit déjeuner local",
-    desc: "Savourez un petit déjeuner local préparé avec des produits frais et de saison.",
-  },
+const SERVICE_ICONS = [
+  BouteilleIcon,
+  SaunaIcon,
+  BainNordiqueIcon,
+  KitRelaxationIcon,
+  PetitDejeunerIcon,
 ];
+
+type ServiceItem = {
+  title: string;
+  desc: string;
+};
 
 // slider setting
 const slider_setting:SwiperOptions = {
@@ -261,6 +243,9 @@ const slider_setting:SwiperOptions = {
 }
 
 export default function PortfolioDetailsIBUBienEtre() {
+  const t = useTranslations('experienceDetails.ibuBienEtre');
+  const tExperiences = useTranslations('experiences');
+  const serviceItems = t.raw('services.items') as ServiceItem[];
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
@@ -289,8 +274,8 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-title-box">
-                                             <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={isMobile ? { fontSize: 'clamp(1.8rem, 7vw, 3.2rem)', whiteSpace: 'nowrap', lineHeight: '1.1' } : {}}>IBÙ Bien-être</h2>
-                                             <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.8rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Harmonie & Sérénité</h3>
+                                             <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={isMobile ? { fontSize: 'clamp(1.8rem, 7vw, 3.2rem)', whiteSpace: 'nowrap', lineHeight: '1.1' } : {}}>{t('hero.title')}</h2>
+                                             <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.8rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>{t('hero.subtitle')}</h3>
                   </div>
                 </div>
             </div>
@@ -301,18 +286,18 @@ export default function PortfolioDetailsIBUBienEtre() {
                          <span>
                              <ScrollDownTwo/>
                          </span>
-                         DÉCOUVRIR IBÙ BIEN-ÊTRE
+                         {t('hero.discoverCta')}
                        </a>
                   </div>
                 </div>
                                  <div className="col-xl-6">
                    <div className="tp-project-details-3-link mt-30 text-start text-md-end">
-                       <a href="/reservations">
-                         Voir les différents logements
+                       <Link href="/reservations">
+                         {tExperiences('hero.lodgingsLink')}
                          <span>
                              <UpArrowFour/>
                          </span>
-                       </a>
+                       </Link>
                    </div>
                  </div>
             </div>
@@ -322,7 +307,7 @@ export default function PortfolioDetailsIBUBienEtre() {
 
       {/* full image */}
       <div className="tp-project-details-3-full-width-thumb mb-120">
-          <Image data-speed=".8" src={full_image} alt="IBÙ Bien-être Experience" style={{ height: 'auto' }}/>
+          <Image data-speed=".8" src={full_image} alt={t('hero.heroImageAlt')} style={{ height: 'auto' }}/>
       </div>
       {/* full image */}
 
@@ -332,7 +317,7 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;expérience IBÙ Bien-être</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">{t('intro.title')}</h4>
                   </div>
                 </div>
             </div>
@@ -341,13 +326,13 @@ export default function PortfolioDetailsIBUBienEtre() {
                   <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        Une approche holistique
+                        {t('intro.subtitle')}
                       </span>
                   </div>
                 </div>
                                  <div className="col-xl-9">
                    <div className="showcase-details-2-content-right tp_title_anim">
-                                               <p className="pb-25">Niché au cœur de la nature, IBÙ Bien-Être vous invite à une parenthèse de sérénité dans un cocon intimiste. Laissez-vous envelopper par la chaleur des infrastructures privatives, prolongez ce moment avec un kit de relaxation aux notes apaisantes, puis réveillez vos sens avec un petit-déjeuner aux saveurs locales. Ici, chaque détail est pensé pour offrir un voyage sensoriel où détente et harmonie se rencontrent.</p>
+                                               <p className="pb-25">{t('intro.paragraph')}</p>
                    </div>
                  </div>
             </div>
@@ -361,7 +346,7 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-thumb-box">
-                    <Image data-speed=".8" src={full_image_2} alt="IBÙ Bien-être Collection" style={{ height: 'auto' }}/>
+                    <Image data-speed=".8" src={full_image_2} alt={t('hero.collectionImageAlt')} style={{ height: 'auto' }}/>
                   </div>
                 </div>
             </div>
@@ -387,10 +372,10 @@ export default function PortfolioDetailsIBUBienEtre() {
                  <span>
                    <Leaf />
                  </span>
-                 CE QUE COMPREND IBÙ BIEN-ÊTRE
+                 {t('services.eyebrow')}
                </span>
                <h4 className="tp-section-title-40">
-                 IBÙ Bien-être, vous invite à vivre un moment de détente profonde en pleine nature.
+                 {t('services.title')}
                </h4>
              </div>
           </div>
@@ -398,33 +383,36 @@ export default function PortfolioDetailsIBUBienEtre() {
                  <div className="row align-items-center">
                        <div className="col-xxl-6 col-xl-4 col-lg-4">
               <div className="text-center text-lg-start" style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src={shape} alt="IBÙ Bien-être" style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain' }} />
+                <Image src={shape} alt={t('services.imageAlt')} style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain' }} />
               </div>
             </div>
                      <div className="col-xxl-6 col-xl-8 col-lg-8">
              <div className="tp-service-2-accordion-box" style={{ minHeight: 'auto', height: 'auto', overflow: 'visible' }}>
                <div className="accordion" id="accordionExample" style={{ height: 'auto', overflow: 'visible' }}>
-                                 {service_accordion.map((s) => (
-                   <div key={s.id} className="accordion-items" style={{ position: 'relative', zIndex: service_accordion.length - s.id }}>
+                                 {serviceItems.map((s, index) => {
+                   const id = index + 1;
+                   const Icon = SERVICE_ICONS[index];
+                   return (
+                   <div key={id} className="accordion-items" style={{ position: 'relative', zIndex: serviceItems.length - id }}>
                     <h2 className="accordion-header">
                       <button
-                        className={`accordion-buttons ${(s.id !== 1 || isMobile) ? "collapsed" : ""}`}
+                        className={`accordion-buttons ${(id !== 1 || isMobile) ? "collapsed" : ""}`}
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target={`#collapse-${s.id}`}
-                        aria-expanded={s.id === 1 && !isMobile ? "true" : "false"}
-                        aria-controls={`collapse-${s.id}`}
+                        data-bs-target={`#collapse-${id}`}
+                        aria-expanded={id === 1 && !isMobile ? "true" : "false"}
+                        aria-controls={`collapse-${id}`}
                       >
                         <span>
-                          {s.icon}
+                          <Icon />
                         </span>
                         {s.title}
                         <span className="accordion-icon"></span>
                       </button>
                     </h2>
                     <div
-                      id={`collapse-${s.id}`}
-                      className={`accordion-collapse collapse ${s.id === 1 && !isMobile ? "show" : ""}`}
+                      id={`collapse-${id}`}
+                      className={`accordion-collapse collapse ${id === 1 && !isMobile ? "show" : ""}`}
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
@@ -432,7 +420,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                       </div>
                     </div>
                   </div>
-                ))}
+                );})}
               </div>
             </div>
           </div>
@@ -447,7 +435,7 @@ export default function PortfolioDetailsIBUBienEtre() {
             <div className="row">
                 <div className="col-xl-8">
                                     <div className="showcase-details-2-section-box">
-                       <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: '1.1', fontSize: '2.5rem', maxWidth: '100%', letterSpacing: '0.05em' }}>Options Food & Boissons</h4>
+                       <h4 className="showcase-details-2-section-title tp-char-animation" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: '1.1', fontSize: '2.5rem', maxWidth: '100%', letterSpacing: '0.05em' }}>{t('foodOptions.title')}</h4>
                    </div>
                 </div>
             </div>
@@ -456,13 +444,13 @@ export default function PortfolioDetailsIBUBienEtre() {
                  <div className="showcase-details-2-section-left">
                      <span className="ab-inner-subtitle mb-25">
                        <Leaf/>
-                       Selon votre domaine
+                       {t('foodOptions.subtitle')}
                      </span>
                  </div>
                </div>
                <div className="col-xl-9">
                  <div className="showcase-details-2-content-right tp_title_anim">
-                     <p className="pb-25">Découvrez les options food disponibles en choisissant votre domaine. Chaque lieu propose sa propre sélection de délices culinaires et de boissons, soigneusement pensée pour sublimer votre séjour et combler vos envies sans effort. Vous préférez cuisiner ? Une plaque de cuisson et un mini-four sont à votre disposition pour préparer vos propres repas en toute simplicité.</p>
+                     <p className="pb-25">{t('foodOptions.paragraph')}</p>
                  </div>
                </div>
            </div>
@@ -472,17 +460,17 @@ export default function PortfolioDetailsIBUBienEtre() {
                   <div className="row">
                       <div className="col-xl-4 col-lg-4">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={priche_img_1} alt="Plat Priche 1" style={{height:'auto'}}/>
+                             <Image src={priche_img_1} alt={t('foodOptions.images.dish1Alt')} style={{height:'auto'}}/>
                          </div>
                        </div>
                        <div className="col-xl-4 col-lg-4">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={priche_img_2} alt="Plat Priche 2" style={{height:'auto'}}/>
+                             <Image src={priche_img_2} alt={t('foodOptions.images.dish2Alt')} style={{height:'auto'}}/>
                          </div>
                        </div>
                        <div className="col-xl-4 col-lg-4">
                          <div className="showcase-details-2-grid-img mb-30 cocons-hover-container">
-                             <Image src={priche_img_3} alt="Plat Priche 3" style={{height:'auto'}}/>
+                             <Image src={priche_img_3} alt={t('foodOptions.images.dish3Alt')} style={{height:'auto'}}/>
                          </div>
                        </div>
                   </div>
@@ -506,7 +494,7 @@ export default function PortfolioDetailsIBUBienEtre() {
                    lineHeight: '1.4',
                    fontWeight: '300'
                  }}>
-                   &quot;Ralentir, respirer, se retrouver.&quot;
+                   &quot;{t('quote')}&quot;
                  </blockquote>
                </div>
            </div>
@@ -515,12 +503,12 @@ export default function PortfolioDetailsIBUBienEtre() {
            <div className="row">
                <div className="col-xl-6">
                  <div className="tp-project-details-3-thumb-box mb-30">
-                     <Image className="w-100" src={port_img_1} alt="Spa & Massages" style={{height:'auto'}}/>
+                     <Image className="w-100" src={port_img_1} alt={t('photos.spaAlt')} style={{height:'auto'}}/>
                  </div>
                </div>
                <div className="col-xl-6">
                  <div className="tp-project-details-3-thumb-box mb-30">
-                   <Image className="w-100" src={port_img_2} alt="Retraites Nature" style={{height:'auto'}}/>
+                   <Image className="w-100" src={port_img_2} alt={t('photos.natureAlt')} style={{height:'auto'}}/>
                  </div>
                </div>
            </div>
@@ -530,15 +518,15 @@ export default function PortfolioDetailsIBUBienEtre() {
                <div className="col-xl-12">
                  <div className="tp-projct-5-2-btn-box d-flex justify-content-center">
                    <div className="tp-hover-btn-wrapper">
-                     <a href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor="Lieux et Disponibilités">
-                       <span className="tp-btn-circle-text">
-                         Lieux et <br /> Disponibilités
-                       </span>
-                       <span className="tp-btn-circle-icon">
-                         <UpArrow />
-                       </span>
-                       <i className="tp-btn-circle-dot"></i>
-                     </a>
+                    <Link href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor={tExperiences('cta.cursor')}>
+                      <span className="tp-btn-circle-text">
+                        {tExperiences('cta.line1')} <br /> {tExperiences('cta.line2')}
+                      </span>
+                      <span className="tp-btn-circle-icon">
+                        <UpArrow />
+                      </span>
+                      <i className="tp-btn-circle-dot"></i>
+                    </Link>
                    </div>
                  </div>
                </div>
@@ -554,7 +542,7 @@ export default function PortfolioDetailsIBUBienEtre() {
               {slider_images.map((imgSrc, index) => (
                 <SwiperSlide key={index}>
                   <div className="pd-visual-slider-thumb fix">
-                    <Image src={imgSrc} alt="IBÙ Bien-être Gallery" style={{height:"auto"}}/>
+                    <Image src={imgSrc} alt={t('gallery.alt')} style={{height:"auto"}}/>
                   </div>
                 </SwiperSlide>
               ))}

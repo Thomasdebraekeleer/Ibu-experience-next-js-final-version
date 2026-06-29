@@ -1,9 +1,12 @@
+'use client';
 import React from 'react';
 import { scroller } from 'react-scroll';
+import { useTranslations } from 'next-intl';
 import {Swiper,SwiperSlide} from 'swiper/react';
 import {Autoplay} from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 import Image from 'next/image';
+import { Link } from '@/i18n/navigation';
 import { Leaf, ScrollDownTwo,UpArrowFour, UpArrow} from '@/components/svg';
 
 // SVG Icons Components for IBÙ Signature
@@ -272,51 +275,20 @@ import signature_shape from "@/assets/img/home-02/service/Picture ibu Signature.
 // slider images
 const slider_images = [port_img_3,port_img_4,port_img_5,port_img_4];
 
-// service data for IBÙ Signature
-const service_accordion_signature = [
-  {
-    id: 1,
-    icon: <BouteilleIcon />,
-    title: "Bouteille de bienvenue",
-    desc: "Savourez une bouteille de bulles belges dès votre arrivée, ou laissez-vous tenter par une alternative locale sans alcool pour bien démarrer votre séjour.",
-  },
-  {
-    id: 2,
-    icon: <SaunaIcon />,
-    title: "Sauna, bain nordique",
-    desc: "Profitez d'un sauna privatif exclusif et d'un bain nordique extérieur pour une expérience de détente complète. La chaleur du sauna favorise l'élimination des toxines et améliore la circulation, tandis que le bain nordique combine les bienfaits de l'eau chaude et de l'air frais pour stimuler le système immunitaire et procurer une sensation de bien-être profond dans un environnement intime et serein.",
-  },
-  {
-    id: 3,
-    icon: <KitRelaxationIcon />,
-    title: "Kit de relaxation",
-    desc: "Recevez un kit de relaxation personnalisé comprenant des tisanes apaisantes, des huiles de massage naturelles et d'autres accessoires de bien-être. Chaque élément est soigneusement sélectionné pour vous accompagner dans votre voyage vers la sérénité.",
-  },
-  {
-    id: 4,
-    icon: <DinerIcon />,
-    title: "Dîner gourmet 3 services",
-    desc: "Un catering frais 3 services livré juste avant votre arrivée pour que vous puissiez savourer à votre rythme. Choisissez parmi 3 menus raffinés mettant en valeur des saveurs locales et de saison, avec une option végétarienne disponible. Aucun service inclus, juste le plaisir d'une cuisine gastronomique dans l'intimité de votre cocon.",
-  },
-  {
-    id: 5,
-    icon: <PetitDejeunerIcon />,
-    title: "Petit déjeuner local",
-    desc: "Savourez un petit déjeuner local préparé avec des produits frais et de saison.",
-  },
-  {
-    id: 6,
-    icon: <AmbianceDeTableIcon />,
-    title: "Ambiance de table",
-    desc: "Profitez d'une mise en scène raffinée pour vos repas avec une ambiance de table soignée qui transforme chaque moment en expérience mémorable.",
-  },
-  {
-    id: 7,
-    icon: <LateCheckoutIcon />,
-    title: "Late check-out : 12h00",
-    desc: "Prolongez votre séjour en toute tranquillité avec un départ à midi, pour savourer chaque instant sans précipitation.",
-  },
+const SERVICE_ICONS = [
+  BouteilleIcon,
+  SaunaIcon,
+  KitRelaxationIcon,
+  DinerIcon,
+  PetitDejeunerIcon,
+  AmbianceDeTableIcon,
+  LateCheckoutIcon,
 ];
+
+type ServiceItem = {
+  title: string;
+  desc: string;
+};
 
 // slider setting
 const slider_setting:SwiperOptions = {
@@ -348,6 +320,9 @@ const slider_setting:SwiperOptions = {
 }
 
 export default function PortfolioDetailsIBUSignature() {
+  const t = useTranslations('experienceDetails.ibuSignature');
+  const tExperiences = useTranslations('experiences');
+  const serviceItems = t.raw('services.items') as ServiceItem[];
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
@@ -376,8 +351,8 @@ export default function PortfolioDetailsIBUSignature() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-title-box">
-                      <h2 className="tp-section-title-160 mb-20 tp-char-animation">IBÙ Signature</h2>
-                      <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>Une Expérience Exclusive</h3>
+                      <h2 className="tp-section-title-160 mb-20 tp-char-animation">{t('hero.title')}</h2>
+                      <h3 className="tp-section-subtitle-3 tp-char-animation" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: '80px' }}>{t('hero.subtitle')}</h3>
                   </div>
                 </div>
             </div>
@@ -388,18 +363,18 @@ export default function PortfolioDetailsIBUSignature() {
                         <span>
                             <ScrollDownTwo/>
                         </span>
-                        Découvrir nos Expériences
+                        {t('hero.discoverCta')}
                       </a>
                   </div>
                 </div>
                 <div className="col-xl-6">
                   <div className="tp-project-details-3-link mt-30 text-start text-md-end">
-                      <a href="/reservations">
-                        Réservez votre Expérience IBÙ Signature
+                      <Link href="/reservations">
+                        {t('hero.reserveCta')}
                         <span>
                             <UpArrowFour/>
                         </span>
-                      </a>
+                      </Link>
                   </div>
                 </div>
             </div>
@@ -409,7 +384,7 @@ export default function PortfolioDetailsIBUSignature() {
 
       {/* full image */}
       <div className="tp-project-details-3-full-width-thumb mb-120">
-          <Image data-speed=".8" src={full_image} alt="IBÙ Signature Experience" style={{ height: 'auto' }}/>
+          <Image data-speed=".8" src={full_image} alt={t('hero.heroImageAlt')} style={{ height: 'auto' }}/>
       </div>
       {/* full image */}
 
@@ -419,7 +394,7 @@ export default function PortfolioDetailsIBUSignature() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;Expérience IBÙ Signature</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">{t('intro.title')}</h4>
                   </div>
                 </div>
             </div>
@@ -428,15 +403,14 @@ export default function PortfolioDetailsIBUSignature() {
                   <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        L&apos;expérience premium tout compris
+                        {t('intro.subtitle')}
                       </span>
                   </div>
                 </div>
                 <div className="col-xl-9">
                   <div className="showcase-details-2-content-right tp_title_anim">
-                      <p className="pb-25">IBÙ Signature sublime votre séjour en une parenthèse intimiste et gastronomique au cœur de la nature.
-                      L&apos;expérience se vit autant dans l&apos;assiette que dans l&apos;atmosphère : élégance du lieu, confort, accès au wellness.</p>
-                      <p>Une immersion où authenticité, intimité et excellence locale s’unissent pour créer un souvenir inoubliable.</p>
+                      <p className="pb-25">{t('intro.paragraph1')}</p>
+                      <p>{t('intro.paragraph2')}</p>
                   </div>
                 </div>
             </div>
@@ -450,7 +424,7 @@ export default function PortfolioDetailsIBUSignature() {
             <div className="row">
                 <div className="col-xl-12">
                   <div className="tp-project-details-3-thumb-box">
-                    <Image data-speed=".8" src={full_image_2} alt="IBÙ Signature Collection" style={{ height: 'auto' }}/>
+                    <Image data-speed=".8" src={full_image_2} alt={t('hero.collectionImageAlt')} style={{ height: 'auto' }}/>
                   </div>
                 </div>
             </div>
@@ -477,10 +451,10 @@ export default function PortfolioDetailsIBUSignature() {
                 <span>
                   <Leaf />
                 </span>
-                CE QUE COMPREND IBÙ SIGNATURE
+                {t('services.eyebrow')}
               </span>
               <h4 className="tp-section-title-40">
-                IBÙ Signature vous invite à vivre une expérience inédite où bien-être et gastronomie s&apos;unissent au cœur de la nature.
+                {t('services.title')}
               </h4>
             </div>
           </div>
@@ -488,33 +462,36 @@ export default function PortfolioDetailsIBUSignature() {
         <div className="row align-items-center">
           <div className="col-xxl-6 col-xl-4 col-lg-4">
             <div className="text-center text-lg-start" style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Image src={signature_shape} alt="IBÙ Signature" style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain' }} />
+              <Image src={signature_shape} alt={t('services.imageAlt')} style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain' }} />
             </div>
           </div>
           <div className="col-xxl-6 col-xl-8 col-lg-8">
             <div className="tp-service-2-accordion-box" style={{ minHeight: 'auto', height: 'auto', overflow: 'visible' }}>
               <div className="accordion" id="accordionExampleSignature" style={{ height: 'auto', overflow: 'visible' }}>
-                {service_accordion_signature.map((s) => (
-                  <div key={s.id} className="accordion-items" style={{ position: 'relative', zIndex: service_accordion_signature.length - s.id }}>
+                {serviceItems.map((s, index) => {
+                  const id = index + 1;
+                  const Icon = SERVICE_ICONS[index];
+                  return (
+                  <div key={id} className="accordion-items" style={{ position: 'relative', zIndex: serviceItems.length - id }}>
                     <h2 className="accordion-header">
                       <button
-                        className={`accordion-buttons ${(s.id !== 1 || isMobile) ? "collapsed" : ""}`}
+                        className={`accordion-buttons ${(id !== 1 || isMobile) ? "collapsed" : ""}`}
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target={`#collapse-signature-${s.id}`}
-                        aria-expanded={s.id === 1 && !isMobile ? "true" : "false"}
-                        aria-controls={`collapse-signature-${s.id}`}
+                        data-bs-target={`#collapse-signature-${id}`}
+                        aria-expanded={id === 1 && !isMobile ? "true" : "false"}
+                        aria-controls={`collapse-signature-${id}`}
                       >
                         <span>
-                          {s.icon}
+                          <Icon />
                         </span>
                         {s.title}
                         <span className="accordion-icon"></span>
                       </button>
                     </h2>
                     <div
-                      id={`collapse-signature-${s.id}`}
-                      className={`accordion-collapse collapse ${s.id === 1 && !isMobile ? "show" : ""}`}
+                      id={`collapse-signature-${id}`}
+                      className={`accordion-collapse collapse ${id === 1 && !isMobile ? "show" : ""}`}
                       data-bs-parent="#accordionExampleSignature"
                     >
                       <div className="accordion-body">
@@ -522,7 +499,7 @@ export default function PortfolioDetailsIBUSignature() {
                       </div>
                     </div>
                   </div>
-                ))}
+                );})}
               </div>
             </div>
           </div>
@@ -537,7 +514,7 @@ export default function PortfolioDetailsIBUSignature() {
           <div className="row">
               <div className="col-xl-12">
                 <div className="showcase-details-2-section-box">
-                    <h4 className="showcase-details-2-section-title tp-char-animation">L&apos;Excellence</h4>
+                    <h4 className="showcase-details-2-section-title tp-char-animation">{t('excellence.title')}</h4>
                 </div>
               </div>
           </div>
@@ -546,13 +523,13 @@ export default function PortfolioDetailsIBUSignature() {
                 <div className="showcase-details-2-section-left">
                     <span className="ab-inner-subtitle mb-25">
                       <Leaf/>
-                      Notre engagement
+                      {t('excellence.subtitle')}
                     </span>
                 </div>
               </div>
               <div className="col-xl-9">
                 <div className="showcase-details-2-content-right tp_title_anim">
-                    <p style={{marginBottom: '40px'}}>L&apos;excellence est notre standard quotidien. Chaque expérience Signature est le fruit d&apos;une collaboration étroite avec des domaines d&apos;exception, pour offrir bien plus qu&apos;un séjour : une immersion élégante et intimiste au cœur de la nature.</p>
+                    <p style={{marginBottom: '40px'}}>{t('excellence.paragraph')}</p>
                 </div>
               </div>
           </div>
@@ -561,12 +538,12 @@ export default function PortfolioDetailsIBUSignature() {
           <div className="row" style={{marginTop: '40px'}}>
               <div className="col-xl-6">
                 <div className="tp-project-details-3-thumb-box mb-30">
-                    <Image className="w-100" src={port_img_1} alt="Expérience VIP" style={{height:'auto'}}/>
+                    <Image className="w-100" src={port_img_1} alt={t('excellence.vipImageAlt')} style={{height:'auto'}}/>
                 </div>
               </div>
               <div className="col-xl-6">
                 <div className="tp-project-details-3-thumb-box mb-30">
-                  <Image className="w-100" src={port_img_2} alt="Collection Privée" style={{height:'auto'}}/>
+                  <Image className="w-100" src={port_img_2} alt={t('excellence.privateCollectionAlt')} style={{height:'auto'}}/>
                 </div>
               </div>
           </div>
@@ -576,15 +553,15 @@ export default function PortfolioDetailsIBUSignature() {
               <div className="col-xl-12">
                 <div className="tp-projct-5-2-btn-box d-flex justify-content-center">
                   <div className="tp-hover-btn-wrapper">
-                    <a href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor="Lieux et Disponibilités">
+                    <Link href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor={tExperiences('cta.cursor')}>
                       <span className="tp-btn-circle-text">
-                        Lieux et <br /> Disponibilités
+                        {tExperiences('cta.line1')} <br /> {tExperiences('cta.line2')}
                       </span>
                       <span className="tp-btn-circle-icon">
                         <UpArrow />
                       </span>
                       <i className="tp-btn-circle-dot"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -599,7 +576,7 @@ export default function PortfolioDetailsIBUSignature() {
               {slider_images.map((imgSrc, index) => (
                 <SwiperSlide key={index}>
                   <div className="pd-visual-slider-thumb fix">
-                    <Image src={imgSrc} alt="IBÙ Signature Gallery" style={{height:"auto"}}/>
+                    <Image src={imgSrc} alt={t('gallery.alt')} style={{height:"auto"}}/>
                   </div>
                 </SwiperSlide>
               ))}

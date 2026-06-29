@@ -1,21 +1,22 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { CloseTwo } from '@/components/svg';
+import { useTranslations } from 'next-intl';
+
+/** Désactivé en production — passer à true pour réactiver le popup. */
+const NEWSLETTER_POPUP_ENABLED = false;
 
 export default function NewsletterPopup() {
-  // POPUP DÉSACTIVÉ - Pour réactiver, supprimez simplement la ligne ci-dessous
-  return null;
-  
+  const t = useTranslations('newsletterPopup');
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Vérifier si le popup a déjà été vu
+    if (!NEWSLETTER_POPUP_ENABLED) return;
+
     const hasSeenPopup = localStorage.getItem('newsletter_popup_seen');
-    
+
     if (!hasSeenPopup) {
-      // Ouvrir le popup après 1 seconde
       const timer = setTimeout(() => {
         setIsOpen(true);
       }, 1000);
@@ -24,9 +25,10 @@ export default function NewsletterPopup() {
     }
   }, []);
 
+  if (!NEWSLETTER_POPUP_ENABLED) return null;
+
   const handleClose = () => {
     setIsOpen(false);
-    // Marquer comme vu dans localStorage (côté client uniquement)
     if (typeof window !== 'undefined') {
       localStorage.setItem('newsletter_popup_seen', 'true');
     }
@@ -34,9 +36,9 @@ export default function NewsletterPopup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email) {
-      alert('Veuillez entrer votre adresse email.');
+      alert(t('emailRequired'));
       return;
     }
 
@@ -53,14 +55,14 @@ export default function NewsletterPopup() {
 
       if (response.ok) {
         handleClose();
-        alert('Merci ! Vous êtes inscrit(e).');
+        alert(t('success'));
         setEmail('');
       } else {
         const errorData = await response.json();
-        alert(`Erreur : ${errorData.message || 'Une erreur est survenue.'}`);
+        alert(t('errorPrefix', { message: errorData.message || t('errorGeneric') }));
       }
-    } catch (error) {
-      alert('Erreur : Impossible de se connecter au serveur.');
+    } catch {
+      alert(t('errorConnection'));
     } finally {
       setIsLoading(false);
     }
@@ -81,8 +83,7 @@ export default function NewsletterPopup() {
       justifyContent: 'center',
       backgroundColor: 'rgba(0,0,0,0.5)'
     }}>
-      
-      {/* Modal simplifié */}
+
       <div style={{
         backgroundColor: 'white',
         borderRadius: '8px',
@@ -92,7 +93,6 @@ export default function NewsletterPopup() {
         position: 'relative',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
       }}>
-        {/* Bouton fermer */}
         <button
           onClick={handleClose}
           style={{
@@ -109,9 +109,7 @@ export default function NewsletterPopup() {
           ×
         </button>
 
-        {/* Contenu */}
         <div style={{ padding: '20px', paddingTop: '40px' }}>
-          {/* Titre */}
           <h2 style={{
             fontSize: '24px',
             fontWeight: 'bold',
@@ -119,23 +117,21 @@ export default function NewsletterPopup() {
             marginBottom: '16px',
             textAlign: 'center'
           }}>
-            Soyez les premiers à réserver
+            {t('title')}
           </h2>
-          
-          {/* Paragraphe */}
+
           <p style={{
             color: '#666',
             marginBottom: '24px',
             textAlign: 'center'
           }}>
-            Les réservations arrivent très bientôt. Inscrivez-vous à la newsletter pour être alerté(e) en premier.
+            {t('description')}
           </p>
 
-          {/* Formulaire */}
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <input
               type="email"
-              placeholder="Votre adresse email"
+              placeholder={t('emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -162,7 +158,7 @@ export default function NewsletterPopup() {
                 cursor: 'pointer'
               }}
             >
-              {isLoading ? 'Inscription...' : 'S\'inscrire'}
+              {isLoading ? t('submitting') : t('submit')}
             </button>
           </form>
         </div>

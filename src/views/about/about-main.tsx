@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
+import { useLocale, useTranslations } from "next-intl";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -11,6 +12,7 @@ import Wrapper from "@/layouts/wrapper";
 import HeaderVBU from "@/layouts/headers/header-vbu";
 import FooterThree from "@/layouts/footers/footer-three";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { Leaf } from '@/components/svg';
 import KultKefirLogo from '@/components/svg/KultKefirLogo';
 import SupernovaLogo from '@/components/svg/SupernovaLogo';
@@ -32,8 +34,13 @@ import { SwiperOptions } from "swiper/types";
 import parallax_img from "@/assets/img/inner-project/A propos/A propos parrallax image.jpg";
 import { UpArrow } from '@/components/svg';
 
-import { IBU_REVIEWS } from "@/data/ibu-reviews";
 import ExpandableReviewText from "@/components/testimonial/expandable-review-text";
+
+type HomeReview = {
+  id: number;
+  name: string;
+  desc: string;
+};
 
 
 // Slider settings
@@ -52,6 +59,15 @@ const testimonial_slider_setting: SwiperOptions = {
 };
 
 const AboutMain = () => {
+  const locale = useLocale();
+  const tFamily = useTranslations('about.family');
+  const tUniverse = useTranslations('about.universe');
+  const tPartners = useTranslations('about.partners');
+  const tParallax = useTranslations('about.parallax');
+  const tReviews = useTranslations('home.reviews');
+  const tExperiences = useTranslations('experiences');
+  const homeReviews = tReviews.raw('items') as HomeReview[];
+
   useScrollSmooth();
   useEffect(() => {
     document.body.classList.add("tp-magic-cursor");
@@ -69,8 +85,8 @@ const AboutMain = () => {
   // Correction du problème de taille du titre lors de la navigation
   useEffect(() => {
     const fixTitleSize = () => {
-      const titleElement = document.querySelector('h4.showcase-details-2-section-title') as HTMLElement;
-      if (titleElement && titleElement.textContent?.includes('UNE HISTOIRE DE FAMILLE')) {
+      const titleElement = document.querySelector('h4.about-family-title') as HTMLElement;
+      if (titleElement) {
         const style = titleElement.style;
         style.setProperty('font-size', 'clamp(3.5rem, 7vw, 5.5rem)', 'important');
         style.setProperty('line-height', '1.2', 'important');
@@ -102,14 +118,13 @@ const AboutMain = () => {
       hoverBtn();
     }, 100);
     return () => clearTimeout(timer);
-  });
+  }, [locale]);
 
   return (
     <Wrapper showBackToTop={false}>
-      {/* Style fix pour le titre "UNE HISTOIRE DE FAMILLE" et alignement photo */}
+      {/* Style fix pour le titre famille et alignement photo */}
       <style jsx global>{`
-        .showcase-details-2-section-title:has-text("UNE HISTOIRE DE FAMILLE"),
-        h4.showcase-details-2-section-title {
+        h4.about-family-title {
           font-size: clamp(3.5rem, 7vw, 5.5rem) !important;
           line-height: 1.2 !important;
           max-width: none !important;
@@ -117,7 +132,7 @@ const AboutMain = () => {
         }
         
         /* Spécifique pour éviter les conflits avec les animations GSAP */
-        .about-page .showcase-details-2-section-title {
+        .about-page .about-family-title {
           font-size: clamp(3.5rem, 7vw, 5.5rem) !important;
           line-height: 1.2 !important;
           max-width: none !important;
@@ -137,7 +152,7 @@ const AboutMain = () => {
 
         /* Espacement entre les lettres sur mobile uniquement - compensation pour l'effet GSAP */
         @media (max-width: 991px) {
-          .showcase-details-2-section-title:not(:has-text("UNE HISTOIRE DE FAMILLE")) {
+          .showcase-details-2-section-title:not(.about-family-title) {
             letter-spacing: 0.08em !important;
           }
           .showcase-details-2-area.pb-120 {
@@ -217,7 +232,7 @@ const AboutMain = () => {
       {/* header area end */}
 
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" key={locale}>
           <main className="about-page">
             
             {/* Section Une histoire de famille */}
@@ -233,7 +248,7 @@ const AboutMain = () => {
                     }}>
                       <Image 
                         src={histoire_famille_img} 
-                        alt="Une histoire de famille" 
+                        alt={tFamily('imageAlt')} 
                         style={{
                           width: '100%',
                           height: '100%',
@@ -250,7 +265,7 @@ const AboutMain = () => {
                     <div className="row">
                         <div className="col-xl-12">
                           <div className="showcase-details-2-section-box">
-                              <h4 className="showcase-details-2-section-title tp-char-animation" style={{fontSize: 'clamp(3.5rem, 7vw, 5.5rem) !important', lineHeight: '1.2 !important', maxWidth: 'none !important', width: '100% !important'}}>UNE HISTOIRE DE FAMILLE</h4>
+                              <h4 className="showcase-details-2-section-title about-family-title tp-char-animation" style={{fontSize: 'clamp(3.5rem, 7vw, 5.5rem) !important', lineHeight: '1.2 !important', maxWidth: 'none !important', width: '100% !important'}}>{tFamily('title')}</h4>
                           </div>
                         </div>
                     </div>
@@ -259,7 +274,7 @@ const AboutMain = () => {
                           <div className="showcase-details-2-section-left mb-30">
                               <span className="ab-inner-subtitle">
                                 <Leaf/>
-                                Héritage et passion
+                                {tFamily('subtitle')}
                               </span>
                           </div>
                         </div>
@@ -267,8 +282,8 @@ const AboutMain = () => {
                     <div className="row">
                         <div className="col-xl-12">
                           <div className="showcase-details-2-content-right tp_title_anim">
-                              <p style={{marginBottom: '20px'}}>IBÙ Experience a été créé par Mallen en hommage à son père qu&apos;on surnommait &quot;Ibou&quot;, figure rayonnante de l&apos;hospitalité originaire de Gambie, qui avait comme projet de construire des lodges éco-chic pour les voyageurs.</p>
-                              <p style={{marginBottom: '50px'}}>Aujourd&apos;hui, ce rêve reprend vie en Belgique grâce à sa fille à travers des expériences immersives au sein de domaines prestigieux, où nature, bien-être et gastronomie s&apos;unissent dans des tiny houses élégamment designées.</p>
+                              <p style={{marginBottom: '20px'}}>{tFamily('paragraph1')}</p>
+                              <p style={{marginBottom: '50px'}}>{tFamily('paragraph2')}</p>
                           </div>
                         </div>
                     </div>
@@ -279,7 +294,7 @@ const AboutMain = () => {
             {/* Section Une histoire de famille end */}
 
             {/* Section Ils parlent de nous */}
-            <VideoTwo />
+            <VideoTwo localize />
             {/* Section Ils parlent de nous end */}
 
             {/* Gallery Section with scroll effect */}
@@ -288,7 +303,7 @@ const AboutMain = () => {
                 <div className="row">
                   <div className="col-xl-8">
                     <div className="showcase-details-2-section-box">
-                      <h4 className="showcase-details-2-section-title tp-char-animation">Notre Univers</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation">{tUniverse('title')}</h4>
                     </div>
                   </div>
                 </div>
@@ -297,13 +312,13 @@ const AboutMain = () => {
                     <div className="showcase-details-2-section-left">
                       <span className="ab-inner-subtitle mb-25">
                         <Leaf/>
-                        Découverte
+                        {tUniverse('subtitle')}
                       </span>
                     </div>
                   </div>
                   <div className="col-xl-9">
                     <div className="showcase-details-2-section-right tp_title_anim">
-                      <p style={{color: '#333333'}}>Plongez dans l&apos;univers IBÙ Experience à travers ces moments captés au cœur de nos domaines d&apos;exception, où chaque détail raconte une histoire d&apos;authenticité et d&apos;évasion.</p>
+                      <p style={{color: '#333333'}}>{tUniverse('paragraph')}</p>
                     </div>
                   </div>
                 </div>
@@ -324,7 +339,7 @@ const AboutMain = () => {
                       }}>
                         <iframe
                           src="https://www.youtube.com/embed/fyYRwGT32Gc?rel=0&showinfo=0&modestbranding=1"
-                          title="IBÙ Experience - Notre Univers"
+                          title={tUniverse('videoTitle')}
                           style={{
                             position: 'absolute',
                             top: 0,
@@ -351,7 +366,7 @@ const AboutMain = () => {
                 <div className="row" style={{marginTop: '80px'}}>
                   <div className="col-xl-12">
                     <div className="showcase-details-2-section-box mb-60">
-                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{color: '#053725'}}>Nos partenaires</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{color: '#053725'}}>{tPartners('title')}</h4>
                     </div>
                   </div>
                 </div>
@@ -594,7 +609,7 @@ const AboutMain = () => {
               <Image 
                 data-speed=".8" 
                 src={parallax_img} 
-                alt="IBÙ Experience - À propos" 
+                alt={tParallax('imageAlt')} 
                 style={{ 
                   height: 'auto', 
                   width: '100%', 
@@ -611,7 +626,7 @@ const AboutMain = () => {
                   <div className="col-xl-12 text-center">
                     <div className="showcase-details-2-section-box mb-60 text-center">
                       <h4 className="showcase-details-2-section-title ils-nous-soutiennent-title ibu-title-no-split">
-                        Ils ont testé avant vous
+                        {tReviews('title')}
                       </h4>
                     </div>
                   </div>
@@ -659,13 +674,12 @@ const AboutMain = () => {
                         modules={[Navigation]}
                         className="swiper-container tp-testimonial-slider-active fix"
                       >
-                        {IBU_REVIEWS.map((item) => (
+                        {homeReviews.map((item) => (
                           <SwiperSlide key={item.id}>
                             <div className="tp-testimonial-item text-center">
                               <ExpandableReviewText text={item.desc} />
                               <span style={{ fontSize: "clamp(0.85rem, 2vw, 0.95rem)", color: "#053725" }}>
                                 <em>{item.name}</em>
-                                {item.designation ? ` - ${item.designation}` : ""}
                               </span>
                             </div>
                           </SwiperSlide>
@@ -724,15 +738,15 @@ const AboutMain = () => {
             {/* Bouton Lieux et Disponibilités */}
             <div className="tp-projct-5-2-btn-box d-flex justify-content-center pb-120">
               <div className="tp-hover-btn-wrapper">
-                <a href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor="Lieux et Disponibilités">
+                <Link href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor={tExperiences('cta.cursor')}>
                   <span className="tp-btn-circle-text">
-                    Lieux et <br /> Disponibilités
+                    {tExperiences('cta.line1')} <br /> {tExperiences('cta.line2')}
                   </span>
                   <span className="tp-btn-circle-icon">
                     <UpArrow />
                   </span>
                   <i className="tp-btn-circle-dot"></i>
-                </a>
+                </Link>
               </div>
             </div>
 

@@ -1,6 +1,18 @@
 "use client";
 
+import { useLocale } from "next-intl";
+import {
+  getLodgifyLanguageCode,
+  getLodgifyLegacyPortableSearchUrl,
+  LODGIFY_WIDGET_IDS,
+} from "@/config/lodgify";
+import type { Locale } from "@/i18n/routing";
+
 export default function LodgifySearchBar() {
+  const locale = useLocale() as Locale;
+  const languageCode = getLodgifyLanguageCode(locale);
+  const searchPageUrl = getLodgifyLegacyPortableSearchUrl(locale);
+
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
@@ -99,9 +111,9 @@ export default function LodgifySearchBar() {
       `}} />
       <div
         id="lodgify-search-bar"
-        data-website-id="607668"
-        data-language-code="fr"
-        data-search-page-url="https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes"
+        data-website-id={LODGIFY_WIDGET_IDS.websiteId}
+        data-language-code={languageCode}
+        data-search-page-url={searchPageUrl}
         data-dates-check-in-label="Arrivée"
         data-dates-check-out-label="Départ"
         data-guests-counter-label="Adultes"

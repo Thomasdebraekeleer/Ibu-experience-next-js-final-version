@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const PETIT_DEJEUNER_IMG =
   "/assets/img/inner-project/portfolio-details-ibu-bien-etre/Petit déjeuné local.webp";
@@ -6,16 +9,32 @@ const PETIT_DEJEUNER_IMG =
 type Props = {
   /** Marge au-dessus du bloc */
   marginTop?: string;
+  /** Activer les traductions (hub /experiences uniquement pour le Lot 4E) */
+  localize?: boolean;
 };
 
-export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
+export default function PetitDejeunerOptionRow({
+  marginTop = "40px",
+  localize = false,
+}: Props) {
+  const t = useTranslations("experiences.options.breakfast");
+
+  const title = localize ? t("title") : "Petit déjeuner local (25eur)";
+  const paragraph1 = localize
+    ? t("paragraph1")
+    : "Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause gourmande : Petit pain à réchauffer, produits laitiers et charcuteries sélectionnées auprès d'artisans et de producteurs de la région, fruits de saison, jus et douceurs qui mettent en avant le terroir tout en restant légers.";
+  const paragraph2 = localize
+    ? t("paragraph2")
+    : "Chaque assiette révèle des saveurs honnêtes et des produits frais, pour un réveil en douceur avant de profiter pleinement de votre séjour IBÙ.";
+  const imageAlt = localize ? t("imageAlt") : "Petit déjeuner local";
+
   return (
     <div className="row" style={{ marginTop }}>
       <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
         <div className="showcase-details-2-grid-img mb-30">
           <Image
             src={PETIT_DEJEUNER_IMG}
-            alt="Petit déjeuner local"
+            alt={imageAlt}
             width={1200}
             height={900}
             style={{ height: "auto", width: "100%" }}
@@ -39,7 +58,7 @@ export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
               wordWrap: "break-word",
             }}
           >
-            Petit déjeuner local (15eur)
+            {title}
           </h5>
           <div className="showcase-details-2-content-right tp_title_anim">
             <p
@@ -49,10 +68,7 @@ export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
                 marginBottom: "1rem",
               }}
             >
-              Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause
-              gourmande : pains et viennoiseries, produits laitiers et charcuteries sélectionnées
-              auprès d&apos;artisans et de producteurs de la région, fruits de saison, jus et
-              douceurs qui mettent en avant le terroir tout en restant légers.
+              {paragraph1}
             </p>
             <p
               style={{
@@ -61,8 +77,7 @@ export default function PetitDejeunerOptionRow({ marginTop = "40px" }: Props) {
                 marginBottom: 0,
               }}
             >
-              Chaque assiette révèle des saveurs honnêtes et des produits frais, pour un réveil en
-              douceur avant de profiter pleinement de votre séjour IBÙ.
+              {paragraph2}
             </p>
           </div>
         </div>

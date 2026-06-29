@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
+import { useLocale, useTranslations } from "next-intl";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -78,36 +79,20 @@ import { charAnimation, titleAnimation } from "@/utils/title-animation";
 import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 
-// Données pour la section avantages partenaires
-const partner_advantages = [
-  {
-    id: 1,
-    icon: <PatrimoineIcon />,
-    text: "Valorisez votre patrimoine et faites-en un lieu d'accueil unique"
-  },
-  {
-    id: 2,
-    icon: <RevenusIcon />,
-    text: "Bénéficiez de revenus récurrents sans charge de gestion"
-  },
-  {
-    id: 3,
-    icon: <ClienteleIcon />,
-    text: "Attirez une nouvelle clientèle curieuse, locale et internationale"
-  },
-  {
-    id: 4,
-    icon: <NotorieteIcon />,
-    text: "Renforcez l'image et la notoriété de votre domaine"
-  },
-  {
-    id: 5,
-    icon: <SynergiesIcon />,
-    text: "Créez des synergies avec des producteurs et artisans locaux"
-  }
+const PARTNER_BENEFIT_ICONS = [
+  <PatrimoineIcon key="patrimoine" />,
+  <RevenusIcon key="revenus" />,
+  <ClienteleIcon key="clientele" />,
+  <NotorieteIcon key="notoriete" />,
+  <SynergiesIcon key="synergies" />,
 ];
 
 const BecomePartnerMain = () => {
+  const locale = useLocale();
+  const t = useTranslations("partner");
+  const benefitItems = t.raw("benefits.items") as string[];
+  const timelineSteps = t.raw("timeline.steps") as string[];
+
   useScrollSmooth();
   
   useEffect(() => {
@@ -240,7 +225,21 @@ const BecomePartnerMain = () => {
     }
     }, 100);
     return () => clearTimeout(timer);
-  });
+  }, [locale]);
+
+  const formButtonStyle = {
+    backgroundColor: '#053725',
+    color: 'white',
+    padding: '15px 30px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    fontWeight: '600',
+    fontSize: '16px',
+    border: '2px solid #053725',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 4px 15px rgba(5, 55, 37, 0.1)',
+    display: 'inline-block' as const,
+  };
 
   return (
     <Wrapper showBackToTop={false}>
@@ -303,7 +302,7 @@ const BecomePartnerMain = () => {
       {/* header area end */}
 
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" key={locale}>
           <main>
             
             {/* hero section start */}
@@ -312,8 +311,8 @@ const BecomePartnerMain = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tp-project-details-3-title-box">
-                      <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={{ whiteSpace: 'nowrap', fontSize: 'clamp(1.5rem, 6vw, 6rem)' }}>DEVENIR PARTENAIRE</h2>
-                      <h3 className="tp-section-subtitle-3 fade-in-fast" style={{ fontSize: 'clamp(1.2rem, 4vw, 3rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: 'clamp(30px, 4vw, 50px)', lineHeight: '1.4' }}>Envie de transformer votre domaine en destination? Rejoignez l&apos;aventure IBÙ ! Completez le formulaire ci-dessous</h3>
+                      <h2 className="tp-section-title-160 mb-20 tp-char-animation" style={{ whiteSpace: 'nowrap', fontSize: 'clamp(1.5rem, 6vw, 6rem)' }}>{t("hero.title")}</h2>
+                      <h3 className="tp-section-subtitle-3 fade-in-fast" style={{ fontSize: 'clamp(1.2rem, 4vw, 3rem)', fontWeight: '500', color: '#053725', marginTop: '10px', marginBottom: 'clamp(30px, 4vw, 50px)', lineHeight: '1.4' }}>{t("hero.subtitle")}</h3>
                       
                       <div className="tp-btn-wrapper d-flex gap-4 flex-wrap">
                         <a 
@@ -321,42 +320,18 @@ const BecomePartnerMain = () => {
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="tp-btn-2 tp-btn-green-hover"
-                          style={{ 
-                            backgroundColor: '#053725',
-                            color: 'white',
-                            padding: '15px 30px',
-                            borderRadius: '8px',
-                            textDecoration: 'none',
-                            fontWeight: '600',
-                            fontSize: '16px',
-                            border: '2px solid #053725',
-                            transition: 'all 0.3s ease',
-                            boxShadow: '0 4px 15px rgba(5, 55, 37, 0.1)',
-                            display: 'inline-block'
-                          }}
+                          style={formButtonStyle}
                         >
-                          Formulaire FR
+                          {t("forms.fr")}
                         </a>
                         <a 
                           href="https://form.typeform.com/to/kxv6Z2di" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="tp-btn-2 tp-btn-green-hover"
-                          style={{ 
-                            backgroundColor: '#053725',
-                            color: 'white',
-                            padding: '15px 30px',
-                            borderRadius: '8px',
-                            textDecoration: 'none',
-                            fontWeight: '600',
-                            fontSize: '16px',
-                            border: '2px solid #053725',
-                            transition: 'all 0.3s ease',
-                            boxShadow: '0 4px 15px rgba(5, 55, 37, 0.1)',
-                            display: 'inline-block'
-                          }}
+                          style={formButtonStyle}
                         >
-                          Formulaire EN
+                          {t("forms.en")}
                         </a>
                       </div>
                     </div>
@@ -372,12 +347,12 @@ const BecomePartnerMain = () => {
                 <div className="row">
                   <div className="col-xl-6 col-lg-6 hide-first-img-mobile">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image className="img-left" src={partner_img_1} alt="Devenir partenaire IBÙ" style={{height:'auto'}}/>
+                      <Image className="img-left" src={partner_img_1} alt={t("images.grid1Alt")} style={{height:'auto'}}/>
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6">
                     <div className="showcase-details-2-grid-img mb-30">
-                      <Image className="img-right" src={partner_img_2} alt="Partenariat IBÙ Experience" style={{height:'auto'}}/>
+                      <Image className="img-right" src={partner_img_2} alt={t("images.grid2Alt")} style={{height:'auto'}}/>
                     </div>
                   </div>
                 </div>
@@ -394,10 +369,10 @@ const BecomePartnerMain = () => {
                         <span>
                           <Leaf />
                         </span>
-                        POURQUOI DEVENIR PARTENAIRE IBÙ
+                        {t("benefits.eyebrow")}
                       </span>
                       <h4 className="tp-section-title-40" style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.8rem)', marginBottom: '0' }}>
-                        Rejoignez un réseau d&apos;excellence et transformez votre domaine en destination d&apos;exception.
+                        {t("benefits.title")}
                       </h4>
                     </div>
                   </div>
@@ -405,20 +380,20 @@ const BecomePartnerMain = () => {
                 <div className="row align-items-center">
                   <div className="col-xxl-6 col-xl-4 col-lg-4">
                     <div className="text-center text-lg-start" style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Image src={partner_img_3} alt="Avantages partenariat IBÙ" style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain' }} />
+                      <Image src={partner_img_3} alt={t("images.benefitsAlt")} style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain' }} />
                     </div>
                   </div>
                   <div className="col-xxl-6 col-xl-8 col-lg-8">
                     <div className="tp-service-2-content-box">
-                      {partner_advantages.map((advantage, index) => (
-                        <div key={advantage.id} className="tp-service-2-item d-flex" style={{ marginBottom: index < partner_advantages.length - 1 ? '30px' : '0', paddingBottom: index < partner_advantages.length - 1 ? '30px' : '0', borderBottom: index < partner_advantages.length - 1 ? '1px solid #e5e5e5' : 'none' }}>
+                      {benefitItems.map((text, index) => (
+                        <div key={index} className="tp-service-2-item d-flex" style={{ marginBottom: index < benefitItems.length - 1 ? '30px' : '0', paddingBottom: index < benefitItems.length - 1 ? '30px' : '0', borderBottom: index < benefitItems.length - 1 ? '1px solid #e5e5e5' : 'none' }}>
                           <div className="tp-service-2-icon" style={{ marginRight: '20px', flexShrink: 0 }}>
                             <span>
-                              {advantage.icon}
+                              {PARTNER_BENEFIT_ICONS[index]}
                             </span>
                           </div>
                           <div className="tp-service-2-content">
-                            <p style={{ margin: 0, fontSize: 'clamp(16px, 4vw, 20px)', lineHeight: '1.6', fontWeight: '500' }}>{advantage.text}</p>
+                            <p style={{ margin: 0, fontSize: 'clamp(16px, 4vw, 20px)', lineHeight: '1.6', fontWeight: '500' }}>{text}</p>
                           </div>
                         </div>
                       ))}
@@ -435,7 +410,7 @@ const BecomePartnerMain = () => {
                 <div className="row">
                   <div className="col-xl-8">
                     <div className="showcase-details-2-section-box mb-40">
-                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 4vw, 3.5rem)', letterSpacing: '0.05em', whiteSpace: 'nowrap', paddingLeft: 'clamp(0px, 5vw, 100px)', marginTop: '20px' }}>LE FONCTIONNEMENT</h4>
+                      <h4 className="showcase-details-2-section-title tp-char-animation" style={{ fontSize: 'clamp(1.2rem, 4vw, 3.5rem)', letterSpacing: '0.05em', whiteSpace: 'nowrap', paddingLeft: 'clamp(0px, 5vw, 100px)', marginTop: '20px' }}>{t("timeline.title")}</h4>
                     </div>
                   </div>
                 </div>
@@ -521,49 +496,49 @@ const BecomePartnerMain = () => {
                           {/* Step 1 - En bas - Cercle à y=210 (290px réel), marge de 35px */}
                           <div className="timeline-text" data-step="1" style={{position: 'absolute', left: '16.67%', top: '325px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Prise de contact & analyse des besoins
+                              {timelineSteps[0]}
                             </h5>
                           </div>
                           
                           {/* Step 2 - En haut - Cercle à y=90 (170px réel), marge plus grande */}
                           <div className="timeline-text" data-step="2" style={{position: 'absolute', left: '29.17%', top: '90px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%) translateY(-100%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Étude du site & faisabilité technique
+                              {timelineSteps[1]}
                             </h5>
                           </div>
                           
                           {/* Step 3 - En bas - Cercle à y=210 (290px réel), marge de 35px */}
                           <div className="timeline-text" data-step="3" style={{position: 'absolute', left: '41.67%', top: '325px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Création de l&apos;expérience IBÙ × Votre Domaine
+                              {timelineSteps[2]}
                             </h5>
                           </div>
                           
                           {/* Step 4 - En haut - Cercle à y=90 (170px réel), marge plus grande */}
                           <div className="timeline-text" data-step="4" style={{position: 'absolute', left: '54.17%', top: '90px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%) translateY(-100%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Design sur mesure de la tiny house
+                              {timelineSteps[3]}
                             </h5>
                           </div>
                           
                           {/* Step 5 - En bas - Cercle à y=210 (290px réel), marge de 35px */}
                           <div className="timeline-text" data-step="5" style={{position: 'absolute', left: '66.67%', top: '325px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Intégration web & marketing
+                              {timelineSteps[4]}
                             </h5>
                           </div>
                           
                           {/* Step 6 - En haut - Cercle à y=90 (170px réel), marge plus grande */}
                           <div className="timeline-text" data-step="6" style={{position: 'absolute', left: '79.17%', top: '90px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%) translateY(-100%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Livraison & installation<br/>(6 à 8 semaines)
+                              {timelineSteps[5]}
                             </h5>
                           </div>
                           
                           {/* Step 7 - En bas - Cercle à y=210 (290px réel), marge de 35px */}
                           <div className="timeline-text" data-step="7" style={{position: 'absolute', left: '91.67%', top: '325px', width: '13.33%', textAlign: 'center', transform: 'translateX(-50%)'}}>
                             <h5 style={{fontSize: 'clamp(12px, 1.2vw, 14px)', fontWeight: 'bold', color: '#053725', lineHeight: '1.3'}}>
-                              Gestion assurée par IBÙ
+                              {timelineSteps[6]}
                             </h5>
                           </div>
                           
@@ -579,15 +554,7 @@ const BecomePartnerMain = () => {
                   <div className="container">
                     <div className="row justify-content-center">
                       <div className="col-md-8">
-                        {[
-                          { number: "01", text: "Prise de contact & analyse des besoins" },
-                          { number: "02", text: "Étude du site & faisabilité technique" },
-                          { number: "03", text: "Création de l'expérience IBÙ × Votre Domaine" },
-                          { number: "04", text: "Design sur mesure de la tiny house" },
-                          { number: "05", text: "Intégration web & marketing" },
-                          { number: "06", text: "Livraison & installation (6 à 8 semaines)" },
-                          { number: "07", text: "Gestion assurée par IBÙ" }
-                        ].map((step, index) => (
+                        {timelineSteps.map((text, index) => (
                           <div key={index} className="timeline-mobile-step d-flex align-items-center mb-4" data-step={index + 1}>
                             <div 
                               className="timeline-mobile-circle d-flex align-items-center justify-content-center flex-shrink-0 me-3"
@@ -601,7 +568,7 @@ const BecomePartnerMain = () => {
                                 fontWeight: 'bold'
                               }}
                             >
-                              {step.number}
+                              {String(index + 1).padStart(2, '0')}
                             </div>
                             <div className="timeline-mobile-text">
                               <h5 style={{
@@ -611,7 +578,7 @@ const BecomePartnerMain = () => {
                                 lineHeight: '1.3',
                                 margin: 0
                               }}>
-                                {step.text}
+                                {text}
                               </h5>
                             </div>
                           </div>

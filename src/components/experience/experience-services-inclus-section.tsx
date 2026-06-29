@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Leaf } from "@/components/svg";
 import shape from "@/assets/img/home-02/service/Picture ibu bien être.jpg";
 
@@ -180,14 +181,39 @@ export type ExperienceServicesInclusSectionProps = {
   accordionParentId: string;
   /** Préfixe des ids #collapse-* (éviter les doublons si plusieurs accordéons sur une même page) */
   collapseIdPrefix?: string;
+  /** Activer les traductions (hub /experiences uniquement pour le Lot 4E) */
+  localize?: boolean;
 };
+
+const SERVICE_ICONS = [
+  <CheckInOutIcon key="checkin" />,
+  <BouteilleIcon key="bottle" />,
+  <SaunaIcon key="sauna" />,
+  <BainNordiqueIcon key="bath" />,
+  <KitRelaxationIcon key="kit" />,
+];
 
 export default function ExperienceServicesInclusSection({
   sectionId,
   accordionParentId,
   collapseIdPrefix = "collapse",
+  localize = false,
 }: ExperienceServicesInclusSectionProps) {
+  const t = useTranslations("experiences.services");
   const [isMobile, setIsMobile] = useState(false);
+
+  const localizedItems = localize
+    ? (t.raw("items") as { title: string; desc: string }[])
+    : null;
+
+  const accordionItems = localizedItems
+    ? localizedItems.map((item, index) => ({
+        id: index + 1,
+        icon: SERVICE_ICONS[index],
+        title: item.title,
+        desc: item.desc,
+      }))
+    : serviceAccordionItems.map((item) => ({ ...item }));
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 991);
@@ -222,10 +248,10 @@ export default function ExperienceServicesInclusSection({
                 <span>
                   <Leaf />
                 </span>
-                CE QUE COMPREND VOTRE EXPÉRIENCE (à pd de 265 €)
+                {localize ? t("eyebrow") : "CE QUE COMPREND VOTRE EXPÉRIENCE (à pd de 265 €)"}
               </span>
               <h4 className="tp-section-title-40">
-                IBÙ vous invite à vivre un moment de détente profonde en pleine nature.
+                {localize ? t("title") : "IBÙ vous invite à vivre un moment de détente profonde en pleine nature."}
               </h4>
             </div>
           </div>
@@ -243,7 +269,7 @@ export default function ExperienceServicesInclusSection({
             >
               <Image
                 src={shape}
-                alt="IBÙ"
+                alt={localize ? t("imageAlt") : "IBÙ"}
                 style={{ width: "100%", height: "auto", maxHeight: "100%", objectFit: "contain" }}
               />
             </div>
@@ -251,11 +277,11 @@ export default function ExperienceServicesInclusSection({
           <div className="col-xxl-6 col-xl-8 col-lg-8">
             <div className="tp-service-2-accordion-box" style={{ minHeight: "auto", height: "auto", overflow: "visible" }}>
               <div className="accordion" id={accordionParentId} style={{ height: "auto", overflow: "visible" }}>
-                {serviceAccordionItems.map((s) => (
+                {accordionItems.map((s) => (
                   <div
                     key={s.id}
                     className="accordion-items"
-                    style={{ position: "relative", zIndex: serviceAccordionItems.length - s.id }}
+                    style={{ position: "relative", zIndex: accordionItems.length - s.id }}
                   >
                     <h2 className="accordion-header">
                       <button

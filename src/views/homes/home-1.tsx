@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
+import { useLocale } from "next-intl";
 
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import useIsomorphicLayoutEffect from '@/hooks/use-isomorphic-layout-effect';
@@ -30,6 +31,7 @@ import { movingImageSlider } from "@/utils/scroll-marque";
  * - Fallback CSS pour assurer la visibilité du contenu
  */
 const HomeMain = () => {
+  const locale = useLocale();
   const [isReady, setIsReady] = useState(false);
   
   // Initialiser le smooth scroll
@@ -98,7 +100,7 @@ const HomeMain = () => {
     return () => {
       cancelAnimationFrame(rafId);
     };
-  }, [isReady]);
+  }, [isReady, locale]);
 
 
   return (
@@ -116,7 +118,7 @@ const HomeMain = () => {
       {/* header area end */}
 
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" key={locale}>
           <main>
             
             {/* portfolio showcase details area */}

@@ -1,7 +1,8 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { useTranslations } from "next-intl";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Leaf } from "../svg";
 import Image from "next/image";
@@ -17,98 +18,126 @@ type PressSlideLogo = string;
 type PressSlide = {
   id: string;
   title: string;
-  subtitle: string;
+  subtitleKey: "article" | "interview";
   image: PressSlideImage;
   logo: PressSlideLogo;
   alt: string;
   link: string;
-  linkText: string;
+  linkTextKey: "viewArticle" | "viewInterview";
 };
 
 const PRESS_SLIDES: PressSlide[] = [
   {
     id: "elle",
     title: "ELLE Magazine",
-    subtitle: "Article",
+    subtitleKey: "article",
     image: `${A_PROPOS}/Elle image.png`,
     logo: `${A_PROPOS}/Logo Elle Magazine x IBUExperience.png`,
     alt: "ELLE Magazine - IBÙ Experience",
     link: "https://www.elle.be/fr/471785-nuits-parmi-les-vignes-notre-experience-chez-ibu-experience.html",
-    linkText: "Voir l'article",
+    linkTextKey: "viewArticle",
   },
   {
     id: "gael",
     title: "Gael Magazine",
-    subtitle: "Article",
+    subtitleKey: "article",
     image: `${A_PROPOS}/Gael image.png`,
     logo: `${A_PROPOS}/Logo Gael Magazine x IBUExperience.png`,
     alt: "GAEL - Ibu Expérience",
     link: "https://www.gael.be/lifestyle/tourisme/ibu-des-cabanes-de-luxe-pour-une-nuit-insolite-en-wallonie/",
-    linkText: "Voir l'article",
+    linkTextKey: "viewArticle",
   },
   {
     id: "fooding",
     title: "Le Fooding",
-    subtitle: "Article",
+    subtitleKey: "article",
     image: `${A_PROPOS}/Fooding image.png`,
     logo: `${A_PROPOS}/Logo Fooding x Ibu Expérience.png`,
     alt: "Le Fooding - IBÙ Experience",
     link: "https://lefooding.com/hotels/ibu-experience",
-    linkText: "Voir l'article",
+    linkTextKey: "viewArticle",
   },
   {
     id: "flair",
     title: "Flair",
-    subtitle: "Article",
+    subtitleKey: "article",
     image: `${A_PROPOS}/Flair image.png`,
     logo: `${A_PROPOS}/Logo Flair x Ibu Expérience.png`,
     alt: "Flair - IBÙ Experience",
     link: "https://www.flair.be/fr/chillax/voyages/on-a-teste-ibu-un-nouveau-logement-insolite-au-coeur-des-vignes-wallonnes/",
-    linkText: "Voir l'article",
+    linkTextKey: "viewArticle",
   },
   {
     id: "sudinfo",
     title: "Sudinfo",
-    subtitle: "Article",
+    subtitleKey: "article",
     image: `${A_PROPOS}/Sudinfo image.png`,
     logo: `${A_PROPOS}/Logo Sudinfo x IBUExperience.png`,
     alt: "Sudinfo - IBÙ Experience",
     link: "https://www.sudinfo.be/id1135727/article/2026-04-11/insolite-ce-nouveau-logement-vous-permet-de-dormir-face-aux-vignes",
-    linkText: "Voir l'article",
+    linkTextKey: "viewArticle",
   },
   {
     id: "lesoir",
     title: "Le Soir",
-    subtitle: "Article",
+    subtitleKey: "article",
     image: `${A_PROPOS}/Le soir image.png`,
     logo: `${A_PROPOS}/Logo Le soir x IBUExperience.png`,
     alt: "Le Soir — SoSoir - IBÙ Experience",
     link: "https://sosoir.lesoir.be/739116/article/2026-04-06/long-week-end-en-vue-cinq-sublimes-logements-en-pleine-nature-tester-en-belgique",
-    linkText: "Voir l'article",
+    linkTextKey: "viewArticle",
   },
   {
     id: "vivacite",
     title: "Vivacité",
-    subtitle: "Interview",
+    subtitleKey: "interview",
     image: `${A_PROPOS}/Vicacité image.png`,
     logo: `${A_PROPOS}/Logo Vicacité  x IBUExperience.png`,
     alt: "Vivacité - Interview IBÙ Experience",
     link: "https://auvio.rtbf.be/media/namur-matin-ibu-les-cabanes-de-luxe-du-domaine-de-mehaignoul-3464743?fbclid=PAVERFWARlrhZleHRuA2FlbQIxMABzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacKQkHHudVx-V8rbvtcGNsXXxPoCGs6shlQh67IuiIEOKwgKFWp2TLTLljvdg_aem_xcC8jiS01bWTol67dQ9RSw",
-    linkText: "Voir l'interview",
+    linkTextKey: "viewInterview",
   },
   {
     id: "interview",
     title: "TV COM",
-    subtitle: "Interview",
+    subtitleKey: "interview",
     image: `${A_PROPOS}/Tvcom image.png`,
     logo: `${A_PROPOS}/Logo TVCom x Ibu Expérience.png`,
     alt: "Interview TV COM - IBU Experience",
     link: "https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210",
-    linkText: "Voir l'interview",
+    linkTextKey: "viewInterview",
   },
 ];
 
-const VideoTwo = () => {
+const PRESS_COPY_FR = {
+  title: "Ils parlent de nous",
+  subtitle: "Nos articles et interviews",
+  description:
+    "Découvrez IBÙ Experience à travers le regard de la presse et des médias. Ces articles et interviews témoignent de notre vision unique de l'hospitalité de luxe en pleine nature, et de notre engagement à créer des expériences authentiques au cœur des plus beaux domaines de Belgique.",
+  article: "Article",
+  interview: "Interview",
+  viewArticle: "Voir l'article",
+  viewInterview: "Voir l'interview",
+};
+
+type VideoTwoProps = {
+  localize?: boolean;
+};
+
+const VideoTwo = ({ localize = false }: VideoTwoProps) => {
+  const tPress = useTranslations("home.press");
+  const copy = localize
+    ? {
+        title: tPress("title"),
+        subtitle: tPress("subtitle"),
+        description: tPress("description"),
+        article: tPress("article"),
+        interview: tPress("interview"),
+        viewArticle: tPress("viewArticle"),
+        viewInterview: tPress("viewInterview"),
+      }
+    : PRESS_COPY_FR;
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -446,7 +475,7 @@ const VideoTwo = () => {
           <div className="row">
             <div className="col-xl-8">
               <div className="showcase-details-2-section-box">
-                <h4 className="showcase-details-2-section-title tp-char-animation">Ils parlent de nous</h4>
+                <h4 className="showcase-details-2-section-title tp-char-animation">{copy.title}</h4>
               </div>
             </div>
           </div>
@@ -455,13 +484,13 @@ const VideoTwo = () => {
               <div className="showcase-details-2-section-left">
                 <span className="ab-inner-subtitle mb-25">
                   <Leaf/>
-                  Nos articles et interviews
+                  {copy.subtitle}
                 </span>
               </div>
             </div>
             <div className="col-xl-9">
               <div className="showcase-details-2-section-right tp_title_anim">
-                <p style={{opacity: 1, color: '#333333'}}>Découvrez IBÙ Experience à travers le regard de la presse et des médias. Ces articles et interviews témoignent de notre vision unique de l&apos;hospitalité de luxe en pleine nature, et de notre engagement à créer des expériences authentiques au cœur des plus beaux domaines de Belgique.</p>
+                <p style={{opacity: 1, color: '#333333'}}>{copy.description}</p>
               </div>
             </div>
           </div>
@@ -524,7 +553,7 @@ const VideoTwo = () => {
                             <span>
                               <Leaf />
                             </span>
-                            {slide.subtitle}
+                            {copy[slide.subtitleKey]}
                           </span>
                         </div>
                         <div className="tp-video-content" style={{position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px 0'}}>
@@ -569,7 +598,7 @@ const VideoTwo = () => {
                             (e.target as HTMLElement).style.color = '#fcf8e3';
                             (e.target as HTMLElement).style.transform = 'translateX(0px)';
                           }}>
-                            {slide.linkText} →
+                            {copy[slide.linkTextKey]} →
                           </a>
                         </div>
                       </div>

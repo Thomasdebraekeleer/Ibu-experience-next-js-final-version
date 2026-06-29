@@ -1,18 +1,30 @@
-'use client';
-import React, { CSSProperties } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import menu_data from "@/data/menu-data";
+"use client";
 
-const imgStyle:CSSProperties = { width: "100%", height: "auto", objectFit: "cover" };
-const HeaderMenus = () => {
+import React, { CSSProperties, useMemo } from "react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import { getMenuData } from "@/data/menu-data";
+import LanguageSwitcher from "@/components/i18n/LanguageSwitcher";
+
+const imgStyle: CSSProperties = {
+  width: "100%",
+  height: "auto",
+  objectFit: "cover",
+};
+
+type HeaderMenusProps = {
+  variant?: "homepage" | "default";
+};
+
+const HeaderMenus = ({ variant = "default" }: HeaderMenusProps) => {
   const pathname = usePathname();
-  const isGiftCardPage = pathname === '/gift-card';
-  
-  // Filtrer les éléments du menu pour exclure la page actuelle
-  const filteredMenuData = menu_data.filter((menu) => menu.link !== pathname);
-  
+  const t = useTranslations();
+  const isGiftCardPage = pathname === "/gift-card";
+
+  const menuData = useMemo(() => getMenuData((key) => t(key)), [t]);
+  const filteredMenuData = menuData.filter((menu) => menu.link !== pathname);
+
   return (
     <ul>
       {filteredMenuData.map((menu) => (
@@ -28,8 +40,13 @@ const HeaderMenus = () => {
                         <div className="homemenu-thumb-wrap mb-20">
                           <div className="homemenu-thumb fix">
                             <Link href={home_menu.link}>
-                              <Image src={home_menu.img} alt="home-img" width={251} height={235} 
-                              style={imgStyle}/>
+                              <Image
+                                src={home_menu.img}
+                                alt="home-img"
+                                width={251}
+                                height={235}
+                                style={imgStyle}
+                              />
                             </Link>
                           </div>
                         </div>
@@ -55,11 +72,13 @@ const HeaderMenus = () => {
           ) : null}
         </li>
       ))}
-      {/* Bouton Carte cadeau - masqué sur la page gift-card */}
+      <li className="tp-language-switcher-wrapper d-none d-xl-inline-block me-3">
+        <LanguageSwitcher variant={variant} />
+      </li>
       {!isGiftCardPage && (
         <li className="tp-gift-card-menu-btn-wrapper">
           <Link href="/gift-card" className="tp-gift-card-menu-btn">
-            Carte cadeau
+            {t("nav.giftCard")}
           </Link>
         </li>
       )}

@@ -1,88 +1,47 @@
 import { IMenuDT } from "@/types/menu-d-t";
 
+export type NavLabelKey =
+  | "home"
+  | "experience"
+  | "reservation"
+  | "about"
+  | "partner"
+  | "contact";
 
-const menu_data:IMenuDT[] = [
-  {
-    id: 1,
-    title: 'ACCUEIL',
-    link: '/accueil',
-  },
-  {
-    id: 2,
-    title: "L'EXPÉRIENCE",
-    link: '/experiences',
-  },
-  {
-    id: 3,
-    title: 'RÉSERVATION',
-    link: '/reservations',
-  },
-  {
-    id: 4,
-    title: 'À PROPOS',
-    link: '/a-propos',
-  },
-  {
-    id: 5,
-    title: 'DEVENIR PARTENAIRE',
-    link: '/devenir-partenaire',
-  },
-  {
-    id: 6,
-    title: 'CONTACT',
-    link: '/contact',
-  },
+type MenuItemConfig = {
+  id: number;
+  labelKey: NavLabelKey;
+  link: string;
+};
 
+const MENU_ITEMS: MenuItemConfig[] = [
+  { id: 1, labelKey: "home", link: "/accueil" },
+  { id: 2, labelKey: "experience", link: "/experiences" },
+  { id: 3, labelKey: "reservation", link: "/reservations" },
+  { id: 4, labelKey: "about", link: "/a-propos" },
+  { id: 5, labelKey: "partner", link: "/devenir-partenaire" },
+  { id: 6, labelKey: "contact", link: "/contact" },
 ];
 
+export type MenuTranslator = (key: `nav.${NavLabelKey}`) => string;
 
+export function getMenuData(t: MenuTranslator): IMenuDT[] {
+  return MENU_ITEMS.map((item) => ({
+    id: item.id,
+    link: item.link,
+    title: t(`nav.${item.labelKey}`),
+  }));
+}
 
-export default menu_data;
-
-// mobile menus 
-export const mobile_menu_data:{
+/** @deprecated Legacy export for unused template component mobile-menus-2.tsx */
+export const mobile_menu_data: {
   id: number;
   title: string;
   link: string;
-  dropdown_menus: {
-      title: string;
-      link: string;
-  }[];
-}[] = [
-  {
-    id:1,
-    title: 'ACCUEIL',
-    link: '/accueil',
-    dropdown_menus:[]
-  },
-  {
-    id: 2,
-    title: "L'EXPÉRIENCE",
-    link: '/experiences',
-    dropdown_menus:[]
-  },
-  {
-    id: 3,
-    title: 'RÉSERVATION',
-    link: '/reservations',
-    dropdown_menus:[]
-  },
-  {
-    id: 4,
-    title: 'À PROPOS',
-    link: '/a-propos',
-    dropdown_menus:[]
-  },
-  {
-    id: 5,
-    title: 'DEVENIR PARTENAIRE',
-    link: '/devenir-partenaire',
-    dropdown_menus:[]
-  },
-  {
-    id: 6,
-    title: 'CONTACT',
-    link: '/contact',
-    dropdown_menus:[]
-  }
-]
+  dropdown_menus: { title: string; link: string }[];
+}[] = MENU_ITEMS.map((item) => ({
+  id: item.id,
+  title: item.labelKey,
+  link: item.link,
+  dropdown_menus: [],
+}));

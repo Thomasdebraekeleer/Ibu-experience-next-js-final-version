@@ -1,12 +1,17 @@
-import { Metadata } from 'next';
-import ErrorMain from '@/views/error/error-main'
- 
-export const metadata: Metadata = {
-  title: "Liko - Not Found Page",
-};
-
-export default function NotFound() {
+export default function GlobalNotFound() {
   return (
-    <ErrorMain/>
-  )
+    <html lang="fr">
+      <body
+        style={{
+          fontFamily: "system-ui, sans-serif",
+          padding: "2rem",
+          textAlign: "center",
+        }}
+      >
+        <h1>404</h1>
+        <p>Page introuvable</p>
+        <a href="/accueil">Retour à l&apos;accueil</a>
+      </body>
+    </html>
+  );
 }

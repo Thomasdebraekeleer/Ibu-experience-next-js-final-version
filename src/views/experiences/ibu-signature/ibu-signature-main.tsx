@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
+import { useLocale } from "next-intl";
 import useScrollSmooth from '@/hooks/use-scroll-smooth';
 import { ScrollSmoother, ScrollTrigger, SplitText, cursorAnimation } from '@/plugins';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
@@ -18,6 +19,7 @@ import { footerTwoAnimation } from "@/utils/footer-anim";
 import { bounceAnimation, charAnimation, fadeAnimation } from "@/utils/title-animation";
 
 const IBUSignatureMain = () => {
+  const locale = useLocale();
   useScrollSmooth();
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const IBUSignatureMain = () => {
       bounceAnimation();
     }, 100)
     return () => clearTimeout(timer);
-  });
+  }, [locale]);
 
   return (
     <Wrapper showBackToTop={false}>
@@ -57,7 +59,7 @@ const IBUSignatureMain = () => {
       {/* header area end */}
 
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" key={locale}>
           <main>
             
             {/* portfolio details area start */}
