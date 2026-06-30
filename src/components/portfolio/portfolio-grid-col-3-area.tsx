@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { UpArrow } from "../svg";
 import { useIsotop } from "@/hooks/use-isotop";
+import { LODGIFY_URLS_FR } from "@/config/lodgify";
 
 type CategoryKey = "vignoble" | "chateau" | "domaine";
 type TitleKey = "domaineMehaignoul" | "comingSoon";
@@ -107,6 +108,9 @@ export default function PortfolioGridColThreeArea({ style_2 = false }: IProps) {
               <div
                 className="tp-project-5-2-thumb mb-30 p-relative not-hide-cursor"
                 data-cursor={cursorLabel}
+                data-cursor-width="132"
+                data-cursor-height="132"
+                data-cursor-font-size="15"
               >
                 {item.id === 1 ? (
                   <Link href="/domaine-de-mehaignoul" className="cursor-hide">
@@ -155,20 +159,52 @@ export default function PortfolioGridColThreeArea({ style_2 = false }: IProps) {
           <div className="col-xl-12">
             <div className="tp-projct-5-2-btn-box mt-50 d-flex justify-content-center">
               <div className="tp-hover-btn-wrapper">
-                <div className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn">
-                  <span className="tp-btn-circle-text">
-                    {t("cta.line1")} <br /> {t("cta.line2")}
+                <a
+                  href={LODGIFY_URLS_FR.siteRoot}
+                  className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn tp-btn-circle--stacked"
+                  rel="noopener noreferrer"
+                >
+                  <span className="tp-btn-circle-text tp-btn-circle-text--compact">
+                    {t("cta.line2") ? (
+                      <>
+                        {t("cta.line1")} <br /> {t("cta.line2")}
+                      </>
+                    ) : (
+                      t("cta.line1")
+                    )}
                   </span>
                   <span className="tp-btn-circle-icon">
                     <UpArrow />
                   </span>
                   <i className="tp-btn-circle-dot"></i>
-                </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .tp-projct-5-2-btn-box :global(.tp-btn-circle.style-2) {
+          width: 158px;
+          height: 158px;
+        }
+        .tp-projct-5-2-btn-box :global(.tp-btn-circle--stacked) {
+          flex-direction: column;
+          gap: 6px;
+          text-decoration: none;
+          color: inherit;
+        }
+        .tp-projct-5-2-btn-box :global(.tp-btn-circle--stacked .tp-btn-circle-icon) {
+          transform: none;
+          margin-left: 0;
+          line-height: 0;
+        }
+        .tp-projct-5-2-btn-box :global(.tp-btn-circle-text--compact) {
+          font-size: clamp(0.84rem, 2.2vw, 0.94rem);
+          line-height: 1.2;
+          padding: 0 14px;
+        }
+      `}</style>
     </div>
   );
 }

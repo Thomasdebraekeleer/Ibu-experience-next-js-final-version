@@ -11,6 +11,8 @@ import type { Locale } from "@/i18n/routing";
 
 /** URLs FR confirmées en production (audit Lot 5A/5B). */
 export const LODGIFY_URLS_FR = {
+  /** Page d’accueil Lodgify (CTA réservations bas de page). */
+  siteRoot: "https://ibu-experience.lodgify.com/",
   /** Accueil — AvailabilitySearch (redirect avec query params). */
   allProperties: "https://ibu-experience.lodgify.com/fr/toutes-les-proprietes/",
   /** Domaine Mehaignoul — Cocon 1. */

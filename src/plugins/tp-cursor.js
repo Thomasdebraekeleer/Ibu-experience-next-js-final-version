@@ -98,14 +98,21 @@ export default function cursorAnimation() {
             $("[data-cursor]").each(function () {
                 $(this).on("mouseenter", function () {
                     if ($("#ball").find(".ball-view").length === 0) { // Check if "View Demo" text is not already present
+                        const cursorWidth = Number($(this).attr("data-cursor-width")) || 110;
+                        const cursorHeight = Number($(this).attr("data-cursor-height")) || 110;
+                        const cursorFontSize = $(this).attr("data-cursor-font-size");
+
                         $("#ball").addClass("with-blur");
                         $ball.append('<div class="ball-view"></div>');
                         $(".ball-view").append($(this).attr("data-cursor"));
+                        if (cursorFontSize) {
+                            $(".ball-view").css("font-size", `${cursorFontSize}px`);
+                        }
                         gsap.to($ball, {
                             duration: 0.3,
                             yPercent: -75,
-                            width: 110,
-                            height: 110,
+                            width: cursorWidth,
+                            height: cursorHeight,
                             opacity: 1,
                             borderWidth: 0,
                             zIndex: 1,

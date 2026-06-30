@@ -17,7 +17,7 @@
   "footer": {
     "ctaLine1": "Een vraag?",
     "ctaLine2": "Neem contact met ons op",
-    "contactButton": "Neem contact op",
+    "contactButton": "Contact",
     "sitemap": "Sitemap",
     "home": "Home",
     "experience": "De ervaring",
@@ -149,12 +149,12 @@
       "twitterDescription": "Ontdek het verhaal en de missie van IBÙ Experience."
     },
     "domaineMehaignoul": {
-      "title": "IBÙ Experience - Domein de Mehaignoul",
-      "description": "Verblijf op het Domein de Mehaignoul: IBÙ-cocons in het hart van een Waalse wijngaard, op 30 min van Brussel",
-      "openGraphTitle": "IBÙ Experience - Domein de Mehaignoul",
-      "openGraphDescription": "Onderdompeling in een uitzonderlijke wijngaard. Reserveer uw IBÙ-cocon op het Domein de Mehaignoul.",
-      "twitterTitle": "IBÙ Experience - Domein de Mehaignoul",
-      "twitterDescription": "Verblijf op het Domein de Mehaignoul: IBÙ-cocons in het hart van een Waalse wijngaard."
+      "title": "IBÙ Experience - Domaine de Mehaignoul",
+      "description": "Verblijf op Domaine de Mehaignoul: IBÙ-cocons in het hart van een Waalse wijngaard, op 30 min van Brussel",
+      "openGraphTitle": "IBÙ Experience - Domaine de Mehaignoul",
+      "openGraphDescription": "Onderdompeling in een uitzonderlijke wijngaard. Reserveer uw IBÙ-cocon op Domaine de Mehaignoul.",
+      "twitterTitle": "IBÙ Experience - Domaine de Mehaignoul",
+      "twitterDescription": "Verblijf op Domaine de Mehaignoul: IBÙ-cocons in het hart van een Waalse wijngaard."
     },
     "home": {
       "title": "IBÙ Experience - Home",
@@ -183,7 +183,7 @@
     "evasion": {
       "brand": "IBÙ EXPERIENCE",
       "title": "Ontsnapping",
-      "description": "Slaap midden in de natuur, genesteld in wijngaarden, kastelen en andere uitzonderlijke plekken, verspreid over heel België. Onze Cocons met hun minimalistische en comfortabele design verwelkomen u voor een tijdloze ervaring vol elegantie, welzijn en lokale gastronomie, te beleven met wie u liefhebt.",
+      "description": "Slaap midden in de natuur, genesteld in wijngaarden, kastelen en andere uitzonderlijke plekken, verspreid over heel België. Onze Cocons met hun minimalistische en knusse design verwelkomen u voor een tijdloze ervaring vol elegantie, welzijn en lokale gastronomie, om te delen met uw dierbaren.",
       "carouselImageAlt": "Ontsnapping IBÙ - Afbeelding {index}"
     },
     "instantIbu": {
@@ -194,7 +194,7 @@
         { "id": 2, "text": "Zet uw telefoon uit, wek uw zintuigen." },
         { "id": 3, "text": "Hul u in een zachte badjas." },
         { "id": 4, "text": "Adem de rust in." },
-        { "id": 5, "text": "Herstel de band met de natuur en met wie u liefhebt." },
+        { "id": 5, "text": "Vind opnieuw verbinding met de natuur en met wie je liefhebt." },
         { "id": 6, "text": "Welkom in uw tijdloze moment." }
       ]
     },
@@ -203,8 +203,8 @@
       "missionLabel": "Missie",
       "missionParagraph1": "IBÙ biedt de kans om te verblijven in het hart van uitzonderlijke domeinen in België, met aandacht voor hun erfgoed, hun producten en hun vakmanschap.",
       "missionParagraph2": "Wij creëren unieke ervaringen die een verfijnd verblijf combineren met een onderdompeling in iconische plekken, om het lokale terroir alle eer aan te doen.",
-      "commitmentsLabel": "Engagementen",
-      "commitmentsText": "Onze verblijven combineren respect voor het milieu, korte ketens en harmonie met de natuur. Ze zijn ontworpen met duurzame materialen, zetten lokale producenten in de kijker en integreren energiezuinige oplossingen voor een authentieke en verantwoorde ervaring."
+      "commitmentsLabel": "Onze waarden",
+      "commitmentsText": "Onze verblijven combineren respect voor de natuur met duurzame keuzes en lokale samenwerkingen. Ze zijn gebouwd met duurzame materialen, zetten lokale producenten centraal en maken gebruik van energiezuinige oplossingen. Zo geniet u van een authentieke en verantwoorde beleving."
     },
     "cocons": {
       "title": "ONZE COCONS",
@@ -220,7 +220,7 @@
       }
     },
     "press": {
-      "title": "Ze praten over ons",
+      "title": "IBU In de press",
       "subtitle": "Onze artikels en interviews",
       "description": "Ontdek IBÙ Experience door de ogen van de pers en de media. Deze artikels en interviews getuigen van onze unieke visie op luxueuze gastvrijheid midden in de natuur, en van ons engagement om authentieke ervaringen te creëren in het hart van de mooiste domeinen van België.",
       "article": "Artikel",
@@ -289,8 +289,8 @@
   "reservations": {
     "hero": {
       "eyebrow": "IBÙ EXPERIENCE",
-      "title": "Reserveer uw unieke ervaring",
-      "intro": "Plan uw meeslepende avontuur en creëer onvergetelijke herinneringen met onze gepersonaliseerde ervaringen."
+      "title": "Reserveer uw unieke verblijf",
+      "intro": "Plan uw verblijf en creëer onvergetelijke herinneringen in een uitzonderlijke omgeving."
     },
     "filters": {
       "all": "ALLES BEKIJKEN",
@@ -305,16 +305,16 @@
         "domaine": "Domein"
       },
       "titles": {
-        "domaineMehaignoul": "Domein de Mehaignoul",
+        "domaineMehaignoul": "Domaine de Mehaignoul",
         "comingSoon": "Binnenkort"
       }
     },
     "cursor": {
-      "availability": "Bekijk de<br>beschikbaarheid"
+      "availability": "Beschikbaarheid"
     },
     "cta": {
-      "line1": "Bekijk de",
-      "line2": "beschikbaarheid"
+      "line1": "Beschikbaarheid",
+      "line2": ""
     }
   },
   "giftCard": {
@@ -355,23 +355,23 @@
       "items": [
         {
           "title": "Check-in, Check-out",
-          "desc": "Uw verblijf begint om 17u00 en eindigt om 10u30, zodat u kan genieten van een bevoorrecht moment van ontspanning en herbronning."
+          "desc": "Uw verblijf begint om 17.00 uur en eindigt om 10.30 uur, zodat u volop kunt genieten van een moment van rust, ontspanning en welzijn."
         },
         {
           "title": "Welkomstfles",
-          "desc": "Geniet bij aankomst van een fles Belgische bubbels, of laat u verleiden door een lokale alcoholvrije alternatief om uw verblijf goed te beginnen."
+          "desc": "Bij aankomst staat een fles Belgische bubbels voor u klaar. Liever alcoholvrij? Dan verwelkomen we u graag met een lokaal alcoholvrij alternatief, zodat uw verblijf meteen goed begint."
         },
         {
           "title": "Sauna",
-          "desc": "Profiteer van een exclusieve sauna voor een diepe ontspanningservaring. De warmte van de sauna bevordert de eliminatie van toxines, verbetert de bloedsomloop en zorgt voor volledige spierontspanning in een intieme en serene omgeving."
+          "desc": "Geniet van een exclusieve privésauna voor een ultiem ontspanningsmoment. De warmte stimuleert de bloedsomloop, ondersteunt de natuurlijke afvoer van afvalstoffen en helpt uw lichaam en spieren volledig te ontspannen, in een intieme en serene omgeving."
         },
         {
-          "title": "Buiten-Noords bad",
-          "desc": "Ontdek ons privé buiten-Noords bad, een unieke ervaring die de voordelen van warm water en frisse lucht combineert in de privacy van uw ruimte. Deze eeuwenoude praktijk stimuleert het immuunsysteem, verbetert de circulatie en geeft een diep gevoel van welzijn."
+          "title": "Hot Tubs",
+          "desc": "Ontdek uw privé Scandinavisch buitenbad, waar warm water en frisse buitenlucht samen zorgen voor een unieke wellnesservaring. Deze traditionele beleving stimuleert de bloedsomloop, helpt lichaam en geest te ontspannen en bezorgt u een diep gevoel van welzijn."
         },
         {
-          "title": "Relaxatiekit",
-          "desc": "Ontvang een gepersonaliseerde relaxatiekit met kalmerende kruidentheeën, natuurlijke massageoliën en andere wellnessaccessoires. Elk element is zorgvuldig geselecteerd om u te begeleiden op uw reis naar sereniteit."
+          "title": "Relaxie kit",
+          "desc": "Bij aankomst ontvangt u een exclusief ontspanningspakket met rustgevende kruidenthee, natuurlijke massageolie en zorgvuldig geselecteerde wellnessaccessoires. Alles is voorzien om u een moment van pure ontspanning en welzijn te bezorgen."
         }
       ]
     },
@@ -379,33 +379,33 @@
       "title": "De opties",
       "subtitle": "Personaliseer uw onvergetelijk verblijf",
       "cellarVisit": {
-        "title": "Kelderbezoek (met degustatie) - 60EUR / 2 pers.",
-        "paragraph": "Ontdek de coulissen van de vinificatie in het hart van de kelder: fermentatie, rijping op tank of vat, en productiegeheimen. Een begeleide, authentieke en zintuiglijke onderdompeling om het vakmanschap van het domein te begrijpen en de wijnen anders te waarderen.",
-        "footnote": "* Om het kelderbezoek (met degustatie) te reserveren, selecteer de optie bij uw reservering. Tarief: 60EUR / 2 pers. Betaling ter plaatse.",
+        "title": "Kelderbezoek met degustatie – € 60 / 2 personen",
+        "paragraph": "Ontdek de wereld van de wijnproductie tijdens een exclusief bezoek aan onze wijnkelder. Van de gisting tot de rijping in tanks en eikenhouten vaten: ontdek de verschillende stappen van het vinificatieproces en de knowhow van het domein. Een authentieke en zintuiglijke ervaring, afgesloten met een degustatie van onze wijnen.",
+        "footnote": "Wilt u een kelderbezoek met degustatie reserveren? Selecteer deze optie tijdens uw reservatie. Tarief: € 60 voor 2 personen. Betaling ter plaatse.",
         "imageAlt": "Kelderbezoek"
       },
       "aperitifBoard": {
-        "title": "Aperitiefplank (40eur/2pers)",
-        "paragraph1": "Een verfijnde aperitiefplank samengesteld uit producten van het terroir: selectie lokale kazen, ambachtelijke charcuterie en seizoensgebonden begeleiding.",
-        "paragraph2": "Perfect om uw welkomstfles te begeleiden en een eerste moment te smaken midden in de wijngaarden.",
-        "footnote": "* Wijn en frisdrank optioneel beschikbaar in uw minibar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)",
+        "title": "Aperitiefplank – € 40 / 2 personen",
+        "paragraph1": "Geniet van een verfijnde aperitiefplank met een selectie van lokale kazen, ambachtelijke charcuterie en seizoensgebonden lekkernijen.",
+        "paragraph2": "De ideale aanvulling op uw welkomstfles, om samen te genieten van een heerlijk aperitief midden tussen de wijngaarden.",
+        "footnote": "Wijn en alcoholvrije dranken zijn optioneel verkrijgbaar in uw minibar (Chardonnay, Pinot Gris, Effervescent en Kult Kefir).",
         "imageAlt": "Aperitiefplank"
       },
       "dinnerBoard": {
-        "title": "Gourmetdinerplank (65eur/2pers)",
-        "paragraph1": "Een royale gourmetplank met smaken van het terroir: assortiment lokale kazen, ambachtelijke charcuterie, huisgemaakte tapenades en 100% Belgische verse producten.",
-        "paragraph2": "Een complete en conviviale ervaring, ideaal voor een diner à deux midden in de wijngaarden.",
-        "imageAlt": "Gourmetdinerplank"
+        "title": "Gourmetplank – € 65 / 2 personen",
+        "paragraph1": "Geniet van een rijkgevulde gourmetplank met een selectie van lokale kazen, ambachtelijke charcuterie, huisgemaakte tapenades en verse Belgische kwaliteitsproducten.",
+        "paragraph2": "Een complete en gezellige culinaire ervaring, ideaal voor een sfeervol diner met z'n tweeën, midden tussen de wijngaarden.",
+        "imageAlt": "Gourmetplank"
       },
       "lateCheckout": {
-        "title": "Laattijdige vertrek (13u30) (31eur)",
-        "paragraph": "Verleng uw wellnessmoment: in plaats van op het gebruikelijke check-outtijdstip te vertrekken, geniet nog van uw cocon en vertrek rustig om 13u30. Ideaal om uit te slapen, nog een moment in de sauna of het Noords bad door te brengen, of te wandelen in de omgeving voor u verder reist.",
-        "imageAlt": "Laattijdige vertrek"
+        "title": "Late check-out tot 13.30 uur – € 31",
+        "paragraph": "Verleng uw wellnessmoment en geniet nog wat langer van uw cocon. In plaats van uit te checken om 10.30 uur, kunt u rustig blijven tot 13.30 uur. Ideaal om uit te slapen, nog een ontspannend moment in de sauna of het Scandinavisch buitenbad door te brengen, of een wandeling te maken in de prachtige omgeving.",
+        "imageAlt": "Late check-out"
       },
       "breakfast": {
-        "title": "Lokaal ontbijt (25eur)",
-        "paragraph1": "Begin de dag goed met een ontbijt als een gastronomische pauze: klein broodje om op te warmen, zuivel en charcuterie geselecteerd bij ambachtslui en producenten uit de regio, seizoensfruit, sap en lekkernijen die het terroir benadrukken terwijl het licht blijft.",
-        "paragraph2": "Elk bord onthult eerlijke smaken en verse producten, voor een zachte start van de dag voordat u ten volle van uw IBÙ-verblijf geniet.",
+        "title": "Lokaal ontbijt – € 25",
+        "paragraph1": "Begin uw dag met een heerlijk ontbijt, samengesteld uit verse streekproducten. Geniet van ovenverse broodjes, zorgvuldig geselecteerde kazen en charcuterie van lokale producenten, seizoensfruit, fruitsap en andere ambachtelijke lekkernijen.",
+        "paragraph2": "Elk ontbijt wordt met zorg samengesteld en brengt de pure smaken van de streek tot leven. De perfecte start van de dag, voordat u volop geniet van uw verblijf bij IBÙ.",
         "imageAlt": "Lokaal ontbijt"
       }
     },
@@ -557,15 +557,15 @@
     "family": {
       "title": "EEN FAMILIEVERHAAL",
       "subtitle": "Erfgoed en passie",
-      "paragraph1": "IBÙ Experience werd opgericht door Mallen ter nagedachtenis aan haar vader, bijgenaamd \"Ibou\", een stralende figuur in de gastvrijheid uit Gambia, die het project had om eco-chic lodges voor reizigers te bouwen.",
-      "paragraph2": "Vandaag herleeft die droom in België dankzij zijn dochter via meeslepende ervaringen in prestigieuze domeinen, waar natuur, welzijn en gastronomie samenkomen in elegant ontworpen tiny houses.",
+      "paragraph1": "IBÙ Experience werd opgericht door Mallen als eerbetoon aan haar vader, liefkozend \"Ibou\" genoemd. Hij was een warme en inspirerende gastheer uit Gambia en droomde ervan om stijlvolle ecolodges te creëren waar reizigers volledig tot rust konden komen.",
+      "paragraph2": "Vandaag brengt zijn dochter die droom tot leven in België. Met unieke verblijven op uitzonderlijke locaties creëert IBÙ Experience een harmonieus samenspel van natuur, welzijn en gastronomie, in elegant ontworpen tiny houses.",
       "imageAlt": "Een familieverhaal"
     },
     "universe": {
-      "title": "Ons univers",
+      "title": "Onze Sfeer",
       "subtitle": "Ontdekking",
-      "paragraph": "Duik in het universum van IBÙ Experience via deze momenten vastgelegd in het hart van onze uitzonderlijke domeinen, waar elk detail een verhaal vertelt van authenticiteit en ontsnapping.",
-      "videoTitle": "IBÙ Experience - Ons univers"
+      "paragraph": "Ontdek de wereld van IBÙ Experience aan de hand van beelden die de unieke sfeer van onze uitzonderlijke locaties weerspiegelen. Elk detail ademt rust, authenticiteit en de kunst van het onthaasten.",
+      "videoTitle": "IBÙ Experience - Onze Sfeer"
     },
     "partners": {
       "title": "Onze partners"
@@ -576,12 +576,12 @@
   },
   "domaineMehaignoul": {
     "hero": {
-      "titleLine1": "Domein",
+      "titleLine1": "Domaine",
       "titleLine2": "de Mehaignoul"
     },
     "intro": {
       "subtitle": "Onderdompeling in een wijngaard",
-      "paragraph": "Gelegen in het hart van Wallonië, op slechts 30 min van Brussel, is het domein de Mehaignoul een vierkante hoeve uit de 13e eeuw van uitzonderlijke authenticiteit. Naast zijn oorspronkelijke agrarische functie beschikt het over een charmante wijngaard waar een landelijke en verre van alledag sfeer heerst."
+      "paragraph": "Gelegen in het hart van Wallonië, op slechts 30 minuten van Brussel, ligt Domaine de Mehaignoul, een authentieke vierkantshoeve uit de 13e eeuw. Naast haar historische landbouwfunctie beschikt het domein over een charmante wijngaard, waar rust, natuur en een unieke sfeer samenkomen."
     },
     "booking": {
       "cocon1": {
@@ -596,19 +596,19 @@
       }
     },
     "gallery": {
-      "alt": "Domein de Mehaignoul-galerij"
+      "alt": "Domaine de Mehaignoul-galerij"
     },
     "cocons": {
       "title": "Het verblijf",
       "subtitle": "Uw cocon",
-      "paragraph": "Ontworpen in een minimalistische en warme stijl, bieden onze pods een volledige onderdompeling in de natuur zonder in te boeten op comfort: tweepersoonsbed met panoramisch raam, designdouche en droogtoiletten van een nieuwe generatie.",
+      "paragraph": "Onze pods zijn ontworpen in een minimalistische en warme stijl en laten u volop genieten van de natuur, zonder in te boeten aan comfort. Ze beschikken over een tweepersoonsbed met panoramisch uitzicht, een stijlvolle douche en droogtoiletten van de nieuwste generatie.",
       "carouselAlt": "Het verblijf IBÙ"
     }
   },
   "partner": {
     "hero": {
       "title": "PARTNER WORDEN",
-      "subtitle": "Wilt u van uw domein een bestemming maken? Sluit u aan bij het IBÙ-avontuur! Vul het onderstaande formulier in"
+      "subtitle": "Wilt u van uw domein een unieke bestemming maken? Sluit u aan bij het IBÙ-verhaal en vul onderstaand formulier in."
     },
     "forms": {
       "fr": "Formulier FR",
@@ -620,23 +620,23 @@
       "benefitsAlt": "Voordelen partnerschap IBÙ"
     },
     "benefits": {
-      "eyebrow": "WAAROM IBÙ-PARTNER WORDEN",
-      "title": "Sluit u aan bij een netwerk van excellentie en transformeer uw domein in een uitzonderlijke bestemming.",
+      "eyebrow": "WAAROM PARTNER WORDEN VAN IBÙ",
+      "title": "Word deel van IBÙ Experience en maak van uw domein een unieke bestemming waar natuur, welzijn en gastvrijheid samenkomen.",
       "items": [
-        "Valoriseer uw erfgoed en maak er een unieke ontvangstplek van",
-        "Geniet van terugkerende inkomsten zonder beheerslast",
-        "Trek een nieuw, nieuwsgierig, lokaal en internationaal publiek aan",
-        "Versterk het imago en de bekendheid van uw domein",
-        "Creëer synergieën met lokale producenten en ambachtslui"
+        "Geef uw erfgoed een nieuwe dimensie en maak van uw domein een unieke bestemming.",
+        "Geniet van terugkerende inkomsten zonder extra beheer.",
+        "Trek een nieuw, nieuwsgierig publiek aan, zowel uit binnen- als buitenland.",
+        "Versterk de uitstraling en naamsbekendheid van uw domein.",
+        "Bouw duurzame samenwerkingen uit met lokale producenten en ambachtslieden."
       ]
     },
     "timeline": {
       "title": "HOE HET WERKT",
       "steps": [
-        "Eerste contact & analyse van de behoeften",
-        "Studie van de site & technische haalbaarheid",
-        "Creatie van de IBÙ × Uw Domein-ervaring",
-        "Tiny house op maat ontworpen",
+        "Eerste kennismaking & analyse van uw behoeften",
+        "Analyse van het domein & technische haalbaarheid",
+        "Ontwikkeling van de IBÙ-beleving op uw domein",
+        "Ontwerp van uw tiny house op maat",
         "Webintegratie & marketing",
         "Levering & installatie (6 tot 8 weken)",
         "Beheer door IBÙ"
