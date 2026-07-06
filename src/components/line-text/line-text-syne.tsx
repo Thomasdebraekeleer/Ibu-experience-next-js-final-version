@@ -2,20 +2,14 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 import { StarSquare } from "../svg";
 
-// marquee text
-const marquee_text = [
-  "Vivez l'expérience IBÙ!",
-  "Vivez l'expérience IBÙ!",
-  "Vivez l'expérience IBÙ!",
-  "Vivez l'expérience IBÙ!",
-];
-
 // prop type 
 type IProps = {
   cls?: string;
+  text: string;
 };
 
-export default function LineTextSyne({cls=""}:IProps) {
+export default function LineTextSyne({cls="", text}: IProps) {
+  const marquee_text = Array(4).fill(text);
   return (
     <div className={`tp-line-text-wrap tp-line-text-wrap-2 ${cls}`}>
       <div className="tp-line-text-slide">

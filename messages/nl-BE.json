@@ -34,7 +34,8 @@
     "email": "E: info@ibu-experience.be",
     "newsletter": "Schrijf u in op onze nieuwsbrief",
     "newsletterPlaceholder": "Voer uw e-mailadres in...",
-    "copyright": "Alle rechten voorbehouden — {year} ©"
+    "copyright": "Alle rechten voorbehouden — {year} ©",
+    "marqueeText": "Beleef de IBÙ-ervaring!"
   },
   "offcanvas": {
     "information": "Informatie",
@@ -172,7 +173,7 @@
   "home": {
     "hero": {
       "title": "IBÙ EXPERIENCE",
-      "tagline": "De kunst van het ontsnappen naar uitzonderlijke plekken",
+      "tagline": "Ontsnap naar ongelooflijke plekken",
       "keywords": "WIJNGAARD • KASTEEL • DOMEIN",
       "soundEnable": "Geluid inschakelen",
       "soundDisable": "Geluid uitschakelen",
@@ -230,6 +231,8 @@
     },
     "reviews": {
       "title": "Zij testten het vóór u",
+      "readMore": "Lees meer",
+      "readLess": "Lees minder",
       "items": [
         {
           "id": 1,
@@ -346,7 +349,7 @@
     "intro": {
       "title": "De IBÙ-ervaring",
       "subtitle": "Een holistische aanpak",
-      "paragraph": "Genesteld in het hart van de natuur nodigt IBÙ u uit voor een moment van sereniteit in een intiem cocon. Laat u omhullen door de warmte van privé-infrastructuren, verleng dit moment met een relaxatiekit met kalmerende noten, en wek dan uw zintuigen met een ontbijt met lokale smaken. Hier is elk detail doordacht om een zintuiglijke reis te bieden waar ontspanning en harmonie samenkomen."
+      "paragraph": "Midden in de natuur nodigt IBÙ u uit om volledig tot rust te komen in een intieme cocon. Laat u verwennen door de warmte van uw privéwellness, verleng dit moment met een ontspanningspakket met rustgevende geuren en begin de dag met een ontbijt vol heerlijke streekproducten. Elk detail is zorgvuldig uitgewerkt om u een unieke beleving te bieden waarin rust, comfort en harmonie centraal staan."
     },
     "services": {
       "eyebrow": "WAT UW ERVARING INHOUDT (vanaf 265 €)",
@@ -634,7 +637,7 @@
       "title": "HOE HET WERKT",
       "steps": [
         "Eerste kennismaking & analyse van uw behoeften",
-        "Analyse van het domein & technische haalbaarheid",
+        "Domeinanalyse & technische check",
         "Ontwikkeling van de IBÙ-beleving op uw domein",
         "Ontwerp van uw tiny house op maat",
         "Webintegratie & marketing",

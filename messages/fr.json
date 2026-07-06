@@ -34,7 +34,8 @@
     "email": "E: info@ibu-experience.be",
     "newsletter": "Abonnez-vous à notre newsletter",
     "newsletterPlaceholder": "Entrez votre email...",
-    "copyright": "All rights reserved — {year} ©"
+    "copyright": "All rights reserved — {year} ©",
+    "marqueeText": "Vivez l'expérience IBÙ!"
   },
   "offcanvas": {
     "information": "Information",
@@ -230,6 +231,8 @@
     },
     "reviews": {
       "title": "Ils ont testé avant vous",
+      "readMore": "Voir plus",
+      "readLess": "Voir moins",
       "items": [
         {
           "id": 1,

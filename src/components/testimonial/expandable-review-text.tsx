@@ -1,12 +1,14 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Props = {
   text: string;
 };
 
 export default function ExpandableReviewText({ text }: Props) {
+  const t = useTranslations("home.reviews");
   const pRef = useRef<HTMLParagraphElement>(null);
   const [open, setOpen] = useState(false);
   const [showToggle, setShowToggle] = useState(false);
@@ -63,7 +65,7 @@ export default function ExpandableReviewText({ text }: Props) {
             padding: "4px 8px",
           }}
         >
-          {open ? "Voir moins" : "Voir plus"}
+          {open ? t("readLess") : t("readMore")}
         </button>
       ) : null}
     </div>

@@ -18,7 +18,7 @@ export default function FooterThree() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-xl-12">
-              <LineTextSyne />
+              <LineTextSyne text={t("marqueeText")} />
             </div>
           </div>
         </div>
