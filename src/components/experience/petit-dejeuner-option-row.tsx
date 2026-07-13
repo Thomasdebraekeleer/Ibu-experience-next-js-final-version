@@ -19,7 +19,7 @@ export default function PetitDejeunerOptionRow({
 }: Props) {
   const t = useTranslations("experiences.options.breakfast");
 
-  const title = localize ? t("title") : "Petit déjeuner local (25eur)";
+  const title = localize ? t("title") : "Petit déjeuner local (35eur)";
   const paragraph1 = localize
     ? t("paragraph1")
     : "Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause gourmande : Petit pain à réchauffer, produits laitiers et charcuteries sélectionnées auprès d'artisans et de producteurs de la région, fruits de saison, jus et douceurs qui mettent en avant le terroir tout en restant légers.";
