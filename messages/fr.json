@@ -598,6 +598,14 @@
         "availabilityCta": "Voir les disponibilités"
       }
     },
+    "options": {
+      "breakfast": {
+        "title": "Petit déjeuner local (35eur)",
+        "paragraph1": "Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause gourmande : Petit pain à réchauffer, produits laitiers et charcuteries sélectionnées auprès d'artisans et de producteurs de la région, fruits de saison, jus et douceurs qui mettent en avant le terroir tout en restant légers.",
+        "paragraph2": "Chaque assiette révèle des saveurs honnêtes et des produits frais, pour un réveil en douceur avant de profiter pleinement de votre séjour IBÙ.",
+        "imageAlt": "Petit déjeuner local"
+      }
+    },
     "gallery": {
       "alt": "Domaine de Mehaignoul Gallery"
     },

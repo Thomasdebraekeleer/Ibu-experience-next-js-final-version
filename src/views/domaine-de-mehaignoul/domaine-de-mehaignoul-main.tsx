@@ -703,7 +703,7 @@ const DomaineDeMehaignoulMain = () => {
                 </div>
 
                 {/* Option 5: Petit déjeuner local */}
-                <PetitDejeunerOptionRow localize />
+                <PetitDejeunerOptionRow localize namespace="domaineMehaignoul.options.breakfast" />
               </div>
             </div>
 

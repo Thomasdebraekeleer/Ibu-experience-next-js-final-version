@@ -11,13 +11,16 @@ type Props = {
   marginTop?: string;
   /** Activer les traductions (hub /experiences uniquement pour le Lot 4E) */
   localize?: boolean;
+  /** Namespace i18n (ex. option petit-déjeuner spécifique au domaine) */
+  namespace?: string;
 };
 
 export default function PetitDejeunerOptionRow({
   marginTop = "40px",
   localize = false,
+  namespace = "experiences.options.breakfast",
 }: Props) {
-  const t = useTranslations("experiences.options.breakfast");
+  const t = useTranslations(namespace);
 
   const title = localize ? t("title") : "Petit déjeuner local (35eur)";
   const paragraph1 = localize
