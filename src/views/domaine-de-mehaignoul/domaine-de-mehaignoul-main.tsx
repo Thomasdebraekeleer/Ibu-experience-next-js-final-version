@@ -345,7 +345,7 @@ const DomaineDeMehaignoulMain = () => {
                   <div className="row">
                       <div className="col-xl-8">
                         <div className="showcase-details-2-section-box">
-                            <h4 className="showcase-details-2-section-title tp-char-animation">{t("cocons.title")}</h4>
+                            <h4 className="showcase-details-2-section-title tp-char-animation">{tExp("cocons.title")}</h4>
                         </div>
                       </div>
                   </div>
@@ -354,13 +354,14 @@ const DomaineDeMehaignoulMain = () => {
                         <div className="showcase-details-2-section-left">
                             <span className="ab-inner-subtitle mb-25">
                               <Leaf/>
-                              {t("cocons.subtitle")}
+                              {tExp("cocons.subtitle")}
                             </span>
                         </div>
                       </div>
                       <div className="col-xl-9">
                         <div className="showcase-details-2-content-right tp_title_anim">
-                            <p className="pb-25">{t("cocons.paragraph")}</p>
+                            <p>{tExp("cocons.paragraph1")}</p>
+                            <p style={{marginBottom: '50px'}}>{tExp("cocons.paragraph2")}</p>
                         </div>
                       </div>
                   </div>
@@ -420,7 +421,7 @@ const DomaineDeMehaignoulMain = () => {
                           }}>
                             <Image 
                               src={imgSrc} 
-                              alt={t("cocons.carouselAlt")} 
+                              alt={tExp("cocons.carouselAlt")} 
                               style={{
                                 width: '100%',
                                 maxWidth: '350px',

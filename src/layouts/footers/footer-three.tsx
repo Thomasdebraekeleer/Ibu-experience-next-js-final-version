@@ -55,8 +55,14 @@ export default function FooterThree() {
                 </div>
                 <div className="tp-footer-2-widget-text">
                   <p>
-                    {tCommon("taglineFooterLine1")} <br />{" "}
-                    {tCommon("taglineFooterLine2")}
+                    {tCommon("taglineFooterLine2") ? (
+                      <>
+                        {tCommon("taglineFooterLine1")} <br />{" "}
+                        {tCommon("taglineFooterLine2")}
+                      </>
+                    ) : (
+                      tCommon("taglineFooterLine1")
+                    )}
                   </p>
                 </div>
               </div>

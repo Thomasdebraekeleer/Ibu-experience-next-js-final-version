@@ -219,6 +219,27 @@ const AboutMain = () => {
             min-height: 700px;
           }
         }
+
+        .tp-projct-5-2-btn-box .tp-btn-circle.style-2 {
+          width: 158px;
+          height: 158px;
+        }
+        .tp-projct-5-2-btn-box .tp-btn-circle--stacked {
+          flex-direction: column;
+          gap: 6px;
+          text-decoration: none;
+          color: inherit;
+        }
+        .tp-projct-5-2-btn-box .tp-btn-circle--stacked .tp-btn-circle-icon {
+          transform: none;
+          margin-left: 0;
+          line-height: 0;
+        }
+        .tp-projct-5-2-btn-box .tp-btn-circle-text--compact {
+          font-size: clamp(0.84rem, 2.2vw, 0.94rem);
+          line-height: 1.2;
+          padding: 0 14px;
+        }
       `}</style>
       
       {/* magic cursor start */}
@@ -738,9 +759,15 @@ const AboutMain = () => {
             {/* Bouton Lieux et Disponibilités */}
             <div className="tp-projct-5-2-btn-box d-flex justify-content-center pb-120">
               <div className="tp-hover-btn-wrapper">
-                <Link href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor" data-cursor={tExperiences('cta.cursor')}>
-                  <span className="tp-btn-circle-text">
-                    {tExperiences('cta.line1')} <br /> {tExperiences('cta.line2')}
+                <Link href="/reservations" className="tp-btn-circle style-2 tp-hover-btn-item tp-hover-btn not-hide-cursor tp-btn-circle--stacked" data-cursor={tExperiences('cta.cursor')}>
+                  <span className="tp-btn-circle-text tp-btn-circle-text--compact">
+                    {tExperiences('cta.line2') ? (
+                      <>
+                        {tExperiences('cta.line1')} <br /> {tExperiences('cta.line2')}
+                      </>
+                    ) : (
+                      tExperiences('cta.line1')
+                    )}
                   </span>
                   <span className="tp-btn-circle-icon">
                     <UpArrow />

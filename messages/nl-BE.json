@@ -1,9 +1,9 @@
 {
   "common": {
     "brand": "IBÙ Experience",
-    "tagline": "De kunst van het ontsnappen naar uitzonderlijke locaties",
-    "taglineFooterLine1": "De kunst van het ontsnappen",
-    "taglineFooterLine2": "naar uitzonderlijke domeinen"
+    "tagline": "Ontsnap naar ongelooflijke plekken",
+    "taglineFooterLine1": "Ontsnap naar ongelooflijke plekken",
+    "taglineFooterLine2": ""
   },
   "nav": {
     "home": "HOME",
@@ -173,7 +173,7 @@
   "home": {
     "hero": {
       "title": "IBÙ EXPERIENCE",
-      "tagline": "De kunst van het ontsnappen naar uitzonderlijke locaties",
+      "tagline": "Ontsnap naar ongelooflijke plekken",
       "keywords": "WIJNGAARD • KASTEEL • DOMEIN",
       "soundEnable": "Geluid inschakelen",
       "soundDisable": "Geluid uitschakelen",
@@ -426,9 +426,9 @@
       }
     },
     "cta": {
-      "cursor": "Locaties en beschikbaarheid",
-      "line1": "Locaties en",
-      "line2": "beschikbaarheid"
+      "cursor": "Beschikbaarheid",
+      "line1": "Beschikbaarheid",
+      "line2": ""
     },
     "gallery": {
       "alt": "IBÙ Experience Galerij"
