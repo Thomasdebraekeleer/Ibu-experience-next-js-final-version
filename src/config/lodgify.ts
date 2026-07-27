@@ -33,9 +33,14 @@ export const LODGIFY_URLS_FR = {
  * Renseigner ici après validation ; les getters basculeront automatiquement pour nl-BE.
  */
 export const LODGIFY_URLS_NL_PENDING = {
-  allProperties: null as string | null,
-  mehaignoulCocon1: null as string | null,
-  mehaignoulCocon2: null as string | null,
+  /** Accueil — AvailabilitySearch (redirect avec query params). */
+  allProperties: "https://ibu-experience.lodgify.com/nl/alle-eigenschappen/",
+  /** Domaine Mehaignoul — Cocon 1. */
+  mehaignoulCocon1:
+    "https://ibu-experience.lodgify.com/nl/ibu-experience---cocon-1---domaine-de-mehaignoul",
+  /** Domaine Mehaignoul — Cocon 2 (preview). */
+  mehaignoulCocon2:
+    "https://npreview-ibu-experience.lodgify.com/nl/ibu-experience---cocon-2---domaine-de-mehaignoul",
   legacyPortableSearch: null as string | null,
 } as const;
 
@@ -55,8 +60,7 @@ export const LODGIFY_WIDGET_IDS = {
  * Code langue Lodgify (`data-language-code`).
  * Valeurs usuelles : fr, en, de, es, it, pt, nl (doc Lodgify widgets).
  *
- * nl-BE : on conserve `fr` tant que les URLs de réservation NL ne sont pas confirmées,
- * pour éviter un widget NL pointant vers des pages FR-only.
+ * nl-BE : `nl` dès que l’URL de recherche globale NL est confirmée.
  */
 export function getLodgifyLanguageCode(locale: Locale): "fr" | "nl" {
   if (locale === "nl-BE" && LODGIFY_URLS_NL_PENDING.allProperties) {
