@@ -12,6 +12,7 @@ import {
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import MetaPixel from "@/components/MetaPixel";
 import MetaPixelRouteChange from "@/components/MetaPixelRouteChange";
 import { routing, type Locale } from "@/i18n/routing";
@@ -144,6 +145,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
       >
         <NextIntlClientProvider messages={messages}>
           <MetaPixel />
+          <Analytics />
           <Suspense fallback={null}>
             <MetaPixelRouteChange />
           </Suspense>
