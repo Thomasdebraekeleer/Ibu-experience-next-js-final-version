@@ -1,0 +1,220 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  padding: 16px;
+  background: rgba(5, 55, 37, 0.97);
+  color: #fcf8e3;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.bannerInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bannerText {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.description {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+.bannerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btnPrimary,
+.btnSecondary {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btnPrimary {
+  background: #fcf8e3;
+  color: #053725;
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #fcf8e3;
+  border: 1px solid rgba(252, 248, 227, 0.45);
+}
+
+.btnPrimary:hover,
+.btnSecondary:hover {
+  opacity: 0.88;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #053725;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.18);
+}
+
+.modalTitle {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modalDescription {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #3d5248;
+}
+
+.preferenceRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid #e8ece9;
+}
+
+.preferenceTitle {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.preferenceDesc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4a5f55;
+}
+
+.alwaysOn {
+  font-size: 12px;
+  font-weight: 600;
+  color: #829b92;
+  white-space: nowrap;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.modal .btnPrimary {
+  background: #053725;
+  color: #ffffff;
+}
+
+.modal .btnSecondary {
+  color: #053725;
+  border-color: #c5d4cd;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #c5d4cd;
+  border-radius: 24px;
+  transition: 0.2s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.switch input:checked + .slider {
+  background-color: #053725;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.manageLink {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 575px) {
+  .bannerActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .bannerActions button {
+    width: 100%;
+  }
+}

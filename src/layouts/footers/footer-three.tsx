@@ -7,6 +7,7 @@ import LineTextSyne from "@/components/line-text/line-text-syne";
 import logo from "@/assets/img/logo/logo-white.png";
 import { RightArrow } from "@/components/svg";
 import { Link } from "@/i18n/navigation";
+import CookieSettingsLink from "@/components/analytics/CookieSettingsLink";
 
 export default function FooterThree() {
   const t = useTranslations("footer");
@@ -156,6 +157,8 @@ export default function FooterThree() {
                   >
                     NRV Agency
                   </a>
+                  {" · "}
+                  <CookieSettingsLink />
                 </p>
               </div>
             </div>

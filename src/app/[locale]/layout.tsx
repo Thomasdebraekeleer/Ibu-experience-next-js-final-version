@@ -15,6 +15,8 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import MetaPixel from "@/components/MetaPixel";
 import MetaPixelRouteChange from "@/components/MetaPixelRouteChange";
+import ConsentDefaultScript from "@/components/analytics/ConsentDefaultScript";
+import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import { routing, type Locale } from "@/i18n/routing";
 import { LODGIFY_SCRIPTS } from "@/config/lodgify";
 import { metadataBase } from "@/config/site";
@@ -143,14 +145,17 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
         suppressHydrationWarning
         className={`${gellery.variable} ${aladin.variable} ${syne_body.variable} ${syne_heading.variable} ${syne_p.variable} ${syne.variable} ${big_shoulders.variable} ${marcellus.variable}`}
       >
+        <ConsentDefaultScript />
         <NextIntlClientProvider messages={messages}>
-          <MetaPixel />
-          <Analytics />
-          <Suspense fallback={null}>
-            <MetaPixelRouteChange />
-          </Suspense>
+          <AnalyticsProvider>
+            <MetaPixel />
+            <Analytics />
+            <Suspense fallback={null}>
+              <MetaPixelRouteChange />
+            </Suspense>
 
-          <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+            <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+          </AnalyticsProvider>
         </NextIntlClientProvider>
         <Script
           id="lodgify-psb"

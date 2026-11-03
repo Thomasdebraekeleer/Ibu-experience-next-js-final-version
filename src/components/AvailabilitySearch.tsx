@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { getLodgifyAllPropertiesSearchUrl } from "@/config/lodgify";
 import type { Locale } from "@/i18n/routing";
 import styles from "./AvailabilitySearch.module.scss";
+import { trackBookingClick } from "@/lib/analytics/events";
+import { toAnalyticsSiteLanguage } from "@/lib/analytics/site-language";
 
 function formatDateForUrl(d: Date): string {
   const y = d.getFullYear();
@@ -96,9 +98,14 @@ export default function AvailabilitySearch({
         pets: "0",
       });
       const url = `${getLodgifyAllPropertiesSearchUrl(locale)}?${params.toString()}`;
+      trackBookingClick({
+        href: url,
+        siteLanguage: toAnalyticsSiteLanguage(locale),
+        buttonLocation: variant === "hero" ? "availability_search_hero" : "availability_search",
+      });
       window.location.href = url;
     },
-    [arrival, departure, adults, locale, t]
+    [arrival, departure, adults, locale, t, variant]
   );
 
   const isHero = variant === "hero";

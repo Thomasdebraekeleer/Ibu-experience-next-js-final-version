@@ -48,6 +48,37 @@
     "switchToFrench": "Changer la langue en français",
     "switchToDutch": "Change language to Dutch"
   },
+  "cookies": {
+    "manage": "Cookies beheren",
+    "banner": {
+      "title": "Uw privacy respecteren",
+      "description": "We gebruiken essentiële cookies voor het functioneren van de site. Met uw toestemming meten we het publiek (Google Analytics) en, indien u dit apart aanvaardt, marketingcookies (Meta). U kunt accepteren, weigeren of uw keuzes op elk moment aanpassen.",
+      "accept": "Alles accepteren",
+      "reject": "Alles weigeren",
+      "customize": "Aanpassen"
+    },
+    "modal": {
+      "title": "Cookievoorkeuren",
+      "description": "Kies welke categorieën u toestaat. Essentiële cookies blijven altijd actief.",
+      "cancel": "Annuleren",
+      "save": "Opslaan"
+    },
+    "categories": {
+      "alwaysOn": "Altijd actief",
+      "essential": {
+        "title": "Essentieel",
+        "description": "Nodig voor het functioneren van de site (beveiliging, taal, basisvoorkeuren)."
+      },
+      "analytics": {
+        "title": "Publieksmeting",
+        "description": "Google Analytics 4 — geanonimiseerde statistieken over bezoek en gebruik."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "description": "Meta Pixel — meting van advertentiecampagnes op Meta-netwerken."
+      }
+    }
+  },
   "notFound": {
     "heading": "404",
     "title": "Pagina niet gevonden",

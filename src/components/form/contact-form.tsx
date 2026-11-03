@@ -6,6 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useTranslations } from "next-intl";
 import ErrorMsg from "../error-msg";
+import { useLocale } from "next-intl";
+import { trackGenerateLead } from "@/lib/analytics/events";
+import { toAnalyticsSiteLanguage } from "@/lib/analytics/site-language";
+import type { Locale } from "@/i18n/routing";
 
 type FormData = {
   name: string;
@@ -19,6 +23,7 @@ type IProps = {
 
 export default function ContactForm({ btnCls = "" }: IProps) {
   const t = useTranslations("contact.form");
+  const locale = useLocale() as Locale;
   const [showSuccess, setShowSuccess] = useState(false);
 
   const schema = useMemo(
@@ -55,6 +60,8 @@ export default function ContactForm({ btnCls = "" }: IProps) {
     const mailtoLink = `mailto:info@ibu-experience.be?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
     window.open(mailtoLink);
+
+    trackGenerateLead(toAnalyticsSiteLanguage(locale));
 
     setShowSuccess(true);
     reset();

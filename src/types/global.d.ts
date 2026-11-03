@@ -2,13 +2,16 @@
  * Déclarations TypeScript globales
  */
 
-// Déclaration pour le Meta Pixel (Facebook Pixel)
+// Meta Pixel (Facebook Pixel)
 interface Window {
   fbq: (
-    command: 'track' | 'trackCustom' | 'init',
+    command: "track" | "trackCustom" | "init",
     eventName: string,
-    parameters?: Record<string, any>
+    parameters?: Record<string, unknown>
   ) => void;
-  _fbq: any;
+  _fbq: unknown;
+  dataLayer?: unknown[];
+  gtag?: (...args: unknown[]) => void;
+  __ibuGaConfigured?: boolean;
 }
 

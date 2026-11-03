@@ -1,17 +1,19 @@
-import Script from 'next/script';
+"use client";
+
+import Script from "next/script";
+import { isGoogleAnalyticsAllowedInBrowser } from "@/lib/analytics/env";
+import { useAnalyticsConsent } from "@/components/analytics/AnalyticsProvider";
 
 /**
- * Composant Meta Pixel (Facebook Pixel)
- * Charge et initialise le Meta Pixel sur toutes les pages
+ * Meta Pixel — chargé uniquement après consentement marketing (Consent Mode / RGPD).
  */
 export default function MetaPixel() {
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || '850620137569894';
-  
-  // TEMPORAIRE : Chargement en dev pour tests
-  // TODO : Remettre la condition "if (process.env.NODE_ENV !== 'production') return null;" après les tests
-  // if (process.env.NODE_ENV !== 'production') {
-  //   return null;
-  // }
+  const { preferences } = useAnalyticsConsent();
+  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "850620137569894";
+
+  if (!isGoogleAnalyticsAllowedInBrowser() || !preferences.marketing) {
+    return null;
+  }
 
   return (
     <>
@@ -20,7 +22,6 @@ export default function MetaPixel() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            console.log('🎯 Meta Pixel - Initialisation...', 'ID: ${pixelId}', 'ENV:', '${process.env.NODE_ENV}');
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -31,7 +32,6 @@ export default function MetaPixel() {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${pixelId}');
             fbq('track', 'PageView');
-            console.log('✅ Meta Pixel - Initialisé avec succès', window.fbq);
           `,
         }}
       />
@@ -39,7 +39,7 @@ export default function MetaPixel() {
         <img
           height="1"
           width="1"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
           alt=""
         />
@@ -47,4 +47,3 @@ export default function MetaPixel() {
     </>
   );
 }
-

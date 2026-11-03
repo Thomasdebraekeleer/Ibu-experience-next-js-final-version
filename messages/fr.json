@@ -48,6 +48,37 @@
     "switchToFrench": "Changer la langue en français",
     "switchToDutch": "Change language to Dutch"
   },
+  "cookies": {
+    "manage": "Gérer les cookies",
+    "banner": {
+      "title": "Respect de votre vie privée",
+      "description": "Nous utilisons des cookies essentiels au fonctionnement du site. Avec votre accord, nous mesurons l'audience (Google Analytics) et, si vous l'acceptez séparément, des cookies publicitaires (Meta). Vous pouvez accepter, refuser ou personnaliser vos choix à tout moment.",
+      "accept": "Tout accepter",
+      "reject": "Tout refuser",
+      "customize": "Personnaliser"
+    },
+    "modal": {
+      "title": "Préférences cookies",
+      "description": "Choisissez les catégories que vous autorisez. Les cookies essentiels sont toujours actifs.",
+      "cancel": "Annuler",
+      "save": "Enregistrer"
+    },
+    "categories": {
+      "alwaysOn": "Toujours actif",
+      "essential": {
+        "title": "Essentiels",
+        "description": "Nécessaires au fonctionnement du site (sécurité, langue, préférences de base)."
+      },
+      "analytics": {
+        "title": "Mesure d'audience",
+        "description": "Google Analytics 4 — statistiques anonymisées de fréquentation et d'utilisation du site."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "description": "Meta Pixel — mesure des campagnes publicitaires sur les réseaux Meta."
+      }
+    }
+  },
   "notFound": {
     "heading": "404",
     "title": "Page introuvable",

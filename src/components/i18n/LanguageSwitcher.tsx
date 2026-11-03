@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { trackLanguageChange } from "@/lib/analytics/events";
+import { toAnalyticsSiteLanguage } from "@/lib/analytics/site-language";
 
 type LanguageSwitcherProps = {
   variant?: "homepage" | "default";
@@ -28,6 +30,11 @@ function LanguageSwitcherInner({
 
   const switchLocale = (newLocale: Locale) => {
     if (newLocale === locale) return;
+
+    trackLanguageChange({
+      from: toAnalyticsSiteLanguage(locale),
+      to: toAnalyticsSiteLanguage(newLocale),
+    });
 
     const query = searchParams.toString();
     const href = query ? `${pathname}?${query}` : pathname;

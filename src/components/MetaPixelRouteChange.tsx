@@ -1,27 +1,25 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { pageview } from '@/lib/metaPixel';
+import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { pageview } from "@/lib/metaPixel";
+import { useAnalyticsConsent } from "@/components/analytics/AnalyticsProvider";
+import { isGoogleAnalyticsAllowedInBrowser } from "@/lib/analytics/env";
 
 /**
- * Composant pour tracker les changements de route (navigation SPA)
- * Envoie un événement PageView à chaque changement d'URL
+ * PageView Meta Pixel lors des navigations client (SPA).
  */
 export default function MetaPixelRouteChange() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { preferences } = useAnalyticsConsent();
 
   useEffect(() => {
-    // Ne track pas en développement
-    if (process.env.NODE_ENV !== 'production') {
+    if (!isGoogleAnalyticsAllowedInBrowser() || !preferences.marketing) {
       return;
     }
-
-    // Track le PageView lors du changement de route
     pageview();
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, preferences.marketing]);
 
   return null;
 }
-
