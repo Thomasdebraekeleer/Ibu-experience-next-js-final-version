@@ -413,31 +413,31 @@
       "title": "De opties",
       "subtitle": "Personaliseer uw onvergetelijke verblijf",
       "cellarVisit": {
-        "title": "Bezoek aan de wijnkelder (met proeverij) - 60 EUR / 2 pers.",
+        "title": "Bezoek aan de wijnkelder (met proeverij)",
         "paragraph": "Ontdek de wereld van wijnproductie tijdens een exclusief bezoek aan onze wijnkelder. Van de gisting tot de rijping in tanks en eikenhouten vaten: ontdek de verschillende stappen van het vinificatieproces en de knowhow van het domein. Een authentieke en zintuiglijke ervaring, afgesloten met een degustatie van onze wijnen.",
         "footnote": "* Wilt u een kelderbezoek met degustatie reserveren? Selecteer deze optie tijdens uw reservatie. Tarief: € 60 voor 2 personen. Betaling ter plaatse.",
         "imageAlt": "Kelderbezoek"
       },
       "aperitifBoard": {
-        "title": "Aperitiefplank (35 EUR/2 pers.)",
+        "title": "Aperitiefplank",
         "paragraph1": "Geniet van een verfijnde aperitiefplank samengesteld uit streekproducten: een selectie lokale kazen, ambachtelijke charcuterie en seizoensgebonden lekkernijen.",
         "paragraph2": "Perfect om uw welkomstfles te begeleiden en een eerste moment te genieten te midden van de wijngaarden.",
         "footnote": "* Wijn en frisdrank optioneel verkrijgbaar in uw minibar (Chardonnay, Pinot Gris, mousserende wijn, Kult Kéfir)",
         "imageAlt": "Aperitiefplank"
       },
       "dinnerBoard": {
-        "title": "Gourmand dinerplank (65 EUR/2 pers.)",
+        "title": "Gourmand dinerplank",
         "paragraph1": "Een rijkgevulde gastronomische plank met smaken uit de streek: een assortiment lokale kazen, ambachtelijke charcuterie, huisgemaakte tapenades en 100% Belgische verse producten.",
         "paragraph2": "Een complete en gezellige ervaring, ideaal voor een diner voor twee, midden tussen de wijngaarden.",
         "imageAlt": "Gourmetplank"
       },
       "lateCheckout": {
-        "title": "Late check-out tot 13.30 uur (31 EUR)",
+        "title": "Late check-out tot 13.30 uur",
         "paragraph": "Verleng uw moment van welzijn: in plaats van op het gebruikelijke check-outtijdstip te vertrekken, geniet u nog wat langer van uw cocon en vertrekt u rustig om 13.30 uur. Ideaal om lekker uit te slapen, nog een laatste keer van de sauna of het Scandinavisch buitenbad te genieten, of een wandeling in de omgeving te maken voordat u weer op weg gaat.",
         "imageAlt": "Late check-out"
       },
       "breakfast": {
-        "title": "Lokaal ontbijt (35 EUR)",
+        "title": "Lokaal ontbijt",
         "paragraph1": "Begin de dag goed met een ontbijt dat is bedacht als een heerlijke pauze: een broodje om op te warmen, kazen en charcuterie geselecteerd bij lokale producenten, seizoensfruit, sap en lekkernijen die de streek in de kijker zetten en toch licht blijven.",
         "paragraph2": "Elk ontbijt wordt met zorg samengesteld en brengt de pure smaken van de streek tot leven. De perfecte start van de dag, voordat u volop geniet van uw verblijf bij IBÙ.",
         "imageAlt": "Lokaal ontbijt"
@@ -631,7 +631,7 @@
     },
     "options": {
       "breakfast": {
-        "title": "Lokaal ontbijt (15 EUR)",
+        "title": "Lokaal ontbijt",
         "paragraph1": "Begin de dag goed met een ontbijt dat is bedacht als een heerlijke pauze: een broodje om op te warmen, kazen en charcuterie geselecteerd bij lokale producenten, seizoensfruit, sap en lekkernijen die de streek in de kijker zetten en toch licht blijven.",
         "paragraph2": "Elk ontbijt wordt met zorg samengesteld en brengt de pure smaken van de streek tot leven. De perfecte start van de dag, voordat u volop geniet van uw verblijf bij IBÙ.",
         "imageAlt": "Lokaal ontbijt"

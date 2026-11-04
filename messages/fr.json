@@ -413,31 +413,31 @@
       "title": "Les options",
       "subtitle": "Personnalisez votre séjour inoubliable",
       "cellarVisit": {
-        "title": "Visite de Chai (avec dégustation) - 60EUR / 2 pers.",
+        "title": "Visite de Chai (avec dégustation)",
         "paragraph": "Découvrez les coulisses de la vinification au cœur du chai : fermentation, élevage en cuve ou en barrique, et secrets de production. Une immersion guidée, authentique et sensorielle pour comprendre le savoir-faire du domaine et apprécier les vins autrement.",
         "footnote": "* Pour réserver la visite du chai (avec dégustation), veuillez sélectionner l'option lors de votre réservation. Tarif : 60EUR / 2 pers. Paiement directement sur place.",
         "imageAlt": "Visite de Chai"
       },
       "aperitifBoard": {
-        "title": "Planche apéritive (35eur/2pers)",
+        "title": "Planche apéritive",
         "paragraph1": "Une délicate planche apéritive composée de produits du terroir : sélection de fromages locaux, charcuteries artisanales et accompagnements de saison.",
         "paragraph2": "Parfaite pour accompagner votre bouteille de bienvenue et savourer un premier moment au cœur des vignes.",
         "footnote": "* Vin et soft disponible en option dans votre mini bar (Chardonnay, Pinot gris, Effervescent, Kult Kéfir)",
         "imageAlt": "Planche apéritif"
       },
       "dinnerBoard": {
-        "title": "Planche gourmande dinatoire (65eur/2pers)",
+        "title": "Planche gourmande dinatoire",
         "paragraph1": "Une généreuse planche gourmande aux saveurs du terroir : assortiment de fromages locaux, charcuteries artisanales, tapenades maison et produits frais 100% belges.",
         "paragraph2": "Une expérience complète et conviviale, idéale pour un dîner à deux au cœur des vignes.",
         "imageAlt": "Planche gourmande dinatoire"
       },
       "lateCheckout": {
-        "title": "Départ tardif (13h30) (31eur)",
+        "title": "Départ tardif (13h30)",
         "paragraph": "Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l'heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à 13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.",
         "imageAlt": "Départ tardif"
       },
       "breakfast": {
-        "title": "Petit déjeuner local (35eur)",
+        "title": "Petit déjeuner local",
         "paragraph1": "Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause gourmande : Petit pain à réchauffer, produits laitiers et charcuteries sélectionnées auprès d'artisans et de producteurs de la région, fruits de saison, jus et douceurs qui mettent en avant le terroir tout en restant légers.",
         "paragraph2": "Chaque assiette révèle des saveurs honnêtes et des produits frais, pour un réveil en douceur avant de profiter pleinement de votre séjour IBÙ.",
         "imageAlt": "Petit déjeuner local"
@@ -631,7 +631,7 @@
     },
     "options": {
       "breakfast": {
-        "title": "Petit déjeuner local (35eur)",
+        "title": "Petit déjeuner local",
         "paragraph1": "Commencez la journée du bon pied avec un petit déjeuner pensé comme une pause gourmande : Petit pain à réchauffer, produits laitiers et charcuteries sélectionnées auprès d'artisans et de producteurs de la région, fruits de saison, jus et douceurs qui mettent en avant le terroir tout en restant légers.",
         "paragraph2": "Chaque assiette révèle des saveurs honnêtes et des produits frais, pour un réveil en douceur avant de profiter pleinement de votre séjour IBÙ.",
         "imageAlt": "Petit déjeuner local"
