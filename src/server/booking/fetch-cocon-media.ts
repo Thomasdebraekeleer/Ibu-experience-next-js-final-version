@@ -1,4 +1,5 @@
 import type { BookingCocon } from "@/config/booking/types";
+import { MAX_COCON_FULL_GALLERY_IMAGES } from "@/config/booking/limits";
 import { fetchPropertyRooms } from "@/server/lodgify/client";
 import { normalizeRoomMediaForRoomType } from "@/server/lodgify/normalize-room-media";
 import type { PublicCoconImage } from "@/server/lodgify/normalize-room-media";
@@ -8,7 +9,7 @@ import { LodgifyApiError } from "@/server/lodgify/types";
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
 function cacheKey(propertyId: number, roomTypeId: number): string {
-  return `cocon-media:${propertyId}:${roomTypeId}`;
+  return `cocon-media:full:${propertyId}:${roomTypeId}`;
 }
 
 export async function fetchCoconGalleryImages(cocon: BookingCocon): Promise<PublicCoconImage[]> {
@@ -19,7 +20,9 @@ export async function fetchCoconGalleryImages(cocon: BookingCocon): Promise<Publ
 
   try {
     const payload = await fetchPropertyRooms(propertyId);
-    const images = normalizeRoomMediaForRoomType(payload, roomTypeId);
+    const images = normalizeRoomMediaForRoomType(payload, roomTypeId, {
+      maxImages: MAX_COCON_FULL_GALLERY_IMAGES,
+    });
     setCached(key, images, CACHE_TTL_MS);
     return images;
   } catch (err) {
