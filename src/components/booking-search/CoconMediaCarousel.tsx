@@ -4,11 +4,10 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Keyboard, A11y } from "swiper/modules";
+import { Navigation, Keyboard, A11y } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
-import "swiper/css/pagination";
 import styles from "./CoconMediaCarousel.module.scss";
 import type { PublicCoconImage } from "@/lib/booking/cocon-media-types";
 
@@ -35,7 +34,6 @@ export default function CoconMediaCarousel({
   const swiperRef = useRef<SwiperType | null>(null);
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
-  const paginationRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [brokenUrls, setBrokenUrls] = useState<Set<string>>(() => new Set());
 
@@ -59,18 +57,12 @@ export default function CoconMediaCarousel({
       if (!showNav) return;
       const prev = prevRef.current;
       const next = nextRef.current;
-      const pagination = paginationRef.current;
-      if (!prev || !next || !pagination) return;
+      if (!prev || !next) return;
 
       if (typeof swiper.params.navigation === "object") {
         swiper.params.navigation.enabled = true;
         swiper.params.navigation.prevEl = prev;
         swiper.params.navigation.nextEl = next;
-      }
-      if (typeof swiper.params.pagination === "object") {
-        swiper.params.pagination.enabled = true;
-        swiper.params.pagination.el = pagination;
-        swiper.params.pagination.clickable = true;
       }
 
       try {
@@ -80,15 +72,6 @@ export default function CoconMediaCarousel({
       }
       swiper.navigation.init();
       swiper.navigation.update();
-
-      try {
-        swiper.pagination.destroy();
-      } catch {
-        /* pas encore initialisé */
-      }
-      swiper.pagination.init();
-      swiper.pagination.render();
-      swiper.pagination.update();
     },
     [showNav]
   );
@@ -124,12 +107,11 @@ export default function CoconMediaCarousel({
       <Swiper
         key={resetKey}
         className={styles.swiper}
-        modules={[Navigation, Pagination, Keyboard, A11y]}
+        modules={[Navigation, Keyboard, A11y]}
         slidesPerView={1}
         loop={showNav}
         keyboard={{ enabled: true }}
         navigation={false}
-        pagination={false}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
           wireSwiperControls(swiper);
@@ -162,12 +144,9 @@ export default function CoconMediaCarousel({
       </Swiper>
 
       {showNav && (
-        <>
-          <span className={styles.counter} aria-live="polite">
-            {t("photoCounter", { current: activeIndex + 1, total })}
-          </span>
-          <div ref={paginationRef} className={styles.paginationHost} />
-        </>
+        <span className={styles.counter} aria-live="polite">
+          {t("photoCounter", { current: activeIndex + 1, total })}
+        </span>
       )}
 
       {loadingRemote && isFallbackOnly && (

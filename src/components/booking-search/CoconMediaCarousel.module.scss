@@ -96,30 +96,6 @@ $panel-bg: #fffdf9;
   background: rgba($panel-bg, 0.9);
 }
 
-.paginationHost {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 6px;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-
-  :global(.swiper-pagination-bullet) {
-    width: 5px;
-    height: 5px;
-    border-radius: 999px;
-    background: rgba($primary, 0.25);
-    opacity: 1;
-    margin: 0 !important;
-  }
-
-  :global(.swiper-pagination-bullet-active) {
-    background: rgba($primary, 0.75);
-  }
-}
-
 .loadingShimmer {
   position: absolute;
   inset: 0;
