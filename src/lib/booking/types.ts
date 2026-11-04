@@ -27,6 +27,12 @@ export type AvailabilityResponse =
     }
   | { ok: false; reason: ValidateReason };
 
+export type PublicCoconPricing = {
+  totalIncludingVat: number;
+  currencyCode: string;
+  nights: number;
+};
+
 export type ValidateResponse = {
   valid: boolean;
   availableCoconIds: string[];
@@ -39,6 +45,7 @@ export type ValidateResponse = {
   };
   checkoutUrls: Record<string, string>;
   checkoutBlocked: Record<string, string>;
+  pricingByCocon?: Record<string, PublicCoconPricing>;
 };
 
 export type DayVisualState =

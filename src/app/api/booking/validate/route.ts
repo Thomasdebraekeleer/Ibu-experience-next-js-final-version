@@ -5,7 +5,8 @@ import { fetchPlaceCalendar } from "@/server/booking/fetch-place-calendar";
 import { parseValidateBody } from "@/server/booking/validate-request";
 import { validateStay } from "@/server/booking/validate-stay";
 import { getActiveCocons } from "@/config/booking/places";
-import { addDaysYmd } from "@/lib/dates/ymd";
+import { addDaysYmd, countNights } from "@/lib/dates/ymd";
+import type { PublicCoconPricing } from "@/lib/booking/types";
 import { LodgifyApiError } from "@/server/lodgify/types";
 import { confirmStayWithQuote } from "@/server/lodgify/quote";
 import { buildValidateCheckoutOutcome } from "@/server/booking/validate-checkout-outcome";
@@ -28,6 +29,7 @@ function emptyValidateResponse(reason: string, status: number) {
       constraints: {},
       checkoutUrls: {},
       checkoutBlocked: {},
+      pricingByCocon: {},
     },
     { status, headers: NO_STORE }
   );
@@ -77,10 +79,13 @@ export async function POST(request: NextRequest) {
           constraints: validation.constraints,
           checkoutUrls: {},
           checkoutBlocked: {},
+          pricingByCocon: {},
         },
         { status: 422, headers: NO_STORE }
       );
     }
+
+    const stayNights = countNights(parsed.arrival, parsed.departure);
 
     const quoteJobs = validation.availableCoconIds.map((coconId) => {
       const cocon =
@@ -91,7 +96,7 @@ export async function POST(request: NextRequest) {
 
     const quoteResults = await Promise.allSettled(
       quoteJobs.map(async ({ coconId, cocon }) => {
-        if (!cocon) return { coconId, confirmed: false as const };
+        if (!cocon) return { coconId, quote: { confirmed: false as const } };
         const quote = await confirmStayWithQuote({
           propertyId: cocon.lodgify.propertyId,
           roomTypeId: cocon.lodgify.roomTypeId,
@@ -99,14 +104,26 @@ export async function POST(request: NextRequest) {
           departure: parsed.departure,
           adults: parsed.adults,
         });
-        return { coconId, confirmed: quote.confirmed };
+        return { coconId, quote };
       })
     );
 
     const quoteConfirmedIds: string[] = [];
+    const pricingByCocon: Record<string, PublicCoconPricing> = {};
     for (const result of quoteResults) {
-      if (result.status === "fulfilled" && result.value.confirmed) {
-        quoteConfirmedIds.push(result.value.coconId);
+      if (result.status !== "fulfilled") continue;
+      const { coconId, quote } = result.value;
+      if (
+        quote.confirmed &&
+        typeof quote.totalIncludingVat === "number" &&
+        quote.currencyCode
+      ) {
+        quoteConfirmedIds.push(coconId);
+        pricingByCocon[coconId] = {
+          totalIncludingVat: quote.totalIncludingVat,
+          currencyCode: quote.currencyCode,
+          nights: stayNights,
+        };
       }
     }
 
@@ -119,6 +136,7 @@ export async function POST(request: NextRequest) {
           constraints: validation.constraints,
           checkoutUrls: {},
           checkoutBlocked: {},
+          pricingByCocon: {},
         },
         { status: 422, headers: NO_STORE }
       );
@@ -146,11 +164,17 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    const filteredPricing: Record<string, PublicCoconPricing> = {};
+    for (const id of Object.keys(checkoutUrls)) {
+      if (pricingByCocon[id]) filteredPricing[id] = pricingByCocon[id]!;
+    }
+
     const outcome = buildValidateCheckoutOutcome({
       quoteConfirmedIds,
       checkoutUrls,
       checkoutBlocked,
       constraints: validation.constraints,
+      pricingByCocon: filteredPricing,
     });
 
     return NextResponse.json(outcome.body, { status: outcome.status, headers: NO_STORE });

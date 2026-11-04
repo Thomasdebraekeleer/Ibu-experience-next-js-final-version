@@ -47,6 +47,30 @@ export function trackGenerateLead(siteLanguage: AnalyticsSiteLanguage): void {
   });
 }
 
+export function trackPlaceBookingEvent(
+  eventName:
+    | "place_booking_search"
+    | "place_booking_gallery_open"
+    | "place_booking_reserve_modal"
+    | "place_booking_choose"
+    | "place_booking_checkout",
+  options: {
+    siteLanguage: AnalyticsSiteLanguage;
+    placeId: string;
+    coconId?: string;
+    reason?: string;
+  }
+): void {
+  if (!canTrackAnalytics()) return;
+
+  trackGaEvent(eventName, {
+    site_language: options.siteLanguage,
+    place_id: options.placeId,
+    cocon_id: options.coconId ?? undefined,
+    reason: options.reason ?? undefined,
+  });
+}
+
 export function trackBookingSearchEvent(
   eventName:
     | "booking_search_open"

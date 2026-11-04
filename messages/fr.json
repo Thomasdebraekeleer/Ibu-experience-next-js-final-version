@@ -799,5 +799,62 @@
       "checkout_not_configured": "La réservation en ligne n'est pas encore disponible pour cet hébergement.",
       "invalid_request": "Requête invalide. Vérifiez vos informations."
     }
+  },
+  "placeBooking": {
+    "sectionAria": "Réserver un cocon au Domaine de Mehaignoul",
+    "arrival": "Arrivée",
+    "departure": "Départ",
+    "adults": "Adultes",
+    "adultsCount": "{count, plural, one {# adulte} other {# adultes}}",
+    "search": "Rechercher",
+    "searching": "Recherche…",
+    "choose": "Choisir",
+    "morePhotos": "Plus de photos",
+    "close": "Fermer",
+    "photoPrev": "Photo précédente",
+    "photoNext": "Photo suivante",
+    "photoCounter": "{current} / {total}",
+    "photoAlt": "Photo {index} sur {count} — {name}",
+    "pickDate": "Choisir",
+    "datesTitle": "Dates du séjour",
+    "catalogLoading": "Chargement des hébergements…",
+    "catalogError": "Impossible de charger les informations des cocons pour le moment.",
+    "fromPrice": "À partir de {price}",
+    "stayPrice": "{price} ({nights, plural, one {# nuit} other {# nuits}})",
+    "priceUnavailable": "Voir les disponibilités",
+    "capacity": "{count, plural, one {# personne} other {# personnes}}",
+    "bedrooms": "{count, plural, one {# chambre} other {# chambres}}",
+    "bathrooms": "{count, plural, one {# salle de bain} other {# salles de bain}}",
+    "bedTypes": {
+      "queen": "Lit queen size",
+      "double": "Lit double"
+    },
+    "amenitiesMore": "+ {count, plural, one {# équipement} other {# équipements}}",
+    "noAvailability": "Aucun cocon n'est disponible pour ces dates et ce nombre d'adultes.",
+    "changeDates": "Modifier les dates",
+    "resetSearch": "Réinitialiser",
+    "retry": "Réessayer",
+    "decreaseAdults": "Réduire le nombre d'adultes",
+    "increaseAdults": "Augmenter le nombre d'adultes",
+    "maxCapacity": "Capacité maximale : {count, plural, one {# adulte} other {# adultes}}",
+    "validating": "Vérification…",
+    "checkPrice": "Vérifier le tarif",
+    "finalizeBooking": "Finaliser la réservation",
+    "amenities": {
+      "doubleBed": "Lit double / queen",
+      "kitchenette": "Kitchenette",
+      "bathroom": "Salle de bain",
+      "parking": "Parking",
+      "airConditioning": "Climatisation",
+      "terrace": "Terrasse",
+      "coffeeMachine": "Machine à café",
+      "essentials": "Essentiels",
+      "bedLinen": "Linge de lit",
+      "shower": "Douche",
+      "breakfast": "Petit-déjeuner"
+    },
+    "errors": {
+      "missingDates": "Veuillez sélectionner vos dates de séjour."
+    }
   }
 }

@@ -1,0 +1,667 @@
+$primary: #053725;
+$primary-hover: #074d32;
+$border: rgba(5, 55, 37, 0.12);
+$panel-bg: #fffdf9;
+$cream: rgba(255, 252, 247, 0.96);
+$error: #8b2a2a;
+$surface-radius: 16px;
+
+.section {
+  width: 100%;
+  margin-top: 48px;
+  margin-bottom: 40px;
+}
+
+.searchBarOuter {
+  position: relative;
+  margin-bottom: 28px;
+  z-index: 20;
+}
+
+.searchBar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.searchDatesAnchor {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+
+  .searchDatesPill {
+    width: 100%;
+  }
+}
+
+.datesDropdownPanel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 60;
+  width: min(100%, 440px);
+  padding: 16px 18px 18px;
+  border: 1px solid $border;
+  border-radius: 16px;
+  background: $panel-bg;
+  box-shadow: 0 20px 48px rgba(5, 55, 37, 0.14);
+}
+
+.searchDatesPill {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  min-height: 48px;
+  border: 1px solid $border;
+  border-radius: $surface-radius;
+  background: $panel-bg;
+  box-shadow: 0 8px 24px rgba(5, 55, 37, 0.06);
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background: $cream;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.searchDatesZoneBefore {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 4px;
+}
+
+.searchDatesZoneAfter {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.searchDateCluster {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.searchDatesIcon {
+  flex-shrink: 0;
+  color: $primary;
+}
+
+.searchDatesArrow {
+  flex: 0 0 auto;
+  color: $primary;
+  stroke: $primary;
+}
+
+.searchDateInline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.searchDateWord {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba($primary, 0.65);
+}
+
+.searchDateValue {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: $primary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchGuestsPill {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  min-height: 48px;
+  border: 1px solid $border;
+  border-radius: $surface-radius;
+  background: $panel-bg;
+  box-shadow: 0 8px 24px rgba(5, 55, 37, 0.06);
+}
+
+.searchGuestsCount {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: $primary;
+  white-space: nowrap;
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.searchStepperBtn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba($primary, 0.35);
+  border-radius: 999px;
+  background: $panel-bg;
+  color: $primary;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:disabled {
+    color: rgba($primary, 0.35);
+    border-color: rgba($primary, 0.15);
+    cursor: not-allowed;
+  }
+}
+
+.searchSubmitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: $surface-radius;
+  padding: 10px 20px;
+  min-height: 48px;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(5, 55, 37, 0.12);
+}
+
+.guestsStepper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.stepperBtn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  background: #fff;
+  color: $primary;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.primaryBtn {
+  flex: 0 0 auto;
+  align-self: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: $primary;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.secondaryBtn {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  background: #fff;
+  color: $primary;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lodgingCard {
+  display: grid;
+  grid-template-columns: minmax(0, 34%) minmax(0, 1fr) minmax(0, 220px);
+  gap: 0;
+  border: 1px solid $border;
+  border-radius: $surface-radius;
+  background: $panel-bg;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(5, 55, 37, 0.06);
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardMedia {
+  display: flex;
+  align-items: stretch;
+  padding: 16px 10px 16px 16px;
+  min-height: 0;
+
+  @media (max-width: 991px) {
+    padding: 16px;
+  }
+}
+
+.cardMediaFrame {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 212px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba($primary, 0.04);
+
+  @media (max-width: 991px) {
+    min-height: 200px;
+  }
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+.morePhotosBtn {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 2;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.92);
+  color: $primary;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cardInfo {
+  padding: 22px 24px;
+  min-width: 0;
+}
+
+.cardTitle {
+  margin: 0 0 12px;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  color: $primary;
+}
+
+.cardMeta {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: $primary;
+    color: #fff;
+    line-height: 1.2;
+
+    svg {
+      flex-shrink: 0;
+      color: #fff;
+    }
+  }
+}
+
+.amenityList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  font-size: 0.82rem;
+  color: rgba($primary, 0.85);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.amenityMore {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  color: rgba($primary, 0.6);
+}
+
+.cardAside {
+  position: relative;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+
+  .primaryBtn {
+    align-self: flex-start;
+    min-width: min(100%, 168px);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22px;
+    bottom: 22px;
+    width: 2px;
+    background: $primary;
+    border-radius: 1px;
+  }
+
+  @media (max-width: 991px) {
+    padding-top: 28px;
+
+    &::before {
+      top: 0;
+      bottom: auto;
+      left: 20px;
+      right: 20px;
+      width: auto;
+      height: 2px;
+    }
+  }
+}
+
+.cardPriceMain {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $primary;
+  line-height: 1.35;
+}
+
+.cardPriceFallback {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba($primary, 0.65);
+}
+
+.statusMessage {
+  margin: 0 0 16px;
+  font-size: 0.88rem;
+  color: rgba($primary, 0.7);
+}
+
+.inlineError {
+  margin: 0 0 12px;
+  color: $error;
+  font-size: 0.88rem;
+}
+
+.emptyState {
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid $border;
+  background: rgba($primary, 0.03);
+}
+
+.emptyActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  background: rgba(3, 28, 19, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.dateDialog,
+.reserveDialog {
+  width: min(100%, 520px);
+  max-height: min(92dvh, 720px);
+  background: $panel-bg;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid $border;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.15rem;
+  color: $primary;
+}
+
+.modalClose {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  color: $primary;
+  cursor: pointer;
+}
+
+.modalBody {
+  overflow: auto;
+  padding: 16px 18px;
+}
+
+.modalFooter {
+  padding: 14px 18px 18px;
+  border-top: 1px solid $border;
+}
+
+.modalGuestsRow {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  .guestsStepper {
+    justify-content: flex-start;
+    width: auto;
+  }
+}
+
+.guestsLabel {
+  font-weight: 600;
+  color: $primary;
+}
+
+.capacityHint {
+  font-size: 0.78rem;
+  color: rgba($primary, 0.6);
+}
+
+.modalPrice {
+  margin: 12px 0 0;
+  font-weight: 700;
+  color: $primary;
+}
+
+.galleryOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10060;
+  background: rgba(3, 28, 19, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.galleryDialog {
+  position: relative;
+  width: min(100%, 960px);
+  max-height: min(92dvh, 820px);
+  background: #0a0a0a;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.galleryClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+}
+
+.gallerySwiperWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.gallerySwiper {
+  width: 100%;
+  height: 100%;
+}
+
+.gallerySlideInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.galleryImage {
+  object-fit: contain;
+  background: #111;
+}
+
+.galleryNav {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.65));
+
+  svg {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  &::after {
+    display: none !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+}
+
+.galleryNavPrev {
+  left: 12px;
+}
+
+.galleryNavNext {
+  right: 12px;
+}
+
+.galleryCounter {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 4;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .searchBar {
+    flex-wrap: wrap;
+  }
+
+  .searchDatesPill {
+    flex: 1 1 100%;
+  }
+
+  .searchGuestsPill {
+    flex: 1 1 auto;
+  }
+
+  .searchSubmitBtn {
+    flex: 1 1 auto;
+    min-width: min(100%, 200px);
+  }
+}

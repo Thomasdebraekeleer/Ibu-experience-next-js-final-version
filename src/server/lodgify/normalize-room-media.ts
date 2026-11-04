@@ -5,7 +5,9 @@ export type PublicCoconImage = {
 };
 
 export const LODGIFY_CDN_HOST = "l.icdbcdn.com";
-export const MAX_COCON_GALLERY_IMAGES = 6;
+export const MAX_COCON_PREVIEW_IMAGES = 6;
+/** @deprecated alias hero / cocon-media */
+export const MAX_COCON_GALLERY_IMAGES = MAX_COCON_PREVIEW_IMAGES;
 
 export function normalizeLodgifyImageUrl(raw: string | null | undefined): string | null {
   if (raw == null || typeof raw !== "string") return null;
@@ -64,8 +66,10 @@ function imagesFromRoom(room: LodgifyRoomMedia): string[] {
 /** Sélectionne le room type et retourne jusqu’à 6 URLs CDN normalisées. */
 export function normalizeRoomMediaForRoomType(
   payload: unknown,
-  roomTypeId: number
+  roomTypeId: number,
+  options?: { maxImages?: number }
 ): PublicCoconImage[] {
+  const maxImages = options?.maxImages ?? MAX_COCON_PREVIEW_IMAGES;
   const rooms = extractRooms(payload);
   const match = rooms.find((r) => r.id === roomTypeId);
   if (!match) return [];
@@ -77,7 +81,7 @@ export function normalizeRoomMediaForRoomType(
     if (seen.has(url)) continue;
     seen.add(url);
     out.push({ url });
-    if (out.length >= MAX_COCON_GALLERY_IMAGES) break;
+    if (out.length >= maxImages) break;
   }
 
   return out;

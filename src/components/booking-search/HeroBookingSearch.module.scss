@@ -961,8 +961,21 @@ $place-list-visible-rows: 4;
 }
 
 .legendSwatchPartial {
+  position: relative;
   background: rgba($primary, 0.08);
   border: 1px solid rgba($primary, 0.12);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $primary;
+  }
 }
 
 .legendSwatchUnavailable {

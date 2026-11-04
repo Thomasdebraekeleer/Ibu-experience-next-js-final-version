@@ -81,11 +81,8 @@ import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
 import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-option-row";
-import {
-  getLodgifyMehaignoulCocon1Url,
-  getLodgifyMehaignoulCocon2Url,
-} from "@/config/lodgify";
 import type { Locale } from "@/i18n/routing";
+import PlaceBookingSection from "@/components/place-booking/PlaceBookingSection";
 
 const COCON_FEATURE_KEYS = [
   "doubleBed",
@@ -98,9 +95,6 @@ const DomaineDeMehaignoulMain = () => {
   const locale = useLocale() as Locale;
   const t = useTranslations("domaineMehaignoul");
   const tExp = useTranslations("experiences");
-  const cocon1BookingUrl = getLodgifyMehaignoulCocon1Url(locale);
-  const cocon2BookingUrl = getLodgifyMehaignoulCocon2Url(locale);
-
   useScrollSmooth();
   useEffect(() => {
     document.body.classList.add("tp-magic-cursor");
@@ -170,147 +164,11 @@ const DomaineDeMehaignoulMain = () => {
                       </div>
                   </div>
                   
-                  {/* Section Widgets Lodgify - Cocon 1 et Cocon 2 */}
-                  <div className="row cocons-widgets-row" style={{marginTop: '80px', marginBottom: '40px'}}>
-                    {/* Colonne Cocon 1 */}
-                    <div className="col-lg-6 mb-lg-0 cocon-widget-col">
-                      <div className="lodgify-widget-container">
-                        <h5 className="text-center mb-4" style={{
-                          fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                          fontWeight: '600',
-                          color: '#053725'
-                        }}>{t("booking.cocon1.title")}</h5>
-                        <div className="widget-photo-container mb-4" style={{
-                          width: '100%',
-                          maxHeight: '200px',
-                          overflow: 'hidden',
-                          borderRadius: '0'
-                        }}>
-                          <Image 
-                            src="/assets/img/inner-project/Cocons/Cocon1.webp"
-                            alt={t("booking.cocon1.imageAlt")} 
-                            width={500}
-                            height={200}
-                            style={{
-                              width: '100%',
-                              height: '200px',
-                              objectFit: 'cover',
-                              borderRadius: '0'
-                            }}
-                          />
-                        </div>
-                        <a 
-                          href={cocon1BookingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            display: 'block',
-                            width: '100%',
-                            height: '60px',
-                            lineHeight: '60px',
-                            borderRadius: '0',
-                            padding: '0 42px',
-                            fontWeight: 500,
-                            fontSize: '16px',
-                            letterSpacing: '0.03em',
-                            textAlign: 'center',
-                            textDecoration: 'none',
-                            textTransform: 'capitalize',
-                            backgroundColor: '#053725',
-                            color: 'white',
-                            transition: 'background-color 0.3s ease',
-                            cursor: 'pointer',
-                            border: 'none'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#074d32';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = '#053725';
-                          }}
-                        >
-                          {t("booking.cocon1.availabilityCta")}
-                        </a>
-                      </div>
-                    </div>
-                    
-                    {/* Colonne Cocon 2 */}
-                    <div className="col-lg-6 mb-lg-0 cocon-widget-col">
-                      <div className="lodgify-widget-container">
-                        <h5 className="text-center mb-4" style={{
-                          fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                          fontWeight: '600',
-                          color: '#053725'
-                        }}>{t("booking.cocon2.title")}</h5>
-                        <div className="widget-photo-container mb-4" style={{
-                          width: '100%',
-                          maxHeight: '200px',
-                          overflow: 'hidden',
-                          borderRadius: '0'
-                        }}>
-                          <Image 
-                            src="/assets/img/inner-project/Cocons/Cocon2.webp"
-                            alt={t("booking.cocon2.imageAlt")} 
-                            width={500}
-                            height={200}
-                            style={{
-                              width: '100%',
-                              height: '200px',
-                              objectFit: 'cover',
-                              borderRadius: '0'
-                            }}
-                          />
-                        </div>
-                        <a 
-                          href={cocon2BookingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            display: 'block',
-                            width: '100%',
-                            height: '60px',
-                            lineHeight: '60px',
-                            borderRadius: '0',
-                            padding: '0 42px',
-                            fontWeight: 500,
-                            fontSize: '16px',
-                            letterSpacing: '0.03em',
-                            textAlign: 'center',
-                            textDecoration: 'none',
-                            textTransform: 'capitalize',
-                            backgroundColor: '#053725',
-                            color: 'white',
-                            transition: 'background-color 0.3s ease',
-                            cursor: 'pointer',
-                            border: 'none'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#074d32';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = '#053725';
-                          }}
-                        >
-                          {t("booking.cocon2.availabilityCta")}
-                        </a>
-                      </div>
+                  <div className="row" style={{ marginTop: "48px" }}>
+                    <div className="col-12">
+                      <PlaceBookingSection placeId="domaine-mehaignoul" />
                     </div>
                   </div>
-                  
-                  {/* Styles pour espacer correctement les cocons sur mobile */}
-                  <style jsx>{`
-                    @media (max-width: 991px) {
-                      .cocons-widgets-row {
-                        margin-bottom: 160px !important;
-                      }
-                      .cocon-widget-col {
-                        margin-bottom: 50px !important;
-                      }
-                      .cocon-widget-col:last-child {
-                        margin-bottom: 0 !important;
-                      }
-                    }
-                  `}</style>
                 </div>
             </div>
                          {/* NOS COCONS IBÙ Experience section */}

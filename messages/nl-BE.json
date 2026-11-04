@@ -799,5 +799,62 @@
       "checkout_not_configured": "Online reservatie is nog niet beschikbaar voor deze accommodatie.",
       "invalid_request": "Ongeldige aanvraag. Controleer uw gegevens."
     }
+  },
+  "placeBooking": {
+    "sectionAria": "Een cocon reserveren op Domaine de Mehaignoul",
+    "arrival": "Aankomst",
+    "departure": "Vertrek",
+    "adults": "Volwassenen",
+    "adultsCount": "{count, plural, one {# volwassene} other {# volwassenen}}",
+    "search": "Zoeken",
+    "searching": "Zoeken…",
+    "choose": "Kiezen",
+    "morePhotos": "Meer foto's",
+    "close": "Sluiten",
+    "photoPrev": "Vorige foto",
+    "photoNext": "Volgende foto",
+    "photoCounter": "{current} / {total}",
+    "photoAlt": "Foto {index} van {count} — {name}",
+    "pickDate": "Kiezen",
+    "datesTitle": "Verblijfsdata",
+    "catalogLoading": "Accommodaties laden…",
+    "catalogError": "De cocon-informatie kan momenteel niet worden geladen.",
+    "fromPrice": "Vanaf {price}",
+    "stayPrice": "{price} ({nights, plural, one {# nacht} other {# nachten}})",
+    "priceUnavailable": "Beschikbaarheid bekijken",
+    "capacity": "{count, plural, one {# persoon} other {# personen}}",
+    "bedrooms": "{count, plural, one {# slaapkamer} other {# slaapkamers}}",
+    "bathrooms": "{count, plural, one {# badkamer} other {# badkamers}}",
+    "bedTypes": {
+      "queen": "Queen size bed",
+      "double": "Tweepersoonsbed"
+    },
+    "amenitiesMore": "+ {count, plural, one {# voorziening} other {# voorzieningen}}",
+    "noAvailability": "Geen cocon beschikbaar voor deze datums en dit aantal volwassenen.",
+    "changeDates": "Datums wijzigen",
+    "resetSearch": "Resetten",
+    "retry": "Opnieuw proberen",
+    "decreaseAdults": "Aantal volwassenen verlagen",
+    "increaseAdults": "Aantal volwassenen verhogen",
+    "maxCapacity": "Maximale capaciteit: {count, plural, one {# volwassene} other {# volwassenen}}",
+    "validating": "Controleren…",
+    "checkPrice": "Tarief controleren",
+    "finalizeBooking": "Reservatie afronden",
+    "amenities": {
+      "doubleBed": "Tweepersoons- / queenbed",
+      "kitchenette": "Kitchenette",
+      "bathroom": "Badkamer",
+      "parking": "Parking",
+      "airConditioning": "Airconditioning",
+      "terrace": "Terras",
+      "coffeeMachine": "Koffiemachine",
+      "essentials": "Essentiële voorzieningen",
+      "bedLinen": "Bedlinnen",
+      "shower": "Douche",
+      "breakfast": "Ontbijt"
+    },
+    "errors": {
+      "missingDates": "Selecteer uw verblijfsdata."
+    }
   }
 }

@@ -31,6 +31,7 @@ describe("buildValidateCheckoutOutcome", () => {
       checkoutUrls: {},
       checkoutBlocked: { "cocon-2": "checkout_not_configured" },
       constraints,
+      pricingByCocon: {},
     });
     assert.equal(outcome.status, 422);
     assert.equal(outcome.body.valid, false);
@@ -49,6 +50,9 @@ describe("buildValidateCheckoutOutcome", () => {
       checkoutUrls: c1.ok ? { "cocon-1": c1.url } : {},
       checkoutBlocked: { "cocon-2": "checkout_not_configured" },
       constraints,
+      pricingByCocon: {
+        "cocon-1": { totalIncludingVat: 795, currencyCode: "EUR", nights: 3 },
+      },
     });
     assert.equal(outcome.status, 200);
     assert.equal(outcome.body.valid, true);
@@ -74,6 +78,10 @@ describe("buildValidateCheckoutOutcome", () => {
       },
       checkoutBlocked: {},
       constraints,
+      pricingByCocon: {
+        "cocon-1": { totalIncludingVat: 795, currencyCode: "EUR", nights: 3 },
+        "cocon-2": { totalIncludingVat: 795, currencyCode: "EUR", nights: 3 },
+      },
     });
     assert.equal(outcome.status, 200);
     assert.equal(outcome.body.valid, true);
@@ -90,6 +98,7 @@ describe("buildValidateCheckoutOutcome", () => {
         "cocon-2": "checkout_not_configured",
       },
       constraints,
+      pricingByCocon: {},
     });
     assert.equal(outcome.body.valid, false);
     assert.equal(Object.keys(outcome.body.checkoutUrls).length, 0);

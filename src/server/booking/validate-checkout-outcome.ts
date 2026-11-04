@@ -1,5 +1,6 @@
 import type { ValidateReason } from "@/config/booking/types";
 import type { StayValidationResult } from "./validate-stay";
+import type { PublicCoconPricing } from "@/lib/booking/types";
 
 export type ValidateCheckoutOutcomeBody = {
   valid: boolean;
@@ -8,6 +9,7 @@ export type ValidateCheckoutOutcomeBody = {
   constraints: StayValidationResult["constraints"];
   checkoutUrls: Record<string, string>;
   checkoutBlocked: Record<string, string>;
+  pricingByCocon: Record<string, PublicCoconPricing>;
 };
 
 export function buildValidateCheckoutOutcome(input: {
@@ -15,6 +17,7 @@ export function buildValidateCheckoutOutcome(input: {
   checkoutUrls: Record<string, string>;
   checkoutBlocked: Record<string, string>;
   constraints: StayValidationResult["constraints"];
+  pricingByCocon: Record<string, PublicCoconPricing>;
 }): { status: 200 | 422; body: ValidateCheckoutOutcomeBody } {
   const hasCheckout = Object.keys(input.checkoutUrls).length > 0;
 
@@ -28,6 +31,7 @@ export function buildValidateCheckoutOutcome(input: {
         constraints: input.constraints,
         checkoutUrls: {},
         checkoutBlocked: input.checkoutBlocked,
+        pricingByCocon: input.pricingByCocon,
       },
     };
   }
@@ -41,6 +45,7 @@ export function buildValidateCheckoutOutcome(input: {
       constraints: input.constraints,
       checkoutUrls: input.checkoutUrls,
       checkoutBlocked: input.checkoutBlocked,
+      pricingByCocon: input.pricingByCocon,
     },
   };
 }
