@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "tsx --test src/**/*.test.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
@@ -18,6 +19,7 @@
     "imagesloaded": "^5.0.0",
     "isotope-layout": "^3.0.6",
     "jquery": "^3.7.1",
+    "lucide-react": "^1.68.0",
     "next": "^14.2.3",
     "next-intl": "^4.13.0",
     "next-themes": "^0.3.0",
@@ -51,6 +53,7 @@
     "@types/three": "^0.164.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

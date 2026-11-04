@@ -1,0 +1,1024 @@
+$primary: #053725;
+$primary-hover: #074d32;
+$cream: rgba(255, 252, 247, 0.96);
+$panel-bg: #fffdf9;
+$border: rgba(5, 55, 37, 0.12);
+$shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+$panel-shadow: 0 24px 56px rgba(5, 55, 37, 0.14);
+$radius: 14px;
+$error: #8b2a2a;
+
+.root {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.hero {
+  z-index: 40;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.mobileTriggerWrap {
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileTrigger {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: $radius;
+  border: 1px solid $border;
+  background: $cream;
+  color: $primary;
+  font-weight: 600;
+  box-shadow: $shadow;
+  cursor: pointer;
+  min-height: 48px;
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.shell {
+  display: block;
+
+  @media (max-width: 767px) {
+    display: none;
+    &.mobileSheetOpen {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(3, 28, 19, 0.45);
+      padding: 12px;
+      overflow-y: auto;
+    }
+  }
+}
+
+.mobileClose {
+  display: none;
+  @media (max-width: 767px) {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 8px;
+    background: $cream;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: $cream;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: 12px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    padding: 6px 6px 6px 2px;
+    gap: 0;
+    min-height: 72px;
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .mobileSheetOpen & {
+      background: #fff;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.divider {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    flex: 0 0 1px;
+    width: 1px;
+    align-self: stretch;
+    background: $border;
+    margin: 10px 0;
+  }
+}
+
+.segment {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex: 1 1 0;
+  }
+}
+
+.segmentPlace {
+  @media (min-width: 768px) {
+    flex: 1.15 1 0;
+  }
+}
+
+.segmentLodging {
+  @media (min-width: 768px) {
+    flex: 1 1 0;
+  }
+}
+
+.segmentDates {
+  @media (min-width: 768px) {
+    flex: 1.1 1 0;
+  }
+}
+
+.segmentGuests {
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    flex: 0 1 168px;
+    min-width: 148px;
+    max-width: 200px;
+  }
+}
+
+.segmentBtn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.15s ease;
+
+  @media (min-width: 768px) {
+    width: calc(100% - 14px);
+    margin: 5px 7px;
+    box-sizing: border-box;
+  }
+
+  &:hover:not(:disabled) {
+    background: rgba($primary, 0.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.segmentLabel {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba($primary, 0.65);
+  margin-bottom: 2px;
+}
+
+.segmentValue {
+  display: block;
+  font-size: 0.92rem;
+  color: $primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.35;
+}
+
+.segmentGuests {
+  padding: 6px 10px 6px 14px;
+}
+
+.guestsInline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+}
+
+.guestsValue {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: $primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stepperBtn {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid $border;
+  background: #fff;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  color: $primary;
+
+  &:hover:not(:disabled) {
+    border-color: rgba($primary, 0.35);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.submitBtn {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: $primary;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    flex: 0 0 auto;
+    margin: 6px 6px 6px 4px;
+    align-self: center;
+    max-width: 168px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  @media (min-width: 1100px) {
+    max-width: none;
+    white-space: nowrap;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ——— Panneau flottant (portal) ——— */
+
+.floatingBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: transparent;
+}
+
+.floatingPanel {
+  z-index: 9999;
+  background: $panel-bg;
+  border: 1px solid $border;
+  border-radius: 16px;
+  box-shadow: $panel-shadow;
+  padding: 20px 22px 22px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  box-sizing: border-box;
+}
+
+.floatingPanelVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.floatingPanelInner {
+  overflow-x: hidden;
+}
+
+.panelTitle {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $primary;
+  letter-spacing: 0.02em;
+}
+
+.panelTitleSrOnly {
+  @extend .srOnly;
+}
+
+.floatingPanelPlaceMenu {
+  padding: 8px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .floatingPanelInner {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+.panelKind_place {
+  max-width: 420px;
+}
+
+.floatingPanelCoconMenu {
+  padding: 12px 10px 10px;
+
+  .panelTitle {
+    margin: 0 0 8px;
+    padding: 0 4px;
+    font-size: 0.95rem;
+  }
+
+  .floatingPanelInner {
+    min-height: 0;
+  }
+}
+
+.floatingPanelDatesMenu {
+  padding: 12px 14px 14px;
+}
+
+.panelKind_cocon {
+  max-width: 420px;
+}
+
+.panelKind_dates {
+  max-width: 420px;
+}
+
+.mobilePanelOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(3, 28, 19, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px;
+}
+
+.mobilePanelSheet {
+  width: min(100%, calc(100vw - 24px));
+  max-height: min(92dvh, 720px);
+  background: $panel-bg;
+  border-radius: 16px 16px 12px 12px;
+  box-shadow: $panel-shadow;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mobilePanelHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 18px 8px;
+  border-bottom: 1px solid $border;
+}
+
+.mobilePanelHeaderMain {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  row-gap: 4px;
+
+  .panelTitle {
+    margin: 0;
+  }
+}
+
+.mobilePanelHeaderExtra {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgba($primary, 0.72);
+}
+
+.mobilePanelClose {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: $primary;
+}
+
+.panelBodyScroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 18px 24px;
+  flex: 1;
+}
+
+/* ——— Lieu (menu compact) ——— */
+
+$place-list-row-height: 64px;
+$place-list-row-gap: 2px;
+$place-list-visible-rows: 4;
+
+.placePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.placeListScroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(
+    #{$place-list-visible-rows} * #{$place-list-row-height} + (#{$place-list-visible-rows} - 1) *
+      #{$place-list-row-gap}
+  );
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba($primary, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($primary, 0.16);
+    border-radius: 999px;
+    min-height: 40px;
+
+    &:hover {
+      background-color: rgba($primary, 0.28);
+    }
+  }
+
+  &::-webkit-scrollbar-button,
+  &::-webkit-scrollbar-button:single-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+.placeListMenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.placeListRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: $place-list-row-height;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba($primary, 0.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 1px;
+  }
+}
+
+.placeListRowSelected {
+  background: rgba($primary, 0.1);
+}
+
+.placeListRowDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.placeListThumbWrap {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid $border;
+  background: #fff;
+}
+
+.placeListThumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  display: block;
+}
+
+.placeListText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.placeName {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: $primary;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comingSoon {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba($primary, 0.55);
+  font-weight: 500;
+}
+
+.placeMenuFooterLink {
+  flex-shrink: 0;
+  display: block;
+  margin-top: 4px;
+  padding: 10px 10px 6px;
+  font-size: 0.82rem;
+  color: $primary;
+  text-decoration: underline;
+  background: $panel-bg;
+  border-top: 1px solid $border;
+
+  &:hover {
+    color: $primary-hover;
+  }
+}
+
+.secondaryLink {
+  font-size: 0.88rem;
+  color: $primary;
+  text-decoration: underline;
+  align-self: flex-start;
+}
+
+/* ——— Hébergement ——— */
+
+.coconPanel {
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+.coconCapacityInline {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba($primary, 0.55);
+  font-weight: 500;
+}
+
+/* ——— Calendrier ——— */
+
+.datesPanel {
+  overflow-x: hidden;
+}
+
+.calendarMonthHeader {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.calendarMonthTitleCentered {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  color: $primary;
+  text-transform: capitalize;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.navBtn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: $primary;
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.calendarRoot {
+  overflow-x: hidden;
+}
+
+.calendarSlideViewport {
+  overflow: hidden;
+}
+
+.calendarSlideContent {
+  will-change: transform, opacity;
+}
+
+.calendarMonths {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 28px;
+  justify-content: space-between;
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+.calendarMonth {
+  flex: 1 1 0;
+  min-width: 280px;
+  max-width: 100%;
+}
+
+.calendarMonthTitle {
+  font-weight: 600;
+  color: $primary;
+  text-transform: capitalize;
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.calendarWeekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  font-size: 0.72rem;
+  color: rgba($primary, 0.55);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.calendarCellEmpty {
+  min-height: 42px;
+}
+
+.calendarDay {
+  position: relative;
+  min-height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 0.88rem;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 1px;
+  }
+}
+
+.dayAvailable {
+  color: $primary;
+}
+
+.dayPartial {
+  color: $primary;
+  background: rgba($primary, 0.08);
+}
+
+.dayUnavailable {
+  color: rgba($primary, 0.35);
+  text-decoration: line-through;
+}
+
+.dayDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.daySelected {
+  background: $primary;
+  color: #fff;
+}
+
+.dayInRange {
+  background: rgba($primary, 0.12);
+}
+
+.dayDot {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: $primary;
+}
+
+.dayStrike {
+  position: absolute;
+  inset: 45% 6px;
+  height: 1px;
+  background: currentColor;
+}
+
+.calendarLegend {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.75rem;
+  color: rgba($primary, 0.75);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.mobileCalendarBottomRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+
+  .calendarLegend {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.mobileCalendarBottomAction {
+  flex-shrink: 0;
+}
+
+.mobileStepNextBtn {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: $primary;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  cursor: pointer;
+  min-height: 48px;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.mobileGuestsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileGuestsIntro {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $primary;
+}
+
+.mobileGuestsPanel .guestsInline {
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.mobileGuestsSubmitBtn {
+  width: 100%;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 10px;
+  background: $primary;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  min-height: 48px;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.calendarDayPartialHover {
+  cursor: default;
+}
+
+.calendarPartialTooltip {
+  position: fixed;
+  z-index: 10001;
+  transform: translate(-50%, calc(-100% - 16px));
+  pointer-events: none;
+}
+
+.calendarPartialTooltipInner {
+  width: max-content;
+  max-width: min(200px, calc(100vw - 24px));
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: $primary;
+  box-shadow: 0 8px 22px rgba($primary, 0.22);
+}
+
+.calendarPartialTooltipLine {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: $panel-bg;
+
+  & + & {
+    margin-top: 3px;
+  }
+}
+
+.legendSwatch {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.legendSwatchAvailable {
+  background: rgba($primary, 0.025);
+  border: 1px solid rgba($primary, 0.06);
+}
+
+.legendSwatchPartial {
+  background: rgba($primary, 0.08);
+  border: 1px solid rgba($primary, 0.12);
+}
+
+.legendSwatchUnavailable {
+  position: relative;
+  background: rgba($primary, 0.04);
+  border: 1px solid rgba($primary, 0.08);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    top: 50%;
+    height: 1.5px;
+    margin-top: -0.75px;
+    border-radius: 1px;
+    background: rgba($primary, 0.38);
+  }
+}
+
+.formError {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba($error, 0.1);
+  color: $error;
+  font-size: 0.85rem;
+}
+
+.error,
+.notice {
+  font-size: 0.85rem;
+  margin: 0 0 8px;
+}
+
+.notice {
+  color: rgba($primary, 0.8);
+}
+
+.error {
+  color: $error;
+}
+
+.retryBtn {
+  margin-left: 8px;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segmentBtn,
+  .submitBtn,
+  .floatingPanel {
+    transition: none;
+  }
+}

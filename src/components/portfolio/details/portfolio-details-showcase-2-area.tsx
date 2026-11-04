@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Leaf, UpArrow, UpArrowTwo, RightArrowOutline, LitDoubleIcon, BathroomIcon, KitchenetteIcon, GardeRobeIcon } from '@/components/svg';
 import AwardOne from '@/components/award/award-one';
-import AvailabilitySearch from '@/components/AvailabilitySearch';
+import HeroBookingSearch from '@/components/booking-search/HeroBookingSearch';
 import VideoTwo from '@/components/video/video-two';
 import ExpandableReviewText from '@/components/testimonial/expandable-review-text';
 
@@ -785,7 +785,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             minWidth: 0
           }}
         >
-          <AvailabilitySearch className="w-100" variant="hero" />
+          <HeroBookingSearch className="w-100" />
         </div>
 
       </div>
@@ -1673,6 +1673,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             padding-left: 15px !important;
             padding-right: 15px !important;
           }
+
+          .lodgify-hero-container.availability-search-hero-wrapper {
+            width: min(1160px, calc(100vw - 48px)) !important;
+            max-width: min(1160px, calc(100vw - 48px)) !important;
+          }
         }
         
         @media (max-width: 768px) {
@@ -1766,6 +1771,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
           .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container :global(#lodgify-book-now-box),
           body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container :global(#lodgify-book-now-box) {
             pointer-events: auto !important;
+          }
+
+          .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container.availability-search-hero-wrapper,
+          body .showcase-details-2-area.showcase-details-2-bg .lodgify-hero-container.availability-search-hero-wrapper {
+            width: min(calc(100vw - 32px), 1160px) !important;
+            max-width: min(calc(100vw - 32px), 1160px) !important;
           }
         }
         

@@ -47,6 +47,32 @@ export function trackGenerateLead(siteLanguage: AnalyticsSiteLanguage): void {
   });
 }
 
+export function trackBookingSearchEvent(
+  eventName:
+    | "booking_search_open"
+    | "booking_search_place"
+    | "booking_search_cocon"
+    | "booking_search_submit"
+    | "booking_search_validated"
+    | "booking_search_rejected"
+    | "booking_search_checkout_choice",
+  options: {
+    siteLanguage: AnalyticsSiteLanguage;
+    placeId?: string;
+    coconId?: string;
+    reason?: string;
+  }
+): void {
+  if (!canTrackAnalytics()) return;
+
+  trackGaEvent(eventName, {
+    site_language: options.siteLanguage,
+    place_id: options.placeId ?? undefined,
+    cocon_id: options.coconId ?? undefined,
+    reason: options.reason ?? undefined,
+  });
+}
+
 export function trackLanguageChange(options: {
   from: AnalyticsSiteLanguage;
   to: AnalyticsSiteLanguage;

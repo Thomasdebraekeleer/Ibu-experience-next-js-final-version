@@ -705,5 +705,99 @@
         "submit": "Beschikbaarheidszoekopdracht starten"
       }
     }
+  },
+  "bookingSearch": {
+    "ariaSearch": "IBÙ verblijf zoeken",
+    "mobileOpen": "Beschikbaarheid controleren",
+    "mobileClose": "Sluiten",
+    "mobile": {
+      "next": "Volgende",
+      "dateRangeShort": "Van {from} tot {to}",
+      "arrivalShort": "Aankomst : {from}"
+    },
+    "search": "Beschikbaarheid controleren",
+    "searching": "Bezig met controleren…",
+    "retry": "Opnieuw proberen",
+    "comingSoon": "Binnenkort beschikbaar",
+    "discoverAllPlaces": "Ontdek alle locaties",
+    "datesClearedOnCoconChange": "De datums zijn gereset omdat ze niet meer beschikbaar zijn voor deze accommodatie.",
+    "maxAdults": "Tot {count} volwassenen",
+    "fields": {
+      "place": "Locatie",
+      "placePlaceholder": "Kies een locatie",
+      "lodging": "Accommodatie",
+      "allCocons": "Alle cocons",
+      "dates": "Datums",
+      "datesPlaceholder": "Kies datums",
+      "arrivalOnly": "Aankomst {arrival}",
+      "dateRange": "{arrival} → {departure} · {nights, plural, one {# nacht} other {# nachten}}",
+      "guestsLabel": "Reizigers",
+      "guests": "{count, plural, one {# reiziger} other {# reizigers}}"
+    },
+    "guests": {
+      "decrease": "Aantal volwassenen verlagen",
+      "increase": "Aantal volwassenen verhogen"
+    },
+    "places": {
+      "domaineMehaignoul": {
+        "name": "Domaine de Mehaignoul",
+        "short": "Waalse wijngaard, IBÙ-cocons"
+      },
+      "comingSoonChateau": { "name": "Kasteel — binnenkort" },
+      "comingSoonVignoble1": { "name": "Wijngaard — binnenkort" },
+      "comingSoonVignoble2": { "name": "Wijngaard — binnenkort" },
+      "comingSoonChateau2": { "name": "Kasteel — binnenkort" },
+      "comingSoonDomaine": { "name": "Domaine — binnenkort" }
+    },
+    "cocoons": {
+      "cocon1": { "name": "Cocon 1" },
+      "cocon2": { "name": "Cocon 2" }
+    },
+    "calendar": {
+      "prevMonth": "Vorige maand",
+      "nextMonth": "Volgende maand",
+      "loading": "Kalender laden",
+      "legendAvailable": "Beschikbaar",
+      "legendPartial": "Beperkte beschikbaarheid",
+      "legendUnavailable": "Volzet",
+      "legendAvailableShort": "beschikbaar",
+      "legendPartialShort": "beperkte beschikbaarheid",
+      "legendUnavailableShort": "volzet",
+      "coconAvailableOnDay": "{name} beschikbaar"
+    },
+    "coconChoice": {
+      "title": "Kies uw cocon",
+      "intro": "Beide accommodaties zijn beschikbaar op deze datums. Kies waar u uw reservatie wilt afronden.",
+      "choose": "Deze cocon kiezen",
+      "close": "Sluiten",
+      "indicativeFrom": "Vanaf {amount} € (indicatief)",
+      "stayIndicative": "{amount} € voor {nights, plural, one {# nacht} other {# nachten}} (indicatief)",
+      "photoPrev": "Vorige foto",
+      "photoNext": "Volgende foto",
+      "photoCounter": "{current} / {total}",
+      "photoAlt": "Foto {index} van {count} — {name}",
+      "photosLoading": "Foto's laden",
+      "retryPhotos": "Foto's opnieuw proberen"
+    },
+    "errors": {
+      "missingDates": "Selecteer uw verblijfsdatums.",
+      "invalid_place": "Deze locatie is niet beschikbaar voor reservatie.",
+      "invalid_cocon": "Deze accommodatie wordt niet herkend.",
+      "invalid_date_format": "Ongeldig datumformaat.",
+      "invalid_date_range": "Ongeldig datumbereik.",
+      "arrival_in_past": "De aankomstdatum ligt in het verleden.",
+      "departure_not_after_arrival": "Vertrek moet na aankomst zijn.",
+      "calendar_window_exceeded": "Periode te lang voor de kalender.",
+      "stay_too_long": "Verblijfsduur te lang.",
+      "adults_exceed_capacity": "Te veel reizigers voor deze accommodatie.",
+      "dates_unavailable": "Deze datums zijn net gereserveerd of niet meer beschikbaar. Kies een andere periode.",
+      "min_stay_not_met": "Minimale verblijfsduur niet gehaald.",
+      "max_stay_exceeded": "Maximale verblijfsduur overschreden.",
+      "advance_notice_not_met": "Onvoldoende voorafgaande reserveringstermijn.",
+      "lodgify_error": "Beschikbaarheid kan momenteel niet worden gecontroleerd. Probeer opnieuw.",
+      "quote_not_available": "Tarief niet meer beschikbaar voor deze datums. Kies een andere periode of probeer opnieuw.",
+      "checkout_not_configured": "Online reservatie is nog niet beschikbaar voor deze accommodatie.",
+      "invalid_request": "Ongeldige aanvraag. Controleer uw gegevens."
+    }
   }
 }

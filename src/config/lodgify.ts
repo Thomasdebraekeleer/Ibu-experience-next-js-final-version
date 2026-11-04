@@ -18,12 +18,9 @@ export const LODGIFY_URLS_FR = {
   /** Domaine Mehaignoul — Cocon 1. */
   mehaignoulCocon1:
     "https://ibu-experience.lodgify.com/fr/ibu-experience---cocon-1---domaine-de-mehaignoul",
-  /**
-   * Domaine Mehaignoul — Cocon 2.
-   * Sous-domaine preview (npreview) — à valider client/Lodgify avant mise en prod NL.
-   */
-  mehaignoulCocon2Preview:
-    "https://npreview-ibu-experience.lodgify.com/fr/ibu-experience---cocon-2---domaine-de-mehaignoul",
+  /** Domaine Mehaignoul — Cocon 2. */
+  mehaignoulCocon2:
+    "https://ibu-experience.lodgify.com/fr/ibu-experience---cocon-2---domaine-de-mehaignoul",
   /** Legacy — LodgifySearchBar / page-test uniquement (mallen-jallow). */
   legacyPortableSearch: "https://mallen-jallow.lodgify.com/fr/toutes-les-proprietes",
 } as const;
@@ -38,9 +35,8 @@ export const LODGIFY_URLS_NL_PENDING = {
   /** Domaine Mehaignoul — Cocon 1. */
   mehaignoulCocon1:
     "https://ibu-experience.lodgify.com/nl/ibu-experience---cocon-1---domaine-de-mehaignoul",
-  /** Domaine Mehaignoul — Cocon 2 (preview). */
-  mehaignoulCocon2:
-    "https://npreview-ibu-experience.lodgify.com/nl/ibu-experience---cocon-2---domaine-de-mehaignoul",
+  /** Domaine Mehaignoul — Cocon 2 (null → fallback FR pour nl-BE). */
+  mehaignoulCocon2: null as string | null,
   legacyPortableSearch: null as string | null,
 } as const;
 
@@ -94,14 +90,11 @@ export function getLodgifyMehaignoulCocon1Url(locale: Locale): string {
   );
 }
 
-/**
- * URL réservation Cocon 2 — Domaine de Mehaignoul.
- * Reste sur l’URL preview FR tant que prod/NL non confirmés.
- */
+/** URL réservation Cocon 2 — Domaine de Mehaignoul. */
 export function getLodgifyMehaignoulCocon2Url(locale: Locale): string {
   return resolveLodgifyUrl(
     locale,
-    LODGIFY_URLS_FR.mehaignoulCocon2Preview,
+    LODGIFY_URLS_FR.mehaignoulCocon2,
     LODGIFY_URLS_NL_PENDING.mehaignoulCocon2
   );
 }

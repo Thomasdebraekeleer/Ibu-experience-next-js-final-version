@@ -705,5 +705,99 @@
         "submit": "Lancer la recherche de disponibilités"
       }
     }
+  },
+  "bookingSearch": {
+    "ariaSearch": "Recherche de séjour IBÙ",
+    "mobileOpen": "Vérifier les disponibilités",
+    "mobileClose": "Fermer",
+    "mobile": {
+      "next": "Suivant",
+      "dateRangeShort": "Du {from} au {to}",
+      "arrivalShort": "Arrivée : {from}"
+    },
+    "search": "Vérifier les disponibilités",
+    "searching": "Vérification…",
+    "retry": "Réessayer",
+    "comingSoon": "Bientôt disponible",
+    "discoverAllPlaces": "Découvrir tous les lieux",
+    "datesClearedOnCoconChange": "Les dates ont été réinitialisées car elles ne sont plus disponibles pour cet hébergement.",
+    "maxAdults": "Jusqu'à {count} adultes",
+    "fields": {
+      "place": "Lieu",
+      "placePlaceholder": "Choisir un lieu",
+      "lodging": "Hébergement",
+      "allCocons": "Tous les cocons",
+      "dates": "Dates",
+      "datesPlaceholder": "Choisir les dates",
+      "arrivalOnly": "Arrivée {arrival}",
+      "dateRange": "{arrival} → {departure} · {nights, plural, one {# nuit} other {# nuits}}",
+      "guestsLabel": "Voyageurs",
+      "guests": "{count, plural, one {# voyageur} other {# voyageurs}}"
+    },
+    "guests": {
+      "decrease": "Réduire le nombre d'adultes",
+      "increase": "Augmenter le nombre d'adultes"
+    },
+    "places": {
+      "domaineMehaignoul": {
+        "name": "Domaine de Mehaignoul",
+        "short": "Vignoble wallon, cocons IBÙ"
+      },
+      "comingSoonChateau": { "name": "Château — bientôt" },
+      "comingSoonVignoble1": { "name": "Vignoble — bientôt" },
+      "comingSoonVignoble2": { "name": "Vignoble — bientôt" },
+      "comingSoonChateau2": { "name": "Château — bientôt" },
+      "comingSoonDomaine": { "name": "Domaine — bientôt" }
+    },
+    "cocoons": {
+      "cocon1": { "name": "Cocon 1" },
+      "cocon2": { "name": "Cocon 2" }
+    },
+    "calendar": {
+      "prevMonth": "Mois précédent",
+      "nextMonth": "Mois suivant",
+      "loading": "Chargement du calendrier",
+      "legendAvailable": "Disponible",
+      "legendPartial": "Disponibilité limitée",
+      "legendUnavailable": "Complet",
+      "legendAvailableShort": "disponible",
+      "legendPartialShort": "disponibilité limitée",
+      "legendUnavailableShort": "complet",
+      "coconAvailableOnDay": "{name} disponible"
+    },
+    "coconChoice": {
+      "title": "Choisissez votre cocon",
+      "intro": "Les deux hébergements sont disponibles pour ces dates. Sélectionnez celui dans lequel vous souhaitez finaliser votre réservation.",
+      "choose": "Choisir ce cocon",
+      "close": "Fermer",
+      "indicativeFrom": "À partir de {amount} € (indicatif)",
+      "stayIndicative": "{amount} € pour {nights, plural, one {# nuit} other {# nuits}} (indicatif)",
+      "photoPrev": "Photo précédente",
+      "photoNext": "Photo suivante",
+      "photoCounter": "{current} / {total}",
+      "photoAlt": "Photo {index} sur {count} — {name}",
+      "photosLoading": "Chargement des photos",
+      "retryPhotos": "Réessayer les photos"
+    },
+    "errors": {
+      "missingDates": "Veuillez sélectionner vos dates de séjour.",
+      "invalid_place": "Ce lieu n'est pas disponible à la réservation.",
+      "invalid_cocon": "Cet hébergement n'est pas reconnu.",
+      "invalid_date_format": "Format de date invalide.",
+      "invalid_date_range": "Plage de dates invalide.",
+      "arrival_in_past": "La date d'arrivée est passée.",
+      "departure_not_after_arrival": "Le départ doit être après l'arrivée.",
+      "calendar_window_exceeded": "Période trop longue pour le calendrier.",
+      "stay_too_long": "Durée de séjour trop longue.",
+      "adults_exceed_capacity": "Nombre de voyageurs trop élevé pour cet hébergement.",
+      "dates_unavailable": "Ces dates viennent d'être réservées ou ne sont plus disponibles. Choisissez une autre période.",
+      "min_stay_not_met": "Durée minimale de séjour non respectée.",
+      "max_stay_exceeded": "Durée maximale de séjour dépassée.",
+      "advance_notice_not_met": "Délai de réservation insuffisant avant l'arrivée.",
+      "lodgify_error": "Impossible de vérifier les disponibilités pour le moment. Veuillez réessayer.",
+      "quote_not_available": "Le tarif n'est plus disponible pour ces dates. Choisissez une autre période ou réessayez.",
+      "checkout_not_configured": "La réservation en ligne n'est pas encore disponible pour cet hébergement.",
+      "invalid_request": "Requête invalide. Vérifiez vos informations."
+    }
   }
 }
