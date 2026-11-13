@@ -667,6 +667,7 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             aria-hidden="true"
             controls={false}
           />
+          <div className="hero-video-scrim p-absolute w-100 h-100" aria-hidden="true" />
         </div>
         <div
           className="hero-video-layer p-absolute w-100 h-100 d-block d-md-none"
@@ -692,10 +693,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             aria-hidden="true"
             controls={false}
           />
+          <div className="hero-video-scrim p-absolute w-100 h-100" aria-hidden="true" />
         </div>
-
-        {/* Voile léger pour améliorer la lisibilité du texte / menu au-dessus */}
-        <div className="hero-video-scrim p-absolute w-100 h-100" aria-hidden="true" />
 
         {/* Contenu du hero avec textes */}
         <div 
@@ -1301,9 +1300,14 @@ export default function PortfolioDetailsShowcaseTwoArea() {
         }
         .hero-video-scrim {
           inset: 0;
-          z-index: 1;
+          top: 0;
+          left: 0;
+          z-index: 2;
           pointer-events: none;
           background: rgba(0, 0, 0, 0.1);
+        }
+        .hero-video-layer {
+          background: #ffffff;
         }
         .hero-video-media {
           width: 100%;
