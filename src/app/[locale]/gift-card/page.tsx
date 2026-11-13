@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import GiftCardMain from "@/views/gift-card/gift-card-main";
+import GiftCardConfigNotice from "@/views/gift-card/gift-card-config-notice";
+import { getGiftCardSystemPublicStatus } from "@/server/gift-cards/public-status";
 import { buildAlternateLanguages, buildCanonicalPath } from "@/lib/seo";
 
 type Props = {
@@ -35,5 +37,11 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
 
 export default function GiftCardPage({ params: { locale } }: Props) {
   setRequestLocale(locale);
-  return <GiftCardMain />;
+  const status = getGiftCardSystemPublicStatus();
+  return (
+    <>
+      <GiftCardConfigNotice status={status} />
+      <GiftCardMain />
+    </>
+  );
 }

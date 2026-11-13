@@ -35,6 +35,10 @@ scripts/lodgify-quote-discovery-output.json
 # vercel
 .vercel
 
+# Bons cadeaux — artefacts locaux
+/.gift-card-outbox/
+/gift-card-samples/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

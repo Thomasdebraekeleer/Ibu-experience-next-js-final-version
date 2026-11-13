@@ -17,42 +17,22 @@ import HeaderVBU from "@/layouts/headers/header-vbu";
 import FooterThree from "@/layouts/footers/footer-three";
 import { hoverBtn } from "@/utils/hover-btn";
 import { footerTwoAnimation } from "@/utils/footer-anim";
+import { getGiftCardPublicOptions } from "@/config/gift-cards/catalog";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
-const GIFT_CARD_OPTIONS = [
-  {
-    amount: 50,
-    url: "https://buy.stripe.com/14A9ASaweenRgvc9Qt1Fe00",
-    descriptionKey: undefined,
-  },
-  {
-    amount: 100,
-    url: "https://buy.stripe.com/8x28wO47QbbFbaSaUx1Fe01",
-    descriptionKey: undefined,
-  },
-  {
-    amount: 265,
-    url: "https://buy.stripe.com/00w14mbAi4Nh4Mu7Il1Fe05",
-    descriptionKey: "weekStay" as const,
-  },
-  {
-    amount: 315,
-    url: "https://buy.stripe.com/28EeVcbAibbFbaS8Mp1Fe04",
-    descriptionKey: "weekendStay" as const,
-  },
-] as const;
+const GIFT_CARD_OPTIONS = getGiftCardPublicOptions();
 
 export default function GiftCardMain() {
   const locale = useLocale();
   const t = useTranslations("giftCard");
   const [selectedAmount, setSelectedAmount] = useState<number>(
-    GIFT_CARD_OPTIONS[0].amount
+    GIFT_CARD_OPTIONS[0]?.amountEur ?? 50
   );
 
   const selectedOption =
-    GIFT_CARD_OPTIONS.find((opt) => opt.amount === selectedAmount) ||
-    GIFT_CARD_OPTIONS[0];
+    GIFT_CARD_OPTIONS.find((opt) => opt.amountEur === selectedAmount) ||
+    GIFT_CARD_OPTIONS[0]!;
 
   useScrollSmooth();
 
@@ -141,22 +121,22 @@ export default function GiftCardMain() {
 
                       <div className="tp-gift-card-buttons">
                         {GIFT_CARD_OPTIONS.map((option) => {
-                          const isActive = selectedAmount === option.amount;
+                          const isActive = selectedAmount === option.amountEur;
                           return (
                             <button
-                              key={option.amount}
-                              onClick={() => setSelectedAmount(option.amount)}
+                              key={option.offerId}
+                              onClick={() => setSelectedAmount(option.amountEur)}
                               className={`tp-gift-card-amount-btn ${isActive ? "active" : ""}`}
                               aria-pressed={isActive}
                             >
-                              {formatPrice(option.amount)}
+                              {formatPrice(option.amountEur)}
                             </button>
                           );
                         })}
                       </div>
 
                       <a
-                        href={selectedOption.url}
+                        href={selectedOption.paymentLinkUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="tp-btn-black-md tp-gift-card-command-btn"
