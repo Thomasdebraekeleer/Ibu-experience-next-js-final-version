@@ -81,6 +81,7 @@ import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
 import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-option-row";
+import HomeFaqSection from "@/components/faq/home-faq-section";
 import type { Locale } from "@/i18n/routing";
 import PlaceBookingSection from "@/components/place-booking/PlaceBookingSection";
 
@@ -563,6 +564,8 @@ const DomaineDeMehaignoulMain = () => {
 
                 {/* Option 5: Petit déjeuner local */}
                 <PetitDejeunerOptionRow localize namespace="domaineMehaignoul.options.breakfast" />
+
+                <HomeFaqSection />
               </div>
             </div>
 

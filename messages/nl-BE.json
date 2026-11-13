@@ -124,11 +124,11 @@
     },
     "faq": {
       "title": "IBÙ Experience - FAQ",
-      "description": "Veelgestelde vragen over IBÙ Experience",
-      "openGraphTitle": "IBÙ Experience - FAQ",
-      "openGraphDescription": "Vind antwoorden op veelgestelde vragen over IBÙ Experience.",
+      "description": "Uw vragen over het verblijf op het Domaine de Mehaignoul: wellness, cocons, opties en activiteiten in de buurt.",
+      "openGraphTitle": "IBÙ Experience - FAQ verblijf",
+      "openGraphDescription": "Noors bad, sauna, vroege aankomst, food-opties… Alle antwoorden over uw IBÙ-verblijf.",
       "twitterTitle": "IBÙ Experience - FAQ",
-      "twitterDescription": "Veelgestelde vragen over IBÙ Experience."
+      "twitterDescription": "Veelgestelde vragen over uw IBÙ-verblijf op het Domaine de Mehaignoul."
     },
     "blog": {
       "title": "IBÙ Experience - Blog",
@@ -362,8 +362,11 @@
     }
   },
   "faq": {
-    "title": "FAQ",
-    "underConstruction": "Pagina in opbouw"
+    "hero": {
+      "eyebrow": "IBÙ EXPERIENCE",
+      "title": "FAQ – Uw vragen over het verblijf",
+      "subtitle": "Wellness, cocons, vroege aankomst of wandeltips: alles wat u moet weten voor uw pauze op het Domaine de Mehaignoul."
+    }
   },
   "blog": {
     "title": "Blog",

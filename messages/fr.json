@@ -124,11 +124,11 @@
     },
     "faq": {
       "title": "IBÙ Experience - FAQ",
-      "description": "Questions fréquemment posées sur IBÙ Experience",
-      "openGraphTitle": "IBÙ Experience - FAQ",
-      "openGraphDescription": "Retrouvez les réponses aux questions fréquemment posées sur IBÙ Experience.",
+      "description": "Vos questions sur le séjour au Domaine de Mehaignoul : wellness, cocons, options et activités aux alentours.",
+      "openGraphTitle": "IBÙ Experience - FAQ séjour",
+      "openGraphDescription": "Bain nordique, sauna, arrivée anticipée, options food… Retrouvez toutes les réponses sur votre séjour IBÙ.",
       "twitterTitle": "IBÙ Experience - FAQ",
-      "twitterDescription": "Questions fréquemment posées sur IBÙ Experience."
+      "twitterDescription": "Questions fréquentes sur votre séjour IBÙ au Domaine de Mehaignoul."
     },
     "blog": {
       "title": "IBÙ Experience - Blog",
@@ -362,8 +362,11 @@
     }
   },
   "faq": {
-    "title": "FAQ",
-    "underConstruction": "Page en construction"
+    "hero": {
+      "eyebrow": "IBÙ EXPERIENCE",
+      "title": "FAQ – Vos questions sur le séjour",
+      "subtitle": "Wellness, cocons, arrivée anticipée ou idées de balades : tout ce qu'il faut savoir avant votre parenthèse au Domaine de Mehaignoul."
+    }
   },
   "blog": {
     "title": "Blog",

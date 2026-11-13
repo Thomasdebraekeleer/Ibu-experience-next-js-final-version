@@ -11,6 +11,7 @@ import AwardOne from '@/components/award/award-one';
 import HeroBookingSearch from '@/components/booking-search/HeroBookingSearch';
 import VideoTwo from '@/components/video/video-two';
 import ExpandableReviewText from '@/components/testimonial/expandable-review-text';
+import HomeFaqSection from '@/components/faq/home-faq-section';
 
 // images 
 import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
@@ -1161,6 +1162,8 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                  </div>
                </div>
              </div>
+
+             <HomeFaqSection />
            </div>
        </div>
        {/* details title 5 */}

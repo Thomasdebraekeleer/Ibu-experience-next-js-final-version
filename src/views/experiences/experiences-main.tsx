@@ -41,6 +41,7 @@ import { imageRevealAnimation } from "@/utils/image-reveal-anim";
 import { hoverBtn } from "@/utils/hover-btn";
 import ExperienceServicesInclusSection from "@/components/experience/experience-services-inclus-section";
 import PetitDejeunerOptionRow from "@/components/experience/petit-dejeuner-option-row";
+import HomeFaqSection from "@/components/faq/home-faq-section";
 
 // slider images
 const slider_images = [slider_img_1, slider_img_2, slider_img_3, slider_img_4];
@@ -544,8 +545,10 @@ const ExperiencesMain = () => {
                     {renderCoconFeatures(true).slice(2, 4)}
                   </div>
                 </div>
-                    </div>
-                  </div>
+
+                <HomeFaqSection />
+              </div>
+            </div>
             {/* details title 5 */}
 
             {/* Bouton Lieux et Disponibilités */}
