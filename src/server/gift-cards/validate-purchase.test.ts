@@ -181,11 +181,12 @@ describe("validatePaidGiftCardPurchase", () => {
     assert.equal(result.ok, false);
   });
 
-  it("rejects 100% discount with paid status", () => {
+  it("accepts 100% discount when Stripe reports payment_status paid and total 0", () => {
     const result = validatePaidGiftCardPurchase(
       {
         ...baseInput,
         paymentStatus: "paid",
+        sessionAmountDiscountCents: 5000,
         lines: [
           lineForOffer("credit_50", {
             amountDiscountCents: 5000,
@@ -196,7 +197,12 @@ describe("validatePaidGiftCardPurchase", () => {
       allowlist,
       { allowPendingCommercial: false }
     );
-    assert.equal(result.ok, false);
+    assert.equal(result.ok, true);
+    if (result.ok) {
+      assert.equal(result.nominalAmountCents, 5000);
+      assert.equal(result.paidAmountCents, 0);
+      assert.equal(result.discountAmountCents, 5000);
+    }
   });
 
   it("ignores foreign payment", () => {

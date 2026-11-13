@@ -27,7 +27,24 @@ export async function loadGiftCheckoutSessionFromStripe(
     session.line_items ?? undefined
   );
 
-  const parsed = parseCheckoutSession(session, lines, options);
+  let checkoutCompletedAt = options?.checkoutCompletedAt ?? null;
+  if (!checkoutCompletedAt) {
+    const events = await stripe.events.list({
+      type: "checkout.session.completed",
+      limit: 25,
+    });
+    const match = events.data.find((ev) => {
+      const obj = ev.data.object as { id?: string };
+      return obj.id === sessionId;
+    });
+    if (match) {
+      checkoutCompletedAt = new Date(match.created * 1000);
+    }
+  }
+
+  const parsed = parseCheckoutSession(session, lines, {
+    checkoutCompletedAt,
+  });
 
   if (!parsed.paidAt && parsed.paymentStatus === "paid") {
     if (typeof session.payment_intent === "string") {

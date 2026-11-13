@@ -285,21 +285,23 @@ export function validatePaidGiftCardPurchase(
 
   if (ps === "paid") {
     if (total === 0) {
+      if (discount <= 0 || discount !== subtotal) {
+        return {
+          ok: false,
+          reason: "zero_total_without_discount",
+          needsReview: true,
+          details: { paymentStatus: ps, total, discount },
+        };
+      }
+    } else if (discount > 0 && discount >= subtotal) {
       return {
         ok: false,
-        reason: "zero_total_without_discount",
-        needsReview: true,
-        details: { paymentStatus: ps, total },
-      };
-    }
-    if (discount > 0 && discount >= subtotal) {
-      return {
-        ok: false,
-        reason: "payment_status_invalid",
+        reason: "discount_inconsistent",
         needsReview: true,
         details: {
-          message: "100% discount must use no_payment_required",
+          message: "paid with non-zero total expected when fully discounted",
           discount,
+          total,
         },
       };
     }

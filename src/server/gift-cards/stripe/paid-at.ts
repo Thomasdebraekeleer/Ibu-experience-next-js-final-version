@@ -34,7 +34,18 @@ export function resolveGiftCardPaidAtFromStripe(input: {
       (typeof input.session.payment_intent === "object"
         ? input.session.payment_intent
         : null);
-    return paymentIntentPaidAt(pi);
+    const fromIntent = paymentIntentPaidAt(pi);
+    if (fromIntent) {
+      return fromIntent;
+    }
+    if (
+      input.session.status === "complete" &&
+      (input.session.amount_total ?? 0) === 0 &&
+      input.checkoutCompletedAt
+    ) {
+      return input.checkoutCompletedAt;
+    }
+    return null;
   }
 
   if (

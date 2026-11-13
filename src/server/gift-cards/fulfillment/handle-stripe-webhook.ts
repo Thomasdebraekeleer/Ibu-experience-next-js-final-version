@@ -233,6 +233,13 @@ export async function handleStripeGiftCardWebhookEvent(
     if (!parsed.paidAt && paidAtCandidate) {
       parsed.paidAt = paidAtCandidate;
     }
+    if (
+      !parsed.paidAt &&
+      session.status === "complete" &&
+      (session.amount_total ?? 0) === 0
+    ) {
+      parsed.paidAt = new Date(event.created * 1000);
+    }
 
     const result = await processPaidCheckoutSession(parsed, event.id);
 

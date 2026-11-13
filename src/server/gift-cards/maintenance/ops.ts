@@ -1,5 +1,5 @@
 import { and, desc, eq, inArray, or } from "drizzle-orm";
-import { getDb } from "@/server/db/client";
+import { getDb } from "@/server/db/app-db";
 import {
   emailOperations,
   giftCards,

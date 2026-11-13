@@ -8,7 +8,9 @@ const nextConfig = {
     serverComponentsExternalPackages: ["postgres", "drizzle-orm", "stripe"],
   },
   webpack: (config, { isServer }) => {
-    if (!isServer) {
+    if (isServer) {
+      config.externals = [...(config.externals ?? []), "postgres"];
+    } else {
       config.resolve.alias = {
         ...config.resolve.alias,
         postgres: false,

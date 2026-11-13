@@ -3,6 +3,19 @@ import assert from "node:assert/strict";
 import { resolveGiftCardPaidAtFromStripe } from "./paid-at";
 
 describe("resolveGiftCardPaidAtFromStripe", () => {
+  it("uses checkoutCompletedAt for paid + zero total without PaymentIntent", () => {
+    const completed = new Date("2025-11-10T15:00:00.000Z");
+    const paidAt = resolveGiftCardPaidAtFromStripe({
+      session: {
+        payment_status: "paid",
+        status: "complete",
+        amount_total: 0,
+      } as Parameters<typeof resolveGiftCardPaidAtFromStripe>[0]["session"],
+      checkoutCompletedAt: completed,
+    });
+    assert.equal(paidAt?.toISOString(), completed.toISOString());
+  });
+
   it("uses checkoutCompletedAt for no_payment_required", () => {
     const completed = new Date("2025-11-10T15:00:00.000Z");
     const paidAt = resolveGiftCardPaidAtFromStripe({
