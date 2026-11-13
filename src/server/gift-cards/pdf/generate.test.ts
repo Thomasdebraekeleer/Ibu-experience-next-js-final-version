@@ -1,14 +1,11 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { PDFDocument } from "pdf-lib";
-import {
-  generateGiftCardPdf,
-  GIFT_CARD_FILLABLE_FIELD_NAMES,
-} from "./generate";
+import { generateGiftCardPdf } from "./generate";
 import { computeGiftCardExpiresAt } from "../validity";
 
 describe("generateGiftCardPdf (Canva template)", () => {
-  it("produces 2 pages with fillable TO/FROM/MESSAGE fields", async () => {
+  it("produces 2 pages keeping Canva lines without AcroForm overlays", async () => {
     const paidAt = new Date("2025-06-10T10:00:00.000Z");
     const expiresAt = computeGiftCardExpiresAt(paidAt);
     const result = await generateGiftCardPdf({
@@ -25,11 +22,7 @@ describe("generateGiftCardPdf (Canva template)", () => {
     assert.ok(result.bytes.length > 100_000);
     const doc = await PDFDocument.load(result.bytes);
     assert.equal(doc.getPageCount(), 2);
-    const form = doc.getForm();
-    const names = form.getFields().map((f) => f.getName());
-    for (const expected of GIFT_CARD_FILLABLE_FIELD_NAMES) {
-      assert.ok(names.includes(expected), `missing field ${expected}`);
-    }
+    assert.equal(doc.getForm().getFields().length, 0);
   });
 
   it("generates EN template for document locale en", async () => {

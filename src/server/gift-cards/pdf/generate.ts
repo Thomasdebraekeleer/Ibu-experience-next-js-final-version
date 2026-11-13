@@ -62,34 +62,6 @@ function giftLine(
   return `Carte cadeau IBÙ Experience — ${amount}`;
 }
 
-function ensureFillableFields(
-  pdfDoc: PDFDocument,
-  page: ReturnType<PDFDocument["getPages"]>[number],
-  font: Awaited<ReturnType<PDFDocument["embedFont"]>>
-): void {
-  const form = pdfDoc.getForm();
-  const width = 320;
-
-  for (const field of CANVA_VERSO_LAYOUT.fillableFields) {
-    const existing = form.getFields().find((f) => f.getName() === field.name);
-    if (existing) continue;
-
-    const textField = form.createTextField(field.name);
-    textField.setText("");
-    if (field.name === "gift_card_message") {
-      textField.enableMultiline();
-    }
-    textField.addToPage(page, {
-      x: CANVA_VERSO_LAYOUT.valueX,
-      y: field.y,
-      width,
-      height: field.height,
-      borderWidth: 0,
-    });
-    textField.updateAppearances(font);
-  }
-}
-
 export async function generateGiftCardPdf(
   input: GiftCardPdfInput
 ): Promise<GiftCardPdfResult> {
@@ -111,8 +83,6 @@ export async function generateGiftCardPdf(
   if (!page) {
     throw new Error("Gift card template page 2 missing");
   }
-
-  ensureFillableFields(pdfDoc, page, font);
 
   const amount = formatMoney(
     input.nominalAmountCents,
@@ -144,12 +114,14 @@ export async function generateGiftCardPdf(
   });
 
   const purchaseShort = formatGiftCardDate(input.paidAt, input.documentLocale);
-  const codeLabel =
-    input.documentLocale === "en" ? `Code ${input.code}` : `Code ${input.code}`;
-  page.drawText(`${codeLabel} · ${purchaseShort}`, {
-    x: CANVA_VERSO_LAYOUT.codeX,
+  const codeLine = `Code ${input.code} · ${purchaseShort}`;
+  const codeSize = CANVA_VERSO_LAYOUT.codeFontSize;
+  const codeWidth = font.widthOfTextAtSize(codeLine, codeSize);
+  const pageWidth = page.getWidth();
+  page.drawText(codeLine, {
+    x: Math.max(CANVA_VERSO_LAYOUT.valueX, (pageWidth - codeWidth) / 2),
     y: CANVA_VERSO_LAYOUT.codeY,
-    size: CANVA_VERSO_LAYOUT.codeFontSize,
+    size: codeSize,
     font,
     color: VERSO_TEXT_COLOR,
   });
@@ -164,12 +136,7 @@ export async function generateGiftCardPdf(
     });
   }
 
-  const form = pdfDoc.getForm();
-  form.updateFieldAppearances(font);
-
-  const bytes = Buffer.from(
-    await pdfDoc.save({ updateFieldAppearances: true })
-  );
+  const bytes = Buffer.from(await pdfDoc.save());
   const sha256 = createHash("sha256").update(bytes).digest("hex");
   const lang = input.documentLocale === "en" ? "EN" : "FR";
   const filename = `IBU-gift-card-${lang}-${input.code.replace(/-/g, "")}.pdf`;
