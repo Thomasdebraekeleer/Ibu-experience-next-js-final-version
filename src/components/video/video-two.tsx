@@ -38,6 +38,16 @@ const PRESS_SLIDES: PressSlide[] = [
     linkTextKey: "viewArticle",
   },
   {
+    id: "bx1",
+    title: "BX1",
+    subtitleKey: "interview",
+    image: `${A_PROPOS}/BX1 image.png`,
+    logo: `${A_PROPOS}/BX1 logo.png`,
+    alt: "BX1 — Interview IBÙ Experience",
+    link: "https://bx1.be/radio-emission/bxl-central-ibu-experience-des-tiny-houses-pour-sevader-a-deux-pas-de-bruxelles/",
+    linkTextKey: "viewInterview",
+  },
+  {
     id: "gael",
     title: "Gael Magazine",
     subtitleKey: "article",
@@ -106,6 +116,16 @@ const PRESS_SLIDES: PressSlide[] = [
     alt: "Interview TV COM - IBU Experience",
     link: "https://www.tvcom.be/replay/emission/linvite-dans-lactu/mallen-jallow-ibu-experience/54210",
     linkTextKey: "viewInterview",
+  },
+  {
+    id: "be-perfect",
+    title: "Be Perfect",
+    subtitleKey: "article",
+    image: `${A_PROPOS}/Be perfect image.png`,
+    logo: `${A_PROPOS}/Be perfect logo.png`,
+    alt: "Be Perfect — IBÙ Experience",
+    link: "https://www.beperfect.be/ibu-lappel-a-la-nature-et-a-lemotion/",
+    linkTextKey: "viewArticle",
   },
 ];
 

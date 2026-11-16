@@ -241,6 +241,7 @@
     },
     "approach": {
       "title": "Onze aanpak.",
+      "gridPhotoAlt": "Onze aanpak — foto {index}",
       "missionLabel": "Missie",
       "missionParagraph1": "IBÙ biedt u de kans om te verblijven in het hart van uitzonderlijke domeinen in België, waarbij hun erfgoed, producten en vakmanschap centraal staan.",
       "missionParagraph2": "Wij creëren unieke ervaringen die verfijnd verblijf combineren met een onderdompeling in iconische locaties, om het lokale terroir volledig tot zijn recht te laten komen.",

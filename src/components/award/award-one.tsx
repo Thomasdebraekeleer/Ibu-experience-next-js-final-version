@@ -1,17 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import a_1 from "@/assets/img/home-01/award/award-1.png";
-import a_2 from "@/assets/img/home-01/award/award-2.png";
-import a_3 from "@/assets/img/home-01/award/award-3.png";
-import a_4 from "@/assets/img/home-01/award/award-4.png";
-import a_5 from "@/assets/img/home-01/award/award-5.png";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import a_1 from "@/assets/img/home-01/award/award-instant-1.webp";
+import a_2 from "@/assets/img/home-01/award/award-instant-2.webp";
+import a_3 from "@/assets/img/home-01/award/award-instant-3.webp";
+import a_4 from "@/assets/img/home-01/award/award-instant-4.webp";
+import a_5 from "@/assets/img/home-01/award/award-instant-5.webp";
 import a_6 from "@/assets/img/home-01/award/award-6.png";
 import { Leaf } from "../svg";
 
+gsap.registerPlugin(useGSAP);
+
 const AWARD_IMAGES = [a_1, a_2, a_3, a_4, a_5, a_6];
+
+const LG_MIN_WIDTH = 992;
+/** Temps d’affichage par étape avant passage à la suivante */
+const STEP_HOLD_MS = 4200;
 
 type InstantIbuStep = {
   id: number;
@@ -26,7 +34,18 @@ type IProps = {
 const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
   const t = useTranslations("home.instantIbu");
   const steps = t.raw("steps") as InstantIbuStep[];
-  const [activeThumb, setActiveThumb] = React.useState(1);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const mobileStageRef = useRef<HTMLDivElement>(null);
+  const mobileTextRef = useRef<HTMLDivElement>(null);
+  const mobileImgRef = useRef<HTMLDivElement>(null);
+
+  const [activeThumb, setActiveThumb] = useState(1);
+  const [isInView, setIsInView] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [autoplayEnabled, setAutoplayEnabled] = useState(true);
+
+  const pauseAutoplayRef = useRef(false);
+  const hasEnteredViewRef = useRef(false);
 
   const awardData = steps.map((step, index) => ({
     id: step.id,
@@ -35,8 +54,99 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
     title: step.text,
   }));
 
+  const activeStep =
+    awardData.find((item) => item.id === activeThumb) ?? awardData[0];
+
+  const syncViewport = useCallback(() => {
+    if (typeof window === "undefined") return;
+    setIsDesktop(window.innerWidth >= LG_MIN_WIDTH);
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    setAutoplayEnabled(!reduceMotion);
+  }, []);
+
+  useEffect(() => {
+    syncViewport();
+    window.addEventListener("resize", syncViewport);
+    return () => window.removeEventListener("resize", syncViewport);
+  }, [syncViewport]);
+
+  useEffect(() => {
+  const root = sectionRef.current;
+  if (!root) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      const visible = entry.isIntersecting && entry.intersectionRatio >= 0.22;
+      setIsInView(visible);
+      if (visible && !hasEnteredViewRef.current) {
+        hasEnteredViewRef.current = true;
+        setActiveThumb(1);
+      }
+    },
+    { threshold: [0, 0.22, 0.45, 0.6], rootMargin: "0px 0px -8% 0px" },
+  );
+
+  observer.observe(root);
+  return () => observer.disconnect();
+}, []);
+
+  useEffect(() => {
+    if (!isInView || !autoplayEnabled) return;
+
+    const id = window.setInterval(() => {
+      if (pauseAutoplayRef.current) return;
+      setActiveThumb((prev) => (prev >= steps.length ? 1 : prev + 1));
+    }, STEP_HOLD_MS);
+
+    return () => window.clearInterval(id);
+  }, [isInView, autoplayEnabled, steps.length]);
+
+  useGSAP(
+    () => {
+      if (isDesktop || !isInView) return;
+
+      const textEl = mobileTextRef.current;
+      const imgEl = mobileImgRef.current;
+      if (!textEl || !imgEl) return;
+
+      gsap.killTweensOf([textEl, imgEl]);
+      gsap.fromTo(
+        [textEl, imgEl],
+        { opacity: 0, y: 14 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.55,
+          ease: "power2.out",
+          stagger: 0.07,
+        },
+      );
+    },
+    {
+      dependencies: [activeThumb, isDesktop, isInView],
+      scope: sectionRef,
+      revertOnUpdate: true,
+    },
+  );
+
+  const handleListMouseEnter = (id: number) => {
+    if (!isDesktop) return;
+    pauseAutoplayRef.current = true;
+    setActiveThumb(id);
+  };
+
+  const handleListMouseLeave = () => {
+    if (!isDesktop) return;
+    pauseAutoplayRef.current = false;
+  };
+
   return (
-    <div className={`tp-award-area ${cls}`}>
+    <div
+      ref={sectionRef}
+      className={`tp-award-area instant-ibu-section ${cls}`}
+    >
       <div className="container container-1630">
         {!abStyle && (
           <div className="row">
@@ -68,21 +178,20 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
         )}
 
         <div className="row align-items-start">
-          <div className="col-xl-4 col-lg-4 d-none d-lg-block">
+          <div className="col-xl-4 col-lg-4 d-none d-lg-block instant-ibu-desktop-col">
             <div
               className="tp-award-list-thumb-wrap p-relative d-flex align-items-start justify-content-center"
               style={{ minHeight: "auto", paddingTop: "0px", marginTop: "0px" }}
             >
-              <div
-                id="tp-award-thumb"
-                className={`tp-award-list-thumb-${activeThumb}`}
-              >
+              <div id="tp-award-thumb" className="instant-ibu-thumb-stack">
                 {awardData.map((item) => (
                   <Image
                     key={item.id}
-                    className={`tp-award-list-thumb-${item.id} ${item.id === 1 ? "hide-valise-mobile" : ""}`}
+                    className={`tp-award-list-thumb-${item.id} instant-ibu-thumb-img${
+                      item.id === activeThumb ? " is-active" : ""
+                    }`}
                     src={item.img}
-                    alt="list-thumb"
+                    alt={item.title}
                     style={{
                       width: "auto",
                       height: "auto",
@@ -96,7 +205,10 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
             </div>
           </div>
 
-          <div className="col-xl-8 col-lg-8 col-12">
+          <div
+            className="col-xl-8 col-lg-8 d-none d-lg-block instant-ibu-desktop-col"
+            onMouseLeave={handleListMouseLeave}
+          >
             <div className="tp-award-list-wrap">
               {abStyle && (
                 <div className="ab-award-title-sm">
@@ -109,10 +221,10 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
               {awardData.map((item) => (
                 <div
                   key={item.id}
-                  onMouseEnter={() =>
-                    window.innerWidth >= 992 ? setActiveThumb(item.id) : null
-                  }
-                  className="tp-award-list-item d-flex align-items-center tp_fade_bottom"
+                  onMouseEnter={() => handleListMouseEnter(item.id)}
+                  className={`tp-award-list-item d-flex align-items-center tp_fade_bottom${
+                    item.id === activeThumb ? " is-instant-ibu-active" : ""
+                  }`}
                   rel={`tp-award-list-thumb-${item.id}`}
                 >
                   <div className="tp-award-list-content-left d-flex align-items-center">
@@ -121,6 +233,26 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className="col-12 d-lg-none">
+            <div ref={mobileStageRef} className="instant-ibu-mobile-stage">
+              <div ref={mobileTextRef} className="instant-ibu-mobile-text">
+                <span className="instant-ibu-mobile-num" aria-hidden="true">
+                  {activeStep.subtitle}
+                </span>
+                <p className="instant-ibu-mobile-copy">{activeStep.title}</p>
+              </div>
+              <div ref={mobileImgRef} className="instant-ibu-mobile-img-wrap">
+                <Image
+                  src={activeStep.img}
+                  alt={activeStep.title}
+                  className="instant-ibu-mobile-img"
+                  sizes="100vw"
+                  priority={activeThumb === 1}
+                />
+              </div>
             </div>
           </div>
         </div>

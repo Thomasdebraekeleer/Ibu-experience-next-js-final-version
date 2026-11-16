@@ -241,6 +241,7 @@
     },
     "approach": {
       "title": "Notre Approche.",
+      "gridPhotoAlt": "Notre approche — photo {index}",
       "missionLabel": "Mission",
       "missionParagraph1": "IBÙ offre la chance de séjourner au cœur de domaines d'exception en Belgique, en valorisant leur patrimoine, leurs produits et leur savoir-faire.",
       "missionParagraph2": "Nous créons des expériences uniques qui allient hébergement raffiné et immersion dans des lieux emblématiques, pour sublimer le terroir local.",

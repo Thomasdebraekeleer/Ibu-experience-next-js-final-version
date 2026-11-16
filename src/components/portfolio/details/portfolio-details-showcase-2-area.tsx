@@ -13,20 +13,12 @@ import VideoTwo from '@/components/video/video-two';
 import ExpandableReviewText from '@/components/testimonial/expandable-review-text';
 import HomeFaqSection from '@/components/faq/home-faq-section';
 
-// images 
-import port_d_1 from '@/assets/img/inner-project/showcase/showcase-details-2-2.jpg';
-import port_d_2 from '@/assets/img/inner-project/showcase/showcase-details-2-3.jpg';
-import port_d_3 from '@/assets/img/inner-project/showcase/showcase-details-2-4.jpg';
-import port_d_4 from '@/assets/img/inner-project/showcase/showcase-details-2-5.jpg';
-import port_d_5 from '@/assets/img/inner-project/showcase/showcase-details-2-6.jpg';
-import port_d_6 from '@/assets/img/inner-project/showcase/showcase-details-2-7.jpg';
-import port_d_7 from '@/assets/img/inner-project/showcase/showcase-details-2-8.jpg';
-import port_d_8 from '@/assets/img/inner-project/showcase/showcase-details-2-9.jpg';
-
 import fullwidth_img from '@/assets/img/inner-project/showcase/showcase-details-2-10.jpg';
 import fullwidth_img_2 from '@/assets/img/inner-project/showcase/showcase-details-2-13.jpg';
-import d_g_img_1 from '@/assets/img/inner-project/showcase/showcase-details-2-11.jpg';
-import d_g_img_2 from '@/assets/img/inner-project/showcase/showcase-details-2-12.jpg';
+import approach_img_1 from '@/assets/img/inner-project/showcase/notre-approche-1.webp';
+import approach_img_2 from '@/assets/img/inner-project/showcase/notre-approche-2.webp';
+import approach_img_3 from '@/assets/img/inner-project/showcase/notre-approche-3.webp';
+import approach_img_4 from '@/assets/img/inner-project/showcase/notre-approche-4.webp';
 import showcase_img_14 from '@/assets/img/inner-project/showcase/showcase-details-2-14.jpg';
 import showcase_img_15 from '@/assets/img/inner-project/showcase/showcase-details-2-15.jpg';
 
@@ -36,23 +28,28 @@ import cocons_img_2 from '@/assets/img/inner-project/experiences-cocons/cocons-2
 import cocons_img_3 from '@/assets/img/inner-project/experiences-cocons/cocons-3.jpg';
 import cocons_img_4 from '@/assets/img/inner-project/experiences-cocons/cocons-4.jpg';
 
+const APPROACH_GRID_IMAGES = [
+  approach_img_1,
+  approach_img_2,
+  approach_img_3,
+  approach_img_4,
+] as const;
 
-// img data pour version PC
-const img_data = [port_d_1, port_d_2, port_d_3, port_d_4, port_d_5, port_d_6, port_d_7, port_d_8];
+const APPROACH_GRID_IMG_CLASSES = [
+  'img-left',
+  'img-right',
+  'img-left',
+  'img-right',
+] as const;
 
-// img data pour carrousel mobile (section Évasion)
-const mobile_carousel_images = [
-  '/assets/img/inner-project/Caroussel pictures/Image 1.webp',
-  '/assets/img/inner-project/Caroussel pictures/Image 2.webp',
-  '/assets/img/inner-project/Caroussel pictures/Image 3.webp',
-  '/assets/img/inner-project/Caroussel pictures/Image 4.webp',
-  '/assets/img/inner-project/Caroussel pictures/Image 5.webp',
-  '/assets/img/inner-project/Caroussel pictures/Image 6.webp',
-  '/assets/img/inner-project/Caroussel pictures/Image 7.webp',
-];
+/** Section Évasion — portraits 1200×1600 (3:4), scroll PC + carrousel mobile */
+const EVASION_PORTRAIT_WIDTH = 1200;
+const EVASION_PORTRAIT_HEIGHT = 1600;
+const EVASION_CAROUSEL_BASE = '/assets/img/inner-project/showcase/Carroussel new';
 
-const PROGRAM_PHOTO_MOBILE_SRC =
-  '/assets/img/inner-project/Caroussel pictures/Image Mobile home page.webp';
+const evasion_gallery_images = Array.from({ length: 8 }, (_, i) =>
+  `${EVASION_CAROUSEL_BASE}/Image ${i}.webp`
+);
 
 // Avis clients via messages/home.reviews (accueil + à propos).
 
@@ -108,6 +105,17 @@ export default function PortfolioDetailsShowcaseTwoArea() {
   const videoMobileRef = useRef<HTMLVideoElement>(null);
   const bienEtreRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<HTMLDivElement>(null);
+  /** Triptych « Programme » après L'instant IBÙ — parallaxe légère sur mobile */
+  const programPhotoRef = useRef<HTMLDivElement>(null);
+  const evasionPcImagesLoadedRef = useRef(0);
+
+  const refreshEvasionScrollGallery = useCallback(() => {
+    evasionPcImagesLoadedRef.current += 1;
+    if (evasionPcImagesLoadedRef.current < 8) return;
+    void import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      ScrollTrigger.refresh();
+    });
+  }, []);
 
   /** Après avoir choisi « Activer le son » une première fois ; le fondu au scroll ne s’applique que si true. */
   const hasUserActivatedAudioRef = useRef(false);
@@ -380,6 +388,65 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     };
   }, []);
 
+  /** Parallaxe douce du triptych Programme sur mobile (même visuel que PC) */
+  useEffect(() => {
+    const wrap = programPhotoRef.current;
+    if (!wrap) return;
+
+    const img = wrap.querySelector<HTMLImageElement>('.program-photo-triptych');
+    if (!img) return;
+
+    const mq = window.matchMedia('(max-width: 991px)');
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    let ticking = false;
+
+    const reset = () => {
+      img.style.transform = 'translate3d(0, 0, 0)';
+      img.style.willChange = 'auto';
+    };
+
+    if (!mq.matches || reduceMotion) {
+      reset();
+      return;
+    }
+
+    img.style.willChange = 'transform';
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = wrap.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const centerOffset = rect.top + rect.height / 2 - vh / 2;
+        const y = Math.max(-28, Math.min(28, centerOffset * -0.08));
+        img.style.transform = `translate3d(0, ${y}px, 0)`;
+        ticking = false;
+      });
+    };
+
+    const onResize = () => {
+      if (!window.matchMedia('(max-width: 991px)').matches || reduceMotion) {
+        reset();
+        return;
+      }
+      onScroll();
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    onScroll();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      reset();
+    };
+  }, []);
+
   /** Lecture muette (autoplay prod) + aucun pause() hero ; tentative au chargement puis filet sur interaction. */
   useEffect(() => {
     const mqMdUp = window.matchMedia(
@@ -638,6 +705,20 @@ export default function PortfolioDetailsShowcaseTwoArea() {
     };
   }, []);
 
+  const approachPhoto = (index: number, extraClass = '') => (
+    <div
+      className={`showcase-details-2-grid-img approach-photos-item${extraClass ? ` ${extraClass}` : ''}`}
+    >
+      <Image
+        className={APPROACH_GRID_IMG_CLASSES[index]}
+        src={APPROACH_GRID_IMAGES[index]}
+        alt={tApproach('gridPhotoAlt', { index: index + 1 })}
+        sizes="(max-width: 991px) 100vw, 50vw"
+        style={{ width: '100%', height: 'auto' }}
+      />
+    </div>
+  );
+
   return (
     <div key={locale}>
       {/* portfolio hero — vidéos R2 ; autoplay muette garantie puis son uniquement après action utilisateur. */}
@@ -823,24 +904,44 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             </div>
           </div>
           
-          {/* Version PC - moving gallery */}
-          <div className="moving-gallery d-none d-lg-block" style={{marginTop: '120px'}}>
-            <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-top d-flex align-items-end mb-20">
-              {img_data.slice(0,4).map((imgSrc,i) => (
-                <div key={i} className="showcase-details-2-slider-item">
-                  <Image src={imgSrc} alt="port-img" style={{height:"auto"}}/>
-                </div>
-              ))}
+          {/* Version PC - galerie scroll pleine largeur */}
+          <div className="evasion-scroll-bleed d-none d-lg-block" style={{ marginTop: '120px' }}>
+            <div className="moving-gallery evasion-scroll-gallery">
+              <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-top evasion-scroll-row d-flex align-items-end">
+                {evasion_gallery_images.slice(0, 4).map((imgSrc, i) => (
+                  <div key={imgSrc} className="showcase-details-2-slider-item evasion-scroll-item">
+                    <Image
+                      src={imgSrc}
+                      alt={tEvasion('carouselImageAlt', { index: i + 1 })}
+                      width={EVASION_PORTRAIT_WIDTH}
+                      height={EVASION_PORTRAIT_HEIGHT}
+                      className="evasion-portrait-img"
+                      sizes="25vw"
+                      onLoadingComplete={refreshEvasionScrollGallery}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="moving-gallery d-none d-lg-block">
-            <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-bottom d-flex align-items-start">
-              {img_data.slice(4,8).map((imgSrc,i) => (
-                <div key={i} className="showcase-details-2-slider-item">
-                  <Image src={imgSrc} alt="port-img" style={{height:"auto"}}/>
-                </div>
-              ))}
+            <div className="evasion-inter-row-gap" aria-hidden="true" />
+
+            <div className="moving-gallery evasion-scroll-gallery">
+              <div className="showcase-details-2-slider-wrap wrapper-gallery slider-wrap-bottom evasion-scroll-row d-flex align-items-start">
+                {evasion_gallery_images.slice(4, 8).map((imgSrc, i) => (
+                  <div key={imgSrc} className="showcase-details-2-slider-item evasion-scroll-item">
+                    <Image
+                      src={imgSrc}
+                      alt={tEvasion('carouselImageAlt', { index: i + 5 })}
+                      width={EVASION_PORTRAIT_WIDTH}
+                      height={EVASION_PORTRAIT_HEIGHT}
+                      className="evasion-portrait-img"
+                      sizes="25vw"
+                      onLoadingComplete={refreshEvasionScrollGallery}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -866,24 +967,16 @@ export default function PortfolioDetailsShowcaseTwoArea() {
                 padding: '0 0 40px 0'
               }}
             >
-              {mobile_carousel_images.map((imgSrc, i) => (
-                <SwiperSlide key={i}>
-                  <div className="evasion-mobile-item" style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%'
-                  }}>
-                    <Image 
-                      src={imgSrc} 
+              {evasion_gallery_images.map((imgSrc, i) => (
+                <SwiperSlide key={imgSrc}>
+                  <div className="evasion-mobile-item">
+                    <Image
+                      src={imgSrc}
                       alt={tEvasion('carouselImageAlt', { index: i + 1 })}
-                      width={500}
-                      height={400}
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        objectFit: 'cover'
-                      }}
+                      width={EVASION_PORTRAIT_WIDTH}
+                      height={EVASION_PORTRAIT_HEIGHT}
+                      className="evasion-portrait-img evasion-portrait-img--mobile"
+                      sizes="100vw"
                     />
                   </div>
                 </SwiperSlide>
@@ -899,24 +992,20 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       </div>
       {/* Awards section */}
 
-      {/* full width image — PC : photo horizontale + parallaxe ; mobile : taille native */}
-      <div className="showcase-details-2-fullwidth-img program-photo-spacing">
-          <Image
-            data-speed=".8"
-            src={fullwidth_img}
-            alt="fullwidth_img"
-            className="program-photo-desktop d-none d-md-block w-100"
-            style={{ height: 'auto' }}
-          />
-          <Image
-            src={PROGRAM_PHOTO_MOBILE_SRC}
-            alt={tHero('programPhotoAlt')}
-            width={1200}
-            height={1600}
-            sizes="100vw"
-            className="program-photo-mobile-native d-block d-md-none w-100"
-            style={{ width: '100%', height: 'auto' }}
-          />
+      {/* Triptych Programme — même 3 photos PC + mobile, parallaxe au scroll */}
+      <div
+        ref={programPhotoRef}
+        className="showcase-details-2-fullwidth-img program-photo-spacing program-photo-triptych-wrap"
+      >
+        <Image
+          data-speed=".8"
+          src={fullwidth_img}
+          alt={tHero('programPhotoAlt')}
+          className="program-photo-triptych w-100"
+          style={{ height: 'auto', width: '100%' }}
+          sizes="100vw"
+          priority={false}
+        />
       </div>
       {/* full width image */}
 
@@ -950,20 +1039,37 @@ export default function PortfolioDetailsShowcaseTwoArea() {
       </div>
       {/* detail title 3 */}
 
-      {/* grid images */}
+      {/* grid images — Notre Approche (4 photos : 2×2 desktop, colonne mobile) */}
       <div className="showcase-details-2-grid-area pb-90 grid-before-engagements after-mission-photos">
           <div className="container">
-            <div className="row">
-                <div className="col-xl-6 col-lg-6">
-                  <div className="showcase-details-2-grid-img mb-30">
-                      <Image className="img-left" src={d_g_img_1} alt="details-img" style={{height:'auto'}}/>
-                  </div>
+            <div className="approach-photos-mobile d-lg-none">
+              {APPROACH_GRID_IMAGES.map((src, index) => (
+                <div key={src.src} className="approach-photos-mobile-item">
+                  {approachPhoto(index)}
                 </div>
-                <div className="col-xl-6 col-lg-6">
-                  <div className="showcase-details-2-grid-img mb-30">
-                      <Image className="img-right" src={d_g_img_2} alt="details-img" style={{height:'auto'}}/>
+              ))}
+            </div>
+            <div className="approach-photos-desktop d-none d-lg-flex">
+              <div className="approach-photos-stack">
+                {[0, 2].map((index) => (
+                  <div
+                    key={APPROACH_GRID_IMAGES[index].src}
+                    className="approach-photos-stack-item"
+                  >
+                    {approachPhoto(index)}
                   </div>
-                </div>
+                ))}
+              </div>
+              <div className="approach-photos-stack">
+                {[1, 3].map((index) => (
+                  <div
+                    key={APPROACH_GRID_IMAGES[index].src}
+                    className="approach-photos-stack-item"
+                  >
+                    {approachPhoto(index)}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
       </div>
@@ -1292,6 +1398,42 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
       {/* Styles consolidés */}
       <style jsx>{`
+        .approach-photos-desktop {
+          --approach-photos-gap: 28px;
+          align-items: flex-start;
+          width: 100%;
+          gap: var(--approach-photos-gap);
+        }
+
+        .approach-photos-stack {
+          flex: 1 1 0;
+          display: flex;
+          flex-direction: column;
+          gap: var(--approach-photos-gap);
+          min-width: 0;
+        }
+
+        .approach-photos-stack :global(.approach-photos-item) {
+          margin-bottom: 0 !important;
+        }
+
+        /* Grille uniforme : même interstice horizontal (col 1|2) et vertical (lignes) */
+        .approach-photos-desktop :global(img.img-left),
+        .approach-photos-desktop :global(img.img-right) {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .approach-photos-mobile-item {
+          margin-bottom: 28px;
+        }
+
+        .approach-photos-mobile-item:last-child {
+          margin-bottom: 0;
+        }
+
         /* Optimisations pour les performances du hero */
         .hero-video-layer {
           will-change: transform;
@@ -1405,6 +1547,15 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             overflow: hidden;
           }
 
+          .evasion-mobile-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0 12px;
+            box-sizing: border-box;
+          }
+
           /* Forcer un espacement au-dessus du titre pour éviter qu'il ne passe sous la section précédente */
           .tp-award-wrapper {
             padding-top: 8px !important;
@@ -1460,33 +1611,35 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             padding-top: 0 !important;
           }
           
-          /* Mobile : photo verticale 1200×1600 — pleine largeur écran, ratio conservé, sans zoom/crop */
+          .program-photo-triptych-wrap {
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            overflow: hidden;
+          }
+
           .program-photo-spacing.showcase-details-2-fullwidth-img {
             height: auto !important;
             min-height: 0 !important;
-            overflow: visible !important;
+            overflow: hidden !important;
           }
 
-          .program-photo-spacing .program-photo-mobile-native {
+          .program-photo-spacing .program-photo-triptych {
             width: 100% !important;
             max-width: 100% !important;
             height: auto !important;
-            object-fit: contain !important;
-            object-position: center top !important;
+            object-fit: cover !important;
+            object-position: center center !important;
             display: block !important;
           }
-          
-          /* Garantir que l'image garde sa taille originale et ne se coupe pas */
-          .showcase-details-2-fullwidth-img {
-            overflow: visible !important;
-          }
-          
-          .showcase-details-2-fullwidth-img img:not(.program-photo-mobile-native) {
+
+          .showcase-details-2-fullwidth-img.program-photo-spacing img.program-photo-triptych {
             width: 100% !important;
             height: auto !important;
-            object-fit: contain !important;
-            object-position: center top !important;
+            object-fit: cover !important;
+            object-position: center center !important;
             max-height: none !important;
+            will-change: transform;
           }
           
           /* Réduire de moitié l'espace entre les photos et "Engagements" */
@@ -1541,19 +1694,10 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             height: auto !important;
           }
 
-          .program-photo-spacing .program-photo-mobile-native {
-            width: 100% !important;
-            max-width: 100% !important;
-            height: auto !important;
-            object-fit: contain !important;
-          }
-
-          .showcase-details-2-fullwidth-img img:not(.program-photo-mobile-native) {
+          .program-photo-spacing .program-photo-triptych {
             width: 100% !important;
             height: auto !important;
-            object-fit: contain !important;
-            object-position: center top !important;
-            max-height: none !important;
+            object-fit: cover !important;
           }
           
           /* Réduire de moitié l'espace entre les photos et "Engagements" */
@@ -1647,12 +1791,11 @@ export default function PortfolioDetailsShowcaseTwoArea() {
             z-index: 102 !important;
             touch-action: manipulation;
           }
-          /* Désactiver l'effet parallax sur mobile pour éviter les saccades */
-          .showcase-details-2-fullwidth-img img.program-photo-desktop {
+          .showcase-details-2-fullwidth-img:not(.program-photo-triptych-wrap) {
             transform: none !important;
             will-change: auto !important;
           }
-          .showcase-details-2-fullwidth-img {
+          .showcase-details-2-fullwidth-img:not(.program-photo-triptych-wrap) img {
             transform: none !important;
             will-change: auto !important;
           }

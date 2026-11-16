@@ -238,6 +238,79 @@
   transform: scale(1.2) !important;
 }
 
+/* Section Évasion (accueil) — galerie scroll PC + carrousel mobile, portraits 3:4 */
+.evasion-scroll-bleed {
+  --evasion-gap: clamp(12px, 1.25vw, 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+}
+
+.evasion-inter-row-gap {
+  flex: 0 0 auto;
+  width: 100%;
+  height: var(--evasion-gap);
+  min-height: var(--evasion-gap);
+  pointer-events: none;
+}
+
+.evasion-scroll-gallery {
+  width: 100%;
+  overflow: hidden;
+}
+
+.evasion-scroll-row {
+  --evasion-img-w: calc((100vw - 3 * var(--evasion-gap, 16px)) / 4);
+  gap: var(--evasion-gap, 16px);
+  width: 100%;
+  max-width: 100vw;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+}
+
+.evasion-scroll-item {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+@media (min-width: 992px) {
+  .evasion-scroll-bleed .showcase-details-2-slider-item {
+    margin: 0 !important;
+    display: block;
+  }
+
+  .evasion-portrait-img {
+    display: block;
+    width: var(--evasion-img-w, calc((100vw - 48px) / 4));
+    height: calc(var(--evasion-img-w, calc((100vw - 48px) / 4)) * 4 / 3);
+    max-width: none;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .evasion-scroll-row.slider-wrap-top {
+    align-items: flex-end;
+  }
+
+  .evasion-scroll-row.slider-wrap-bottom {
+    align-items: flex-start;
+  }
+}
+
+.evasion-portrait-img--mobile {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
 /* Styles spécifiques pour les carrousels cocons et évasion */
 .cocons-mobile-carousel .swiper-pagination-bullet,
 .evasion-mobile-carousel .swiper-pagination-bullet {
@@ -299,11 +372,134 @@
   padding-bottom: 10px !important;
   border-bottom: 2px solid #053725 !important;
 }
-/* Masquer la photo de la valise (ligne 1) sur mobile dans la section Programme */
+/* —— L'instant IBÙ : cycle automatique + mobile —— */
+.instant-ibu-thumb-stack {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+}
+
+.instant-ibu-thumb-img {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(14px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease,
+    visibility 0s linear 0.65s;
+  pointer-events: none;
+}
+
+.instant-ibu-thumb-img.is-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0);
+  z-index: 1;
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease,
+    visibility 0s;
+}
+
+@media (min-width: 992px) {
+  .tp-award-list-item.is-instant-ibu-active::after {
+    width: 100% !important;
+  }
+
+  .tp-award-list-item.is-instant-ibu-active:nth-child(6) {
+    border-bottom-color: var(--tp-common-black);
+  }
+
+  .instant-ibu-section .tp-award-list-item:hover::after {
+    width: 0%;
+  }
+
+  .instant-ibu-section .tp-award-list-item.is-instant-ibu-active:hover::after {
+    width: 100% !important;
+  }
+}
+
+.instant-ibu-mobile-stage {
+  margin-top: 8px;
+  padding-bottom: 24px;
+}
+
+.instant-ibu-mobile-text {
+  margin-bottom: 20px;
+}
+
+.instant-ibu-mobile-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(3rem, 11vw, 3.5rem);
+  height: clamp(3rem, 11vw, 3.5rem);
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: #053725;
+  color: #fffcf7;
+  font-size: clamp(1.15rem, 4.5vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.instant-ibu-mobile-copy {
+  margin: 0;
+  font-size: clamp(1.15rem, 4.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--tp-common-black);
+}
+
+.instant-ibu-mobile-img-wrap {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.instant-ibu-mobile-img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
 @media (max-width: 991px) {
-  .hide-valise-mobile {
+  /* Le thème force display:flex sur .col-xl-4 — masquer la galerie PC sur mobile */
+  .instant-ibu-section .instant-ibu-desktop-col,
+  .instant-ibu-section .tp-award-list-thumb-wrap {
     display: none !important;
   }
+
+  .instant-ibu-section .tp-award-title-box {
+    margin-bottom: 28px !important;
+  }
+
+  .instant-ibu-section .tp-award-list-wrap {
+    display: none !important;
+  }
+
+  .instant-ibu-mobile-stage {
+    min-height: 1px;
+  }
+
+  .instant-ibu-mobile-img-wrap {
+    position: relative;
+    isolation: isolate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instant-ibu-thumb-img,
+  .instant-ibu-thumb-img.is-active {
+    transition: none;
+    transform: none;
+  }
+
 }
 
 /* Réduire la taille du texte défilant du footer sur mobile */

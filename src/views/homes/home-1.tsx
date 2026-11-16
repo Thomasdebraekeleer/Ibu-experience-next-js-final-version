@@ -20,7 +20,7 @@ import NewsletterPopup from "@/components/modal/newsletter-popup";
 import { hoverBtn } from "@/utils/hover-btn";
 import { footerTwoAnimation } from "@/utils/footer-anim";
 import { charAnimation, titleAnimation } from "@/utils/title-animation";
-import { movingImageSlider } from "@/utils/scroll-marque";
+import { evasionGalleryRevealAnim, movingImageSlider } from "@/utils/scroll-marque";
 
 /**
  * Page d'accueil principale
@@ -76,6 +76,7 @@ const HomeMain = () => {
         charAnimation();
         titleAnimation();
         movingImageSlider();
+        evasionGalleryRevealAnim();
         hoverBtn();
         footerTwoAnimation();
 
