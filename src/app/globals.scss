@@ -425,10 +425,21 @@
 .instant-ibu-mobile-stage {
   margin-top: 8px;
   padding-bottom: 24px;
+  overflow-anchor: none;
 }
 
 .instant-ibu-mobile-text {
   margin-bottom: 20px;
+  animation: instant-ibu-mobile-text-in 0.45s ease both;
+}
+
+@keyframes instant-ibu-mobile-text-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .instant-ibu-mobile-num {
@@ -449,6 +460,7 @@
 
 .instant-ibu-mobile-copy {
   margin: 0;
+  min-height: 3.2em;
   font-size: clamp(1.15rem, 4.8vw, 1.45rem);
   font-weight: 500;
   line-height: 1.35;
@@ -456,15 +468,28 @@
 }
 
 .instant-ibu-mobile-img-wrap {
+  position: relative;
   width: 100%;
+  aspect-ratio: 3 / 4;
+  max-height: min(72vh, 560px);
   border-radius: 4px;
   overflow: hidden;
 }
 
+.instant-ibu-mobile-img-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.instant-ibu-mobile-img-layer.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
 .instant-ibu-mobile-img {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
   object-fit: contain !important;
 }
 
@@ -483,14 +508,6 @@
     display: none !important;
   }
 
-  .instant-ibu-mobile-stage {
-    min-height: 1px;
-  }
-
-  .instant-ibu-mobile-img-wrap {
-    position: relative;
-    isolation: isolate;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -500,6 +517,13 @@
     transform: none;
   }
 
+  .instant-ibu-mobile-text {
+    animation: none;
+  }
+
+  .instant-ibu-mobile-img-layer {
+    transition: none;
+  }
 }
 
 /* Réduire la taille du texte défilant du footer sur mobile */

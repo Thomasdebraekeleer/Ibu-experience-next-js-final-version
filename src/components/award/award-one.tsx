@@ -3,8 +3,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import a_1 from "@/assets/img/home-01/award/award-instant-1.webp";
 import a_2 from "@/assets/img/home-01/award/award-instant-2.webp";
 import a_3 from "@/assets/img/home-01/award/award-instant-3.webp";
@@ -13,13 +11,13 @@ import a_5 from "@/assets/img/home-01/award/award-instant-5.webp";
 import a_6 from "@/assets/img/home-01/award/award-6.png";
 import { Leaf } from "../svg";
 
-gsap.registerPlugin(useGSAP);
-
 const AWARD_IMAGES = [a_1, a_2, a_3, a_4, a_5, a_6];
 
 const LG_MIN_WIDTH = 992;
 /** Temps d’affichage par étape avant passage à la suivante */
 const STEP_HOLD_MS = 4200;
+/** Pause le défilement auto tant que l’utilisateur scrolle (évite les sauts de scroll mobile) */
+const SCROLL_IDLE_MS = 450;
 
 type InstantIbuStep = {
   id: number;
@@ -35,9 +33,6 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
   const t = useTranslations("home.instantIbu");
   const steps = t.raw("steps") as InstantIbuStep[];
   const sectionRef = useRef<HTMLDivElement>(null);
-  const mobileStageRef = useRef<HTMLDivElement>(null);
-  const mobileTextRef = useRef<HTMLDivElement>(null);
-  const mobileImgRef = useRef<HTMLDivElement>(null);
 
   const [activeThumb, setActiveThumb] = useState(1);
   const [isInView, setIsInView] = useState(false);
@@ -46,6 +41,7 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
 
   const pauseAutoplayRef = useRef(false);
   const hasEnteredViewRef = useRef(false);
+  const userScrollingRef = useRef(false);
 
   const awardData = steps.map((step, index) => ({
     id: step.id,
@@ -73,63 +69,51 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
   }, [syncViewport]);
 
   useEffect(() => {
-  const root = sectionRef.current;
-  if (!root) return;
+    let scrollIdleTimer: ReturnType<typeof setTimeout>;
+    const onScroll = () => {
+      userScrollingRef.current = true;
+      window.clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = window.setTimeout(() => {
+        userScrollingRef.current = false;
+      }, SCROLL_IDLE_MS);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(scrollIdleTimer);
+    };
+  }, []);
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      const visible = entry.isIntersecting && entry.intersectionRatio >= 0.22;
-      setIsInView(visible);
-      if (visible && !hasEnteredViewRef.current) {
-        hasEnteredViewRef.current = true;
-        setActiveThumb(1);
-      }
-    },
-    { threshold: [0, 0.22, 0.45, 0.6], rootMargin: "0px 0px -8% 0px" },
-  );
+  useEffect(() => {
+    const root = sectionRef.current;
+    if (!root) return;
 
-  observer.observe(root);
-  return () => observer.disconnect();
-}, []);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting && entry.intersectionRatio >= 0.15;
+        setIsInView(visible);
+        if (visible && !hasEnteredViewRef.current) {
+          hasEnteredViewRef.current = true;
+          setActiveThumb(1);
+        }
+      },
+      { threshold: [0, 0.15, 0.35], rootMargin: "0px 0px -5% 0px" },
+    );
+
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!isInView || !autoplayEnabled) return;
 
     const id = window.setInterval(() => {
-      if (pauseAutoplayRef.current) return;
+      if (pauseAutoplayRef.current || userScrollingRef.current) return;
       setActiveThumb((prev) => (prev >= steps.length ? 1 : prev + 1));
     }, STEP_HOLD_MS);
 
     return () => window.clearInterval(id);
   }, [isInView, autoplayEnabled, steps.length]);
-
-  useGSAP(
-    () => {
-      if (isDesktop || !isInView) return;
-
-      const textEl = mobileTextRef.current;
-      const imgEl = mobileImgRef.current;
-      if (!textEl || !imgEl) return;
-
-      gsap.killTweensOf([textEl, imgEl]);
-      gsap.fromTo(
-        [textEl, imgEl],
-        { opacity: 0, y: 14 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.55,
-          ease: "power2.out",
-          stagger: 0.07,
-        },
-      );
-    },
-    {
-      dependencies: [activeThumb, isDesktop, isInView],
-      scope: sectionRef,
-      revertOnUpdate: true,
-    },
-  );
 
   const handleListMouseEnter = (id: number) => {
     if (!isDesktop) return;
@@ -237,21 +221,35 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
           </div>
 
           <div className="col-12 d-lg-none">
-            <div ref={mobileStageRef} className="instant-ibu-mobile-stage">
-              <div ref={mobileTextRef} className="instant-ibu-mobile-text">
+            <div className="instant-ibu-mobile-stage">
+              <div
+                key={`step-${activeThumb}`}
+                className="instant-ibu-mobile-text"
+              >
                 <span className="instant-ibu-mobile-num" aria-hidden="true">
                   {activeStep.subtitle}
                 </span>
                 <p className="instant-ibu-mobile-copy">{activeStep.title}</p>
               </div>
-              <div ref={mobileImgRef} className="instant-ibu-mobile-img-wrap">
-                <Image
-                  src={activeStep.img}
-                  alt={activeStep.title}
-                  className="instant-ibu-mobile-img"
-                  sizes="100vw"
-                  priority={activeThumb === 1}
-                />
+              <div className="instant-ibu-mobile-img-wrap">
+                {awardData.map((item) => (
+                  <div
+                    key={item.id}
+                    className={`instant-ibu-mobile-img-layer${
+                      item.id === activeThumb ? " is-active" : ""
+                    }`}
+                    aria-hidden={item.id !== activeThumb}
+                  >
+                    <Image
+                      src={item.img}
+                      alt={item.id === activeThumb ? item.title : ""}
+                      className="instant-ibu-mobile-img"
+                      fill
+                      sizes="100vw"
+                      priority={item.id === 1}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
