@@ -109,15 +109,6 @@ export default function FooterThree() {
                 <h4 className="tp-footer-2-widget-title">{t("info")}</h4>
                 <div className="tp-footer-2-contact-item">
                   <span>
-                    {t("addressLine1")}
-                    <br />
-                    {t("addressLine2")}
-                    <br />
-                    {t("addressLine3")}
-                  </span>
-                </div>
-                <div className="tp-footer-2-contact-item">
-                  <span>
                     <a href="mailto:info@ibu-experience.be">{t("email")}</a>
                   </span>
                 </div>
