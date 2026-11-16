@@ -95,6 +95,9 @@ export default function FooterThree() {
                       <Link href="/faq">{t("faq")}</Link>
                     </li>
                     <li>
+                      <Link href="/conditions-generales-de-vente">{t("termsOfSale")}</Link>
+                    </li>
+                    <li>
                       <Link href="/blog">{t("blog")}</Link>
                     </li>
                   </ul>
@@ -157,6 +160,10 @@ export default function FooterThree() {
                   >
                     NRV Agency
                   </a>
+                  {" · "}
+                  <Link href="/conditions-generales-de-vente" className="tp-copyright-legal-link">
+                    {t("termsOfSale")}
+                  </Link>
                   {" · "}
                   <CookieSettingsLink />
                 </p>

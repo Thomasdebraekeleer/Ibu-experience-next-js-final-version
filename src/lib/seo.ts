@@ -6,6 +6,7 @@ export const PUBLIC_PATHS = [
   "/accueil",
   "/a-propos",
   "/blog",
+  "/conditions-generales-de-vente",
   "/contact",
   "/devenir-partenaire",
   "/domaine-de-mehaignoul",

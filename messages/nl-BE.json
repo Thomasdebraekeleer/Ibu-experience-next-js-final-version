@@ -26,6 +26,7 @@
     "partner": "Partner worden",
     "contact": "Contact",
     "faq": "FAQ",
+    "termsOfSale": "Algemene verkoopsvoorwaarden",
     "blog": "Blog",
     "info": "Informatie",
     "addressLine1": "Brouwerijstraat 1-3, bus 1",
@@ -129,6 +130,14 @@
       "openGraphDescription": "Noors bad, sauna, vroege aankomst, food-opties… Alle antwoorden over uw IBÙ-verblijf.",
       "twitterTitle": "IBÙ Experience - FAQ",
       "twitterDescription": "Veelgestelde vragen over uw IBÙ-verblijf op het Domaine de Mehaignoul."
+    },
+    "cgv": {
+      "title": "Algemene verkoopsvoorwaarden – IBÙ Experience",
+      "description": "Algemene verkoopsvoorwaarden voor reservaties van verblijven en opties bij IBÙ Experience in België.",
+      "openGraphTitle": "AVV – IBÙ Experience",
+      "openGraphDescription": "Lees de algemene verkoopsvoorwaarden voor uw reservaties op ibu-experience.be.",
+      "twitterTitle": "AVV – IBÙ Experience",
+      "twitterDescription": "Algemene verkoopsvoorwaarden IBÙ Experience."
     },
     "blog": {
       "title": "IBÙ Experience - Blog",

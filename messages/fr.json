@@ -26,6 +26,7 @@
     "partner": "Devenir Partenaire",
     "contact": "Contact",
     "faq": "FAQ",
+    "termsOfSale": "Conditions générales de vente",
     "blog": "Blog",
     "info": "Infos",
     "addressLine1": "Rue de la brasserie 1-3, boîte 1",
@@ -129,6 +130,14 @@
       "openGraphDescription": "Bain nordique, sauna, arrivée anticipée, options food… Retrouvez toutes les réponses sur votre séjour IBÙ.",
       "twitterTitle": "IBÙ Experience - FAQ",
       "twitterDescription": "Questions fréquentes sur votre séjour IBÙ au Domaine de Mehaignoul."
+    },
+    "cgv": {
+      "title": "Conditions générales de vente – IBÙ Experience",
+      "description": "Conditions générales de vente applicables aux réservations de séjours et options IBÙ Experience en Belgique.",
+      "openGraphTitle": "CGV – IBÙ Experience",
+      "openGraphDescription": "Consultez les conditions générales de vente pour vos réservations sur ibu-experience.be.",
+      "twitterTitle": "CGV – IBÙ Experience",
+      "twitterDescription": "Conditions générales de vente IBÙ Experience."
     },
     "blog": {
       "title": "IBÙ Experience - Blog",
