@@ -7,7 +7,8 @@ import * as yup from "yup";
 import { useTranslations } from "next-intl";
 import ErrorMsg from "../error-msg";
 import { useLocale } from "next-intl";
-import { trackGenerateLead } from "@/lib/analytics/events";
+import { trackClickEmail } from "@/lib/analytics/events";
+import { usePathname } from "next/navigation";
 import { toAnalyticsSiteLanguage } from "@/lib/analytics/site-language";
 import type { Locale } from "@/i18n/routing";
 
@@ -24,6 +25,7 @@ type IProps = {
 export default function ContactForm({ btnCls = "" }: IProps) {
   const t = useTranslations("contact.form");
   const locale = useLocale() as Locale;
+  const pathname = usePathname();
   const [showSuccess, setShowSuccess] = useState(false);
 
   const schema = useMemo(
@@ -61,7 +63,7 @@ export default function ContactForm({ btnCls = "" }: IProps) {
 
     window.open(mailtoLink);
 
-    trackGenerateLead(toAnalyticsSiteLanguage(locale));
+    trackClickEmail(toAnalyticsSiteLanguage(locale), pathname);
 
     setShowSuccess(true);
     reset();

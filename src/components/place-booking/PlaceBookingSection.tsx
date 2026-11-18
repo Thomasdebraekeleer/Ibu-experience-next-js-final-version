@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useLocale, useTranslations } from "next-intl";
 import { X } from "lucide-react";
@@ -45,6 +46,7 @@ type Props = {
 };
 
 export default function PlaceBookingSection({ placeId }: Props) {
+  const pathname = usePathname();
   const locale = useLocale() as Locale;
   const localeTag = locale === "nl-BE" ? "nl-BE" : "fr-BE";
   const t = useTranslations("placeBooking");
@@ -246,6 +248,9 @@ export default function PlaceBookingSection({ placeId }: Props) {
         href: url,
         siteLanguage: toAnalyticsSiteLanguage(locale),
         buttonLocation: "place_booking_card",
+        pathname,
+        coconId: cocon.id,
+        ctaId: "place_booking_reserve",
       });
       window.location.href = url;
       return;

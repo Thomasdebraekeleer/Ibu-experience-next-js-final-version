@@ -24,16 +24,18 @@ import cocons_img_1 from '@/assets/img/inner-project/experiences-cocons/cocons-1
 import cocons_img_2 from '@/assets/img/inner-project/experiences-cocons/cocons-2.jpg';
 import cocons_img_3 from '@/assets/img/inner-project/experiences-cocons/cocons-3.jpg';
 import cocons_img_4 from '@/assets/img/inner-project/experiences-cocons/cocons-4.jpg';
-import full_image from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-1.jpg';
+import full_image from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Photo hero image experience.webp';
 import full_image_2 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-2.jpg';
 import visite_chai from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Visite de Chai.webp';
 import planche_aperitif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche apéritif.webp';
 import planche_gourmande from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche Gourmande.webp';
 import depart_tardif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Départ tardif.webp';
-import slider_img_1 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-5.jpg';
-import slider_img_2 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-6.jpg';
-import slider_img_3 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-7.jpg';
-import slider_img_4 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/portfolio-img-8.jpg';
+import arrivee_anticipee from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Arrivée anticipée.webp';
+import autres_options from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Et bien d\'autres options.webp';
+import slider_img_1 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Bas de page 1.webp';
+import slider_img_2 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Bas de page 2.webp';
+import slider_img_3 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Bas de page 3.webp';
+import slider_img_4 from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Bas de page 4.webp';
 
 // animation
 import { charAnimation, titleAnimation } from "@/utils/title-animation";
@@ -227,7 +229,7 @@ const ExperiencesMain = () => {
             </div>
             
             {/* Section L'expérience IBÙ */}
-            <div className="showcase-details-2-area" style={{ paddingBottom: '40px' }}>
+            <div className="showcase-details-2-area experiences-holistic-intro" style={{ paddingBottom: '40px' }}>
               <div className="container">
                 <div className="row">
                   <div className="col-xl-12">
@@ -247,7 +249,7 @@ const ExperiencesMain = () => {
                   </div>
                   <div className="col-xl-9">
                     <div className="showcase-details-2-content-right tp_title_anim">
-                      <p className="pb-25">{t("intro.paragraph")}</p>
+                      <p className="pb-25 experiences-intro-paragraph">{t("intro.paragraph")}</p>
                     </div>
                   </div>
                 </div>
@@ -427,7 +429,67 @@ const ExperiencesMain = () => {
                   </div>
                 </div>
 
-                {/* Option 5: Petit déjeuner local */}
+                {/* Option 5: Arrivée anticipée — image à gauche, texte à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={arrivee_anticipee} alt={t("options.earlyArrival.imageAlt")} style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        {t("options.earlyArrival.title")}
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>{t("options.earlyArrival.paragraph")}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 6: Et bien d'autres options — texte à gauche, photo à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        {t("options.moreOptions.title")}
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>{t("options.moreOptions.paragraph")}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={autres_options} alt={t("options.moreOptions.imageAlt")} style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 7: Petit déjeuner local */}
                 <PetitDejeunerOptionRow localize />
               </div>
             </div>
@@ -643,6 +705,45 @@ const ExperiencesMain = () => {
         }
         
         @media (max-width: 991px) {
+          .experiences-holistic-intro {
+            padding-bottom: 8px !important;
+          }
+
+          .experiences-intro-paragraph {
+            padding-bottom: 0 !important;
+            margin-bottom: 12px !important;
+          }
+
+          :global(#services-section.experiences-services-inclus) {
+            padding-top: 0 !important;
+            margin-top: -4px !important;
+          }
+
+          :global(#services-section.experiences-services-inclus .experiences-services-title-box) {
+            margin-bottom: 4px !important;
+          }
+
+          :global(#services-section.experiences-services-inclus .experiences-services-eyebrow) {
+            margin-bottom: 10px !important;
+          }
+
+          :global(#services-section.experiences-services-inclus .tp-section-title-40) {
+            margin-bottom: 12px !important;
+            font-size: clamp(1.05rem, 4.2vw, 1.25rem) !important;
+            line-height: 1.35 !important;
+          }
+
+          :global(#services-section.experiences-services-inclus .experiences-services-img-wrap) {
+            height: auto !important;
+            min-height: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 8px !important;
+          }
+
+          :global(#services-section.experiences-services-inclus .row.align-items-center) {
+            margin-top: 0 !important;
+          }
+
           .showcase-hover-container.mobile-hover-active .showcase-hover-text {
             opacity: 1 !important;
             visibility: visible !important;

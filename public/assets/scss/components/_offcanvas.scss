@@ -724,6 +724,15 @@
 
 .tp-offcanvas-gallery-img{
     position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    & a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
     &::after{
         position: absolute;
         top: 0;
@@ -739,6 +748,10 @@
     & img{
         transition: .4s;
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
     }
     &:hover{
         & img{

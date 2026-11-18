@@ -5,15 +5,20 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { CloseTwo } from "../svg";
 import logo from "@/assets/img/logo/logo.png";
-import gallery_1 from "@/assets/img/menu/offcanvas/offcanvas-1.jpg";
-import gallery_2 from "@/assets/img/menu/offcanvas/offcanvas-2.jpg";
-import gallery_3 from "@/assets/img/menu/offcanvas/offcanvas-3.jpg";
-import gallery_4 from "@/assets/img/menu/offcanvas/offcanvas-4.jpg";
+import gallery_1 from "@/assets/img/inner-project/showcase/Carroussel new/Image 1.webp";
+import gallery_2 from "@/assets/img/inner-project/showcase/Carroussel new/Image 3.webp";
+import gallery_3 from "@/assets/img/inner-project/showcase/Carroussel new/Image 6.webp";
+import gallery_4 from "@/assets/img/inner-project/showcase/Carroussel new/Image 7.webp";
 import { Link } from "@/i18n/navigation";
 import MobileMenus from "./mobile-menus";
 import LanguageSwitcher from "@/components/i18n/LanguageSwitcher";
 
-const gallery_images = [gallery_1, gallery_2, gallery_3, gallery_4];
+const gallery_images = [
+  { src: gallery_1, altIndex: 2 },
+  { src: gallery_2, altIndex: 4 },
+  { src: gallery_3, altIndex: 7 },
+  { src: gallery_4, altIndex: 8 },
+] as const;
 
 type IProps = {
   openOffcanvas: boolean;
@@ -60,11 +65,17 @@ export default function MobileOffcanvas({
             </div>
             <div className="tp-offcanvas-gallery">
               <div className="row gx-2">
-                {gallery_images.map((item, i) => (
-                  <div className="col-md-3 col-3" key={i}>
+                {gallery_images.map((item) => (
+                  <div className="col-md-3 col-3" key={item.altIndex}>
                     <div className="tp-offcanvas-gallery-img fix">
-                      <a href="#">
-                        <Image src={item} alt="gallery-img" />
+                      <a href="#" className="position-relative d-block w-100 h-100">
+                        <Image
+                          src={item.src}
+                          alt={t("home.evasion.carouselImageAlt", { index: item.altIndex })}
+                          fill
+                          sizes="25vw"
+                          style={{ objectFit: "cover", objectPosition: "center" }}
+                        />
                       </a>
                     </div>
                   </div>
@@ -80,15 +91,6 @@ export default function MobileOffcanvas({
                 <li>
                   <a href="mailto:info@ibu-experience.be">
                     info@ibu-experience.be
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    {t("offcanvas.addressLine1")}
-                    <br />
-                    {t("offcanvas.addressLine2")}
-                    <br />
-                    {t("offcanvas.addressLine3")}
                   </a>
                 </li>
               </ul>

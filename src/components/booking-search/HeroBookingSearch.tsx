@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -60,6 +61,7 @@ function formatStayDayLabel(ymd: string, localeTag: string): string {
 }
 
 export default function HeroBookingSearch({ className = "" }: HeroBookingSearchProps) {
+  const pathname = usePathname();
   const locale = useLocale() as Locale;
   const localeTag = locale === "nl-BE" ? "nl-BE" : "fr-BE";
   const t = useTranslations("bookingSearch");
@@ -110,8 +112,9 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
     openedRef.current = true;
     trackBookingSearchEvent("booking_search_open", {
       siteLanguage: toAnalyticsSiteLanguage(locale),
+      pathname,
     });
-  }, [locale]);
+  }, [locale, pathname]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps -- cacheVersion invalide le cache ref après fetch
   const dayIndex = useMemo(
@@ -187,6 +190,7 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
     trackBookingSearchEvent("booking_search_place", {
       siteLanguage: toAnalyticsSiteLanguage(locale),
       placeId: id,
+      pathname,
     });
     setActivePanel("cocon");
   };
@@ -198,6 +202,7 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
       siteLanguage: toAnalyticsSiteLanguage(locale),
       placeId: placeId ?? undefined,
       coconId: filter,
+      pathname,
     });
     if (
       arrival &&
@@ -292,6 +297,9 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
       siteLanguage: toAnalyticsSiteLanguage(locale),
       placeId,
       coconId: coconFilter,
+      pathname,
+      stayNights:
+        arrival && departure ? countNights(arrival, departure) : undefined,
     });
 
     try {
@@ -315,11 +323,16 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
           siteLanguage: toAnalyticsSiteLanguage(locale),
           placeId,
           coconId: coconFilter,
+          pathname,
+          stayNights: countNights(arrival, departure),
         });
         trackBookingClick({
           href: flow.url,
           siteLanguage: toAnalyticsSiteLanguage(locale),
           buttonLocation: "hero_booking_search",
+          pathname,
+          coconId: coconFilter !== "all" ? coconFilter : undefined,
+          ctaId: "hero_booking_checkout",
         });
         window.location.href = flow.url;
         return;
@@ -330,6 +343,8 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
           siteLanguage: toAnalyticsSiteLanguage(locale),
           placeId,
           coconId: "all",
+          pathname,
+          stayNights: countNights(arrival, departure),
         });
         setCoconChoiceUrls(flow.urls);
         return;
@@ -337,6 +352,7 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
 
       trackBookingSearchEvent("booking_search_rejected", {
         siteLanguage: toAnalyticsSiteLanguage(locale),
+        pathname,
         placeId,
         reason: flow.reason,
       });
@@ -795,11 +811,16 @@ export default function HeroBookingSearch({ className = "" }: HeroBookingSearchP
           trackBookingSearchEvent("booking_search_checkout_choice", {
             siteLanguage: toAnalyticsSiteLanguage(locale),
             coconId: id,
+            pathname,
+            placeId: placeId ?? undefined,
           });
           trackBookingClick({
             href: url,
             siteLanguage: toAnalyticsSiteLanguage(locale),
             buttonLocation: "hero_booking_cocon_choice",
+            pathname,
+            coconId: id,
+            ctaId: "hero_booking_cocon_checkout",
           });
           window.location.href = url;
         }}

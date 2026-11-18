@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import HomeMain from "@/views/homes/home-1";
+import { DEFAULT_OG_IMAGE } from "@/config/site";
 import { buildAlternateLanguages, buildCanonicalPath } from "@/lib/seo";
 
 type Props = {
@@ -23,9 +24,9 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
       type: "website",
       images: [
         {
-          url: "/assets/img/inner-project/Photo%20lien/og-image.jpg",
-          width: 1200,
-          height: 630,
+          url: DEFAULT_OG_IMAGE.url,
+          width: DEFAULT_OG_IMAGE.width,
+          height: DEFAULT_OG_IMAGE.height,
           alt: t("openGraphTitle"),
         },
       ],
@@ -34,7 +35,7 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
       card: "summary_large_image",
       title: t("twitterTitle"),
       description: t("twitterDescription"),
-      images: ["/assets/img/inner-project/Photo%20lien/og-image.jpg"],
+      images: [DEFAULT_OG_IMAGE.url],
     },
     alternates: {
       canonical: buildCanonicalPath(PATH, locale),

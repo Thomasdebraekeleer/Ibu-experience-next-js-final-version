@@ -35,6 +35,8 @@ import visite_chai from '@/assets/img/inner-project/portfolio-details-ibu-bien-e
 import planche_aperitif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche apéritif.webp';
 import planche_gourmande from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Planche Gourmande.webp';
 import depart_tardif from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Départ tardif.webp';
+import arrivee_anticipee from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Arrivée anticipée.webp';
+import autres_options from '@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Et bien d\'autres options.webp';
 
 // slider images for Domaine de Mehaignoul
 const slider_images = [
@@ -562,7 +564,67 @@ const DomaineDeMehaignoulMain = () => {
                   </div>
                 </div>
 
-                {/* Option 5: Petit déjeuner local */}
+                {/* Option 5: Arrivée anticipée — image à gauche, texte à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6 order-2 order-lg-1">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={arrivee_anticipee} alt={tExp("options.earlyArrival.imageAlt")} style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6 order-1 order-lg-2">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        {tExp("options.earlyArrival.title")}
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>{tExp("options.earlyArrival.paragraph")}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 6: Et bien d'autres options — texte à gauche, photo à droite */}
+                <div className="row" style={{marginTop: '40px'}}>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="mb-30">
+                      <h5 className="visite-chai-title" style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: '500',
+                        color: '#053725',
+                        marginTop: '10px',
+                        marginBottom: '20px',
+                        lineHeight: '1.4',
+                        display: 'block',
+                        textTransform: 'none',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}>
+                        {tExp("options.moreOptions.title")}
+                      </h5>
+                      <div className="showcase-details-2-content-right tp_title_anim">
+                        <p>{tExp("options.moreOptions.paragraph")}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xl-6 col-lg-6">
+                    <div className="showcase-details-2-grid-img mb-30">
+                      <Image src={autres_options} alt={tExp("options.moreOptions.imageAlt")} style={{height:'auto', width: '100%'}}/>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 7: Petit déjeuner local */}
                 <PetitDejeunerOptionRow localize namespace="domaineMehaignoul.options.breakfast" />
 
                 <HomeFaqSection />

@@ -19,7 +19,7 @@ import ConsentDefaultScript from "@/components/analytics/ConsentDefaultScript";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import { routing, type Locale } from "@/i18n/routing";
 import { LODGIFY_SCRIPTS } from "@/config/lodgify";
-import { metadataBase } from "@/config/site";
+import { DEFAULT_OG_IMAGE, metadataBase } from "@/config/site";
 import "../globals.scss";
 import "../../../public/assets/css/animation-fallbacks.css";
 import "../../../public/assets/css/hero-mobile-optimizations.css";
@@ -100,10 +100,10 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     images: [
       {
-        url: "/assets/img/inner-project/Photo%20lien/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "IBÙ Experience - Expériences uniques",
+        url: DEFAULT_OG_IMAGE.url,
+        width: DEFAULT_OG_IMAGE.width,
+        height: DEFAULT_OG_IMAGE.height,
+        alt: DEFAULT_OG_IMAGE.alt,
       },
     ],
   },
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     title: "IBÙ Experience - Expériences uniques et immersives",
     description:
       "Découvrez des expériences de voyage authentiques et immersives avec IBÙ Experience.",
-    images: ["/assets/img/inner-project/Photo%20lien/og-image.jpg"],
+    images: [DEFAULT_OG_IMAGE.url],
   },
   icons: {
     icon: "/favicon.ico",

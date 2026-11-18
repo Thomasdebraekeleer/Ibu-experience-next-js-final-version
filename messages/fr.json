@@ -402,7 +402,7 @@
       "items": [
         {
           "title": "Check-in, Check-out",
-          "desc": "Votre séjour commence à 17h00 et se termine à 10h30, vous offrant ainsi un moment privilégié de détente et de ressourcement."
+          "desc": "Votre séjour commence à 17h00 et se termine à 11h00, vous offrant ainsi un moment privilégié de détente et de ressourcement."
         },
         {
           "title": "Bouteille de bienvenue",
@@ -448,6 +448,16 @@
         "title": "Départ tardif (13h30)",
         "paragraph": "Prolongez votre parenthèse bien-être : au lieu de quitter les lieux à l'heure habituelle du check-out, profitez encore de votre cocon et quittez tranquillement à 13h30. Idéal pour savourer une grasse matinée, un dernier moment au sauna ou au bain nordique, ou une balade dans les environs avant de reprendre la route.",
         "imageAlt": "Départ tardif"
+      },
+      "earlyArrival": {
+        "title": "Arrivée anticipée (15h00)",
+        "paragraph": "Prolongez l'évasion dès l'après-midi. Arrivez plus tôt pour profiter pleinement de votre cocon, du sauna et du bain nordique, et savourer chaque minute de votre instant hors du temps.",
+        "imageAlt": "Arrivée anticipée"
+      },
+      "moreOptions": {
+        "title": "Et bien d'autres options",
+        "paragraph": "Massage, table de fête… Découvrez toutes les options disponibles pour votre domaine au moment de la réservation.",
+        "imageAlt": "Et bien d'autres options"
       },
       "breakfast": {
         "title": "Petit déjeuner local",

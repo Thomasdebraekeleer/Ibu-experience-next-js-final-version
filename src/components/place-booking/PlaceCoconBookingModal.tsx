@@ -206,6 +206,9 @@ export default function PlaceCoconBookingModal({
       href: checkoutUrl,
       siteLanguage: toAnalyticsSiteLanguage(locale),
       buttonLocation: "place_booking_cocon_modal",
+      pathname: "/domaine-de-mehaignoul",
+      coconId: cocon.id,
+      ctaId: "place_booking_finalize",
     });
     window.location.href = checkoutUrl;
   };

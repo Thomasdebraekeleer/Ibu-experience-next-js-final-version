@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Leaf } from "@/components/svg";
-import shape from "@/assets/img/home-02/service/Picture ibu bien être.jpg";
+import shape from "@/assets/img/inner-project/portfolio-details-ibu-bien-etre/Ce que comprend.webp";
 
 const CheckInOutIcon = () => (
   <svg fill="#053725" height="24px" width="24px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 142.447 142.447">
@@ -148,7 +148,7 @@ const serviceAccordionItems = [
     id: 1,
     icon: <CheckInOutIcon />,
     title: "Check-in, Check-out",
-    desc: "Votre séjour commence à 17h00 et se termine à 10h30, vous offrant ainsi un moment privilégié de détente et de ressourcement.",
+    desc: "Votre séjour commence à 17h00 et se termine à 11h00, vous offrant ainsi un moment privilégié de détente et de ressourcement.",
   },
   {
     id: 2,
@@ -225,21 +225,34 @@ export default function ExperienceServicesInclusSection({
   return (
     <div
       id={sectionId}
-      className="tp-service-2-area pb-150 z-index-5"
-      style={{ paddingTop: "40px", paddingBottom: "60px" }}
+      className="tp-service-2-area pb-150 z-index-5 experiences-services-inclus"
+      style={{
+        paddingTop: isMobile ? "0px" : "40px",
+        paddingBottom: isMobile ? "40px" : "60px",
+      }}
     >
-      <div className="container container-1480">
-        <div className="row">
+      <div
+        className="container container-1480 experiences-services-inclus-inner"
+        style={
+          isMobile
+            ? { display: "flex", flexDirection: "column", gap: "12px" }
+            : undefined
+        }
+      >
+        <div
+          className="row experiences-services-title-row"
+          style={isMobile ? { order: 2 } : undefined}
+        >
           <div className="col-xl-8">
-            <div className="tp-service-2-title-box mb-70">
+            <div className="tp-service-2-title-box mb-70 experiences-services-title-box">
               <span
-                className="tp-section-subtitle-3 ce-que-comprend-title"
+                className="tp-section-subtitle-3 ce-que-comprend-title experiences-services-eyebrow"
                 style={{
                   fontSize: "clamp(1.8rem, 4.5vw, 3rem)",
                   fontWeight: "500",
                   color: "#053725",
-                  marginTop: "10px",
-                  marginBottom: "80px",
+                  marginTop: isMobile ? "0px" : "10px",
+                  marginBottom: isMobile ? "10px" : "80px",
                   lineHeight: "1.1",
                   whiteSpace: "nowrap",
                   display: "block",
@@ -256,12 +269,15 @@ export default function ExperienceServicesInclusSection({
             </div>
           </div>
         </div>
-        <div className="row align-items-center">
-          <div className="col-xxl-6 col-xl-4 col-lg-4">
+        <div
+          className="row align-items-center experiences-services-main-row"
+          style={isMobile ? { order: 1 } : undefined}
+        >
+          <div className="col-12 col-xxl-6 col-xl-4 col-lg-4">
             <div
-              className="text-center text-lg-start"
+              className="text-center text-lg-start experiences-services-img-wrap"
               style={{
-                height: "400px",
+                height: isMobile ? "auto" : "400px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -274,7 +290,7 @@ export default function ExperienceServicesInclusSection({
               />
             </div>
           </div>
-          <div className="col-xxl-6 col-xl-8 col-lg-8">
+          <div className="col-12 col-xxl-6 col-xl-8 col-lg-8">
             <div className="tp-service-2-accordion-box" style={{ minHeight: "auto", height: "auto", overflow: "visible" }}>
               <div className="accordion" id={accordionParentId} style={{ height: "auto", overflow: "visible" }}>
                 {accordionItems.map((s) => (

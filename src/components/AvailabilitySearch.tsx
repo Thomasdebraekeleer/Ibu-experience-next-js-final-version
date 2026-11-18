@@ -5,7 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { getLodgifyAllPropertiesSearchUrl } from "@/config/lodgify";
 import type { Locale } from "@/i18n/routing";
 import styles from "./AvailabilitySearch.module.scss";
-import { trackBookingClick } from "@/lib/analytics/events";
+import { trackAvailabilitySearch } from "@/lib/analytics/events";
+import { usePathname } from "next/navigation";
 import { toAnalyticsSiteLanguage } from "@/lib/analytics/site-language";
 
 function formatDateForUrl(d: Date): string {
@@ -29,6 +30,7 @@ export default function AvailabilitySearch({
   variant = "default",
 }: AvailabilitySearchProps) {
   const locale = useLocale() as Locale;
+  const pathname = usePathname();
   const t = useTranslations("forms.availability");
   const [arrival, setArrival] = useState("");
   const [departure, setDeparture] = useState("");
@@ -98,14 +100,21 @@ export default function AvailabilitySearch({
         pets: "0",
       });
       const url = `${getLodgifyAllPropertiesSearchUrl(locale)}?${params.toString()}`;
-      trackBookingClick({
-        href: url,
+      const arrivalDate = new Date(arrival);
+      const departureDate = new Date(departure);
+      const stayNights = Math.round(
+        (departureDate.getTime() - arrivalDate.getTime()) / 86400000
+      );
+      trackAvailabilitySearch({
         siteLanguage: toAnalyticsSiteLanguage(locale),
-        buttonLocation: variant === "hero" ? "availability_search_hero" : "availability_search",
+        pathname,
+        searchContext:
+          variant === "hero" ? "legacy_availability_hero" : "legacy_availability",
+        stayNights: stayNights > 0 ? stayNights : undefined,
       });
       window.location.href = url;
     },
-    [arrival, departure, adults, locale, t, variant]
+    [arrival, departure, adults, locale, pathname, t, variant]
   );
 
   const isHero = variant === "hero";

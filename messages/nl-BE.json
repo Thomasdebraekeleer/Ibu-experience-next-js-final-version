@@ -402,7 +402,7 @@
       "items": [
         {
           "title": "Check-in, check-out",
-          "desc": "Uw verblijf begint om 17.00 uur en eindigt om 10.30 uur, zodat u volop kunt genieten van een moment van rust, ontspanning en welzijn."
+          "desc": "Uw verblijf begint om 17.00 uur en eindigt om 11.00 uur, zodat u volop kunt genieten van een moment van rust, ontspanning en welzijn."
         },
         {
           "title": "Welkomstfles",
@@ -448,6 +448,16 @@
         "title": "Late check-out tot 13.30 uur",
         "paragraph": "Verleng uw moment van welzijn: in plaats van op het gebruikelijke check-outtijdstip te vertrekken, geniet u nog wat langer van uw cocon en vertrekt u rustig om 13.30 uur. Ideaal om lekker uit te slapen, nog een laatste keer van de sauna of het Scandinavisch buitenbad te genieten, of een wandeling in de omgeving te maken voordat u weer op weg gaat.",
         "imageAlt": "Late check-out"
+      },
+      "earlyArrival": {
+        "title": "Vroege aankomst (15.00 uur)",
+        "paragraph": "Verleng uw ontsnapping vanaf de namiddag. Kom eerder aan om volop te genieten van uw cocon, de sauna en het Scandinavisch buitenbad, en elke minuut van uw moment buiten de tijd te koesteren.",
+        "imageAlt": "Vroege aankomst"
+      },
+      "moreOptions": {
+        "title": "En nog veel meer opties",
+        "paragraph": "Massage, feestelijke tafel… Ontdek alle beschikbare opties voor uw domein op het moment van de reservatie.",
+        "imageAlt": "En nog veel meer opties"
       },
       "breakfast": {
         "title": "Lokaal ontbijt",

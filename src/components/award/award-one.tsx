@@ -15,7 +15,7 @@ const AWARD_IMAGES = [a_1, a_2, a_3, a_4, a_5, a_6];
 
 const LG_MIN_WIDTH = 992;
 /** Temps d’affichage par étape avant passage à la suivante */
-const STEP_HOLD_MS = 4200;
+const STEP_HOLD_MS = 3200;
 /** Pause le défilement auto tant que l’utilisateur scrolle (évite les sauts de scroll mobile) */
 const SCROLL_IDLE_MS = 450;
 

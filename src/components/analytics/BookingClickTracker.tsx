@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
 import { trackBookingClick } from "@/lib/analytics/events";
+import { getPageType } from "@/lib/analytics/page-context";
 import type { Locale } from "@/i18n/routing";
 import { toAnalyticsSiteLanguage } from "@/lib/analytics/site-language";
 
@@ -20,6 +21,19 @@ function isLodgifyBookingLink(href: string): boolean {
   }
 }
 
+function resolveButtonLocation(anchor: HTMLAnchorElement, pathname: string): string {
+  if (anchor.dataset.analyticsLocation) {
+    return anchor.dataset.analyticsLocation;
+  }
+  if (anchor.closest(".tp-projct-5-2-btn-box")) {
+    return "reservations_cta";
+  }
+  if (anchor.closest(".lodgify-hero-container, .availability-search-hero-wrapper")) {
+    return "hero";
+  }
+  return pathname;
+}
+
 export default function BookingClickTracker({ analyticsConsent }: Props) {
   const pathname = usePathname();
   const locale = useLocale() as Locale;
@@ -33,11 +47,14 @@ export default function BookingClickTracker({ analyticsConsent }: Props) {
       const anchor = target?.closest("a[href]") as HTMLAnchorElement | null;
       if (!anchor?.href || !isLodgifyBookingLink(anchor.href)) return;
 
-      const dataLocation = anchor.getAttribute("data-analytics-location");
       trackBookingClick({
         href: anchor.href,
         siteLanguage,
-        buttonLocation: dataLocation ?? pathname,
+        buttonLocation: resolveButtonLocation(anchor, pathname),
+        pathname,
+        pageType: getPageType(pathname),
+        ctaId: anchor.dataset.analyticsCta,
+        coconId: anchor.dataset.analyticsCocon,
       });
     };
 

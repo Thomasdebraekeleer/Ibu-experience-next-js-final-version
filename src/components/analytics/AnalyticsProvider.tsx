@@ -28,6 +28,8 @@ import GoogleAnalytics from "./GoogleAnalytics";
 import AnalyticsRouteTracker from "./AnalyticsRouteTracker";
 import AccommodationViewTracker from "./AccommodationViewTracker";
 import BookingClickTracker from "./BookingClickTracker";
+import StrategicInteractionTracker from "./StrategicInteractionTracker";
+import ReservationsListTracker from "./ReservationsListTracker";
 import CookieConsentBanner from "./CookieConsentBanner";
 import CookieConsentModal from "./CookieConsentModal";
 
@@ -137,7 +139,9 @@ function AnalyticsProviderInner({ children }: { children: ReactNode }) {
         <AnalyticsRouteTracker analyticsConsent={preferences.analytics} />
       </Suspense>
       <AccommodationViewTracker analyticsConsent={preferences.analytics} />
+      <ReservationsListTracker analyticsConsent={preferences.analytics} />
       <BookingClickTracker analyticsConsent={preferences.analytics} />
+      <StrategicInteractionTracker analyticsConsent={preferences.analytics} />
       {showBanner && (
         <CookieConsentBanner
           onAcceptAll={handleAcceptAll}
