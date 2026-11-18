@@ -69,10 +69,12 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
   }, [syncViewport]);
 
   useEffect(() => {
-    let scrollIdleTimer: ReturnType<typeof setTimeout>;
+    let scrollIdleTimer: number | undefined;
     const onScroll = () => {
       userScrollingRef.current = true;
-      window.clearTimeout(scrollIdleTimer);
+      if (scrollIdleTimer !== undefined) {
+        window.clearTimeout(scrollIdleTimer);
+      }
       scrollIdleTimer = window.setTimeout(() => {
         userScrollingRef.current = false;
       }, SCROLL_IDLE_MS);
@@ -80,7 +82,9 @@ const AwardOne = ({ cls = "pt-125 pb-125", abStyle = false }: IProps) => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.clearTimeout(scrollIdleTimer);
+      if (scrollIdleTimer !== undefined) {
+        window.clearTimeout(scrollIdleTimer);
+      }
     };
   }, []);
 

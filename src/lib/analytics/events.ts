@@ -93,7 +93,7 @@ export function trackSelectItem(options: {
   trackGaEvent(
     "select_item",
     scrubParams({
-      ...baseContext(siteLanguage, getPageType(options.pathname)),
+      ...baseContext(options.siteLanguage, getPageType(options.pathname)),
       item_id: options.itemId,
       item_name: options.itemName,
       button_location: options.buttonLocation,
@@ -218,7 +218,7 @@ export function trackGiftCardClick(options: {
   trackGaEvent(
     "gift_card_click",
     scrubParams({
-      ...baseContext(siteLanguage, getPageType(options.pathname)),
+      ...baseContext(options.siteLanguage, getPageType(options.pathname)),
       cta_id: options.ctaId,
       gift_card_type: options.giftCardType,
       button_location: options.buttonLocation ?? "gift_card_page",
