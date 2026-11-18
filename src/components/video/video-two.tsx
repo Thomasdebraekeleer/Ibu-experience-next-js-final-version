@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useTranslations } from "next-intl";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "@/plugins/scroll-trigger";
 import { Leaf } from "../svg";
 import Image from "next/image";
 

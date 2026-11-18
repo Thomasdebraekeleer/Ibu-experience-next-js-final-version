@@ -20,7 +20,7 @@ describe("resolveGiftCardSiteLocale", () => {
       metadata: { gift_card_locale: "nl" },
       locale: "fr",
       client_reference_id: null,
-    } as Parameters<typeof resolveGiftCardSiteLocale>[0];
+    } as unknown as Parameters<typeof resolveGiftCardSiteLocale>[0];
     assert.equal(resolveGiftCardSiteLocale(session), "nl-BE");
   });
 

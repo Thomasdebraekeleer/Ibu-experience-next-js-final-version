@@ -4,8 +4,8 @@ import { ScrollTrigger } from "@/plugins";
 function awardAnimOne() {
   const awardItem = document.querySelector(".tp-award-2-area");
   if(!awardItem) return
-  const sections_2 = gsap.utils.toArray(".tp-award-2-area");
-  const listItem_2 = gsap.utils.toArray(".tpaward");
+  const sections_2 = gsap.utils.toArray<HTMLElement>(".tp-award-2-area");
+  const listItem_2 = gsap.utils.toArray<HTMLElement>(".tpaward");
   sections_2.forEach((section, index) => {
     ScrollTrigger.create({
       trigger: section,

@@ -111,9 +111,12 @@ export default function PortfolioDetailsShowcaseTwoArea() {
 
   const refreshEvasionScrollGallery = useCallback(() => {
     evasionPcImagesLoadedRef.current += 1;
-    if (evasionPcImagesLoadedRef.current < 8) return;
-    void import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-      ScrollTrigger.refresh();
+    if (evasionPcImagesLoadedRef.current !== 8) return;
+    if (!window.matchMedia('(min-width: 992px)').matches) return;
+    void import('@/plugins/scroll-trigger').then(({ ScrollTrigger }) => {
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        ScrollTrigger.refresh(true);
+      }
     });
   }, []);
 

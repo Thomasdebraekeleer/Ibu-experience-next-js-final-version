@@ -44,8 +44,8 @@ function panelOneAnimation() {
   let pj = gsap.matchMedia();
   pj.add("(min-width: 992px)", () => {
     if (document.querySelector(".tp-project-2-area")) {
-      let sections = gsap.utils.toArray(".tp-project-2-area");
-      let listItem = gsap.utils.toArray(".tpproject");
+      let sections = gsap.utils.toArray<HTMLElement>(".tp-project-2-area");
+      let listItem = gsap.utils.toArray<HTMLElement>(".tpproject");
       sections.forEach((section, index) => {
         ScrollTrigger.create({
           trigger: section,

@@ -93,8 +93,9 @@ export default function useRevealOnScroll<T extends HTMLElement>(
     // Cleanup
     return () => {
       animation.kill();
-      if (ScrollTrigger.getById) {
-        const trigger = ScrollTrigger.getById(animation.scrollTrigger?.vars.id);
+      const triggerId = animation.scrollTrigger?.vars.id;
+      if (triggerId) {
+        const trigger = ScrollTrigger.getById(triggerId);
         if (trigger) trigger.kill();
       }
     };
